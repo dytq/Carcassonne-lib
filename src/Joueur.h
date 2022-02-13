@@ -4,7 +4,7 @@
 #include <array>
 #include <string>
 
-#include "Meaple.h"
+#include "Meeple.h"
 #include "Carte.h"
 
 class Joueur {
