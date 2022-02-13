@@ -1,19 +1,19 @@
-#ifndef MEAPLE_H
-#define MEAPLE_H
+#ifndef MEEPLE_H
+#define MEEPLE_H
 
 #include "Joueur.h"
 #include "Element.h"
 
 class Joueur;
 
-class Meaple {
+class Meeple {
 
     private:
         Joueur * joueur;
         Element * element;
     public:
-        Meaple(Joueur * joueur);
-        ~Meaple() {}
+        Meeple(Joueur * joueur);
+        ~Meeple() {}
 };
 
-#endif // MEAPLE_H
+#endif // MEEPLE_H
