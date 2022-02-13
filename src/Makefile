@@ -1,57 +1,38 @@
-BUILD=build
-SRC=src
-EXEC=app.out
+SRC=
+BUILD=
 
-CFLAGS=
+#COMPILATOR=clang++
+COMPILATOR=g++
 
-COMPILE_OBJ=g++ $(CFLAGS) -o $@ -c $^
+CFLAGS=-Wall -g
+EXEC=app
 
-ALL:compile
+FILE=$(wildcard $(SRC)*.cpp)                  # recupère tous les .cpp
+OBJ=$(patsubst %.cpp, %.o , $(FILE))          # on remplace .cpp en .o
+
+all:compile
 
 ### run ###
-run: compile
-	./$(EXEC)
+run:
+	./app
 
-### compilation ###
-compile: main.o Plateau.o Joueur.o Bordure.o Carte.o
-	g++ main.o Plateau.o Joueur.o Bordure.o Carte.o -o app.out	
-### compilation en fichiers objet ###
-main.o: main.cpp
-	g++ -o main.o -c main.cpp
+### compile le programme ###
+compile: $(OBJ)  
+	$(COMPILATOR) $(CFLAGS) -o $(EXEC) $(OBJ) 
 
-Plateau.o: Plateau.cpp Plateau.h
-	$(COMPILE_OBJ)
+%.o: %.cpp
+	$(COMPILATOR) $(CFLAGS) -o $@ -c $< 
 
-Joueur.o: Joueur.cpp Joueur.h	
-	$(COMPILE_OBJ)
-
-Carte.o: Carte.cpp Carte.h
-	$(COMPILE_OBJ)
-
-Element.o: Element.cpp Element.h
-	$(COMPILE_OBJ)
-
-Meeple.o: Meeple.cpp Meeple.h
-	$(COMPILE_OBJ)
-
-Noeud.o: Noeud.cpp Noeud.h
-	$(COMPILE_OBJ)
-
-Bordure.o: Bordure.cpp Bordure.h
-	$(COMPILE_OBJ)
-
-
-### vérification de fuites de mémoire ###
-memcheck: compile
-	valgrind ./application/target/main
-
-
-### clean ###
+### supprime les fichers objets ###
 clean:
 	rm *.o
-	rm app.out
+	rm ${EXEC}
+
+### vérification de fuites de mémoire ###
+memcheck: 
+	valgrind ./$(SRC)$(EXEC)
 
 ### archive ###
 archive : clean
-	cd ..
+	cd ../..
 	tar -czvf CarcassonneIA.tar.gz CarcassonneIA
