@@ -9,20 +9,16 @@ Contributeurs :
 
 Concernant les commandes ci-dessous, il faut d'abord ouvrir une console dans le répertoire de ce README.
 
-Pour configurer et compiler le projet:
-```bash
-	./configure.sh
-```
-Pour recompiler le projet:
+Pour exécuter le programme :
 ```bash
 	make
 ```
-Pour exécuter le projet (les guillemets sont obligatoires):
+Pour recompiler le projet :
 ```bash
-	./CarcassonneIA
+	make compile
 ```
 
-Pour nettoyer le projet des fichiers générés par cmake :
+Pour nettoyer le projet des fichiers temporaires :
 ```bash
-	./cclean.sh
+	make clean
 ```
