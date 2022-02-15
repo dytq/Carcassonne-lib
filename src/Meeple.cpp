@@ -1,5 +1,8 @@
-#include "Meeple.h"
+// LIBRAIRIES
+#include "Meeple.hpp"
 
-Meeple::Meeple(Joueur * joueur) {
+// FONCTIONS
+Meeple::Meeple(Joueur * joueur)
+{
 
 }

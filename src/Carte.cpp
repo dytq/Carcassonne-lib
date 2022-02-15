@@ -1,10 +1,15 @@
-#include "Carte.h"
+// LIBRAIRIES
+#include "Carte.hpp"
 
-Carte::Carte() {
+// FONCTIONS
+Carte::Carte()
+{
 
 }
 
-std::vector<Element *> Carte::get_element(Carte *carte) {
+std::vector<Element *> Carte::get_element(Carte *carte)
+{
     std::vector<Element *> list_vide;
+    
     return list_vide;
 }

@@ -1,29 +1,36 @@
+// LIBRAIRIES
 #include <iostream>
 #include <list>
 #include <tuple>
 #include <map>
 #include <vector>
 
-#include "Plateau.h"
-#include "Joueur.h"
-#include "Bordure.h"
-#include "Carte.h"
+#include "Plateau.hpp"
+#include "Joueur.hpp"
+#include "Bordure.hpp"
+#include "Carte.hpp"
 
 using namespace std;
 
-void afficher_elements(vector<Element *> list_element) {
+// FONCTIONS
+void afficher_elements(vector<Element *> list_element)
+{
 
 }
 
-void afficher_list_emplacement_libre(vector<Carte *> list_emplacement_libre) {
+void afficher_list_emplacement_libre(vector<Carte *> list_emplacement_libre)
+{
 
 }
 
-void afficher_list_orientation_possible(vector<list<Bordure *>> orientation_possible) {
+void afficher_list_orientation_possible(vector<list<Bordure *>> orientation_possible)
+{
 
 }
 
-int main() {
+// MAIN
+int main()
+{
     // * Initialise le plateau
     Plateau plateau;                   // instancie le plateau
     plateau.charger_donnee("path");    // charge les données depuis la db
@@ -40,9 +47,10 @@ int main() {
     bool fin_de_jeu = false; // boolean de fin de partie
 
     // main loop
-    while(!fin_de_jeu) {
-        if(plateau.get_pioche().size() != 0) {
-
+    while(!fin_de_jeu)
+    {
+        if(plateau.get_pioche().size() != 0)
+        {
             // * Piocher une carte
             Carte * carte_pioche =  plateau.piocher_carte(); // pioche une carte (recupère l'addresse de la carte)
             cout << "carte pioché : " << carte_pioche << endl;
@@ -77,11 +85,14 @@ int main() {
 
 
             // * Poser un pion ?
-            if(joueur->list_meaple_vide()) {
+            if(joueur->list_meaple_vide())
+            {
                 cout << "poser pions ?" << endl;
                 bool poser_pion = true;
                 cin >> poser_pion;
-                if(poser_pion == true) {
+
+                if(poser_pion == true)
+                {
                     cout << "choisir emplacement" << endl;
                     vector<Element *> list_element = carte_pioche->get_element(carte_pioche);
                     afficher_elements(list_element);
@@ -94,7 +105,10 @@ int main() {
             plateau.compter_points(joueur); // compte les points totalisées par les meaples mise en jeu si il y a lieu
             joueur = plateau.joueur_suivant(); // passe au joueur suivant
 
-        } else {
+        }
+
+        else
+        {
             fin_de_jeu = true; // tant qu'on n'a plus de carte
         }
     }
@@ -103,9 +117,11 @@ int main() {
     list<Joueur *> list_joueur = plateau.get_joueur_liste();
     list<Joueur *>::iterator it;
 
-    for (it = list_joueur.begin(); it != list_joueur.end(); ++it) {
+    for (it = list_joueur.begin(); it != list_joueur.end(); ++it)
+    {
         plateau.compter_points_restant(*it); // recupere tous les meaples restant du joueur pour compter les points
         cout << "Joueur " << (*it)->get_nom() << " à obtenu " << (*it)->get_score();
     }
+
     return 0;
 }
