@@ -28,7 +28,7 @@ $(TRG_DIR)/%.o: $(SRC_DIR)/%.cpp | $(TRG_DIR)
 $(TRG_DIR):
 	mkdir -p $@
 
-### Supprime les fichers temporaires ###
+### Supprime les fichiers temporaires ###
 clean:
 	@$(RM) -rv $(TRG_DIR)
 	clear
