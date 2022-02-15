@@ -5,8 +5,11 @@
 // FONCTIONS
 Plateau::Plateau()
 {
-    std::cout << "création de plateau" << std::endl;
+    std::cout << "Création du plateau" << std::endl;
 }
+
+Plateau::~Plateau()
+{}
 
 void Plateau::init_plateau()
 {
