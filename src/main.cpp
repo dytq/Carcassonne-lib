@@ -102,7 +102,7 @@ int main()
             }
 
             // * compter les points
-            plateau.compter_points(joueur); // compte les points totalisées par les meaples mise en jeu si il y a lieu
+            plateau.evaluer_meeple(Meeple::COMPLET); // compte les points totalisées par les meaples mise en jeu si il y a lieu
             joueur = plateau.joueur_suivant(); // passe au joueur suivant
 
         }
@@ -117,9 +117,9 @@ int main()
     list<Joueur *> list_joueur = plateau.get_joueur_liste();
     list<Joueur *>::iterator it;
 
+    plateau.evaluer_meeple(Meeple::IMCOMPLET);
     for (it = list_joueur.begin(); it != list_joueur.end(); ++it)
     {
-        plateau.compter_points_restant(*it); // recupere tous les meaples restant du joueur pour compter les points
         cout << "Joueur " << (*it)->get_nom() << " à obtenu " << (*it)->get_score();
     }
 

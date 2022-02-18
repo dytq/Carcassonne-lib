@@ -45,7 +45,7 @@ class Plateau
     void poser_carte(Carte * emplacement, Carte * carte, std::list<Bordure *> bordure);
     void compter_points(Joueur * joueur);
     Joueur * joueur_suivant();
-    void compter_points_restant(Joueur * joueur);
+    void evaluer_meeple(Meeple::type_comptage comptage); // évaluation des scores
 };
 
 #endif
