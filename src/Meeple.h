@@ -7,13 +7,9 @@
 class Joueur;
 
 class Meeple {
-
     private:
         Joueur * joueur;
         Element * element;
-    public:
-        Meeple(Joueur * joueur);
-        ~Meeple() {}
 };
 
 #endif // MEEPLE_H
