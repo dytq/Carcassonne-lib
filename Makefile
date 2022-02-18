@@ -1,4 +1,4 @@
-### répertoires ###
+### Répertoires ###
 SRC_DIR=src
 TRG_DIR=target
 
@@ -6,7 +6,10 @@ EXE=$(TRG_DIR)/Carcassonne_lib
 SRC=$(wildcard $(SRC_DIR)/*.cpp)
 OBJ=$(SRC:$(SRC_DIR)/%.cpp=$(TRG_DIR)/%.o)
 
-### flags ###
+### Compilateur ###
+CXX=g++
+
+### Flags ###
 CXXFLAGS := -Iinclude -MMD -MP
 CFLAGS   := -Wall
 LDFLAGS  := -Llib
@@ -25,17 +28,18 @@ $(TRG_DIR)/%.o: $(SRC_DIR)/%.cpp | $(TRG_DIR)
 $(TRG_DIR):
 	mkdir -p $@
 
-### supprime les fichers temporaires ###
+### Supprime les fichiers temporaires ###
 clean:
 	@$(RM) -rv $(TRG_DIR)
+	clear
 
 -include $(OBJ:.o=.d)
 
-### vérification de fuites de mémoire ###
+### Vérification de fuites de mémoire ###
 memcheck: 
 	valgrind ./$(SRC)$(EXEC)
 
-### archive ###
+### Archive ###
 archive: clean
 	cd ../..
 	tar -czvf Carcassonne-lib.tar.gz Carcassonne-lib

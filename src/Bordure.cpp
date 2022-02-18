@@ -1,1 +1,4 @@
-#include "Bordure.h"
+// LIBRAIRIES
+#include "Bordure.hpp"
+
+// FONCTIONS

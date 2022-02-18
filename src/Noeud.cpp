@@ -1,10 +1,19 @@
-#include "Noeud.h"
+// LIBRAIRIES
+#include "Noeud.hpp"
 
-void Noeud::add_voisin(Noeud *noeud) {
+// FONCTIONS
+Noeud::Noeud()
+{
+    
+}
+
+void Noeud::add_voisin(Noeud *noeud)
+{
 
 }
 
-std::list<Noeud> Noeud::noeud_voisins() {
+std::list<Noeud> Noeud::noeud_voisins()
+{
     std::list<Noeud> list_vide;
     return list_vide;
 }

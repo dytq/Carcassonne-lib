@@ -13,10 +13,6 @@ Pour exécuter le programme :
 ```bash
 	make
 ```
-Pour recompiler le projet :
-```bash
-	make compile
-```
 
 Pour nettoyer le projet des fichiers temporaires :
 ```bash
