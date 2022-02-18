@@ -1,8 +1,8 @@
 #ifndef BRIGAND_H
 #define BRIGAND_H
 
-#include "Meeple.h"
-#include "Joueur.h"
+#include "Meeple.hpp"
+#include "Joueur.hpp"
 
 class Brigand : Meeple {
     public:

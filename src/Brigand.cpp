@@ -1,4 +1,4 @@
-#include "Brigand.h"
+#include "Brigand.hpp"
 
 Brigand::Brigand(Joueur * joueur) {
 

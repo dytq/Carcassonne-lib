@@ -1,8 +1,8 @@
 #ifndef MEEPLE_H
 #define MEEPLE_H
 
-#include "Joueur.h"
-#include "Element.h"
+#include "Joueur.hpp"
+#include "Element.hpp"
 
 class Joueur;
 

@@ -1,7 +1,7 @@
 #ifndef CHEVALIER_H
 #define CHEVALIER_H
 
-#include "Meeple.h"
+#include "Meeple.hpp"
 
 class Chevalier : Meeple {
     public:

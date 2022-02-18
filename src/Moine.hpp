@@ -1,7 +1,7 @@
 #ifndef MOINE_H
 #define MOINE_H
 
-#include "Meeple.h"
+#include "Meeple.hpp"
 
 class Moine : Meeple {
     public:
