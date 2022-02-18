@@ -1,29 +1,15 @@
-// DIRECTIVES
-#ifndef MEEPLE_HPP
-#define MEEPLE_HPP
+#ifndef MEEPLE_H
+#define MEEPLE_H
 
-// LIBRAIRIES
-#include "Joueur.hpp"
-#include "Element.hpp"
+#include "Joueur.h"
+#include "Element.h"
 
 class Joueur;
 
-// CLASSE
-class Meeple
-{
+class Meeple {
     private:
-    // VARIABLES
-    Joueur * joueur;
-    Element * element;
-
-    public:
-    // CONSTRUCTEURS
-    Meeple(Joueur * joueur);
-
-    // DESTRUCTEUR
-    ~Meeple();
-
-    // METHODES
+        Joueur * joueur;
+        Element * element;
 };
 
-#endif
+#endif // MEEPLE_H
