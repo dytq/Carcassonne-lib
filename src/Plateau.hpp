@@ -10,8 +10,8 @@
 #include <string>
 
 #include "Bordure.hpp"
-class Carte;
-class Joueur;
+#include "Carte.hpp"
+#include "Joueur.hpp"
 
 // CLASSE
 class Plateau
