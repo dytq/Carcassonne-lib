@@ -29,6 +29,9 @@ class Plateau
     // DESTRUCTEUR
     ~Plateau();
 
+    // ENUM
+    static enum status { EN_COURS, FIN_DU_JEU } status_enum;
+
     // METHODES
     void charger_donnee(std::string path);
     void init_plateau();
@@ -45,7 +48,7 @@ class Plateau
     void poser_carte(Carte * emplacement, Carte * carte, std::list<Bordure *> bordure);
     void compter_points(Joueur * joueur);
     Joueur * joueur_suivant();
-    void evaluer_meeple(Meeple::type_comptage comptage); // évaluation des scores
+    void evaluer_meeple(status status); // évaluation des scores
 };
 
 #endif

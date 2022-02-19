@@ -61,7 +61,7 @@ Joueur * Plateau::joueur_suivant()
     return NULL;
 }
 
-void Plateau::evaluer_meeple(Meeple::type_comptage comptage) {
+void Plateau::evaluer_meeple(Plateau::status status) {
 
 }
 
