@@ -1,6 +1,6 @@
 #include "Moine.hpp"
 
-Moine::Moine() {
+Moine::Moine(Joueur * joueur) {
 
 }
 

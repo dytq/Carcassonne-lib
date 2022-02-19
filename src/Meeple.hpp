@@ -1,8 +1,9 @@
 #ifndef MEEPLE_H
 #define MEEPLE_H
+
 #include <vector>
 
-#include "Element.hpp"
+class Element;
 
 class Meeple {
     private:

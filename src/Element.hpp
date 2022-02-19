@@ -4,27 +4,31 @@
 
 // LIBRAIRIES
 #include "Noeud.hpp"
-
-class Meaple;
+#include "Plateau.hpp"
+#include "Meeple.hpp"
 
 // CLASSE
-class Element : Noeud
+class Element : public Noeud
 {
     private:
     // VARIABLES
-    Meaple * meaple;
+    Meeple * meeple;
+    int point_en_cours;
+    int point_final;
 
     public:
     // CONSTRUCTEURS
-    Element(Type_noeud type_noeud);
+    Element(Noeud::type_element type_noeud);
 
     // DESTRUCTEUR
     ~Element();
 
     // METHODES
-    Meaple * recuperer_meaple();
-    void ajouter_meaple();
-    void supprimer_meaple();
+    Meeple * recuperer_meeple();
+    void ajouter_meeple();
+    void supprimer_meeple();
+
+    void set_point(int point, Plateau::status status);
 };
 
 #endif

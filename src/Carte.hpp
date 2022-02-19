@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "Bordure.hpp"
+#include "Noeud.hpp"
 #include "Element.hpp"
 
 // CLASSE

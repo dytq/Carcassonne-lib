@@ -1,6 +1,6 @@
 #include "Chevalier.hpp"
 
-Chevalier::Chevalier() {
+Chevalier::Chevalier(Joueur * joueur) {
 
 }
 
