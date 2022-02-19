@@ -3,7 +3,7 @@ Programmation du jeu "Carcassonnne" à deux et d'une IA capable d'y jouer
 
 Contributeurs :
 - BARBIER Yann 21800844
--
+- DEDARALLY Taariq
 -
 
 
