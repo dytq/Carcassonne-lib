@@ -8,7 +8,9 @@
 #include <vector>
 
 #include "Bordure.hpp"
-#include "Element.hpp"
+#include "Noeud.hpp"
+
+class Element;
 
 // CLASSE
 class Carte

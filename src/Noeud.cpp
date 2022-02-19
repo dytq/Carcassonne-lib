@@ -7,12 +7,12 @@ Noeud::Noeud()
     
 }
 
-void Noeud::add_voisin(Noeud *noeud)
+void Noeud::set_link(Noeud *noeud)
 {
 
 }
 
-std::list<Noeud> Noeud::noeud_voisins()
+std::list<Noeud> Noeud::get_noeud_voisins()
 {
     std::list<Noeud> list_vide;
     return list_vide;

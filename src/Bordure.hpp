@@ -10,11 +10,11 @@ class Bordure : Noeud
 {
     private:
     // VARIABLES
-    Type_noeud type_noeud;
+    Noeud::type_element type_noeud;
 
     public:
     // CONSTRUCTEURS
-    Bordure(Type_noeud type_noeud);
+    Bordure(Noeud::type_element type_noeud);
 
     // DESTRUCTEUR
     ~Bordure();

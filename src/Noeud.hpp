@@ -10,7 +10,7 @@ class Noeud
 {
     protected:
         // VARIABLES
-        static enum element{ROUTE, VILLE, ABBAYE, PLAINE} element_enum;
+        static enum type_element{ROUTE, VILLE, ABBAYE, PLAINE} element_enum;
         std::list<Noeud> noeuds_voisins;
 
         // CONSTRUCTEURS
@@ -21,7 +21,7 @@ class Noeud
 
     public:
         // DESTRUCTEUR
-        ~Noeud();
+        ~Noeud() { };
 
         // METHODES
         std::list<Noeud> get_noeud_voisins();

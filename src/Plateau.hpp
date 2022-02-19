@@ -9,8 +9,10 @@
 #include <vector>
 #include <string>
 
-#include "Joueur.hpp"
-#include "Carte.hpp"
+#include "Bordure.hpp"
+
+class Carte;
+class Joueur;
 
 // CLASSE
 class Plateau

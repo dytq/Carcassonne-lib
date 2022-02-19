@@ -2,22 +2,22 @@
 #include "Element.hpp"
 
 // FONCTIONS
-Element::Element(Type_noeud type_noeud)
+Element::Element(Noeud::type_element type_element)
 {
 
 }
 
-Meaple * Element::recuperer_meaple()
+Meeple * Element::recuperer_meeple()
 {
     return nullptr;
 }
 
-void Element::ajouter_meaple()
+void Element::ajouter_meeple()
 {
 
 }
 
-void Element::supprimer_meaple()
+void Element::supprimer_meeple()
 {
 
 }
