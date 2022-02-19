@@ -10,7 +10,6 @@
 #include <string>
 
 #include "Bordure.hpp"
-
 class Carte;
 class Joueur;
 

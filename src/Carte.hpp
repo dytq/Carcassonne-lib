@@ -9,8 +9,7 @@
 
 #include "Bordure.hpp"
 #include "Noeud.hpp"
-
-class Element;
+#include "Element.hpp"
 
 // CLASSE
 class Carte
