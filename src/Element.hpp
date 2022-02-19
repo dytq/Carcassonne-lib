@@ -4,7 +4,6 @@
 
 // LIBRAIRIES
 #include "Noeud.hpp"
-#include "Plateau.hpp"
 #include "Meeple.hpp"
 
 // CLASSE
@@ -28,7 +27,7 @@ class Element : public Noeud
     void ajouter_meeple();
     void supprimer_meeple();
 
-    void set_point(int point, Plateau::status status);
+    void set_point(int point, int i);
 };
 
 #endif

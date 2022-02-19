@@ -3,11 +3,11 @@
 
 #include <vector>
 
-class Element;
+#include "Noeud.hpp"
 
 class Meeple {
     private:
-        Element * element;
+        Noeud * element;
     public:
         static enum type_comptage{ COMPLET, IMCOMPLET} type_comptage_enum;
         virtual int compter_points(type_comptage comptage, std::vector<Meeple> listMeeple, int * score) { return 0;}
