@@ -2,10 +2,11 @@
 #define CHEVALIER_H
 
 #include "Meeple.hpp"
+#include "Joueur.hpp"
 
 class Chevalier : Meeple {
     public:
-        Chevalier();
+        Chevalier(Joueur * joueur);
         int compter_points(type_comptage comptage, std::vector<Meeple> listMeeple, int * score);
 };
 
