@@ -49,7 +49,7 @@ class Plateau
     void poser_carte(Carte * emplacement, Carte * carte, std::list<Bordure *> bordure);
     void compter_points(Joueur * joueur);
     Joueur * joueur_suivant();
-    void evaluer_meeple(status status); // évaluation des scores
+    void evaluer_meeple(int status_du_jeu); // évaluation des scores
 };
 
 #endif

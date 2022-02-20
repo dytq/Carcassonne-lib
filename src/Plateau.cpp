@@ -61,7 +61,7 @@ Joueur * Plateau::joueur_suivant()
     return NULL;
 }
 
-void Plateau::evaluer_meeple(Plateau::status status) {
+void Plateau::evaluer_meeple(int status_du_jeu) {
 
 }
 
