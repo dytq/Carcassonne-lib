@@ -86,7 +86,7 @@ int main()
 
 
             // * Poser un pion ?
-            if(joueur->list_meaple_vide())
+            if(!joueur->meeple_list_est_vide())
             {
                 cout << "poser pions ?" << endl;
                 bool poser_pion = true;

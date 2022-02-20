@@ -3,7 +3,7 @@
 #define JOUEUR_HPP
 
 // LIBRAIRIES
-#include <array>
+#include <list>
 #include <string>
 
 #include "Meeple.hpp"
@@ -14,13 +14,12 @@ class Joueur
 {
     private:
         // VARIABLES
-        std::array<Meeple *,7> meeple;
+        std::list<Meeple *> meeple_stack;
         int score;
-        std::string nom_joueur;
+        std::string nom_joueeur;
 
     public:
         static enum Type_joueur{ROBOT, HUMAIN} Type_joueur_enum;
-
         // CONSTRUCTEURS
         Joueur(Type_joueur type_joueur);
 
@@ -33,7 +32,12 @@ class Joueur
         void poser_meaples(Carte * carte, Element * element);
         int get_score();
         void ajouter_points(int points);
-        bool list_meaple_vide();
+
+        void ajouter_meeple_list(Meeple * meeple);
+        void supprimer_meeple_list(Meeple * meeple);
+        bool meeple_list_est_vide();
+        const std::list<Meeple *> list_meeple();
+
 };
 
 #endif

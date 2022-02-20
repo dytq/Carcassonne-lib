@@ -32,7 +32,12 @@ void Joueur::ajouter_points(int points)
 
 }
 
-bool Joueur::list_meaple_vide()
+const std::list<Meeple *> Joueur::list_meeple()
 {
-    return true;
+    return this->meeple_stack;
+}
+
+
+void Joueur::ajouter_meeple_list(Meeple * meeple) {
+
 }
