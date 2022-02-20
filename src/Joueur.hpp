@@ -6,8 +6,6 @@
 #include <list>
 #include <string>
 
-#include "Carte.hpp"
-
 // CLASSE
 class Joueur
 {
