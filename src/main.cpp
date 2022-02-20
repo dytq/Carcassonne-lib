@@ -86,7 +86,7 @@ int main()
 
 
             // * Poser un pion ?
-            if(joueur->list_meaple_vide())
+            if(plateau.stack_meeple_vide(joueur))
             {
                 cout << "poser pions ?" << endl;
                 bool poser_pion = true;
@@ -98,7 +98,7 @@ int main()
                     vector<Element *> list_element = carte_pioche->get_element(carte_pioche);
                     afficher_elements(list_element);
                     cin >> index;
-                    joueur->poser_meaples(carte_pioche, list_element[index]); // permet au joueur de placer un pion sur la carte
+                    plateau.poser_meeple(joueur, carte_pioche, list_element[index]); // permet au joueur de placer un pion sur la carte
                 }
             }
 

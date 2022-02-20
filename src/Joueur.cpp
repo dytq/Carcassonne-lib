@@ -17,10 +17,6 @@ void Joueur::set_nom(std::string nom)
 
 }
 
-void Joueur::poser_meaples(Carte * carte, Element * element)
-{
-
-}
 
 int Joueur::get_score()
 {
@@ -30,9 +26,4 @@ int Joueur::get_score()
 void Joueur::ajouter_points(int points)
 {
 
-}
-
-bool Joueur::list_meaple_vide()
-{
-    return true;
 }
