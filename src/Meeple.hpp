@@ -1,7 +1,8 @@
 #ifndef MEEPLE_H
 #define MEEPLE_H
 
-#include <vector>
+#include <map>
+#include <list>
 
 #include "Joueur.hpp"
 #include "Noeud.hpp"
@@ -11,8 +12,8 @@ class Meeple {
         Joueur * joueur;
         Noeud * noeuds;
     public:
-        static enum type_comptage{ COMPLET, IMCOMPLET} type_comptage_enum;
-        virtual int compter_points(type_comptage comptage, std::vector<Meeple*> listMeeple, int * score) { return 0;}
+        Meeple();
+        virtual int compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple*>> mapJoueurListeMeeple, int * score) { return 0;}
         //virtual Noeud * get_noeud();
 };
 

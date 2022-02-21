@@ -4,10 +4,12 @@
 #include "Meeple.hpp"
 #include "Joueur.hpp"
 
-class Moine : Meeple {
+class Moine : public Meeple {
+    private:
+        Joueur * joueur;
     public:
-        Moine(Joueur * joueur);
-        int compter_points(type_comptage comptage, std::vector<Meeple> listMeeple, int * score);
+        Moine(Joueur * joueur, Noeud * noeud);
+        int compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapListeMeeple, int * score);
 
 };
 
