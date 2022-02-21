@@ -4,10 +4,10 @@
 #include "Meeple.hpp"
 #include "Joueur.hpp"
 
-class Brigand : Meeple {
+class Brigand : public Meeple {
     public:
-        Brigand(Joueur * joueur);
-        int compter_points(type_comptage comptage, std::vector<Meeple> listMeeple, int * score);
+        Brigand(Joueur * joueur, Noeud * noeud);
+        int compter_points(int status_du_jeu, std::map<Joueur*, std::list<Meeple*>>, int * score);
 };
 
 #endif // BRIGAND_H

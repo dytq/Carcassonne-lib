@@ -1,10 +1,10 @@
 #include "Chevalier.hpp"
 
-Chevalier::Chevalier(Joueur * joueur) {
+Chevalier::Chevalier(Joueur * joueur, Noeud * noeud) {
 
 }
 
-int Chevalier::compter_points(type_comptage comptage, std::vector<Meeple> listMeeple, int * score) {
+int Chevalier::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple, int * score) {
 
     return 0;
 }

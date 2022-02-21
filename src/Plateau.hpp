@@ -13,17 +13,20 @@
 #include "Carte.hpp"
 #include "Joueur.hpp"
 #include "Pion.hpp"
+#include "constantes.hpp"
 
 // CLASSE
-class Plateau
-{
+class Plateau {
+
     private:
         // VARIABLES
         std::list<Carte *> pioche; // la pioche
         std::list<Joueur *> list_joueur; // liste des joueurs
         std::map<Carte *, std::list<Bordure *>> map_emplacement_possible; // stock les emplacements libre
         Carte * carte_depart; // case de depart (graphe connexe)
-        std::map<Joueur* , Pion *> mapJoueurPions; // associe une pile de pions à un Joueur
+        std::map<Joueur* , Pion *> mapJoueursPions; // associe une pile de pions à un Joueur
+        Joueur * rechercher_Joueur_plus_de_Pions(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple);
+        void desindexer_Meeple_dans_la_map(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple);
 
     public:
         // CONSTRUCTEURS
@@ -38,7 +41,7 @@ class Plateau
         // METHODES
         void charger_donnee(std::string path);
         void init_plateau();
-        void ajouter_joueur(Joueur * joueur);
+        void ajouter_joueur(Joueur * joueur, Pion * pion);
 
         Joueur * get_joueur();
         std::list<Carte*> get_pioche();
@@ -54,7 +57,7 @@ class Plateau
 
         void evaluer_meeple(int status_du_jeu); // évaluation des scores
         bool stack_meeple_vide(Joueur * joueur);
-        void poser_meeple(Joueur * joueur, Carte * carte, Element * element);
+        void poser_meeple(Joueur * joueur, Element * element);
 };
 
 #endif

@@ -5,7 +5,9 @@
 // FONCTIONS
 Plateau::Plateau()
 {
+    #ifndef DEBUG
     std::cout << "Création du plateau" << std::endl;
+    #endif // DEBUG
 }
 
 Plateau::~Plateau()
@@ -21,9 +23,9 @@ void Plateau::charger_donnee(std::string path)
 
 }
 
-void Plateau::ajouter_joueur(Joueur * joueur)
+void Plateau::ajouter_joueur(Joueur * joueur, Pion * pion)
 {
-
+    this->mapJoueursPions.insert(std::pair<Joueur *, Pion *>(joueur, pion));
 }
 
 Joueur * Plateau::get_joueur()
@@ -56,6 +58,17 @@ Joueur * Plateau::joueur_suivant()
     return NULL;
 }
 
+
+Joueur * Plateau::rechercher_Joueur_plus_de_Pions(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple) {
+    return NULL;
+}
+
+
+void Plateau::desindexer_Meeple_dans_la_map(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple) {
+
+}
+
+
 /**
  * Evaluation des Meeples pour chaque Joueurs
  *
@@ -66,7 +79,19 @@ Joueur * Plateau::joueur_suivant()
  * */
 void Plateau::evaluer_meeple(int status_du_jeu)
 {
-
+    for(auto const &itMap : this->mapJoueursPions) {
+        const std::list<Meeple *> listMeeple = itMap.second->get_stack_meeple();
+        for(auto const &itMeeple : listMeeple) {
+            int * score = 0;
+            std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple;
+            int est_complet = itMeeple->compter_points(status_du_jeu, mapJoueurListeMeeple, score);
+            if(est_complet == true || status_du_jeu ) {
+                Joueur * joueur = this->rechercher_Joueur_plus_de_Pions(mapJoueurListeMeeple);
+                joueur->ajouter_points(*score);
+                this->desindexer_Meeple_dans_la_map(mapJoueurListeMeeple);
+            }
+        }
+    }
 }
 
 std::list<Joueur *> Plateau::get_joueur_liste()
@@ -93,7 +118,8 @@ bool Plateau::stack_meeple_vide(Joueur * joueur) {
     return true;
 }
 
-void Plateau::poser_meeple(Joueur * joueur, Carte * carte, Element * element) {
-
-
+void Plateau::poser_meeple(Joueur * joueur, Element * element) {
+    Meeple * meeple = Element::generate_meeple(joueur, element);
+    element->ajouter_meeple(meeple);
+    this->mapJoueursPions.find(joueur)->second->ajouter_meeple(meeple);
 }

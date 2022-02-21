@@ -1,9 +1,9 @@
 #include "Moine.hpp"
 
-Moine::Moine(Joueur * joueur) {
+Moine::Moine(Joueur * joueur, Noeud * noeud) {
 
 }
 
-int Moine::compter_points(type_comptage comptage, std::vector<Meeple> listMeeple, int * score) {
+int Moine::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple, int * score) {
     return 0;
 }

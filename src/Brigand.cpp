@@ -1,10 +1,10 @@
 #include "Brigand.hpp"
 
-Brigand::Brigand(Joueur * joueur) {
+Brigand::Brigand(Joueur * joueur, Noeud * noeud) {
 
 }
 
-int Brigand::compter_points(type_comptage comptage, std::vector<Meeple> listMeeple, int * score) {
+int Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple, int * score) {
 
     return 0;
 }
