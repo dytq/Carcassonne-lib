@@ -39,7 +39,7 @@ clean:
 
 ### Vérification de fuites de mémoire ###
 memcheck: 
-	valgrind ./$(SRC)$(EXEC)
+	valgrind ./$(EXE)
 
 ### Debuggage GDB ###
 gdb:
