@@ -39,8 +39,8 @@ int main()
     plateau.init_plateau();            // init la carte en posant la première tuile sur le plateau (Tuile de base)
 
     // * Ajout des joueurs
-    plateau.ajouter_joueur(new Joueur(Joueur::HUMAIN));
-    plateau.ajouter_joueur(new Joueur(Joueur::ROBOT));
+    plateau.ajouter_joueur(new Joueur(Joueur::HUMAIN), new Pion());
+    plateau.ajouter_joueur(new Joueur(Joueur::ROBOT), new Pion());
 
     // * Init le joueur initiale
     Joueur * joueur = plateau.get_joueur(); // Récupère le joueur qui doit jouer
@@ -99,7 +99,7 @@ int main()
                     vector<Element *> list_element = carte_pioche->get_element(carte_pioche);
                     afficher_elements(list_element);
                     cin >> index;
-                    plateau.poser_meeple(joueur, carte_pioche, list_element[index]); // permet au joueur de placer un pion sur la carte
+                    plateau.poser_meeple(joueur, list_element[index]); // permet au joueur de placer un pion sur la carte
                 }
             }
 
