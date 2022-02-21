@@ -15,16 +15,17 @@ CXXFLAGS := -Iinclude -MMD -MP
 CFLAGS   := -Wall
 LDFLAGS  := -Llib
 LDLIBS   := -lm
+CDEBUG   := -g
 
 ### all ###
 .PHONY: all clean
 all: $(EXE)
 
 $(EXE): $(OBJ) | $(TRG_DIR)
-	$(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
+	$(CXX) $(LDFLAGS) $^ $(LDLIBS) $(CDEBUG) -o $@
 
 $(TRG_DIR)/%.o: $(SRC_DIR)/%.cpp | $(TRG_DIR)
-	$(CXX) $(CXXFLAGS) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(CFLAGS) -c $< $(CDEBUG) -o $@
 
 $(TRG_DIR):
 	mkdir -p $@
