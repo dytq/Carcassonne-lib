@@ -9,6 +9,7 @@
 class Meeple {
     private:
         Joueur * joueur;
+        Noeud * noeuds;
     public:
         static enum type_comptage{ COMPLET, IMCOMPLET} type_comptage_enum;
         virtual int compter_points(type_comptage comptage, std::vector<Meeple*> listMeeple, int * score) { return 0;}
