@@ -41,6 +41,10 @@ clean:
 memcheck: 
 	valgrind ./$(SRC)$(EXEC)
 
+### Debuggage GDB ###
+gdb:
+	gdb ${EXE}
+
 ### Archive ###
 archive: clean
 	cd ../..
