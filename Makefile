@@ -8,7 +8,7 @@ OBJ=$(SRC:$(SRC_DIR)/%.cpp=$(TRG_DIR)/%.o)
 
 ### Compilateur ###
 CXX=g++
-#CXX=clang++
+#CXX=Compilateur C++
 
 ### Flags ###
 CXXFLAGS := -Iinclude -MMD -MP

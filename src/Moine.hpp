@@ -1,17 +1,29 @@
-#ifndef MOINE_H
-#define MOINE_H
+// DIRECTIVES
+#ifndef MOINE_HPP
+#define MOINE_HPP
 
+// LIBRAIRIES
 #include "Meeple.hpp"
 #include "Joueur.hpp"
 #include "Carte.hpp"
 
-class Moine : public Meeple {
+// CLASSE
+class Moine : public Meeple
+{
     private:
-        Carte * carte;
+    // VARIABLES
+    Carte * carte;
+
     public:
-        Moine(Joueur * joueur, Noeud * noeud, Carte * carte);
-        int compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapListeMeeple, int * score);
+    // CONSTRUCTEURS
+    Moine(Joueur * joueur, Noeud * noeud, Carte * carte);
+
+    // DESTRUCTEUR
+    ~Moine();
+
+    // METHODES
+    int compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapListeMeeple, int * score);
 
 };
 
-#endif // MOINE_H
+#endif

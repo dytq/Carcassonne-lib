@@ -10,10 +10,10 @@
 class Joueur
 {
     public:
+        // VARIABLES
         static enum Type_joueur{ROBOT, HUMAIN} Type_joueur_enum;
 
     private:
-        // VARIABLES
         int score;
         std::string nom_joueeur;
         Type_joueur type_joueur;

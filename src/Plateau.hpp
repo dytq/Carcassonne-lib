@@ -13,11 +13,11 @@
 #include "Carte.hpp"
 #include "Joueur.hpp"
 #include "Pion.hpp"
-#include "constantes.hpp"
+#include "Constantes.hpp"
 
 // CLASSE
-class Plateau {
-
+class Plateau
+{
     private:
         // VARIABLES
         std::list<Carte *> pioche; // la pioche
@@ -27,6 +27,7 @@ class Plateau {
         std::map<Joueur* , Pion *> mapJoueursPions; // associe une pile de pions à un Joueur
         Joueur * rechercher_Joueur_plus_de_Pions(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple);
         void desindexer_Meeple_dans_la_map(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple);
+        static enum status { EN_COURS, FIN_DU_JEU } status_enum;
 
     public:
         // CONSTRUCTEURS
@@ -34,9 +35,6 @@ class Plateau {
 
         // DESTRUCTEUR
         ~Plateau();
-
-        // ENUM
-        static enum status { EN_COURS, FIN_DU_JEU } status_enum;
 
         // METHODES
         void charger_donnee(std::string path);

@@ -7,6 +7,9 @@ Element::Element(Noeud::type_element type_element)
     Noeud::element = type_element;
 }
 
+Element::~Element()
+{}
+
 Meeple * Element::recuperer_meeple()
 {
     return nullptr;

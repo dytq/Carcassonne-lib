@@ -7,6 +7,9 @@ Noeud::Noeud()
     
 }
 
+Noeud::~Noeud()
+{}
+
 void Noeud::set_link(Noeud *noeud)
 {
 
@@ -18,6 +21,7 @@ std::list<Noeud> Noeud::get_noeud_voisins()
     return list_vide;
 }
 
-Noeud::type_element Noeud::get_type_element() {
+Noeud::type_element Noeud::get_type_element()
+{
     return element;
 }

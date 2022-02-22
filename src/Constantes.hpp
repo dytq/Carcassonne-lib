@@ -1,6 +1,8 @@
-// CONSTANTES.HPP
+// DIRECTIVES
+#ifndef CONSTANTES_HPP
+#define CONSTANTES_HPP
 
-/* constantes vanilla */
+/* Constantes vanilla */
 #define NBR_CARTES   72
 #define NBR_MEEPLE   7
 
@@ -20,7 +22,7 @@
 
 /* ------------------ */
 
-/* constantes extentions */
+/* Constantes extentions */
 #define NBR_CARTES_EXTENSIONS_RIVIERE   12
 #define NBR_ABBES 5
 
@@ -28,3 +30,5 @@
 
 #define STATUS_EN_COURS 1
 #define STATUS_FINAL 0
+
+#endif

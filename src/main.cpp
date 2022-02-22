@@ -1,5 +1,4 @@
 // LIBRAIRIES
-
 #include <iostream>
 #include <list>
 #include <tuple>
@@ -10,7 +9,7 @@
 #include "Joueur.hpp"
 #include "Bordure.hpp"
 #include "Carte.hpp"
-#include "constantes.hpp"
+#include "Constantes.hpp"
 
 using namespace std;
 

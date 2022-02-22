@@ -19,13 +19,12 @@ class Bordure : Noeud
         // CONSTRUCTEURS
         Bordure(Noeud::type_element type_noeud);
 
-        std::array<Bordure *,3> get_bordure_fils();
-        void set_bordure_fils(std::array<Bordure*,3> bordureFils);
-
         // DESTRUCTEUR
         ~Bordure();
 
         // METHODES
+        std::array<Bordure *,3> get_bordure_fils();
+        void set_bordure_fils(std::array<Bordure*,3> bordureFils);
 };
 
 #endif

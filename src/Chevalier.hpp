@@ -1,13 +1,25 @@
-#ifndef CHEVALIER_H
-#define CHEVALIER_H
+// DIRECTIVES
+#ifndef CHEVALIER_HPP
+#define CHEVALIER_HPP
 
+// LIBRAIRIES
 #include "Meeple.hpp"
 #include "Joueur.hpp"
 
-class Chevalier : public Meeple {
+// CLASSE
+class Chevalier : public Meeple
+{
+        // VARIABLES
+
     public:
+        // CONSTRUCTEURS
         Chevalier(Joueur * joueur, Noeud * noeud);
+        
+        // DESTRUCTEUR
+        ~Chevalier();
+
+        // METHODES
         int compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple, int * score);
 };
 
-#endif //CHEVALIER_H
+#endif
