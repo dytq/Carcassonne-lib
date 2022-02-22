@@ -121,5 +121,6 @@ bool Plateau::stack_meeple_vide(Joueur * joueur) {
 void Plateau::poser_meeple(Joueur * joueur, Element * element, Carte * carte) {
     Meeple * meeple = Pion::generate_meeple(joueur, element, carte);
     element->ajouter_meeple(meeple);
-    this->mapJoueursPions.find(joueur)->second->ajouter_meeple(meeple);
+    Pion * pion = this->mapJoueursPions.find(joueur)->second;
+    pion->ajouter_meeple(meeple);
 }
