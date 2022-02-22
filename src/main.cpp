@@ -34,14 +34,14 @@ int main()
 {
     // * Initialise le plateau
     Plateau plateau;                   // instancie le plateau
-    plateau.charger_donnee("path");    // charge les données depuis la db
+    plateau.charger_donnee("path");    // charge les données depuis la bd
     plateau.init_plateau();            // init la carte en posant la première tuile sur le plateau (Tuile de base)
 
     // * Ajout des joueurs
     plateau.ajouter_joueur(new Joueur(Joueur::HUMAIN), new Pion());
     plateau.ajouter_joueur(new Joueur(Joueur::ROBOT), new Pion());
 
-    // * Init le joueur initiale
+    // * Init le joueur initial
     Joueur * joueur = plateau.get_joueur(); // Récupère le joueur qui doit jouer
 
     // * Init etat du jeu
@@ -64,7 +64,7 @@ int main()
             cout << "choisir un emplacement: " << endl;
             afficher_list_emplacement_libre(list_emplacement_libre);
 
-            // * Choisir une case parmi proposé
+            // * Choisir une case parmi celles proposées
             int index;
             cin >> index; // choisir l'indice de la liste
 
@@ -103,7 +103,7 @@ int main()
             }
 
             // * compter les points
-            plateau.evaluer_meeple(STATUS_EN_COURS); // compte les points totalisées par les meaples mise en jeu si il y a lieu
+            plateau.evaluer_meeple(STATUS_EN_COURS); // compte les points totalisées par les meaples mis en jeu si il y a lieu
             joueur = plateau.joueur_suivant(); // passe au joueur suivant
 
         }
@@ -114,11 +114,12 @@ int main()
         }
     }
 
-    // compte les derniers points de fin de partie
+    // Compte les derniers points de fin de partie
     list<Joueur *> list_joueur = plateau.get_joueur_liste();
     list<Joueur *>::iterator it;
 
     plateau.evaluer_meeple(STATUS_FINAL);
+    
     for (it = list_joueur.begin(); it != list_joueur.end(); ++it)
     {
         cout << "Joueur " << (*it)->get_nom() << " à obtenu " << (*it)->get_score();
