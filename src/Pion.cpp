@@ -7,8 +7,14 @@ Pion::Pion() {
 }
 
 void Pion::ajouter_meeple(Meeple * meeple) {
-
+    if(meeple == NULL) {
+        #ifndef DEBUG
+        std::cout << "essaie d'inserer un meeple null dans la pile" << std::endl;
+        #endif // DEBUG
+    }
+    this->stackMeeple.push_front(meeple);
 }
+
 void Pion::supprimer_meeple(Meeple * meeple) {
 
 }
