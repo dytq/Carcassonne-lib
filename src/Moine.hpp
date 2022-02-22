@@ -7,7 +7,6 @@
 
 class Moine : public Meeple {
     private:
-        Joueur * joueur;
         Carte * carte;
     public:
         Moine(Joueur * joueur, Noeud * noeud, Carte * carte);

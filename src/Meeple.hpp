@@ -8,11 +8,10 @@
 #include "Noeud.hpp"
 
 class Meeple {
-    private:
+    protected:
         Joueur * joueur;
-        Noeud * noeuds;
+        Noeud * noeud;
     public:
-        Meeple();
         virtual int compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple*>> mapJoueurListeMeeple, int * score) { return 0;}
         //virtual Noeud * get_noeud();
 };
