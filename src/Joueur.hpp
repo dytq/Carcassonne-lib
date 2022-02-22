@@ -17,6 +17,7 @@ class Joueur
         int score;
         std::string nom_joueeur;
         Type_joueur type_joueur;
+        
     public:
         // CONSTRUCTEURS
         Joueur(Type_joueur type_joueur);
