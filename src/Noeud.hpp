@@ -28,6 +28,7 @@ class Noeud
         // METHODES
         std::list<Noeud> get_noeud_voisins();
         void set_link(Noeud * noeud);
+        Noeud::type_element get_type_element();
 };
 
 #endif

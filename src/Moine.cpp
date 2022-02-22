@@ -1,6 +1,6 @@
 #include "Moine.hpp"
 
-Moine::Moine(Joueur * joueur, Noeud * noeud) {
+Moine::Moine(Joueur * joueur, Noeud * noeud, Carte * carte) {
 
 }
 
