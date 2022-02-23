@@ -5,11 +5,17 @@
 // LIBRAIRIES
 #include <list>
 
-// CLASSE
+/**
+ * Classe Noeud
+ *
+ * Permet de faire l'interface pour le pacours de la couche 'noeud'.
+ * La couche 'noeud' est un réseau constitué d'élément de bordure indistinguable lors de parcours du réseau.
+ * Un noeuds peut être de plusieurs type, comme une route, une ville, une plaine ou bien une abbaye.
+ * */
 class Noeud
 {
     public:
-    // VARIABLES
+        // VARIABLES
         static enum type_element{ROUTE, VILLE, ABBAYE, PLAINE} element_enum;
 
     protected:

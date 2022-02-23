@@ -9,7 +9,11 @@
 #include "Joueur.hpp"
 #include "Noeud.hpp"
 
-// CLASSE
+/**
+ * Classe Meeple
+ *
+ * Représente un meeple posé dans un noeud
+ **/
 class Meeple
 {
     protected:

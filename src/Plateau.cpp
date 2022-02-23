@@ -58,13 +58,20 @@ Joueur * Plateau::joueur_suivant()
     return NULL;
 }
 
-
+/**
+ * Recherche le Joueur qui à obtenue le plus de pions.
+ *
+ * @param mapJoueurListeMeeple Joueur associé à une liste de Meeple
+ * */
 Joueur * Plateau::rechercher_Joueur_plus_de_Pions(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple)
 {
     return NULL;
 }
 
-
+/**
+ * Désindexe les Meeples du plateau.
+ *
+ * @param mapJoueurListeMeeple Joueur associé à une liste de Meeple */
 void Plateau::desindexer_Meeple_dans_la_map(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple)
 {
 
@@ -74,8 +81,8 @@ void Plateau::desindexer_Meeple_dans_la_map(std::map<Joueur*, std::list<Meeple *
 /**
  * Evaluation des Meeples pour chaque Joueurs
  *
- * Cette méthode permet de d'à partir de chaque Meeple des Joueurs d'évaluer s'il y a possibilité d'attribuer des points aux Joueurs
- * L'évaluation s'effectue sur tous les Meeples et les points sont distribuée selon la quantité de Meeple obtenu (pour l'évalation concurrencielle, ce n'est pas le cas pour les abbaye par exemple)
+ * Cette méthode permet d'à partir de chaque Meeple des Joueurs d'évaluer s'il y a possibilité d'attribuer des points aux Joueurs
+ * L'évaluation s'effectue sur tous les Meeples et les points sont distribuée selon la quantité de Meeple obtenu (pour l'évalation concurrencielle, ce n'est pas le cas pour les abbayes par exemple)
  *
  * @param status_du_jeu permet de faire une évaluation soit final soit en cours du jeu
  * */

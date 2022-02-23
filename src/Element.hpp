@@ -8,11 +8,12 @@
 #include "Noeud.hpp"
 #include "Meeple.hpp"
 #include "Joueur.hpp"
-//#include "Chevalier.hpp"
-//#include "Brigand.hpp"
-//#include "Moine.hpp"
 
-// CLASSE
+/**
+ * Classe Element
+ *
+ * Hérite de la classe Noeud et permet de représenter les emplacements ou l'on pose un Pion.
+ * */
 class Element : public Noeud
 {
     private:

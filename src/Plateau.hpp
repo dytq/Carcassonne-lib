@@ -15,7 +15,11 @@
 #include "Pion.hpp"
 #include "Constantes.hpp"
 
-// CLASSE
+/**
+ * Classe Plateau
+ *
+ * Prends en charge la gestion logique d'un plateau de jeu.
+ * */
 class Plateau
 {
     private:
@@ -25,12 +29,13 @@ class Plateau
         std::map<Carte *, std::list<Bordure *>> map_emplacement_possible; // stock les emplacements libre
         Carte * carte_depart; // case de depart (graphe connexe)
         std::map<Joueur* , Pion *> mapJoueursPions; // associe une pile de pions à un Joueur
+
+        // METHODES
         Joueur * rechercher_Joueur_plus_de_Pions(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple);
         void desindexer_Meeple_dans_la_map(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple);
-        static enum status { EN_COURS, FIN_DU_JEU } status_enum;
 
     public:
-        // CONSTRUCTEURS
+        // CONSTRUCTEUR
         Plateau();
 
         // DESTRUCTEUR
