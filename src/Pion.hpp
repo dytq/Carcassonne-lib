@@ -15,7 +15,11 @@
 #include "Element.hpp"
 #include "Noeud.hpp"
 
-// CLASSE
+/**
+ * Classe Pion
+ *
+ * Permet de représenté une pile de pions (ici une pile de meeple).
+ **/
 class Pion
 {
     private:
