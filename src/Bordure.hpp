@@ -30,6 +30,7 @@ class Bordure : Noeud
         // METHODES
         std::array<Bordure *,3> get_bordure_fils();
         void set_bordure_fils(std::array<Bordure*,3> bordureFils);
+        int get_points(int status_du_jeu);
 };
 
 #endif

@@ -8,6 +8,7 @@
 #include "Noeud.hpp"
 #include "Meeple.hpp"
 #include "Joueur.hpp"
+#include "Constantes.hpp"
 
 /**
  * Classe Element
@@ -19,8 +20,6 @@ class Element : public Noeud
     private:
         // VARIABLES
         Meeple * meeple;
-        int point_en_cours;
-        int point_final;
 
     public:
         // CONSTRUCTEURS
@@ -34,6 +33,7 @@ class Element : public Noeud
         void supprimer_meeple();
         void set_point(int point, int i);
         void ajouter_meeple(Meeple * meeple);
+        int get_points(int status_du_jeu);
 };
 
 #endif

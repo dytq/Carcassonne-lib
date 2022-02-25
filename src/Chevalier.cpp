@@ -11,7 +11,7 @@ Chevalier::Chevalier(Joueur * joueur, Noeud * noeud)
 Chevalier::~Chevalier()
 {}
 
-int Chevalier::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple, int * score)
+bool Chevalier::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple, int * score)
 {
     return false;
 }
