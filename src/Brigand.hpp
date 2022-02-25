@@ -3,9 +3,13 @@
 
 #include "Meeple.hpp"
 #include "Joueur.hpp"
+#include "Noeud.hpp"
 
 class Brigand : public Meeple
 {
+    private:
+        Noeud * noeud_gauche;
+        Noeud * noeud_droite;
     public:
         // CONSTRUCTEURS
         Brigand(Joueur * joueur, Noeud * noeud);
@@ -14,7 +18,7 @@ class Brigand : public Meeple
         ~Brigand();
 
         // METHODES
-        int compter_points(int status_du_jeu, std::map<Joueur*, std::list<Meeple*>>, int * score);
+        bool compter_points(int status_du_jeu, std::map<Joueur*, std::list<Meeple*>>, int * score);
 };
 
 #endif

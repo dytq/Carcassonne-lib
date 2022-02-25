@@ -22,7 +22,7 @@ class Moine : public Meeple
     ~Moine();
 
     // METHODES
-    int compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapListeMeeple, int * score);
+    bool compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapListeMeeple, int * score);
 
 };
 

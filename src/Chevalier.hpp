@@ -19,7 +19,7 @@ class Chevalier : public Meeple
         ~Chevalier();
 
         // METHODES
-        int compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple, int * score);
+        bool compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple, int * score);
 };
 
 #endif
