@@ -1,7 +1,12 @@
 #ifndef PAYSAN_HPP
 #define PAYSAN_HPP
+
+#include <list>
+#include <iostream>
+
 #include "Meeple.hpp"
 #include "Noeud.hpp"
+#include "Constantes.hpp"
 
 class Paysan : Meeple {
     public:
