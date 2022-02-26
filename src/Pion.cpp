@@ -29,6 +29,11 @@ Meeple * Pion::generate_meeple(Joueur * joueur, Element * element, Carte * carte
         return new Moine(joueur, element, carte);
     }
 
+    if(element->get_type_element() == Noeud::PLAINE)
+    {
+        return new Paysan(joueur, element);
+    }
+
     #ifndef DEBUG
     std::cout << "Ne peut pas générer un Meeple" << std::endl;
     #endif

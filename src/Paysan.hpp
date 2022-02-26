@@ -8,7 +8,7 @@
 #include "Noeud.hpp"
 #include "Constantes.hpp"
 
-class Paysan : Meeple {
+class Paysan : public Meeple {
     public:
         Paysan(Joueur * joueur, Noeud * noeud);
         bool compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple, int *score) override;
