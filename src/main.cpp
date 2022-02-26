@@ -102,13 +102,13 @@ int main()
             }
 
             // * compter les points
-            plateau.evaluer_meeple(STATUS_EN_COURS); // Compte les points totalisées par les meaples mis en jeu si il y a lieu
+            plateau.evaluer_meeple(STATUS_EN_COURS); // Compte les points totalisés par les meaples mis en jeu si il y a lieu
             joueur = plateau.joueur_suivant(); // Passe au joueur suivant
         }
 
         else
         {
-            fin_de_jeu = true; // Tant qu'on n'a plus de carte
+            fin_de_jeu = true; // Si on n'a plus de carte
         }
     }
 
