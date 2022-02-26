@@ -12,7 +12,7 @@ Bordure::~Bordure()
 
 std::array<Bordure *,3> Bordure::get_bordure_fils()
 {
-    return this->bordureFils;
+    return this -> bordureFils;
 }
 
 void Bordure::set_bordure_fils(std::array<Bordure*,3> bordureFils)
@@ -20,6 +20,7 @@ void Bordure::set_bordure_fils(std::array<Bordure*,3> bordureFils)
 
 }
 
-int Bordure::get_points(int status_du_jeu) {
+int Bordure::get_points(int status_du_jeu)
+{
     return 0;
 }

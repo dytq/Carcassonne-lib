@@ -36,14 +36,16 @@ bool Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Mee
         while(noeud_courant->get_nbr_voisins() > 2)
         {
             // Si on a un circuit on a finit le comptage des points
-            if(noeud_courant == noeud) {
+            if(noeud_courant == noeud)
+            {
                 return is_complete;
             }
 
             *score = noeud_courant->get_points(status_du_jeu);
 
             // Si on la route ne se termine pas
-            if(!(noeud_courant->has_nullptr())) {
+            if(!(noeud_courant->has_nullptr()))
+            {
                 is_complete = false;
                 break;
             }
