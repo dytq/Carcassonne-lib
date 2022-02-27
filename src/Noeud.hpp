@@ -18,7 +18,7 @@ class Noeud
 {
     public:
         // VARIABLES
-        static enum type_element{ROUTE, VILLE, ABBAYE, PLAINE} element_enum;
+        static enum type_element{ROUTE, VILLE, VILLE_BLASON, ABBAYE, PLAINE} element_enum;
 
     protected:
         std::list<Noeud *> noeuds_voisins;
@@ -33,14 +33,14 @@ class Noeud
         ~Noeud();
 
         // METHODES
-        void add_link(Noeud noeud);
-        //std::vector<Noeud> get_noeud_voisins();
-        //Noeud * get_noeud_voisin(int index);
+        void set_lien(Noeud * noeud);   // ajoute un lien simple
+        void set_voisin(Noeud * noeud); // ajoute un lien voisin
+        virtual int get_points(int status_du_jeu) { return 0;};
+
         bool has_nullptr();
         int get_nbr_voisins();
-        void set_link(Noeud * noeud);
         Noeud::type_element get_type_element();
-        virtual int get_points(int status_du_jeu) { return 0;};
+        void set_type_element(Noeud::type_element type);
         Noeud * noeud_fils(Noeud * noeud_pere, int indexe);
 };
 

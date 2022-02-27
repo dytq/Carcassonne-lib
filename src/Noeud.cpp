@@ -10,7 +10,12 @@ Noeud::Noeud()
 Noeud::~Noeud()
 {}
 
-void Noeud::set_link(Noeud *noeud)
+void Noeud::set_lien(Noeud *noeud)
+{
+
+}
+
+void Noeud::set_voisin(Noeud *noeud)
 {
 
 }
@@ -53,4 +58,9 @@ bool Noeud::has_nullptr()
 Noeud::type_element Noeud::get_type_element()
 {
     return element;
+}
+
+void Noeud::set_type_element(Noeud::type_element type)
+{
+    this->element = type;
 }
