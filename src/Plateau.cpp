@@ -1,13 +1,12 @@
 // LIBRAIRIES
-#include <iostream>
 #include "Plateau.hpp"
 
 // FONCTIONS
 Plateau::Plateau()
 {
-    #ifndef DEBUG
-    std::cout << "Création du plateau" << std::endl;
-    #endif // DEBUG
+    #ifndef LOG
+    Logging::log(Logging::TRACE, "Création du plateau");
+    #endif // LOG
 }
 
 Plateau::~Plateau()

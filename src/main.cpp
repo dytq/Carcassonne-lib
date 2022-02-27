@@ -93,11 +93,13 @@ int main()
 
                 if(poser_pion == true)
                 {
+                    /*
                     cout << "choisir emplacement" << endl;
                     vector<Element *> list_element = carte_pioche->get_element(carte_pioche);
                     afficher_elements(list_element);
                     cin >> index;
                     plateau.poser_meeple(joueur, list_element[index], carte_pioche); // Permet au joueur de placer un pion sur la carte
+                    */
                 }
             }
 

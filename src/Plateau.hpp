@@ -14,6 +14,7 @@
 #include "Joueur.hpp"
 #include "Pion.hpp"
 #include "Constantes.hpp"
+#include "Logging.hpp"
 
 /**
  * Classe Plateau
