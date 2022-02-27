@@ -30,6 +30,10 @@ bool Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Mee
     for(i = 0; i < 2; i++)
     {
         Noeud * noeud_courant = this->noeud->noeud_fils(nullptr, i);
+        if(noeud_courant == nullptr)
+        {
+            return false;
+        }
         Noeud * noeud_pere = this->noeud;
 
         // on continue tant qu'on a un noeud sans fils

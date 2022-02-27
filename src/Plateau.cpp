@@ -15,7 +15,79 @@ Plateau::~Plateau()
 
 void Plateau::init_plateau()
 {
+    for(int i = 0; i < 4; i++){
+        std::array<Carte *, 4> carteVoisines;
+        std::array<Bordure *, 4> bordure;
+        std::list<Element *> element;
 
+        // init les cartes
+        for(int i = 0; i < 4; i++)
+        {
+            carteVoisines[i] = nullptr;
+        }
+
+        // init bordure
+        for(int i = 0; i < 4; i++)
+        {
+            bordure.at(i) = new Bordure();
+        }
+
+        // init les bordures
+        bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+
+        bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
+        bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
+        bordure[1]->set_bordure_fils(2, Noeud::PLAINE);
+
+        bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+
+        bordure[3]->set_bordure_fils(0, Noeud::PLAINE);
+        bordure[3]->set_bordure_fils(1, Noeud::ROUTE);
+        bordure[3]->set_bordure_fils(2, Noeud::PLAINE);
+
+        // init les elements
+        std::list<Element *> elementCarte;
+        Element * element1 = new Element(Noeud::VILLE);
+        Element * element2 = new Element(Noeud::ROUTE);
+        Element * element3 = new Element(Noeud::PLAINE);
+        Element * element4 = new Element(Noeud::PLAINE);
+
+        // init les voisins
+        // bordure:
+        bordure[0]->get_bordure_fils(1)->set_voisin(element1);
+
+        bordure[1]->get_bordure_fils(0)->set_voisin(element3);
+        bordure[1]->get_bordure_fils(1)->set_voisin(element2);
+        bordure[1]->get_bordure_fils(2)->set_voisin(element4);
+
+        bordure[2]->get_bordure_fils(1)->set_voisin(element4);
+
+        bordure[3]->get_bordure_fils(0)->set_voisin(element4);
+        bordure[3]->get_bordure_fils(1)->set_voisin(element2);
+        bordure[3]->get_bordure_fils(2)->set_voisin(element3);
+
+        // element:
+        element1->set_voisin(bordure[0]->get_bordure_fils(1));
+
+        element2->set_voisin(bordure[1]->get_bordure_fils(1));
+        element2->set_voisin(bordure[3]->get_bordure_fils(1));
+
+        element3->set_voisin(bordure[1]->get_bordure_fils(0));
+        element3->set_voisin(bordure[3]->get_bordure_fils(0));
+
+        element4->set_voisin(bordure[1]->get_bordure_fils(2));
+        element4->set_voisin(bordure[2]->get_bordure_fils(1));
+        element4->set_voisin(bordure[3]->get_bordure_fils(0));
+
+        // Ajout des liens additionelles
+        element3->set_lien(element1);
+
+        // Creation de la carte
+        Carte * carte = new Carte(carteVoisines, bordure, elementCarte);
+
+        // Ajout de la carte dans le pioche
+        this->pioche.push_front(carte); // front pour la première carte
+    }
 }
 
 void Plateau::charger_donnee(std::string path)

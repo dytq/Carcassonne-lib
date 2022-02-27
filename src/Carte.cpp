@@ -2,17 +2,12 @@
 #include "Carte.hpp"
 
 // FONCTIONS
-Carte::Carte()
+Carte::Carte(std::array<Carte *, 4> carteVoisines, std::array<Bordure *,4> bordure, std::list<Element *> element)
 {
-
+    this->carteVoisines = carteVoisines;
+    this->bordure = bordure;
+    this->element = element;
 }
 
 Carte::~Carte()
 {}
-
-std::vector<Element *> Carte::get_element(Carte *carte)
-{
-    std::vector<Element *> list_vide;
-    
-    return list_vide;
-}

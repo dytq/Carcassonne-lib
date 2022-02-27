@@ -12,6 +12,7 @@
 #include "Brigand.hpp"
 #include "Moine.hpp"
 #include "Joueur.hpp"
+#include "Paysan.hpp"
 #include "Element.hpp"
 #include "Noeud.hpp"
 

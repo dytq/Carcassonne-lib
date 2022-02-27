@@ -13,7 +13,7 @@
  * Hérite de la classe Noeud. Elle représente physiquement les bordures de la carte et sert de porte de sortie lors du parcours du réseau de la couche 'noeud'
  * Elle contient des bordures fils permettant de proposer 3 interfaces d'entrées/sorties vers la carte voisines (par exemple dans le cas ou on a une route qui sépare deux plaines, pour le parcours de graphe on a donc 3 chemins distincts)
  **/
-class Bordure : Noeud
+class Bordure : public Noeud
 {
     private:
         // VARIABLES
@@ -22,15 +22,16 @@ class Bordure : Noeud
 
     public:
         // CONSTRUCTEURS
-        Bordure(Noeud::type_element type_noeud);
+        Bordure();
 
         // DESTRUCTEUR
         ~Bordure();
 
         // METHODES
-        std::array<Bordure *,3> get_bordure_fils();
-        void set_bordure_fils(std::array<Bordure*,3> bordureFils);
+        Bordure * get_bordure_fils(int indice);
+        void set_bordure_fils(int indice, Noeud::type_element element);
         int get_points(int status_du_jeu);
+        void set_type_element(Noeud::type_element type_noeud);
 };
 
 #endif

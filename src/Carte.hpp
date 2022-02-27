@@ -5,7 +5,6 @@
 // LIBRAIRIES
 #include <array>
 #include <list>
-#include <vector>
 
 #include "Bordure.hpp"
 #include "Element.hpp"
@@ -16,18 +15,18 @@ class Carte
     private:
         // VARIABLES
         std::array<Carte*,4> carteVoisines;
-        std::list<Bordure *> bordure;
-        std::vector<Element *> element;
+        std::array<Bordure *,4> bordure;
+        std::list<Element *> element;
 
     public:
         // CONSTRUCTEURS
-        Carte();
+        Carte(std::array<Carte *, 4> carteVoisines, std::array<Bordure *,4> bordure, std::list<Element *> element);
 
         // DESTRUCTEUR
         ~Carte();
 
         // METHODES
-        std::vector<Element *> get_element(Carte * carte);
+        //std::list<Element *> get_element(Carte * carte);
         bool est_vide();
 };
 

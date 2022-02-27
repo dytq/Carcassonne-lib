@@ -2,7 +2,7 @@
 #include "Bordure.hpp"
 
 // FONCTIONS
-Bordure::Bordure(Noeud::type_element type_noeud)
+Bordure::Bordure()
 {
 
 }
@@ -10,17 +10,23 @@ Bordure::Bordure(Noeud::type_element type_noeud)
 Bordure::~Bordure()
 {}
 
-std::array<Bordure *,3> Bordure::get_bordure_fils()
+Bordure * Bordure::get_bordure_fils(int indice)
 {
-    return this -> bordureFils;
-}
-
-void Bordure::set_bordure_fils(std::array<Bordure*,3> bordureFils)
-{
-
+    return this->bordureFils[indice];
 }
 
 int Bordure::get_points(int status_du_jeu)
 {
     return 0;
+}
+
+void Bordure::set_type_element(Noeud::type_element type_noeud)
+{
+    Noeud::element = type_noeud;
+}
+
+void Bordure::set_bordure_fils(int indice, Noeud::type_element element)
+{
+    this->bordureFils.at(indice) = new Bordure();
+    this->bordureFils.at(indice)->set_type_element(element);
 }
