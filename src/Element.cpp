@@ -33,9 +33,9 @@ int Element::get_points(int status_du_jeu) {
         return this->point_final;
     }
 
-    #ifndef DEBUG
-    std::cout << "status du jeu non évalué pour l'élément" << std::endl;
-    #endif // DEBUG
+    #ifndef LOG
+    Logging::log(Logging::DEBUG, "status du jeu non évalué pour l'élément");
+    #endif // LOG
 
     return 0;
 }

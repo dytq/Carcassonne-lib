@@ -4,9 +4,9 @@
 // FONCTIONS
 Pion::Pion()
 {
-    #ifndef DEBUG
-    std::cout << "création d'un stack de Pion" << std::endl;
-    #endif // DEBUG
+    #ifndef LOG
+    Logging::log(Logging::DEBUG, "création d'un stack de Pion");
+    #endif // LOG
 }
 
 Pion::~Pion()
@@ -34,9 +34,9 @@ Meeple * Pion::generate_meeple(Joueur * joueur, Element * element, Carte * carte
         return new Paysan(joueur, element);
     }
 
-    #ifndef DEBUG
-    std::cout << "Ne peut pas générer un Meeple" << std::endl;
-    #endif
+    #ifndef LOG
+    Logging::log(Logging::DEBUG,"Ne peut pas générer un Meeple");
+    #endif // LOG
 
     return nullptr;
 }
@@ -45,9 +45,9 @@ void Pion::ajouter_meeple(Meeple * meeple)
 {
     if(meeple == NULL)
     {
-        #ifndef DEBUG
-        std::cout << "essaie d'inserer un meeple null dans la pile" << std::endl;
-        #endif // DEBUG
+        #ifndef LOG
+        Logging::log(Logging::DEBUG, "essaie d'inserer un meeple null dans la pile");
+        #endif // LOG
     }
 
     this->stackMeeple.push_front(meeple);

@@ -4,7 +4,6 @@
 
 // LIBRAIRIES
 #include <list>
-#include <iostream>
 
 #include "Meeple.hpp"
 #include "Carte.hpp"
@@ -15,6 +14,7 @@
 #include "Paysan.hpp"
 #include "Element.hpp"
 #include "Noeud.hpp"
+#include "Logging.hpp"
 
 /**
  * Classe Pion

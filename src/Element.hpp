@@ -3,8 +3,6 @@
 #define ELEMENT_HPP
 
 // LIBRAIRIES
-#include <iostream>
-
 #include "Noeud.hpp"
 #include "Meeple.hpp"
 #include "Joueur.hpp"

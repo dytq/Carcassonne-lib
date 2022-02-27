@@ -37,9 +37,9 @@ Noeud * Noeud::noeud_fils(Noeud *noeud_pere, int profondeur)
         }
     }
 
-    #ifndef DEBUG
-    std::cout << "aucun fils trouvé, trop profond ou le noeud n'a pas de fils, retour nullptr" << std::endl;
-    #endif // DEBUG
+    #ifndef LOG
+    Logging::log(Logging::DEBUG, "aucun fils trouvé, trop profond ou le noeud n'a pas de fils, retour nullptr");
+    #endif // LOG
 
     return nullptr;
 }
