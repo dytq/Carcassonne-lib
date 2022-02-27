@@ -13,5 +13,8 @@
  *  */
 bool Meeple::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple*>> mapJoueurListeMeeple, int * score)
 {
-	return 0;
+    #ifndef LOG
+	Logging::log(Logging::DEBUG, "comptage de points depuis un meeple non définie");
+	#endif // LOG
+	return false;
 }

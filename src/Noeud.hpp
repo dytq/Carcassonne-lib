@@ -4,8 +4,9 @@
 
 // LIBRAIRIES
 #include <list>
-#include <iostream>
 #include <algorithm>
+
+#include "Logging.hpp"
 
 /**
  * Classe Noeud
