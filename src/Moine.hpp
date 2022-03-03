@@ -5,18 +5,18 @@
 // LIBRAIRIES
 #include "Meeple.hpp"
 #include "Joueur.hpp"
-#include "Carte.hpp"
+#include "Tuile.hpp"
 
 // CLASSE
 class Moine : public Meeple
 {
     private:
     // VARIABLES
-    Carte * carte;
+    Tuile * tuile;
 
     public:
     // CONSTRUCTEURS
-    Moine(Joueur * joueur, Noeud * noeud, Carte * carte);
+    Moine(Joueur * joueur, Noeud * noeud, Tuile * tuile);
 
     // DESTRUCTEUR
     ~Moine();

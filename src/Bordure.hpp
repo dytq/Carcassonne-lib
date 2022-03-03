@@ -10,8 +10,8 @@
 /**
  * Classe Bordure
  *
- * Hérite de la classe Noeud. Elle représente physiquement les bordures de la carte et sert de porte de sortie lors du parcours du réseau de la couche 'noeud'
- * Elle contient des bordures fils permettant de proposer 3 interfaces d'entrées/sorties vers la carte voisines (par exemple dans le cas ou on a une route qui sépare deux plaines, pour le parcours de graphe on a donc 3 chemins distincts)
+ * Hérite de la classe Noeud. Elle représente physiquement les bordures de la tuile et sert de porte de sortie lors du parcours du réseau de la couche 'noeud'
+ * Elle contient des bordures fils permettant de proposer 3 interfaces d'entrées/sorties vers la tuiles voisines (par exemple dans le cas ou on a une route qui sépare deux plaines, pour le parcours de graphe on a donc 3 chemins distincts)
  **/
 class Bordure : public Noeud
 {

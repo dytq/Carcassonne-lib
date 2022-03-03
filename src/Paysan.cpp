@@ -1,6 +1,8 @@
+// LIBRAIRIES
 #include "Paysan.hpp"
 #include "Chevalier.hpp"
 
+// FONCTIONS
 Paysan::Paysan(Joueur * joueur, Noeud * noeud)
 {
     Meeple::joueur = joueur;

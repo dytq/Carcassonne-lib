@@ -1,5 +1,7 @@
+// LIBRAIRIES
 #include "Logging.hpp"
 
+// FONCTIONS
 void Logging::log(TypeMessage type_message, std::string message) {
 
     switch (type_message) {

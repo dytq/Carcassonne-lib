@@ -6,7 +6,7 @@
 #include <list>
 
 #include "Meeple.hpp"
-#include "Carte.hpp"
+#include "Tuile.hpp"
 #include "Chevalier.hpp"
 #include "Brigand.hpp"
 #include "Moine.hpp"
@@ -35,7 +35,7 @@ class Pion
         ~Pion();
 
         // METHODES
-        static Meeple * generate_meeple(Joueur * joueur, Element * element, Carte * carte);
+        static Meeple * generate_meeple(Joueur * joueur, Element * element, Tuile * tuile);
         void ajouter_meeple(Meeple * meeple);
         void supprimer_meeple(Meeple * meeple);
         const std::list<Meeple *> get_stack_meeple();

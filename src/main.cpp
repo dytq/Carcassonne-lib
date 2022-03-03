@@ -8,7 +8,7 @@
 #include "Plateau.hpp"
 #include "Joueur.hpp"
 #include "Bordure.hpp"
-#include "Carte.hpp"
+#include "Tuile.hpp"
 #include "Constantes.hpp"
 
 using namespace std;
@@ -19,7 +19,7 @@ void afficher_elements(vector<Element *> list_element)
 
 }
 
-void afficher_list_emplacement_libre(vector<Carte *> list_emplacement_libre)
+void afficher_liste_tuiles_emplacements_libres(vector<Tuile *> liste_tuiles_emplacements_libres)
 {
 
 }
@@ -35,7 +35,7 @@ int main()
     // * Initialise le plateau
     Plateau plateau;                   // Instancie le plateau
     plateau.charger_donnee("path");    // Charge les données depuis la bd
-    plateau.init_plateau();            // Init la carte en posant la première tuile sur le plateau (Tuile de base)
+    plateau.init_plateau();            // Init la tuile en posant la première tuile sur le plateau (Tuile de base)
 
     // * Ajout des joueurs
     plateau.ajouter_joueur(new Joueur(Joueur::HUMAIN), new Pion());
@@ -52,27 +52,28 @@ int main()
     {
         if(plateau.get_pioche().size() != 0)
         {
-            // * Piocher une carte
-            Carte * carte_pioche =  plateau.piocher_carte(); // Pioche une carte (recupère l'addresse de la carte)
-            cout << "carte pioché : " << carte_pioche << endl;
+            // * Piocher une tuile
+            Tuile * tuile_pioche =  plateau.piocher_tuile(); // Pioche une tuile (recupère l'addresse de la tuile)
+            cout << "Tuile piochée : " << tuile_pioche << endl;
 
             // * Chercher les emplacements libre
-            plateau.calcul_emplacement_libre(carte_pioche); // Détermine tous les emplacements libre sur le plateau
-            vector<Carte * > list_emplacement_libre = plateau.get_list_carte_emplacement_libre();
+            plateau.clear_liste_tuiles_emplacements_libres();
+            plateau.calcul_emplacement_libre(tuile_pioche); // Détermine tous les emplacements libre sur le plateau
+            vector<Tuile * > liste_tuiles_emplacements_libres = plateau.get_liste_tuiles_emplacements_libres();
 
             // * Afficher les emplacement libre
             cout << "choisir un emplacement: " << endl;
-            afficher_list_emplacement_libre(list_emplacement_libre);
+            afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
 
             // * Choisir une case parmi celles proposées
             int index;
             cin >> index; // choisir l'indice de la liste
 
 
-            Carte * carte_emplacement = list_emplacement_libre[index];
+            Tuile * tuile_emplacement = liste_tuiles_emplacements_libres[index];
 
             // * Afficher les orientations possibles
-            vector<list<Bordure*>> orientation_possible = plateau.get_orientation_possible(carte_emplacement);
+            vector<list<Bordure*>> orientation_possible = plateau.get_orientation_possible(tuile_emplacement);
             cout << "choisir orientation" << endl;
 
             // #doit etre ajouté# : si le joueur veut revenir sur sa decision
@@ -81,8 +82,8 @@ int main()
             afficher_list_orientation_possible(orientation_possible);
             cin >> index;
 
-            // * Poser la carte sur l'empacement
-            plateau.poser_carte(carte_pioche, carte_emplacement, orientation_possible[index]); // Permet de remplacer l'addresse de l'emplacement libre par la carte pioché (établir les connexions avec les voisins et voisins avec la carte)
+            // * Poser la tuile sur l'empacement
+            plateau.poser_tuile(tuile_pioche, tuile_emplacement, orientation_possible[index]); // Permet de remplacer l'addresse de l'emplacement libre par la tuile pioché (établir les connexions avec les voisins et voisins avec la tuile)
 
             // * Poser un pion ?
             if(plateau.stack_meeple_vide(joueur))
@@ -95,10 +96,10 @@ int main()
                 {
                     /*
                     cout << "choisir emplacement" << endl;
-                    vector<Element *> list_element = carte_pioche->get_element(carte_pioche);
+                    vector<Element *> list_element = tuile_pioche->get_element(tuile_pioche);
                     afficher_elements(list_element);
                     cin >> index;
-                    plateau.poser_meeple(joueur, list_element[index], carte_pioche); // Permet au joueur de placer un pion sur la carte
+                    plateau.poser_meeple(joueur, list_element[index], tuile_pioche); // Permet au joueur de placer un pion sur la tuile
                     */
                 }
             }
@@ -110,7 +111,7 @@ int main()
 
         else
         {
-            fin_de_jeu = true; // Si on n'a plus de carte
+            fin_de_jeu = true; // Si on n'a plus de tuile
         }
     }
 

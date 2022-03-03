@@ -10,12 +10,13 @@
 #include <string>
 
 #include "Bordure.hpp"
-#include "Carte.hpp"
+#include "Tuile.hpp"
 #include "Joueur.hpp"
 #include "Pion.hpp"
 #include "Constantes.hpp"
 #include "Logging.hpp"
 
+// CLASSE
 /**
  * Classe Plateau
  *
@@ -25,10 +26,11 @@ class Plateau
 {
     private:
         // VARIABLES
-        std::list<Carte *> pioche; // la pioche
+        std::list<Tuile *> pioche; // la pioche
         std::list<Joueur *> list_joueur; // liste des joueurs
-        std::map<Carte *, std::list<Bordure *>> map_emplacement_possible; // stock les emplacements libre
-        Carte * carte_depart; // case de depart (graphe connexe)
+        std::vector<Tuile *> liste_tuiles_emplacements_libres;
+        std::map<Tuile *, std::list<Bordure *>> map_emplacement_possible; // stock les emplacements libre
+        Tuile * tuile_depart; // case de depart (graphe connexe)
         std::map<Joueur* , Pion *> mapJoueursPions; // associe une pile de pions à un Joueur
 
         // METHODES
@@ -48,20 +50,21 @@ class Plateau
         void ajouter_joueur(Joueur * joueur, Pion * pion);
 
         Joueur * get_joueur();
-        std::list<Carte*> get_pioche();
+        std::list<Tuile *> get_pioche();
         std::list<Joueur * > get_joueur_liste();
-        std::vector<Carte *> get_list_carte_emplacement_libre();
-        std::vector<std::list<Bordure* >> get_orientation_possible(Carte * carte);
+        void clear_liste_tuiles_emplacements_libres();
+        std::vector<Tuile *> get_liste_tuiles_emplacements_libres();
+        std::vector<std::list<Bordure* >> get_orientation_possible(Tuile * tuile);
 
-        Carte * piocher_carte();
-        void calcul_emplacement_libre(Carte * carte);
-        void poser_carte(Carte * emplacement, Carte * carte, std::list<Bordure *> bordure);
+        Tuile * piocher_tuile();
+        void calcul_emplacement_libre(Tuile * tuile);
+        void poser_tuile(Tuile * emplacement, Tuile * tuile, std::list<Bordure *> bordure);
         void compter_points(Joueur * joueur);
         Joueur * joueur_suivant();
 
         void evaluer_meeple(int status_du_jeu); // évaluation des scores
         bool stack_meeple_vide(Joueur * joueur);
-        void poser_meeple(Joueur * joueur, Element * element, Carte * carte);
+        void poser_meeple(Joueur * joueur, Element * element, Tuile * tuile);
 };
 
 #endif

@@ -15,14 +15,14 @@ Plateau::~Plateau()
 void Plateau::init_plateau()
 {
     for(int i = 0; i < 4; i++){
-        std::array<Carte *, 4> carteVoisines;
+        std::array<Tuile *, 4> tuilesVoisines;
         std::array<Bordure *, 4> bordure;
         std::list<Element *> element;
 
-        // init les cartes
+        // init les tuiles
         for(int i = 0; i < 4; i++)
         {
-            carteVoisines[i] = nullptr;
+            tuilesVoisines[i] = nullptr;
         }
 
         // init bordure
@@ -45,7 +45,7 @@ void Plateau::init_plateau()
         bordure[3]->set_bordure_fils(2, Noeud::PLAINE);
 
         // init les elements
-        std::list<Element *> elementCarte;
+        std::list<Element *> elementTuile;
         Element * element1 = new Element(Noeud::VILLE);
         Element * element2 = new Element(Noeud::ROUTE);
         Element * element3 = new Element(Noeud::PLAINE);
@@ -81,11 +81,11 @@ void Plateau::init_plateau()
         // Ajout des liens additionelles
         element3->set_lien(element1);
 
-        // Creation de la carte
-        Carte * carte = new Carte(carteVoisines, bordure, elementCarte);
+        // Creation de la tuile
+        Tuile * tuile = new Tuile(tuilesVoisines, bordure, elementTuile);
 
-        // Ajout de la carte dans le pioche
-        this->pioche.push_front(carte); // front pour la première carte
+        // Ajout de la tuile dans le pioche
+        this->pioche.push_front(tuile); // front pour la première tuile
     }
 }
 
@@ -104,22 +104,40 @@ Joueur * Plateau::get_joueur()
     return NULL;
 }
 
-std::list<Carte*> Plateau::get_pioche()
+std::list<Tuile *> Plateau::get_pioche()
 {
     return this->pioche;
 }
 
-Carte * Plateau::piocher_carte()
+Tuile * Plateau::piocher_tuile()
 {
     return NULL;
 }
 
-void Plateau::calcul_emplacement_libre(Carte *carte)
+void Plateau::clear_liste_tuiles_emplacements_libres()
 {
-
+    this->liste_tuiles_emplacements_libres.clear();
 }
 
-void Plateau::poser_carte(Carte *carte_pioche, Carte *carte_emplacement, std::list<Bordure *> bordure)
+void Plateau::calcul_emplacement_libre(Tuile *tuile)
+{
+    /*
+    for(int i = 0; i < 4; i++)
+    {
+        if(tuile.tuilesVoisines[i] == NULL)
+        {
+            Tuile tmp = new Tuile();
+            this->list_tuile_emplacement_libre.push_back()
+        }
+        else
+        {
+            calcul_emplacement_libre(tuile.tuilesVoisines[i]);
+        }
+    }
+    */
+}
+
+void Plateau::poser_tuile(Tuile *tuile_pioche, Tuile *tuile_emplacement, std::list<Bordure *> bordure)
 {
 
 }
@@ -184,14 +202,12 @@ std::list<Joueur *> Plateau::get_joueur_liste()
     return this->list_joueur;
 }
 
-std::vector<Carte *> Plateau::get_list_carte_emplacement_libre()
+std::vector<Tuile *> Plateau::get_liste_tuiles_emplacements_libres()
 {
-    std::vector<Carte *> list_vide;
-    
-    return list_vide;
+    return this->liste_tuiles_emplacements_libres;
 }
 
-std::vector<std::list<Bordure *>> Plateau::get_orientation_possible(Carte *carte)
+std::vector<std::list<Bordure *>> Plateau::get_orientation_possible(Tuile *tuile)
 {
     std::vector<std::list<Bordure *>> list_vide;
 
@@ -204,9 +220,9 @@ bool Plateau::stack_meeple_vide(Joueur * joueur)
     return true;
 }
 
-void Plateau::poser_meeple(Joueur * joueur, Element * element, Carte * carte)
+void Plateau::poser_meeple(Joueur * joueur, Element * element, Tuile * tuile)
 {
-    Meeple * meeple = Pion::generate_meeple(joueur, element, carte);
+    Meeple * meeple = Pion::generate_meeple(joueur, element, tuile);
     element->ajouter_meeple(meeple);
     Pion * pion = this->mapJoueursPions.find(joueur)->second;
     pion->ajouter_meeple(meeple);

@@ -3,7 +3,7 @@
 #define CONSTANTES_HPP
 
 /* Constantes vanilla */
-#define NBR_CARTES   72
+#define NBR_TUILES   72
 #define NBR_MEEPLE   7
 
 // Points
@@ -23,7 +23,7 @@
 /* ------------------ */
 
 /* Constantes extentions */
-#define NBR_CARTES_EXTENSIONS_RIVIERE   12
+#define NBR_TUILES_EXTENSIONS_RIVIERE   12
 #define NBR_ABBES 5
 
 /* --------------------- */

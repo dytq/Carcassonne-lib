@@ -45,4 +45,4 @@ class Noeud
         Noeud * noeud_fils(Noeud * noeud_pere, int indexe);
 };
 
-#endif // NOEUD.HPP
+#endif

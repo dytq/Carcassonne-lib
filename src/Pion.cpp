@@ -12,7 +12,7 @@ Pion::Pion()
 Pion::~Pion()
 {}
 
-Meeple * Pion::generate_meeple(Joueur * joueur, Element * element, Carte * carte)
+Meeple * Pion::generate_meeple(Joueur * joueur, Element * element, Tuile * tuile)
 {
     if(element->get_type_element() == Noeud::VILLE || element->get_type_element() == Noeud::VILLE_BLASON)
     {
@@ -26,7 +26,7 @@ Meeple * Pion::generate_meeple(Joueur * joueur, Element * element, Carte * carte
 
     if(element->get_type_element() == Noeud::ABBAYE)
     {
-        return new Moine(joueur, element, carte);
+        return new Moine(joueur, element, tuile);
     }
 
     if(element->get_type_element() == Noeud::PLAINE)
