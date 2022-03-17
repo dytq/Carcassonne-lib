@@ -34,7 +34,7 @@ int main()
 {
     // * Initialise le plateau
     Plateau plateau;                   // Instancie le plateau
-    plateau.charger_donnee("path");    // Charge les données depuis la bd
+    
     plateau.init_plateau();            // Init la tuile en posant la première tuile sur le plateau (Tuile de base)
 
     // * Ajout des joueurs

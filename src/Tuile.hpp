@@ -14,7 +14,6 @@ class Tuile
 {
     private:
         // VARIABLES
-        std::array<Tuile*,4> tuilesVoisines;
         std::array<Bordure *,4> bordure;
         std::list<Element *> element;
 

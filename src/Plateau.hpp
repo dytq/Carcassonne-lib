@@ -26,11 +26,11 @@ class Plateau
 {
     private:
         // VARIABLES
-        std::list<Tuile *> pioche; // la pioche
+        std::Tuile *grille[NBR_TUILES * 2][NBR_TUILES * 2]; // grille représentant le plateau
+        std::vector<Tuile *> pioche; // la pioche
         std::list<Joueur *> list_joueur; // liste des joueurs
         std::vector<Tuile *> liste_tuiles_emplacements_libres;
         std::map<Tuile *, std::list<Bordure *>> map_emplacement_possible; // stock les emplacements libre
-        Tuile * tuile_depart; // case de depart (graphe connexe)
         std::map<Joueur* , Pion *> mapJoueursPions; // associe une pile de pions à un Joueur
 
         // METHODES
@@ -45,7 +45,6 @@ class Plateau
         ~Plateau();
 
         // METHODES
-        void charger_donnee(std::string path);
         void init_plateau();
         void ajouter_joueur(Joueur * joueur, Pion * pion);
 

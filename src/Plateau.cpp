@@ -14,10 +14,18 @@ Plateau::~Plateau()
 
 void Plateau::init_plateau()
 {
-    // Tuile 1 (x3)
+    for(int i = 0; i < (NBR_TUILES * 2); i++)
+    {
+        for(int j = 0; j < (NBR_TUILES * 2); j++)
+        {
+            grille[i][j] = NULL;
+        }
+    }
+
+    // Tuile 1 (x4)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -93,14 +101,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 2 (x3)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -176,14 +184,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 3 (x3)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -259,14 +267,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 4 (x5)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -323,14 +331,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 5 (x3)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -392,14 +400,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 6 (x2)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -461,14 +469,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 7 (x8)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -537,14 +545,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 8 (x9)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -612,14 +620,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 9 (x3)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -678,14 +686,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 10 (x2)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -744,14 +752,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 11 (x3)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -826,14 +834,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 12 (x2)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -907,14 +915,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 13 (x1)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -977,14 +985,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 14 (x2)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -1046,14 +1054,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 15 (x3)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -1111,14 +1119,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 16 (x1)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -1176,14 +1184,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 17 (x1)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -1238,14 +1246,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 18 (x1)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -1316,14 +1324,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 18 (x1)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -1390,14 +1398,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 19 (x2)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -1466,14 +1474,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 20 (x4)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -1534,14 +1542,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 21 (x2)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -1604,14 +1612,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 22 (x3)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -1702,14 +1710,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 23 (x4)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -1797,14 +1805,14 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
 
     // Tuile 24 (x1)
     {
         for(int i = 0; i < 4; i++){
-            std::array<Tuile *, 4> carteVoisines;
+            
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
@@ -1904,14 +1912,12 @@ void Plateau::init_plateau()
             Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
-            this->pioche.push_front(carte); // front pour la première carte
+            this->pioche.push_back(carte); // front pour la première carte
         }
     }
-}
 
-void Plateau::charger_donnee(std::string path)
-{
-
+    grille[NBR_TUILES-1][NBR_TUILES-1] = pioche[0];
+    pioche.erase(0);
 }
 
 void Plateau::ajouter_joueur(Joueur * joueur, Pion * pion)
