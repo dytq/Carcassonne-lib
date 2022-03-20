@@ -1356,80 +1356,6 @@ void Plateau::init_plateau()
         }
     }
 
-    // Tuile 18 (x1)
-    {
-        for(int i = 0; i < 4; i++){
-            
-            std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
-
-            // init les cartes
-            for(int i = 0; i < 4; i++)
-            {
-                carteVoisines[i] = nullptr;
-            }
-
-            // init bordure
-            for(int i = 0; i < 4; i++)
-            {
-                bordure.at(i) = new Bordure();
-            }
-
-            // init les bordures
-            bordure[0]->set_bordure_fils(1, Noeud::VILLE);
-
-            bordure[1]->set_bordure_fils(1, Noeud::VILLE);
-
-            bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
-
-            bordure[3]->set_bordure_fils(1, Noeud::VILLE);
-
-            // init les elements
-            std::list<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE);
-            Element * element2 = new Element(Noeud::ROUTE);
-            Element * element3 = new Element(Noeud::PLAINE);
-            Element * element4 = new Element(Noeud::PLAINE);
-
-            // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[2]->get_bordure_fils(1)->set_voisin(element2);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element1);
-
-            // element:
-            element1->set_voisin(bordure[0]->get_bordure_fils(1));
-            element1->set_voisin(bordure[1]->get_bordure_fils(1));
-            element1->set_voisin(bordure[3]->get_bordure_fils(1));
-
-            element2->set_voisin(bordure[2]->get_bordure_fils(1));
-
-            element3->set_voisin(bordure[2]->get_bordure_fils(0));
-
-            element4->set_voisin(bordure[2]->get_bordure_fils(2));
-
-            // Ajout des liens additionelles
-            element3->set_lien(element1);
-            element4->set_lien(element1);
-            
-	    // Ajout element dans la liste
-            elementTuile.push_back(element1);
-            elementTuile.push_back(element2);
-            elementTuile.push_back(element3);
-            elementTuile.push_back(element4);
-
-            // Creation de la carte
-            Tuile * carte = new Tuile(carteVoisines, bordure, elementTuile);
-
-            // Ajout de la carte dans le pioche
-            this->pioche.push_back(carte); // front pour la première carte
-        }
-    }
-
     // Tuile 19 (x2)
     {
 	for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
@@ -1455,8 +1381,10 @@ void Plateau::init_plateau()
 
 		    bordure[1]->set_bordure_fils(1, Noeud::VILLE_BLASON);
 
-		    bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
-
+          	    bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            	    bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
+          	    bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+			
 		    bordure[3]->set_bordure_fils(1, Noeud::VILLE_BLASON);
 
 		    // init les elements
