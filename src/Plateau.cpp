@@ -1973,9 +1973,14 @@ std::list<Tuile *> Plateau::get_pioche()
     return this->pioche;
 }
 
-Tuile * Plateau::piocher_tuile()
+Tuile *Plateau::piocher_tuile()
 {
-    return NULL;
+	int random = rand() % pioche.size();
+	Tuile tmp = pioche[random];
+
+	pioche.erase(random);
+
+    return tmp;
 }
 
 void Plateau::clear_liste_tuiles_emplacements_libres()
@@ -1983,22 +1988,40 @@ void Plateau::clear_liste_tuiles_emplacements_libres()
     this->liste_tuiles_emplacements_libres.clear();
 }
 
-void Plateau::calcul_emplacement_libre(Tuile *tuile)
+std::vector<Tuile> Plateau::calcul_emplacement_libre(Tuile *tuile)
 {
-    /*
-    for(int i = 0; i < 4; i++)
-    {
-        if(tuile.tuilesVoisines[i] == NULL)
-        {
-            Tuile tmp = new Tuile();
-            this->list_tuile_emplacement_libre.push_back()
-        }
-        else
-        {
-            calcul_emplacement_libre(tuile.tuilesVoisines[i]);
-        }
-    }
-    */
+	// Calcul des emplacements libres
+
+    for(int i = 0; i < NBR_TUILES; i++)
+	{
+		for(int j = 0; i < NBR_TUILES; i++)
+		{
+			if(grille[i][j] != NULL)
+			{
+				if()
+				{
+
+				}
+
+				if()
+				{
+					
+				}
+
+				if()
+				{
+					
+				}
+
+				if()
+				{
+					
+				}
+			}
+		}
+	}
+
+	// Calcul des orientations
 }
 
 void Plateau::poser_tuile(Tuile *tuile_pioche, Tuile *tuile_emplacement, std::list<Bordure *> bordure)

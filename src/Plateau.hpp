@@ -64,7 +64,7 @@ class Plateau
         std::vector<std::list<Bordure* >> get_orientation_possible(Tuile * tuile);
 
         Tuile * piocher_tuile();
-        void calcul_emplacement_libre(Tuile * tuile);
+        std::vector<Tuile> calcul_emplacement_libre(Tuile * tuile);
         void poser_tuile(Tuile * emplacement, Tuile * tuile, std::list<Bordure *> bordure);
         void compter_points(Joueur * joueur);
         Joueur * joueur_suivant();
