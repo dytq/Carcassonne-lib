@@ -19,7 +19,6 @@ class Tuile
 
     public:
         // CONSTRUCTEURS
-        Tuile(std::array<Tuile *, 4> tuileVoisines, std::array<Bordure *,4> bordure, std::list<Element *> element);
         Tuile(std::array<Bordure *,4> bordure, std::list<Element *> element);
 
         // DESTRUCTEUR
