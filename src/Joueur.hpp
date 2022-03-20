@@ -15,7 +15,6 @@ class Joueur
 
     private:
         int score;
-        std::string nom_joueeur;
         Type_joueur type_joueur;
         
     public:
@@ -26,11 +25,9 @@ class Joueur
         ~Joueur();
 
         // METHODES
-        std::string get_nom();
-        void set_nom(std::string nom);
         int get_score();
+        void add_score(int score);
         Type_joueur get_type_joueur();
-        void ajouter_points(int points);
 };
 
-#endif
+#endif // JOUEUR_HPP
