@@ -37,7 +37,7 @@ class Plateau
         std::Tuile *grille[NBR_TUILES * 2][NBR_TUILES * 2]; // grille représentant le plateau
         std::vector<Tuile *> pioche; // la pioche
         std::list<Joueur *> list_joueur; // liste des joueurs
-        std::vector<Tuile *> liste_tuiles_emplacements_libres;
+        std::vector<std::array<int, 3>> liste_tuiles_emplacements_libres;
         std::map<Tuile *, std::list<Bordure *>> map_emplacement_possible; // stock les emplacements libre
         std::map<Joueur* , Pion *> mapJoueursPions; // associe une pile de pions à un Joueur
 
@@ -59,7 +59,6 @@ class Plateau
         Joueur * get_joueur();
         std::list<Tuile *> get_pioche();
         std::list<Joueur * > get_joueur_liste();
-        void clear_liste_tuiles_emplacements_libres();
         std::vector<Tuile *> get_liste_tuiles_emplacements_libres();
         std::vector<std::list<Bordure* >> get_orientation_possible(Tuile * tuile);
 
