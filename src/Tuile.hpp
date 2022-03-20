@@ -19,7 +19,10 @@ class Tuile
 
     public:
         // CONSTRUCTEURS
+<<<<<<< HEAD
         Tuile(std::array<Bordure *,4> bordure, std::list<Element *> element);
+=======
+>>>>>>> bce84e27d59988917eb4e0bcfbed3b6e002cb326
         Tuile(std::array<Bordure *,4> bordure, std::list<Element *> element);
 
         // DESTRUCTEUR
