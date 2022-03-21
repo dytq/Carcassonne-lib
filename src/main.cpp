@@ -19,12 +19,12 @@ void afficher_elements(vector<Element *> list_element)
 
 }
 
-void afficher_liste_tuiles_emplacements_libres(vector<Tuile *> liste_tuiles_emplacements_libres)
+void afficher_liste_tuiles_emplacements_libres(vector<array<int, 3>> liste_tuiles_emplacements_libres)
 {
 
 }
 
-void afficher_list_orientation_possible(vector<list<Bordure *>> orientation_possible)
+void afficher_list_orientation_possible(vector<array<int, 3>> orientation_possible)
 {
 
 }
@@ -62,13 +62,23 @@ int main()
             tour = (tour + 1) % nombre_de_joueurs;
 
             // * Piocher une tuile
-            Tuile * tuile_pioche =  plateau.piocher_tuile(); // Pioche une tuile (recupère l'addresse de la tuile)
+            Tuile *tuile_pioche =  plateau.piocher_tuile(); // Pioche une tuile (recupère l'addresse de la tuile) et l'enlève de la pioche
             cout << "Tuile piochée : " << tuile_pioche << endl;
 
             // * Chercher les emplacements libre
-            plateau.calcul_emplacement_libre(tuile_pioche); // Détermine tous les emplacements libre sur le plateau
+            plateau.calcul_emplacements_libres(tuile_pioche); // Détermine tous les emplacements libres sur le plateau
+            vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau.get_liste_tuiles_emplacements_libres();
 
-            // A FAIRE choisir emplacement
+            // * Afficher les emplacement libre
+            cout << "choisir un emplacement: " << endl;
+            afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
+
+            // * Choisir une case et orienttion parmi celles proposées
+            int index;
+            cin >> index; // choisir l'indice dans la liste
+
+            // * Poser la tuile sur l'empacement
+            plateau.poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[index]);
 
             // * Poser un pion ?
             if(plateau.stack_meeple_vide(joueur))

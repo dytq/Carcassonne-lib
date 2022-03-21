@@ -18,7 +18,7 @@ void Plateau::init_plateau()
     {
         for(int j = 0; j < (NBR_TUILES * 2); j++)
         {
-            grille[i][j] = NULL;
+            grille[i][j] = nullptr;
         }
     }
 
@@ -1739,7 +1739,7 @@ void Plateau::init_plateau()
     }
 
     grille[NBR_TUILES-1][NBR_TUILES-1] = pioche[0];
-    pioche.erase(0);
+    pioche.erase(pioche.begin());
 }
 
 void Plateau::ajouter_joueur(Joueur * joueur, Pion * pion)
@@ -1749,10 +1749,10 @@ void Plateau::ajouter_joueur(Joueur * joueur, Pion * pion)
 
 Joueur * Plateau::get_joueur()
 {
-    return NULL;
+    return nullptr;
 }
 
-std::list<Tuile *> Plateau::get_pioche()
+std::vector<Tuile *> Plateau::get_pioche()
 {
     return this->pioche;
 }
@@ -1760,62 +1760,112 @@ std::list<Tuile *> Plateau::get_pioche()
 Tuile *Plateau::piocher_tuile()
 {
 	int random = rand() % pioche.size();
-	Tuile tmp = pioche[random];
+	Tuile *tmp = pioche[random];
 
-	pioche.erase(random);
+	pioche.erase(pioche.begin());
 
     return tmp;
 }
 
-void Plateau::clear_liste_tuiles_emplacements_libres()
+void Plateau::calcul_emplacements_libres(Tuile *tuile)
 {
-    this->liste_tuiles_emplacements_libres.clear();
-}
+	this -> liste_tuiles_emplacements_libres.clear();
 
-std::vector<Tuile> Plateau::calcul_emplacement_libre(Tuile *tuile)
-{
 	// Calcul des emplacements libres
 
-    for(int i = 0; i < NBR_TUILES; i++)
+	std::vector<std::array<int, 2>> tmp;
+
+    for(int i = 0; i < (NBR_TUILES * 2); i++)
 	{
-		for(int j = 0; i < NBR_TUILES; i++)
+		for(int j = 0; i < (NBR_TUILES * 2); i++)
 		{
-			if(grille[i][j] != NULL)
+			if(grille[i][j] != nullptr)
 			{
-				if()
-				{
+				std::array<int, 2> element = {i + 1, j};
 
+				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) != end(tmp)))
+				{
+					tmp.push_back(element);
 				}
 
-				if()
+				element = {i, j + 1};
+
+				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) != end(tmp)))
 				{
-					
+					tmp.push_back(element);
 				}
 
-				if()
+				element = {i - 1, j};
+
+				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) != end(tmp)))
 				{
-					
+					tmp.push_back(element);
 				}
 
-				if()
+				element = {i, j - 1};
+
+				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) != end(tmp)))
 				{
-					
+					tmp.push_back(element);
 				}
 			}
 		}
 	}
 
 	// Calcul des orientations
+
+	for(int i = 0; i < (int) tmp.size(); i++)
+	{
+		std::array<int, 3> current = {tmp.at(i).at(0), tmp.at(i).at(1), 0};
+		Tuile *comp = grille[current.at(0) + 1][current.at(1)];
+			
+		if((comp != nullptr)
+		&& (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), current) != liste_tuiles_emplacements_libres.end())
+		&& (tuile->bordureCompatible(comp, 0)))
+		{
+			liste_tuiles_emplacements_libres.push_back(current);
+		}
+
+		current = {tmp.at(i).at(0), tmp.at(i).at(1), 1};
+		comp = grille[current.at(0)][current.at(1) + 1];
+
+		if((comp != nullptr)
+		&& (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), current) != liste_tuiles_emplacements_libres.end())
+		&& (tuile->bordureCompatible(comp, 0)))
+		{
+			liste_tuiles_emplacements_libres.push_back(current);
+		}
+			
+		current = {tmp.at(i).at(0), tmp.at(i).at(1), 2};
+		comp = grille[current.at(0) - 1][current.at(1)];
+
+		if((comp != nullptr)
+		&& (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), current) != liste_tuiles_emplacements_libres.end())
+		&& (tuile->bordureCompatible(comp, 0)))
+		{
+			liste_tuiles_emplacements_libres.push_back(current);
+		}
+			
+		current = {tmp.at(i).at(0), tmp.at(i).at(1), 3};
+		comp = grille[current.at(0)][current.at(1) - 1];
+
+		if((comp != nullptr)
+		&& (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), current) != liste_tuiles_emplacements_libres.end())
+		&& (tuile->bordureCompatible(comp, 0)))
+		{
+			liste_tuiles_emplacements_libres.push_back(current);
+		}	
+	}
 }
 
-void Plateau::poser_tuile(Tuile *tuile_pioche, Tuile *tuile_emplacement, std::list<Bordure *> bordure)
+void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
 {
 
 }
 
-Joueur * Plateau::joueur_suivant()
+Joueur *Plateau::joueur_suivant()
 {
-    return NULL;
+    return nullptr;
 }
 
 /**
@@ -1823,9 +1873,9 @@ Joueur * Plateau::joueur_suivant()
  *
  * @param mapJoueurListeMeeple Joueur associé à une liste de Meeple
  * */
-Joueur * Plateau::rechercher_Joueur_plus_de_Pions(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple)
+Joueur *Plateau::rechercher_Joueur_plus_de_Pions(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple)
 {
-    return NULL;
+    return nullptr;
 }
 
 /**
@@ -1836,7 +1886,6 @@ void Plateau::desindexer_Meeple_dans_la_map(std::map<Joueur*, std::list<Meeple *
 {
 
 }
-
 
 /**
  * Evaluation des Meeples pour chaque Joueurs
@@ -1873,16 +1922,9 @@ std::list<Joueur *> Plateau::get_joueur_liste()
     return this->list_joueur;
 }
 
-std::vector<Tuile *> Plateau::get_liste_tuiles_emplacements_libres()
+std::vector<std::array<int, 3>> Plateau::get_liste_tuiles_emplacements_libres()
 {
     return this->liste_tuiles_emplacements_libres;
-}
-
-std::vector<std::list<Bordure *>> Plateau::get_orientation_possible(Tuile *tuile)
-{
-    std::vector<std::list<Bordure *>> list_vide;
-
-    return list_vide;
 }
 
 bool Plateau::stack_meeple_vide(Joueur * joueur)
