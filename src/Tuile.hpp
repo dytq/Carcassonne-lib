@@ -5,6 +5,7 @@
 // LIBRAIRIES
 #include <array>
 #include <list>
+#include <vector>
 
 #include "Bordure.hpp"
 #include "Element.hpp"
@@ -27,6 +28,7 @@ class Tuile
         // METHODES
         bool bordureCompatible(Tuile *comp, int orientation);
         //std::list<Element *> get_element(Tuile * tuile);
+
 };
 
 #endif

@@ -5,29 +5,23 @@
 Joueur::Joueur(Type_joueur type_joueur)
 {
     this->type_joueur = type_joueur;
+    this->score = 0;
 }
 
 Joueur::~Joueur()
 {}
 
-std::string Joueur::get_nom()
-{
-    return nullptr;
-}
-
-void Joueur::set_nom(std::string nom)
-{
-
-}
 
 int Joueur::get_score()
 {
-    return 0;
+    return this->score;
 }
 
-void Joueur::ajouter_points(int points)
+void Joueur::add_score(int score)
 {
-
+    if (score < 0) {
+        this->score = this->score + score;
+    }
 }
 
 Joueur::Type_joueur Joueur::get_type_joueur()
