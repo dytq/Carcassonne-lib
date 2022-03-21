@@ -20,7 +20,7 @@ int Joueur::get_score()
 void Joueur::add_score(int score)
 {
     if (score < 0) {
-        this->score = score;
+        this->score = this->score + score;
     }
 }
 
