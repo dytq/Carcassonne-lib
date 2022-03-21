@@ -1860,8 +1860,8 @@ void Plateau::evaluer_meeple(int status_du_jeu)
 
             if(est_complet == true || status_du_jeu )
             {
-                Joueur * joueur = this->rechercher_Joueur_plus_de_Pions(mapJoueurListeMeeple);
-                joueur->ajouter_points(score);
+                Joueur * joueur = this->rechercher_Joueur_plus_de_Pions(mapJoueurListeMeeple);// problème: en cas d'égalité
+                joueur->add_score(score);
                 this->desindexer_Meeple_dans_la_map(mapJoueurListeMeeple);
             }
         }
@@ -1885,16 +1885,20 @@ std::vector<std::list<Bordure *>> Plateau::get_orientation_possible(Tuile *tuile
     return list_vide;
 }
 
-
 bool Plateau::stack_meeple_vide(Joueur * joueur)
 {
-    return true;
+    return this->mapJoueursPions.at(joueur)->si_pion_non_place();
 }
 
+/**
+ * Permet de poser un meeple
+ *
+ * @return bool si le meeple peut être posé|     pioche.erase(0);
+ * */
 void Plateau::poser_meeple(Joueur * joueur, Element * element, Tuile * tuile)
 {
     Meeple * meeple = Pion::generate_meeple(joueur, element, tuile);
     element->ajouter_meeple(meeple);
-    Pion * pion = this->mapJoueursPions.find(joueur)->second;
+    Pion * pion = this->mapJoueursPions.at(joueur);
     pion->ajouter_meeple(meeple);
 }

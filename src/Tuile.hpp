@@ -5,6 +5,7 @@
 // LIBRAIRIES
 #include <array>
 #include <list>
+#include <vector>
 
 #include "Bordure.hpp"
 #include "Element.hpp"
@@ -25,7 +26,7 @@ class Tuile
         ~Tuile();
 
         // METHODES
-        //std::list<Element *> get_element(Tuile * tuile);
+        std::vector<Element *> get_element(Tuile * tuile);
         bool est_vide();
 };
 

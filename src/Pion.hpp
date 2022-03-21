@@ -19,17 +19,18 @@
 /**
  * Classe Pion
  *
- * Permet de représenté une pile de pions (ici une pile de meeple).
+ * Permet de représenté une liste de pions.
  **/
 class Pion
 {
     private:
         // VARIABLES
         std::list<Meeple *> stackMeeple;
+        int nbr_meeple_max;
 
     public:
         // CONSTRUCTEURS
-        Pion();
+        Pion(int nbr_pions);
 
         // DESTRUCTEUR
         ~Pion();
@@ -39,6 +40,7 @@ class Pion
         void ajouter_meeple(Meeple * meeple);
         void supprimer_meeple(Meeple * meeple);
         const std::list<Meeple *> get_stack_meeple();
+        bool si_pion_non_place();
 };
 
 #endif
