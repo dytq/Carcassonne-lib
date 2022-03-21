@@ -41,7 +41,7 @@ class Plateau
         std::map<Joueur *, Pion *> mapJoueursPions; // associe une pile de pions à un Joueur
 
         // METHODES
-        Joueur *rechercher_Joueur_plus_de_Pions(std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple);
+        std::list<Joueur *> rechercher_Joueur_plus_de_Pions(std::map<Joueur *, std::list<Meeple *>>mapJoueurListeMeeple);
         void desindexer_Meeple_dans_la_map(std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple);
 
     public:

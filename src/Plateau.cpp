@@ -1873,9 +1873,32 @@ Joueur *Plateau::joueur_suivant()
  *
  * @param mapJoueurListeMeeple Joueur associé à une liste de Meeple
  * */
-Joueur *Plateau::rechercher_Joueur_plus_de_Pions(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple)
+std::list<Joueur *> Plateau::rechercher_Joueur_plus_de_Pions(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple)
 {
-    return nullptr;
+    std::list<Joueur *> list_joueur;
+    int max = 0;
+    for(auto const & joueur : mapJoueurListeMeeple)
+    {
+        int tmp = joueur.second.size();
+        if(max < tmp) {
+            max = tmp;
+        }
+    }
+
+    for(auto const & joueur : this->mapJoueursPions)
+    {
+        int tmp = joueur.second->get_stack_meeple().size();
+        if(tmp == max)
+        {
+            list_joueur.push_back(joueur.first);
+        }
+    }
+
+    if(list_joueur.empty())
+    {
+        //Logging::DEBUG("Attention il y pas de joueur qui reçoit les points lors de l'évaluation");
+    }
+    return list_joueur;
 }
 
 /**
@@ -1884,7 +1907,14 @@ Joueur *Plateau::rechercher_Joueur_plus_de_Pions(std::map<Joueur*, std::list<Mee
  * @param mapJoueurListeMeeple Joueur associé à une liste de Meeple */
 void Plateau::desindexer_Meeple_dans_la_map(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple)
 {
-
+    for(auto const & itMap : mapJoueurListeMeeple)
+    {
+        Joueur * joueur = itMap.first;
+        for(auto const &meeple : itMap.second)
+        {
+            this->mapJoueursPions.at(joueur)->supprimer_meeple(meeple);
+        }
+    }
 }
 
 /**
@@ -1904,13 +1934,18 @@ void Plateau::evaluer_meeple(int status_du_jeu)
         for(auto const &itMeeple : listMeeple)
         {
             int score = 0;
-            std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple;
+            std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple; // Associe un joueur et une pile de pions
             int est_complet = itMeeple->compter_points(status_du_jeu, mapJoueurListeMeeple, &score);
 
             if(est_complet == true || status_du_jeu )
             {
-                Joueur * joueur = this->rechercher_Joueur_plus_de_Pions(mapJoueurListeMeeple);// problème: en cas d'égalité
-                joueur->add_score(score);
+                std::list<Joueur *> list_joueur_max;
+                list_joueur_max = this->rechercher_Joueur_plus_de_Pions(mapJoueurListeMeeple);// problème: en cas d'égalité
+                for(auto const & joueur : list_joueur_max)
+                {
+                    joueur->add_score(score);
+                    // Logging
+                }
                 this->desindexer_Meeple_dans_la_map(mapJoueurListeMeeple);
             }
         }
