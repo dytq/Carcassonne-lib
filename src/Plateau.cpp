@@ -1873,9 +1873,32 @@ Joueur *Plateau::joueur_suivant()
  *
  * @param mapJoueurListeMeeple Joueur associé à une liste de Meeple
  * */
-Joueur *Plateau::rechercher_Joueur_plus_de_Pions(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple)
+std::list<Joueur *> Plateau::rechercher_Joueur_plus_de_Pions(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple)
 {
-    return nullptr;
+    std::list<Joueur *> list_joueur;
+    int max = 0;
+    for(auto const & joueur : this->mapJoueursPions)
+    {
+        int tmp = joueur.second->get_stack_meeple().size();
+        if(max < tmp) {
+            max = tmp;
+        }
+    }
+
+    for(auto const & joueur : this->mapJoueursPions)
+    {
+        int tmp = joueur.second->get_stack_meeple().size();
+        if(tmp == max)
+        {
+            list_joueur.push_back(joueur.first);
+        }
+    }
+
+    if(list_joueur.empty())
+    {
+        //Logging::DEBUG("Attention il y pas de joueur qui reçoit les points lors de l'évaluation");
+    }
+    return list_joueur;
 }
 
 /**
@@ -1909,8 +1932,9 @@ void Plateau::evaluer_meeple(int status_du_jeu)
 
             if(est_complet == true || status_du_jeu )
             {
-                Joueur * joueur = this->rechercher_Joueur_plus_de_Pions(mapJoueurListeMeeple);// problème: en cas d'égalité
-                joueur->add_score(score);
+                std::list<Joueur *> list_joueur_max;
+                list_joueur_max = this->rechercher_Joueur_plus_de_Pions(mapJoueurListeMeeple);// problème: en cas d'égalité
+                //joueur->add_score(score);
                 this->desindexer_Meeple_dans_la_map(mapJoueurListeMeeple);
             }
         }
