@@ -2,8 +2,8 @@
 #include "Logging.hpp"
 
 // FONCTIONS
-void Logging::log(TypeMessage type_message, std::string message) {
-
+void Logging::log(TypeMessage type_message, char * message)
+{
     switch (type_message) {
 
         case CRITICAL:
@@ -22,5 +22,15 @@ void Logging::log(TypeMessage type_message, std::string message) {
             Logging::log(Logging::DEBUG, "type du message donnée au logger non valide");
             break;
     }
+}
 
+void Logging::log(TypeMessage type_message, const char * format, ...)
+{
+    char sBuffer[1024];
+    va_list args;
+
+    va_start(args, format);
+
+    std::vsprintf(sBuffer, format, args);
+    Logging::log(type_message, sBuffer);
 }
