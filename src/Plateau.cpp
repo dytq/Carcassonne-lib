@@ -1818,7 +1818,9 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
 	{
 		std::array<int, 3> current = {tmp.at(i).at(0), tmp.at(i).at(1), 0};
 		Tuile *comp = grille[current.at(0) + 1][current.at(1)];
-			
+		
+		// Modifier pour tenir compte de toutes les tuiles voisines
+
 		if((comp != nullptr)
 		&& (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), current) != liste_tuiles_emplacements_libres.end())
 		&& (tuile->bordureCompatible(comp, 0)))
