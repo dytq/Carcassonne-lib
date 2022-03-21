@@ -14,23 +14,19 @@ class Tuile
 {
     private:
         // VARIABLES
-        std::array<Bordure *,4> bordure;
+        std::array<Bordure *, 4> bordure;
         std::list<Element *> element;
 
     public:
         // CONSTRUCTEURS
-<<<<<<< HEAD
-        Tuile(std::array<Bordure *,4> bordure, std::list<Element *> element);
-=======
->>>>>>> bce84e27d59988917eb4e0bcfbed3b6e002cb326
-        Tuile(std::array<Bordure *,4> bordure, std::list<Element *> element);
+        Tuile(std::array<Bordure *, 4> bordure, std::list<Element *> element);
 
         // DESTRUCTEUR
         ~Tuile();
 
         // METHODES
+        bool bordureCompatible(Tuile *comp, int orientation);
         //std::list<Element *> get_element(Tuile * tuile);
-        bool est_vide();
 };
 
 #endif
