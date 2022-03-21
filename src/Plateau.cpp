@@ -1814,7 +1814,7 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
 
 	// Calcul des orientations
 
-	for(int i = 0; i < tmp.size(); i++)
+	for(int i = 0; i < (int) tmp.size(); i++)
 	{
 		std::array<int, 3> current = {tmp.at(i).at(0), tmp.at(i).at(1), 0};
 		Tuile *comp = grille[current.at(0) + 1][current.at(1)];
@@ -1858,7 +1858,7 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
 	}
 }
 
-void poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
+void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
 {
 
 }
