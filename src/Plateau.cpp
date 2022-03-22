@@ -4,9 +4,7 @@
 // FONCTIONS
 Plateau::Plateau()
 {
-    #ifndef LOG
     Logging::log(Logging::TRACE, "Création du plateau");
-    #endif // LOG
 }
 
 Plateau::~Plateau()

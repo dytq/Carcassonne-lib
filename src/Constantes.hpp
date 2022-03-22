@@ -31,4 +31,11 @@
 #define STATUS_EN_COURS 1
 #define STATUS_FINAL 0
 
+/* Debug: choisir le type de message à afficher */
+#define CRITICAL_MSG
+#define DEBUG_MSG
+#define TRACE_MSG
+
+/* -------------------------------------------- */
+
 #endif
