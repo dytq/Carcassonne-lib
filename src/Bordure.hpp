@@ -22,7 +22,7 @@ class Bordure : public Noeud
 
     public:
         // CONSTRUCTEURS
-        Bordure();
+        Bordure() {};
 
         // DESTRUCTEUR
         ~Bordure();

@@ -5,7 +5,7 @@
 /* Ne doit pas être utilisé */
 Noeud::Noeud()
 {
-   Logging::log(Logging::DEBUG, "Il est illégale d'instancier de manière publique la classe d'interface Noeud");
+
 }
 
 Noeud::~Noeud()
