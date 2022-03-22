@@ -12,6 +12,7 @@ Plateau::~Plateau()
 
 void Plateau::init_plateau()
 {
+    Logging::log(Logging::TRACE, "Chargement de la base de données");
     for(int i = 0; i < (NBR_TUILES * 2); i++)
     {
         for(int j = 0; j < (NBR_TUILES * 2); j++)
