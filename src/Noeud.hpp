@@ -26,10 +26,10 @@ class Noeud
         type_element element;
         int point_en_cours;
         int point_final;
+        Noeud();
 
     public:
          // CONSTRUCTEURS
-        Noeud();
         // DESTRUCTEUR
         ~Noeud();
 

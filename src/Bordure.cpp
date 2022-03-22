@@ -2,10 +2,6 @@
 #include "Bordure.hpp"
 
 // FONCTIONS
-Bordure::Bordure()
-{
-
-}
 
 Bordure::~Bordure()
 {}
@@ -50,7 +46,7 @@ void Bordure::set_type_element(Noeud::type_element type_noeud)
  * */
 void Bordure::set_bordure_fils(int indice, Noeud::type_element element)
 {
-    if(indice < 0 && indice > 3) {
+    if(indice >= 0 && indice <= 3) {
         this->bordureFils.at(indice) = new Bordure();
         this->bordureFils.at(indice)->set_type_element(element);
     } else

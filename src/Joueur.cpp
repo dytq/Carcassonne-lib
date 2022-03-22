@@ -9,7 +9,7 @@
  * */
 Joueur::Joueur(Type_joueur type_joueur)
 {
-    Logging::log(Logging::TRACE, "Création du joueur de type %s", type_joueur);
+    Logging::log(Logging::TRACE, "Création du joueur de type %d", type_joueur);
     this->type_joueur = type_joueur;
     this->score = 0;
 }
