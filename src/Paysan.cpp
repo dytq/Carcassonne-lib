@@ -3,13 +3,27 @@
 #include "Chevalier.hpp"
 
 // FONCTIONS
+/**
+ * Paysan prends en arguement le joueur et le noeud sur lequelle il est situé
+ *
+ * @param Joueur
+ * @param Noeud
+ * */
 Paysan::Paysan(Joueur * joueur, Noeud * noeud)
 {
     Meeple::joueur = joueur;
     Meeple::noeud = noeud;
-
 }
 
+/**
+ * Algorithme qui permet de vérifié si une ville marqué est complète.
+ * On execute ce code quand on arrive à un noeud ville.
+ * Une fois entrée on ne peut plus resortir, on peut donc évalué est chercher si il y a des valeurs nulle.
+ * - Si ce n'est pas le cas  on retourne le nombre de points obtenu.
+ *
+ * @param la liste des villes marqué
+ * @param le noeuds courant
+ * */
 bool est_complet(std::list<Noeud*> ville_marque, Noeud * noeud_courant)
 {
     if(noeud_courant == nullptr) {
@@ -32,7 +46,7 @@ bool est_complet(std::list<Noeud*> ville_marque, Noeud * noeud_courant)
 }
 
 /**
- * Algoritme de comptage pour un Paysan
+ * Algorithme de comptage pour un Paysan
  *
  * On fait un parcours en profondeur du réseau:
  * - Si on a un près alors on fait les vérifications necessaire (si il y un meeple on l'ajoute dans la map Joueur/Meeple)

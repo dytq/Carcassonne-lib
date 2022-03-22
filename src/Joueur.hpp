@@ -6,6 +6,8 @@
 #include <list>
 #include <string>
 
+#include "Logging.hpp"
+
 // CLASSE
 class Joueur
 {

@@ -9,6 +9,8 @@
 #include <stdarg.h>  // args
 #include <stdio.h>
 
+
+
 // CLASSE
 class Logging
 {
