@@ -20,7 +20,7 @@ Brigand::~Brigand()
  *
  * On vérifie au passage si on a une boucle.
  **/
-bool Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple, int * score)
+bool Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> * mapJoueurListeMeeple, int * score)
 {
     bool is_complete = true;
     int i;

@@ -35,8 +35,11 @@ class Pion
         // DESTRUCTEUR
         ~Pion();
 
-        // METHODES
+        // METHODES STATIC
         static Meeple * generate_meeple(Joueur * joueur, Element * element, Tuile * tuile);
+        static int estimer_meeple_points(Meeple * meeple, int status_du_jeu);
+
+        // METHODES OBJETS PION
         void ajouter_meeple(Meeple * meeple);
         void supprimer_meeple(Meeple * meeple);
         const std::list<Meeple *> get_stack_meeple();

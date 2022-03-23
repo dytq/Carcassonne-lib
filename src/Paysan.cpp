@@ -55,7 +55,7 @@ bool est_complet(std::list<Noeud*> ville_marque, Noeud * noeud_courant)
  *  - Si oui on passe au noeud suivant
  *  - Sinon on regarde si c'est une ville complète et on ajoute les points
  * */
-bool Paysan::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple, int *score)
+bool Paysan::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> * mapJoueurListeMeeple, int *score)
 {
     if(status_du_jeu == STATUS_EN_COURS)
     {

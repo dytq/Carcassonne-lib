@@ -16,7 +16,7 @@ Chevalier::~Chevalier()
  *
  * Parcours du réseau de noeuds en profondeur.
  **/
-bool Chevalier::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple, int * score)
+bool Chevalier::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> * mapJoueurListeMeeple, int * score)
 {
     std::list<Noeud*> pileNoeud;   // pile pour le parcours des fils
     std::list<Noeud*> noeudMarque; // marque tous les noeuds rencontrés

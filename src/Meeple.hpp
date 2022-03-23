@@ -24,7 +24,7 @@ class Meeple
 
     public:
         // METHODES
-        virtual bool compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple*>> mapJoueurListeMeeple, int * score);
+        virtual bool compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple*>> * mapJoueurListeMeeple, int * score);
         Noeud * get_noeud();
 };
 

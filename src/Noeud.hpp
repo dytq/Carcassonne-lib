@@ -37,6 +37,7 @@ class Noeud
         void set_lien(Noeud * noeud);   // ajoute un lien simple
         void set_voisin(Noeud * noeud); // ajoute un lien voisin
         virtual int get_points(int status_du_jeu) { return 0;};
+        virtual void supprimer_meeple();
 
         bool has_nullptr();
         int get_nbr_voisins();

@@ -28,7 +28,7 @@ class Element : public Noeud
 
         // METHODES
         Meeple * recuperer_meeple();
-        void supprimer_meeple();
+        void supprimer_meeple() override;
         void set_point(int point, int i);
         void ajouter_meeple(Meeple * meeple);
         int get_points(int status_du_jeu);

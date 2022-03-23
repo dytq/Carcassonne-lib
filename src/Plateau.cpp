@@ -12,6 +12,7 @@ Plateau::~Plateau()
 
 void Plateau::init_plateau()
 {
+    Logging::log(Logging::TRACE, "Chargement de la base de données");
     for(int i = 0; i < (NBR_TUILES * 2); i++)
     {
         for(int j = 0; j < (NBR_TUILES * 2); j++)
@@ -1935,7 +1936,7 @@ void Plateau::evaluer_meeple(int status_du_jeu)
         {
             int score = 0;
             std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple; // Associe un joueur et une pile de pions
-            int est_complet = itMeeple->compter_points(status_du_jeu, mapJoueurListeMeeple, &score);
+            int est_complet = itMeeple->compter_points(status_du_jeu, & mapJoueurListeMeeple, &score);
 
             if(est_complet == true || status_du_jeu )
             {
