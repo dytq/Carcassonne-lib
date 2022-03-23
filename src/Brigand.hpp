@@ -18,7 +18,7 @@ class Brigand : public Meeple
         ~Brigand();
 
         // METHODES
-        bool compter_points(int status_du_jeu, std::map<Joueur*, std::list<Meeple*>>, int * score);
+        bool compter_points(int status_du_jeu, std::map<Joueur*, std::list<Meeple*>> * mapJoueurListMeeple, int * score);
 };
 
 #endif
