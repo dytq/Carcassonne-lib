@@ -97,3 +97,8 @@ void Noeud::set_type_element(Noeud::type_element type)
 {
     this->element = type;
 }
+
+void Noeud::supprimer_meeple()
+{
+    Logging::log(Logging::DEBUG, "Le noeud ne represente pas un element");
+}

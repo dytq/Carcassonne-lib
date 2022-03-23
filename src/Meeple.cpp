@@ -12,7 +12,7 @@
  * @param mapJoueurListMeeple Permet d'associer un joueur à une liste de meeple pour connaître les nombre de meeple rencontré et a qui il appartient
  * @param le score
  *  */
-bool Meeple::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple*>> mapJoueurListeMeeple, int * score)
+bool Meeple::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple*>> * mapJoueurListeMeeple, int * score)
 {
 	Logging::log(Logging::DEBUG, "comptage de points depuis un meeple non définie");
 	return false;

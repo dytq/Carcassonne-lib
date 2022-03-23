@@ -60,6 +60,8 @@ Meeple * Pion::generate_meeple(Joueur * joueur, Element * element, Tuile * tuile
  * @param meeple le meeple à supprimer.
  * */
 void Pion::supprimer_meeple(Meeple * meeple) {
+    Noeud * noeud = meeple->get_noeud();
+    noeud->supprimer_meeple();
     this->stackMeeple.remove(meeple);
 }
 
@@ -99,4 +101,11 @@ bool Pion::si_pion_non_place() {
         return true;
     }
     return false;
+}
+
+int Pion::estimer_meeple_points(Meeple *meeple, int status_du_jeu)
+{
+    int score;
+    meeple->compter_points(status_du_jeu, nullptr , &score);
+    return score;
 }

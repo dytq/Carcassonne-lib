@@ -1936,7 +1936,7 @@ void Plateau::evaluer_meeple(int status_du_jeu)
         {
             int score = 0;
             std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple; // Associe un joueur et une pile de pions
-            int est_complet = itMeeple->compter_points(status_du_jeu, mapJoueurListeMeeple, &score);
+            int est_complet = itMeeple->compter_points(status_du_jeu, & mapJoueurListeMeeple, &score);
 
             if(est_complet == true || status_du_jeu )
             {
