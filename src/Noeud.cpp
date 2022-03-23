@@ -11,13 +11,20 @@ Noeud::Noeud()
 Noeud::~Noeud()
 {}
 
+
+int Noeud::get_points(int status_du_jeu)
+{
+    Logging::log(Logging::DEBUG, "Un noeud non défini ne donne pas de points");
+    return 0;
+}
+
 /* Permet de faire une lien sur un seul sens
  *
  * @param Noeud pour établir un lien
  * */
 void Noeud::set_lien(Noeud *noeud)
 {
-
+    //this->noeuds_voisins.push_back(noeud);
 }
 
 /**
@@ -27,7 +34,8 @@ void Noeud::set_lien(Noeud *noeud)
  * */
 void Noeud::set_voisin(Noeud *noeud)
 {
-
+    //this->set_lien(noeud);
+    //noeud->set_lien(this);
 }
 
 /**
