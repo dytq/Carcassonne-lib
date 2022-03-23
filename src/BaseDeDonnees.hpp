@@ -12,5 +12,5 @@ class BaseDeDonnees
 {
     public:
         static Plateau * generer_plateau_vanilla();
-        // static Plateau * generer_plateau_extansion();
+        // static Plateau * generer_plateau_extension();
 };
