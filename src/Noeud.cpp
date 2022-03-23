@@ -17,7 +17,7 @@ Noeud::~Noeud()
  * */
 void Noeud::set_lien(Noeud *noeud)
 {
-
+    this->noeuds_voisins.push_back(noeud);
 }
 
 /**
@@ -27,7 +27,8 @@ void Noeud::set_lien(Noeud *noeud)
  * */
 void Noeud::set_voisin(Noeud *noeud)
 {
-
+    this->set_lien(noeud);
+    noeud->set_lien(this);
 }
 
 /**
