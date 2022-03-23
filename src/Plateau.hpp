@@ -16,14 +16,6 @@
 #include "Constantes.hpp"
 #include "Logging.hpp"
 
-// CONSTANTES
-#define NOMBRE_TUILES_2 2
-#define NOMBRE_TUILES_3 3
-#define NOMBRE_TUILES_4 4
-#define NOMBRE_TUILES_5 5
-#define NOMBRE_TUILES_8 8
-#define NOMBRE_TUILES_9 9
-
 // CLASSE
 /**
  * Classe Plateau
@@ -54,7 +46,7 @@ class Plateau
         // METHODES
         void init_plateau();
         void ajouter_joueur(Joueur * joueur, Pion * pion);
-
+        void ajouter_tuile_pioche(Tuile * tuile);
         Joueur *get_joueur();
         std::vector<Tuile *> get_pioche();
         std::list<Joueur *> get_joueur_liste();
