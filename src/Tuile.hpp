@@ -26,7 +26,7 @@ class Tuile
         ~Tuile();
 
         // METHODES
-        bool bordureCompatible(Tuile *comp, int orientation);
+        bool bordureCompatible(Tuile *tuileCompare, int orientation);
         //std::list<Element *> get_element(Tuile * tuile);
 
 };

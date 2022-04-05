@@ -11,7 +11,7 @@ CXX=g++
 #CXX=Compilateur C++
 
 ### Flags ###
-CXXFLAGS := -Iinclude -MMD -MP
+CXXFLAGS := -Iinclude -MMD -MP -O3
 CFLAGS   := -Wall
 LDFLAGS  := -Llib
 LDLIBS   := -lm

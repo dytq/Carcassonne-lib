@@ -54,7 +54,6 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
 	this -> liste_tuiles_emplacements_libres.clear();
 
 	// Calcul des emplacements libres
-
 	std::vector<std::array<int, 2>> tmp;
 
     for(int i = 0; i < (NBR_TUILES * 2); i++)
@@ -65,28 +64,28 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
 			{
 				std::array<int, 2> element = {i + 1, j};
 
-				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) != end(tmp)))
+				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) == end(tmp)))
 				{
 					tmp.push_back(element);
 				}
 
 				element = {i, j + 1};
 
-				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) != end(tmp)))
+				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) == end(tmp)))
 				{
 					tmp.push_back(element);
 				}
 
 				element = {i - 1, j};
 
-				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) != end(tmp)))
+				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) == end(tmp)))
 				{
 					tmp.push_back(element);
 				}
 
 				element = {i, j - 1};
 
-				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) != end(tmp)))
+				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) == end(tmp)))
 				{
 					tmp.push_back(element);
 				}
@@ -95,50 +94,49 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
 	}
 
 	// Calcul des orientations
-
-	for(int i = 0; i < (int) tmp.size(); i++)
+	for(int i = 0; i < (int)tmp.size(); i++)
 	{
-		std::array<int, 3> current = {tmp.at(i).at(0), tmp.at(i).at(1), 0};
-		Tuile *comp = grille[current.at(0) + 1][current.at(1)];
-		
 		// Modifier pour tenir compte de toutes les tuiles voisines
 
-		if((comp != nullptr)
-		&& (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), current) != liste_tuiles_emplacements_libres.end())
-		&& (tuile->bordureCompatible(comp, 0)))
-		{
-			liste_tuiles_emplacements_libres.push_back(current);
-		}
+        for(int j = 0; j < NBR_ORIENTATIONS_TUILES; j++)
+        {
+            std::array<int, 3> tuileCandidate = {tmp.at(i).at(0), tmp.at(i).at(1), j};
+		    Tuile *tuileCompare = grille[tuileCandidate.at(0) + 1][tuileCandidate.at(1)];
 
-		current = {tmp.at(i).at(0), tmp.at(i).at(1), 1};
-		comp = grille[current.at(0)][current.at(1) + 1];
+            if((tuileCompare != nullptr)
+            && (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), tuileCandidate) == liste_tuiles_emplacements_libres.end())
+            && (tuile->bordureCompatible(tuileCompare, j)))
+            {
+                this->liste_tuiles_emplacements_libres.push_back(tuileCandidate);
+            }
 
-		if((comp != nullptr)
-		&& (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), current) != liste_tuiles_emplacements_libres.end())
-		&& (tuile->bordureCompatible(comp, 0)))
-		{
-			liste_tuiles_emplacements_libres.push_back(current);
-		}
-			
-		current = {tmp.at(i).at(0), tmp.at(i).at(1), 2};
-		comp = grille[current.at(0) - 1][current.at(1)];
+            tuileCompare = grille[tuileCandidate.at(0)][tuileCandidate.at(1) + 1];
 
-		if((comp != nullptr)
-		&& (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), current) != liste_tuiles_emplacements_libres.end())
-		&& (tuile->bordureCompatible(comp, 0)))
-		{
-			liste_tuiles_emplacements_libres.push_back(current);
-		}
-			
-		current = {tmp.at(i).at(0), tmp.at(i).at(1), 3};
-		comp = grille[current.at(0)][current.at(1) - 1];
+            if((tuileCompare != nullptr)
+            && (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), tuileCandidate) == liste_tuiles_emplacements_libres.end())
+            && (tuile->bordureCompatible(tuileCompare, j)))
+            {
+                this->liste_tuiles_emplacements_libres.push_back(tuileCandidate);
+            }
 
-		if((comp != nullptr)
-		&& (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), current) != liste_tuiles_emplacements_libres.end())
-		&& (tuile->bordureCompatible(comp, 0)))
-		{
-			liste_tuiles_emplacements_libres.push_back(current);
-		}	
+            tuileCompare = grille[tuileCandidate.at(0) - 1][tuileCandidate.at(1)];
+
+            if((tuileCompare != nullptr)
+            && (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), tuileCandidate) == liste_tuiles_emplacements_libres.end())
+            && (tuile->bordureCompatible(tuileCompare, j)))
+            {
+                this->liste_tuiles_emplacements_libres.push_back(tuileCandidate);
+            }
+
+            tuileCompare = grille[tuileCandidate.at(0)][tuileCandidate.at(1) - 1];
+
+            if((tuileCompare != nullptr)
+            && (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), tuileCandidate) == liste_tuiles_emplacements_libres.end())
+            && (tuile->bordureCompatible(tuileCompare, j)))
+            {
+                this->liste_tuiles_emplacements_libres.push_back(tuileCandidate);
+            }	
+        }
 	}
 }
 
@@ -219,9 +217,9 @@ void Plateau::evaluer_meeple(int status_du_jeu)
         {
             int score = 0;
             std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple; // Associe un joueur et une pile de pions
-            int est_complet = itMeeple->compter_points(status_du_jeu, & mapJoueurListeMeeple, &score);
+            int est_tuileComparelet = itMeeple->compter_points(status_du_jeu, & mapJoueurListeMeeple, &score);
 
-            if(est_complet == true || status_du_jeu )
+            if(est_tuileComparelet == true || status_du_jeu )
             {
                 std::list<Joueur *> list_joueur_max;
                 list_joueur_max = this->rechercher_Joueur_plus_de_Pions(mapJoueurListeMeeple);// problème: en cas d'égalité
