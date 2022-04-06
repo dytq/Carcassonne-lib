@@ -11,7 +11,7 @@ Tuile::Tuile(std::array<Bordure *, 4> bordure, std::list<Element *> element)
 Tuile::~Tuile()
 {}
 
-void rotationHoraire()
+void Tuile::rotationHoraire()
 {
     // Faire pivoter les bordures de this d'un quart de tour dans le sens horaire
 }
