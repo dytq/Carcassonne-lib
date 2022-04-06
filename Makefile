@@ -1,51 +1,42 @@
-### Répertoires ###
-SRC_DIR=src
-TRG_DIR=target
+### Chemins ###
+SRC_DIR = src
+TRG_DIR = target
+TRG = $(TRG_DIR)/main
 
-EXE=$(TRG_DIR)/Carcassonne_lib
-SRC=$(wildcard $(SRC_DIR)/*.cpp)
-OBJ=$(SRC:$(SRC_DIR)/%.cpp=$(TRG_DIR)/%.o)
+### Fichiers ###
+SRC = $(wildcard $(SRC_DIR)/*.cpp)
 
 ### Compilateur ###
-CXX=g++
-#CXX=Compilateur C++
+CXX = g++
 
 ### Flags ###
-CXXFLAGS := -Iinclude -MMD -MP -O3
-CFLAGS   := -Wall
-LDFLAGS  := -Llib
-LDLIBS   := -lm
-CDEBUG   := -g
+CXXFLAGS = -O3 -Wall -g
 
-### all ###
-.PHONY: all clean
-all: $(EXE)
+### run ###
+run: dir compile
+	./$(TRG)
 
-$(EXE): $(OBJ) | $(TRG_DIR)
-	$(CXX) $(LDFLAGS) $^ $(LDLIBS) $(CDEBUG) -o $@
+dir:
+	mkdir -p $(TRG_DIR)
 
-$(TRG_DIR)/%.o: $(SRC_DIR)/%.cpp | $(TRG_DIR)
-	$(CXX) $(CXXFLAGS) $(CFLAGS) -c $< $(CDEBUG) -o $@
+compile:
+	$(CXX) $(CXXFLAGS) $(SRC) -o $(TRG)
 
-$(TRG_DIR):
-	mkdir -p $@
-
-### Supprime les fichiers temporaires ###
+### Suppression du répertoire cible ###
 clean:
-	@$(RM) -rv $(TRG_DIR)
+	rm -rf $(TRG_DIR)
+	rm -f *.o
 	clear
 
--include $(OBJ:.o=.d)
-
 ### Vérification de fuites de mémoire ###
-memcheck: 
+memcheck: compile
 	valgrind ./$(EXE)
 
-### Debuggage GDB ###
-gdb:
+### Deboguage GDB ###
+gdb: compile
 	gdb ${EXE}
 
-### Archive ###
+### Archivage ###
 archive: clean
 	cd ../..
 	tar -czvf Carcassonne-lib.tar.gz Carcassonne-lib

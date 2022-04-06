@@ -13,14 +13,16 @@ Plateau::~Plateau()
 void Plateau::init_plateau()
 {
     Logging::log(Logging::TRACE, "Chargement de la base de données");
+
     for(int i = 0; i < (NBR_TUILES * 2); i++)
     {
         for(int j = 0; j < (NBR_TUILES * 2); j++)
         {
-            grille[i][j] = nullptr;
+            this->grille[i][j] = nullptr;
         }
     }
-    grille[NBR_TUILES-1][NBR_TUILES-1] = pioche[0];
+    
+    this->grille[NBR_TUILES-1][NBR_TUILES-1] = pioche[0];
     pioche.erase(pioche.begin());
 }
 
@@ -53,96 +55,75 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
 {
 	this -> liste_tuiles_emplacements_libres.clear();
 
-	// Calcul des emplacements libres
+	// Listage des emplacements libres au bord du plateau dans tmp
 	std::vector<std::array<int, 2>> tmp;
 
-    for(int i = 0; i < (NBR_TUILES * 2); i++)
+    for(int i = 1; i < ((NBR_TUILES * 2) - 1); i++)
 	{
-		for(int j = 0; i < (NBR_TUILES * 2); i++)
+		for(int j = 1; i < ((NBR_TUILES * 2) - 1); i++)
 		{
-			if(grille[i][j] != nullptr)
+			if(this->grille[i][j] != nullptr)
 			{
-				std::array<int, 2> element = {i + 1, j};
+				std::array<int, 2> position = {i + 1, j};
 
-				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) == end(tmp)))
+				if((this->grille[position.at(0)][position.at(1)] == nullptr) && (std::find(tmp.begin(), tmp.end(), position) == end(tmp)))
 				{
-					tmp.push_back(element);
+					tmp.push_back(position);
 				}
 
-				element = {i, j + 1};
+				position = {i, j + 1};
 
-				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) == end(tmp)))
+				if((this->grille[position.at(0)][position.at(1)] == nullptr) && (std::find(tmp.begin(), tmp.end(), position) == end(tmp)))
 				{
-					tmp.push_back(element);
+					tmp.push_back(position);
 				}
 
-				element = {i - 1, j};
+				position = {i - 1, j};
 
-				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) == end(tmp)))
+				if((this->grille[position.at(0)][position.at(1)] == nullptr) && (std::find(tmp.begin(), tmp.end(), position) == end(tmp)))
 				{
-					tmp.push_back(element);
+					tmp.push_back(position);
 				}
 
-				element = {i, j - 1};
+				position = {i, j - 1};
 
-				if((grille[i + 1][j] == nullptr) && (std::find(tmp.begin(), tmp.end(), element) == end(tmp)))
+				if((this->grille[position.at(0)][position.at(1)] == nullptr) && (std::find(tmp.begin(), tmp.end(), position) == end(tmp)))
 				{
-					tmp.push_back(element);
+					tmp.push_back(position);
 				}
 			}
 		}
 	}
 
-	// Calcul des orientations
-	for(int i = 0; i < (int)tmp.size(); i++)
+	// Calcul des orientations possibles pour chaque emplacement possible stocké dans tmp
+	for(long unsigned int i = 0; i < tmp.size(); i++)
 	{
-		// Modifier pour tenir compte de toutes les tuiles voisines
+		Tuile *copie = tuile;
+        std::array<int, 2> courant = tmp.at(i);
 
         for(int j = 0; j < NBR_ORIENTATIONS_TUILES; j++)
         {
-            std::array<int, 3> tuileCandidate = {tmp.at(i).at(0), tmp.at(i).at(1), j};
-		    Tuile *tuileCompare = grille[tuileCandidate.at(0) + 1][tuileCandidate.at(1)];
-
-            if((tuileCompare != nullptr)
-            && (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), tuileCandidate) == liste_tuiles_emplacements_libres.end())
-            && (tuile->bordureCompatible(tuileCompare, j)))
+            if(copie->borduresCompatibles(this->grille[courant.at(0)][courant.at(1) + 1], 0)
+            && copie->borduresCompatibles(this->grille[courant.at(0) + 1][courant.at(1)], 1)
+            && copie->borduresCompatibles(this->grille[courant.at(0)][courant.at(1) - 1], 2)
+            && copie->borduresCompatibles(this->grille[courant.at(0) - 1][courant.at(1)], 3))
             {
-                this->liste_tuiles_emplacements_libres.push_back(tuileCandidate);
+                this->liste_tuiles_emplacements_libres.push_back({courant.at(0), courant.at(1), j});
             }
 
-            tuileCompare = grille[tuileCandidate.at(0)][tuileCandidate.at(1) + 1];
-
-            if((tuileCompare != nullptr)
-            && (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), tuileCandidate) == liste_tuiles_emplacements_libres.end())
-            && (tuile->bordureCompatible(tuileCompare, j)))
-            {
-                this->liste_tuiles_emplacements_libres.push_back(tuileCandidate);
-            }
-
-            tuileCompare = grille[tuileCandidate.at(0) - 1][tuileCandidate.at(1)];
-
-            if((tuileCompare != nullptr)
-            && (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), tuileCandidate) == liste_tuiles_emplacements_libres.end())
-            && (tuile->bordureCompatible(tuileCompare, j)))
-            {
-                this->liste_tuiles_emplacements_libres.push_back(tuileCandidate);
-            }
-
-            tuileCompare = grille[tuileCandidate.at(0)][tuileCandidate.at(1) - 1];
-
-            if((tuileCompare != nullptr)
-            && (std::find(liste_tuiles_emplacements_libres.begin(), liste_tuiles_emplacements_libres.end(), tuileCandidate) == liste_tuiles_emplacements_libres.end())
-            && (tuile->bordureCompatible(tuileCompare, j)))
-            {
-                this->liste_tuiles_emplacements_libres.push_back(tuileCandidate);
-            }	
+            copie->rotationHoraire();
         }
 	}
 }
 
 void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
 {
+    for(int i = 0; i < emplacement.at(2); i++)
+    {
+        tuile->rotationHoraire();
+    }
 
+    this->grille[emplacement.at(0)][emplacement.at(1)] = tuile;
 }
 
 Joueur *Plateau::joueur_suivant()
@@ -254,10 +235,10 @@ bool Plateau::stack_meeple_vide(Joueur * joueur)
  *
  * @return bool si le meeple peut être posé|     pioche.erase(0);
  * */
-void Plateau::poser_meeple(Joueur * joueur, Element * element, Tuile * tuile)
+void Plateau::poser_meeple(Joueur * joueur, Element *elem, Tuile * tuile)
 {
-    Meeple * meeple = Pion::generate_meeple(joueur, element, tuile);
-    element->ajouter_meeple(meeple);
+    Meeple * meeple = Pion::generate_meeple(joueur, elem, tuile);
+    elem->ajouter_meeple(meeple);
     Pion * pion = this->mapJoueursPions.at(joueur);
     pion->ajouter_meeple(meeple);
 }

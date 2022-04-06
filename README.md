@@ -9,7 +9,12 @@ Contributeurs :
 
 Concernant les commandes ci-dessous, il faut d'abord ouvrir une console dans le répertoire de ce README.
 
-Pour exécuter le programme :
+Pour compiler le programme :
+```bash
+	make compile
+```
+
+Pour compiler et exécuter le programme :
 ```bash
 	make
 ```

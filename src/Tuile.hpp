@@ -26,7 +26,8 @@ class Tuile
         ~Tuile();
 
         // METHODES
-        bool bordureCompatible(Tuile *tuileCompare, int orientation);
+        void rotationHoraire();
+        bool borduresCompatibles(Tuile *tuileCompare, int cote);
         //std::list<Element *> get_element(Tuile * tuile);
 
 };
