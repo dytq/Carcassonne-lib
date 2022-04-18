@@ -13,12 +13,12 @@ Tuile::~Tuile()
 
 void Tuile::rotationHoraire()
 {
-    std::array<Bordure *, 4> tmp = this->bordure;
-
+    Bordure * tmp = this->bordure[0];
     for(int i = 0; i < NBR_ORIENTATIONS_TUILES; i++)
     {
-        this->bordure.at(i) = tmp.at((i - 1) % NBR_ORIENTATIONS_TUILES);
+        this->bordure[i] = this->bordure[i+1];
     }
+    this->bordure[NBR_ORIENTATIONS_TUILES] = tmp;
 }
 
 bool Tuile::borduresCompatibles(Tuile *tuileCompare, int cote)
