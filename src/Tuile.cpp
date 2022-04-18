@@ -13,20 +13,20 @@ Tuile::~Tuile()
 
 void Tuile::rotationHoraire()
 {
-    // Faire pivoter les bordures de this d'un quart de tour dans le sens horaire
+    std::array<Bordure *, 4> tmp = this->bordure;
+
+    for(int i = 0; i < NBR_ORIENTATIONS_TUILES; i++)
+    {
+        this->bordure.at(i) = tmp.at((i - 1) % NBR_ORIENTATIONS_TUILES);
+    }
 }
 
 bool Tuile::borduresCompatibles(Tuile *tuileCompare, int cote)
 {
-    /*
-    Vérifier que les bordures entre tuileCompare et this soient compatibles selon le côté où se situe tuileCompare
-    par rapport à this (en haut = 0, à droite = 1, en bas = 2, à gauche = 3)
-    */
-
-    if(tuileCompare == nullptr)
+    if((tuileCompare == nullptr) || (this->bordure[cote] == tuileCompare->bordure[(cote + 2) % NBR_ORIENTATIONS_TUILES]))
     {
         return true;
     }
 
-    return true;
+    return false;
 }
