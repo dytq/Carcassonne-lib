@@ -5,26 +5,29 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     Plateau * plateau = new Plateau();
     // Tuile 1 (x4)
     {
-    for (int nb = 0 ; nb < NOMBRE_TUILES_4 ; nb++){
-        for(int i = 0; i < 4; i++){
-
+    for (int nb = 0 ; nb <NOMBRE_TUILES_4 ; nb++)
+    {
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
             {
-            bordure.at(i) = new Bordure();
+                bordure.at(i) = new Bordure();
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
             bordure[1]->set_bordure_fils(2, Noeud::PLAINE);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[3]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[3]->set_bordure_fils(1, Noeud::ROUTE);
@@ -74,30 +77,30 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(1, bordure, elementTuile);
+            Tuile * tuile = new Tuile(1, bordure, elementTuile);
 
             // AJOUT de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
-    }
-    }
+            plateau->ajouter_tuile_pioche(tuile);
 
+    }
+    }
     // Tuile 2 (x3)
     {
-    for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
-        for(int i = 0; i < 4; i++){
-
+    for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++)
+    {
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
             {
-            bordure.at(i) = new Bordure();
+                bordure.at(i) = new Bordure();
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
@@ -107,7 +110,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
             bordure[2]->set_bordure_fils(2, Noeud::PLAINE);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -157,14 +162,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte);
-	}
     }
     }
 
     // Tuile 3 (x3)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -176,9 +179,13 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::PLAINE);
 
             bordure[2]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
@@ -236,14 +243,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 4 (x5)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_5 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -255,13 +260,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -296,14 +309,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 5 (x3)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -315,13 +326,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -361,14 +380,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 6 (x2)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -380,13 +397,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -426,14 +451,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 7 (x8)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_8 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -445,13 +468,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -498,14 +529,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 8 (x9)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_9 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -517,13 +546,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -569,14 +606,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 9 (x3)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -588,13 +623,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -631,14 +674,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 10 (x2)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -650,13 +691,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -693,14 +742,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 11 (x3)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -712,7 +759,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
@@ -721,8 +770,10 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[2]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
             bordure[2]->set_bordure_fils(2, Noeud::PLAINE);
-
+            
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -771,14 +822,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 12 (x2)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -790,7 +839,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
@@ -799,8 +850,10 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[2]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
             bordure[2]->set_bordure_fils(2, Noeud::PLAINE);
-
+            
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -848,13 +901,11 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 13 (x1)
     {
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -866,13 +917,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::VILLE);
-
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
+            
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -913,13 +972,11 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
 
     // Tuile 14 (x2)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -931,13 +988,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -977,14 +1042,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 15 (x3)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -996,13 +1059,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -1038,13 +1109,11 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 16 (x1)
     {
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -1056,13 +1125,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -1098,12 +1175,10 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
 
     // Tuile 17 (x1)
     {
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -1115,13 +1190,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -1154,12 +1237,10 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
 
     // Tuile 18 (x1)
     {
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -1171,15 +1252,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
-            bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
-            bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::PLAINE);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -1226,13 +1313,11 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
 
     // Tuile 19 (x2)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -1244,15 +1329,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
-                bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
-                    bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
-                bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(0, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[2]->set_bordure_fils(2, Noeud::PLAINE);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -1299,14 +1390,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 20 (x4)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_4 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -1318,13 +1407,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -1363,14 +1460,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 21 (x2)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -1382,13 +1477,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -1429,14 +1532,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 22 (x3)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -1448,7 +1549,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
@@ -1523,14 +1626,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 23 (x4)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_4 ; nb++){
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -1542,7 +1643,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
@@ -1614,13 +1717,11 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     }
 
     // Tuile 24 (x1)
     {
-        for(int i = 0; i < 4; i++){
 
             std::array<Bordure *, 4> bordure;
             std::list<Element *> element;
@@ -1716,7 +1817,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
-        }
     }
     return plateau;
 }

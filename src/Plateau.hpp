@@ -51,6 +51,8 @@ class Plateau
         std::vector<Tuile *> get_pioche();
         std::list<Joueur *> get_joueur_liste();
         std::vector<std::array<int, 3>> get_liste_tuiles_emplacements_libres();
+        
+        Tuile *get_tuile_grille(int x, int y);
 
         Tuile *piocher_tuile();
         void calcul_emplacements_libres(Tuile *tuile);

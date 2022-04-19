@@ -38,3 +38,14 @@ bool Tuile::borduresCompatibles(Tuile *tuileCompare, int cote)
 
     return false;
 }
+
+std::array<Bordure *, 4> Tuile::getBordure() {
+    return this->bordure;
+}
+
+std::list<Element *> Tuile::getElements() {
+    return this->element;
+}
+
+
+

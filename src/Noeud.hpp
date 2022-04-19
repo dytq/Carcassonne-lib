@@ -19,7 +19,7 @@ class Noeud
 {
     public:
         // VARIABLES
-        static enum type_element{ROUTE, VILLE, VILLE_BLASON, ABBAYE, PLAINE} element_enum;
+        static enum type_element{VOID, ROUTE, VILLE, VILLE_BLASON, ABBAYE, PLAINE} element_enum;
 
     protected:
         std::list<Noeud *> noeuds_voisins;
@@ -36,6 +36,7 @@ class Noeud
         // METHODES
         void set_lien(Noeud * noeud);   // ajoute un lien simple
         void set_voisin(Noeud * noeud); // ajoute un lien voisin
+        Noeud * get_front_voisin();      // retourne le voisin front
         virtual int get_points(int status_du_jeu);
         virtual void supprimer_meeple();
 
