@@ -19,7 +19,7 @@ class Noeud
 {
     public:
         // VARIABLES
-        static enum type_element{ROUTE, VILLE, VILLE_BLASON, ABBAYE, PLAINE} element_enum;
+        static enum type_element{VOID, ROUTE, VILLE, VILLE_BLASON, ABBAYE, PLAINE} element_enum;
 
     protected:
         std::list<Noeud *> noeuds_voisins;
