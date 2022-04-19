@@ -21,6 +21,8 @@ void Plateau::init_plateau()
             this->grille[i][j] = nullptr;
         }
     }
+   
+    Logging::log(Logging::DEBUG, "Ajout de la Tuile de base au plateau %d ", pioche[0]);
     
     this->grille[NBR_TUILES-1][NBR_TUILES-1] = pioche[0];
     pioche.erase(pioche.begin());
@@ -45,11 +47,17 @@ Tuile *Plateau::piocher_tuile()
 {
     srand(time(NULL));
 	int random = rand() % this->pioche.size();
-	Tuile *tuile = this->pioche[random];
+    Logging::log(Logging::TRACE, "Pioche la tuile %d", random);
 
+	Tuile *tuile = this->pioche[random];
 	pioche.erase(pioche.begin() + random);
 
     return tuile;
+}
+
+Tuile *Plateau::get_tuile_grille(int x, int y)
+{
+    return this->grille[x][y];
 }
 
 void Plateau::calcul_emplacements_libres(Tuile *tuile)

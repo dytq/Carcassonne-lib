@@ -24,7 +24,7 @@ int Noeud::get_points(int status_du_jeu)
  * */
 void Noeud::set_lien(Noeud *noeud)
 {
-    //this->noeuds_voisins.push_back(noeud);
+    this->noeuds_voisins.push_front(noeud);
 }
 
 /**
@@ -34,8 +34,8 @@ void Noeud::set_lien(Noeud *noeud)
  * */
 void Noeud::set_voisin(Noeud *noeud)
 {
-    //this->set_lien(noeud);
-    //noeud->set_lien(this);
+    this->set_lien(noeud);
+    noeud->set_lien(this);
 }
 
 /**
@@ -93,7 +93,7 @@ bool Noeud::has_nullptr()
  * @return le type d'élement */
 Noeud::type_element Noeud::get_type_element()
 {
-    return element;
+    return this->element;
 }
 
 /**
@@ -109,4 +109,9 @@ void Noeud::set_type_element(Noeud::type_element type)
 void Noeud::supprimer_meeple()
 {
     Logging::log(Logging::DEBUG, "Le noeud ne represente pas un element");
+}
+
+Noeud * Noeud::get_front_voisin()
+{
+    return this->noeuds_voisins.front();
 }

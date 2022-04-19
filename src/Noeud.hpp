@@ -36,6 +36,7 @@ class Noeud
         // METHODES
         void set_lien(Noeud * noeud);   // ajoute un lien simple
         void set_voisin(Noeud * noeud); // ajoute un lien voisin
+        Noeud * get_front_voisin();      // retourne le voisin front
         virtual int get_points(int status_du_jeu);
         virtual void supprimer_meeple();
 

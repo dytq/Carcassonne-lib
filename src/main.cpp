@@ -12,6 +12,8 @@
 #include "Constantes.hpp"
 #include "BaseDeDonnees.hpp"
 
+#define TEST_UNIT
+
 using namespace std;
 
 // FONCTIONS
@@ -32,9 +34,118 @@ void afficher_liste_tuiles_emplacements_libres(vector<array<int, 3>> liste_tuile
     }
 }
 
+// TEST UNITAIRE
+
+Plateau * init_plateau() {
+    Plateau *plateau = BaseDeDonnees::generer_plateau_vanilla();
+    plateau->init_plateau();
+    return plateau;
+}
+void afficher_tuile(Tuile * tuile) 
+{
+    Logging::log(Logging::DEBUG, "Affichage de la tuile de type n° %d", tuile->getId());
+    Logging::log(Logging::DEBUG, "0: vide, 1: route, 2: ville, 3: ville blason, 4: abbaye, 5: plaine");
+    Logging::log(Logging::DEBUG, "Nord : ");
+    Bordure * bordureNord = tuile->getBordure()[0];
+    for(int i = 0; i < 3; i++) 
+    {
+        Logging::log(Logging::DEBUG, "> %d -> %d ", bordureNord->get_bordure_fils(i)->get_type_element(), bordureNord->get_bordure_fils(i)->get_front_voisin());
+    }
+    Logging::log(Logging::DEBUG, "Est : ");
+    Bordure * bordureEst = tuile->getBordure()[1];
+    for(int i = 0; i < 3; i++) 
+    {
+        Logging::log(Logging::DEBUG, "> %d -> %d ", bordureEst->get_bordure_fils(i)->get_type_element(), bordureEst->get_bordure_fils(i)->get_front_voisin());
+    }
+    Logging::log(Logging::DEBUG, "Sud : ");
+    Bordure * bordureSud = tuile->getBordure()[2];
+    for(int i = 0; i < 3; i++) 
+    {
+        Logging::log(Logging::DEBUG, "> %d -> %d ", bordureSud->get_bordure_fils(i)->get_type_element(), bordureSud->get_bordure_fils(i)->get_front_voisin());
+    }
+    Logging::log(Logging::DEBUG, "Ouest : ");
+    Bordure * bordureOuest = tuile->getBordure()[3];
+    for(int i = 0; i < 3; i++) 
+    {
+        Logging::log(Logging::DEBUG, "> %d -> %d ", bordureOuest->get_bordure_fils(i)->get_type_element(), bordureOuest->get_bordure_fils(i)->get_front_voisin());
+    }
+
+    Logging::log(Logging::DEBUG, "affichage des éléments");
+    for(auto element : tuile->getElements())
+    {
+        Logging::log(Logging::DEBUG, "> %d", element->get_type_element());
+    }
+}
+
+void test_init_plateau()
+{
+    Logging::log(Logging::DEBUG, "Test unitaire de la fonction init_plateau()");
+    Plateau * plateau = init_plateau();
+    Logging::log(Logging::DEBUG, "Tuile de base %d", plateau->get_tuile_grille(NBR_TUILES-1,NBR_TUILES-1));
+}
+
+void test_init_pioche() 
+{
+    Logging::log(Logging::DEBUG, "Test de l'initialisation de la pioche");
+    Plateau *plateau = init_plateau();
+    Logging::log(Logging::DEBUG, "Nombre de tuiles dans la pioche : %d ", plateau->get_pioche().size());
+    for(int i = 0; i < (int) plateau->get_pioche().size(); i++)
+    {
+        Logging::log(Logging::DEBUG, "Test de la tuile %d = %d", i, plateau->get_pioche()[i]);
+    }
+}
+
+void test_piocher_tuile()
+{
+    Logging::log(Logging::DEBUG, "Test unitaire de la fonction piocher_tuile()");
+    Plateau *plateau = init_plateau();
+    Logging::log(Logging::DEBUG, "Nombre de tuiles dans la pioche : %d ", plateau->get_pioche().size());
+    plateau->piocher_tuile();
+    plateau->piocher_tuile();
+    Logging::log(Logging::DEBUG, "Nombre de tuiles dans la pioche après avoir pioché 2 fois: %d ", plateau->get_pioche().size());
+}
+
+void test_afficher_tuile() 
+{
+    Logging::log(Logging::DEBUG, "Test unitaire de la afficher une tuile");
+    Plateau *plateau = init_plateau();
+    afficher_tuile(plateau->get_tuile_grille(NBR_TUILES - 1, NBR_TUILES - 1));
+}
+
+void test_rotation_tuile() 
+{
+    Logging::log(Logging::DEBUG, "Test unitaire de la rotation d'une tuile");
+    Plateau *plateau = init_plateau();
+    Tuile * tuile = plateau->get_tuile_grille(NBR_TUILES - 1, NBR_TUILES - 1);
+    Logging::log(Logging::DEBUG, "Affichage de la tuile avant rotation");
+    afficher_tuile(tuile);
+    tuile->rotationHoraire();
+    Logging::log(Logging::DEBUG, "Affichage de la tuile après rotation");
+    afficher_tuile(tuile);
+}
+
+void test_calcul_emplacement_libre() 
+{
+    Logging::log(Logging::DEBUG, "Test unitaire de la fonction calcul_emplacement_libre()");
+    Plateau *plateau = init_plateau();
+    Tuile * tuile = plateau->piocher_tuile();
+    plateau->calcul_emplacements_libres(tuile);
+    vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
+    Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
+}
 // MAIN
 int main()
 {
+#ifdef TEST_UNIT
+    // Test unitaire
+    Logging::log(Logging::DEBUG, "Test unitaire");
+    test_init_plateau();
+    test_init_pioche();
+    test_piocher_tuile();
+    test_afficher_tuile();
+    test_rotation_tuile();
+    test_calcul_emplacement_libre();
+#else 
     // * Initialisation du plateau
     Plateau *plateau = BaseDeDonnees::generer_plateau_vanilla();    // Instancie le plateau
     plateau->init_plateau();                                        // Init le plateau en posant la première tuile sur le plateau->(Tuile de base)
@@ -112,6 +223,6 @@ int main()
     {
         cout << "Joueur " << (*it)->get_type_joueur() << " a obtenu " << (*it)->get_score();
     }
-
+#endif // TEST_UNIT
     return 0;
 }
