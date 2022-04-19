@@ -17,13 +17,17 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
             bordure[1]->set_bordure_fils(2, Noeud::PLAINE);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[3]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[3]->set_bordure_fils(1, Noeud::ROUTE);
@@ -94,7 +98,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
@@ -104,7 +110,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
             bordure[2]->set_bordure_fils(2, Noeud::PLAINE);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -171,9 +179,13 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::PLAINE);
 
             bordure[2]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
@@ -248,13 +260,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -306,13 +326,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -369,13 +397,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -432,13 +468,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -502,13 +546,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -571,13 +623,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -631,13 +691,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -691,7 +759,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
@@ -700,8 +770,10 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[2]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
             bordure[2]->set_bordure_fils(2, Noeud::PLAINE);
-
+            
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -767,7 +839,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
@@ -776,8 +850,10 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[2]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
             bordure[2]->set_bordure_fils(2, Noeud::PLAINE);
-
+            
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -841,13 +917,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::VILLE);
-
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
+            
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -904,13 +988,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -967,13 +1059,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -1025,13 +1125,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -1082,13 +1190,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -1136,15 +1252,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -1207,15 +1329,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
-                bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
-                    bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
-                bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -1279,13 +1407,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -1341,13 +1477,21 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[2]->set_bordure_fils(0, Noeud::VOID);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
+            bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
             std::list<Element *> elementTuile;
@@ -1405,7 +1549,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
@@ -1497,7 +1643,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
+            bordure[0]->set_bordure_fils(0, Noeud::VOID);
             bordure[0]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
