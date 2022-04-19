@@ -43,12 +43,13 @@ std::vector<Tuile *> Plateau::get_pioche()
 
 Tuile *Plateau::piocher_tuile()
 {
-	int random = rand() % pioche.size();
-	Tuile *tmp = pioche[random];
+    srand(time(NULL));
+	int random = rand() % this->pioche.size();
+	Tuile *tuile = this->pioche[random];
 
-	pioche.erase(pioche.begin());
+	pioche.erase(pioche.begin() + random);
 
-    return tmp;
+    return tuile;
 }
 
 void Plateau::calcul_emplacements_libres(Tuile *tuile)

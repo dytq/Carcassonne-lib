@@ -41,7 +41,7 @@ void Joueur::add_score(int score)
     }
     else
     {
-        Logging::log(Logging::DEBUG, "On ne peut pas ajouté en argument est inférieur à 0 au joueur");
+        Logging::log(Logging::DEBUG, "On ne peut pas ajouter en argument un score inférieur à 0 au joueur");
     }
 }
 

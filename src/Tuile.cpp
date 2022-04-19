@@ -2,14 +2,20 @@
 #include "Tuile.hpp"
 
 // FONCTIONS
-Tuile::Tuile(std::array<Bordure *, 4> bordure, std::list<Element *> element)
+Tuile::Tuile(int idTuile, std::array<Bordure *, 4> bordure, std::list<Element *> element)
 {
+    this->idTuile = idTuile;
     this->bordure = bordure;
     this->element = element;
 }
 
 Tuile::~Tuile()
 {}
+
+int Tuile::getId()
+{
+    return this->idTuile;
+}
 
 void Tuile::rotationHoraire()
 {

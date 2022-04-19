@@ -15,17 +15,19 @@ class Tuile
 {
     private:
         // VARIABLES
+        int idTuile;
         std::array<Bordure *, 4> bordure;
         std::list<Element *> element;
 
     public:
         // CONSTRUCTEURS
-        Tuile(std::array<Bordure *, 4> bordure, std::list<Element *> element);
+        Tuile(int idTuile, std::array<Bordure *, 4> bordure, std::list<Element *> element);
 
         // DESTRUCTEUR
         ~Tuile();
 
         // METHODES
+        int getId();
         void rotationHoraire();
         bool borduresCompatibles(Tuile *tuileCompare, int cote);
 };

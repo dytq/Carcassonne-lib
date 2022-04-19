@@ -74,7 +74,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(1, bordure, elementTuile);
 
             // AJOUT de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -153,7 +153,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(2, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte);
@@ -232,7 +232,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(3, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -292,7 +292,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(4, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -357,7 +357,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(5, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -422,7 +422,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(6, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -494,7 +494,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(7, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -565,7 +565,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(8, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -627,7 +627,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(9, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -689,7 +689,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(10, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -767,7 +767,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(11, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -844,7 +844,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(12, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -909,7 +909,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(13, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -973,7 +973,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(14, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1034,7 +1034,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(15, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1094,7 +1094,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(16, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1150,7 +1150,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element1);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(17, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1222,7 +1222,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(18, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1295,7 +1295,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(19, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1359,7 +1359,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(20, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1425,7 +1425,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(21, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1519,7 +1519,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element7);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(22, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1610,7 +1610,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element6);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(23, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1712,7 +1712,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element8);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(bordure, elementTuile);
+            Tuile * carte = new Tuile(24, bordure, elementTuile);
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte

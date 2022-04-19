@@ -35,39 +35,41 @@ void afficher_liste_tuiles_emplacements_libres(vector<array<int, 3>> liste_tuile
 // MAIN
 int main()
 {
-    // * Initialise le plateau
-    Plateau* plateau = BaseDeDonnees::generer_plateau_vanilla();    // Instancie le plateau
-    plateau->init_plateau();                                        // Init la tuile en posant la première tuile sur le plateau->(Tuile de base)
+    // * Initialisation du plateau
+    Plateau *plateau = BaseDeDonnees::generer_plateau_vanilla();    // Instancie le plateau
+    plateau->init_plateau();                                        // Init le plateau en posant la première tuile sur le plateau->(Tuile de base)
 
+    // * Ajout des joueurs
+    int nombre_de_joueurs = 2;
     vector<Joueur *> joueurs;
 
     joueurs.push_back(new Joueur(Joueur::HUMAIN));
     joueurs.push_back(new Joueur(Joueur::ROBOT));
 
-    // * Ajout des joueurs
-    plateau->ajouter_joueur(joueurs[0], new Pion(7));
-    plateau->ajouter_joueur(joueurs[1], new Pion(7));
+    for(int i = 0; i < nombre_de_joueurs; i++)
+    {
+        plateau->ajouter_joueur(joueurs[i], new Pion(7));
+    }
 
-    // * Init etat du jeu
+    // * Initialisation du nombre de tours
     int tour = 0;
-    int nombre_de_joueurs = 2;
 
     // Main loop
     if(plateau->get_pioche().size() > 0)
     {
-        //Determine le joueur qui doit jouer
+        // Détermine le joueur qui doit jouer
         Joueur *joueur = joueurs[tour];
         tour = (tour + 1) % nombre_de_joueurs;
 
         // * Piocher une tuile
-        Tuile *tuile_pioche =  plateau->piocher_tuile(); // Pioche une tuile (recupère l'addresse de la tuile) et l'enlève de la pioche
-        cout << "Tuile piochée : " << tuile_pioche << endl;
+        Tuile *tuile_pioche =  plateau->piocher_tuile(); // Pioche une tuile au hasard (recupère l'addresse de la tuile) et l'enlève de la pioche
+        cout << "Tuile piochée : " << tuile_pioche->getId() << endl;
 
-        // * Chercher les emplacements libre
+        // * Chercher les emplacements libres
         plateau->calcul_emplacements_libres(tuile_pioche); // Détermine tous les emplacements possibles sur le plateau
         vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
 
-        // * Afficher les emplacement libre
+        // * Afficher les emplacements libres
         cout << "Choisir l'index d'un emplacement de 0 à " << liste_tuiles_emplacements_libres.size() << endl;
         afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
 
@@ -81,13 +83,13 @@ int main()
         // * Poser un pion ?
         if(plateau->stack_meeple_vide(joueur))
         {
-            cout << "poser pions ?" << endl;
+            cout << "Poser pions ?" << endl;
             string poser_pion;
             cin >> poser_pion;
 
             if(poser_pion.compare("yes"))
             {
-                cout << "choisir emplacement" << endl;
+                cout << "Choisir emplacement" << endl;
                 //vector<Element *> list_element = tuile_pioche->get_element(tuile_pioche);
                 //afficher_elements(list_element);
                 int index;

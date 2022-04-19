@@ -5,7 +5,6 @@
 // LIBRAIRIES
 #include <list>
 #include <string>
-
 #include "Logging.hpp"
 
 // CLASSE
