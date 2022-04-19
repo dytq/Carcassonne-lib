@@ -1260,9 +1260,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[1]->set_bordure_fils(1, Noeud::VILLE);
             bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
-            bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
-            bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::PLAINE);
 
             bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE);
@@ -1337,9 +1337,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[1]->set_bordure_fils(1, Noeud::VILLE_BLASON);
             bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
-            bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
-            bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(2, Noeud::PLAINE);
 
             bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::VILLE_BLASON);
