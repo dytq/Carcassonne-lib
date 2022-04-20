@@ -128,19 +128,36 @@ void test_calcul_emplacement_libre()
 {
     Logging::log(Logging::DEBUG, "Test unitaire de la fonction calcul_emplacement_libre()");
     Plateau *plateau = init_plateau();
-    Logging::log(Logging::DEBUG, "Tuiles candidates %d", plateau->get_tuiles_candidates().size());
-    for(auto emplacement : plateau->get_tuiles_candidates())
-    {
-        Tuile * tuile = plateau->get_tuile_grille(emplacement.first, emplacement.second);
-        Logging::log(Logging::DEBUG, "> %d (%d)", tuile, tuile->getId());
-    }
-
+    Logging::log(Logging::DEBUG, "Nbr de tuiles candidates %d", plateau->get_tuiles_candidates().size());
     Tuile * tuile = plateau->piocher_tuile();
     afficher_tuile(tuile);
     plateau->calcul_emplacements_libres(tuile);
     vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
     Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
 }
+
+void test_ajout_tuile_au_hasard() 
+{
+    Logging::log(Logging::DEBUG, "Test unitaire de la fonction ajout d'une tuile");
+    Plateau * plateau = init_plateau();
+    
+    for(int i = 0; i < 2; i++) 
+    {
+        plateau->afficher_plateau();
+
+        Tuile * tuile_pioche = plateau->piocher_tuile();
+        afficher_tuile(tuile_pioche);
+        plateau->calcul_emplacements_libres(tuile_pioche);
+        vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
+        Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
+        afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
+        int index;
+        cin >> index;
+        plateau->poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[index]);
+        Logging::log(Logging::DEBUG, "Tuile %d placé sur la plateau de jeu", index);
+    }
+}
+
 // MAIN
 int main()
 {
@@ -153,6 +170,7 @@ int main()
     test_afficher_tuile();
     test_rotation_tuile();
     test_calcul_emplacement_libre();
+    test_ajout_tuile_au_hasard();
 #else 
     // * Initialisation du plateau
     Plateau *plateau = BaseDeDonnees::generer_plateau_vanilla();    // Instancie le plateau
