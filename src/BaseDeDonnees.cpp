@@ -183,9 +183,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[0]->set_bordure_fils(1, Noeud::VILLE);
             bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
-            bordure[1]->set_bordure_fils(0, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(0, Noeud::VOID);
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
-            bordure[1]->set_bordure_fils(2, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[2]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
