@@ -20,13 +20,16 @@ int Tuile::getId()
 void Tuile::rotationHoraire()
 {
     Bordure *tmp = this->bordure[0];
-
+    
+    int k = 3;
+    
     for(int i = 0; i < (NBR_ORIENTATIONS_TUILES - 1); i++)
     {
-        this->bordure[i] = this->bordure[i + 1];
+        this->bordure[(k + 1) % 4] = this->bordure[(k) % 4];
+        k--;
     }
 
-    this->bordure[NBR_ORIENTATIONS_TUILES - 1] = tmp;
+    this->bordure[1] = tmp;
 }
 
 bool Tuile::borduresCompatibles(Tuile *tuileCompare, int cote)
@@ -39,8 +42,8 @@ bool Tuile::borduresCompatibles(Tuile *tuileCompare, int cote)
     return false;
 }
 
-std::array<Bordure *, 4> Tuile::getBordure() {
-    return this->bordure;
+Bordure * Tuile::getBordure(int cote) {
+    return this->bordure[cote];
 }
 
 std::list<Element *> Tuile::getElements() {

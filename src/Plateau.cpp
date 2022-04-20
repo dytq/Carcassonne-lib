@@ -24,7 +24,9 @@ void Plateau::init_plateau()
    
     Logging::log(Logging::DEBUG, "Ajout de la Tuile de base au plateau %d ", pioche[0]);
     
-    this->grille[NBR_TUILES-1][NBR_TUILES-1] = pioche[0];
+    //this->grille[NBR_TUILES-1][NBR_TUILES-1] = pioche[0];
+    std::array<int, 3> coord = {NBR_TUILES-1, NBR_TUILES-1, 0};
+    this->poser_tuile(pioche[0], coord);
     pioche.erase(pioche.begin());
 }
 
@@ -62,6 +64,7 @@ Tuile *Plateau::get_tuile_grille(int x, int y)
 
 void Plateau::calcul_emplacements_libres(Tuile *tuile)
 {
+    /*
 	this -> liste_tuiles_emplacements_libres.clear();
 
 	// Listage des emplacements libres au bord du plateau dans tmp
@@ -103,7 +106,73 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
 			}
 		}
 	}
+    */
 
+    // On parcourt la liste des emplacements candidates
+    for(auto emplacement : this->tuiles_candidates) 
+    {
+
+        Logging::log(Logging::DEBUG, "Tuile candidates : <%d,%d>", emplacement.first, emplacement.second);
+        std::array<std::pair<int,int>, 4> tuile_coords_voisines = {
+            std::make_pair(emplacement.first, emplacement.second + 1),
+            std::make_pair(emplacement.first + 1, emplacement.second),
+            std::make_pair(emplacement.first, emplacement.second - 1),
+            std::make_pair(emplacement.first - 1, emplacement.second)
+        };
+        
+        int bordure_voisines = 2;
+        int bordure_tuiles = 0;
+
+
+        for(int i = 0; i < 4; i++)  // on tourne la cartes 
+        {
+            bool est_compatible = true; // permet de savoir si c'est compatible 
+            
+                for(auto tuile_coord_voisine : tuile_coords_voisines)
+                {
+                
+                    Tuile * tuile_voisine = this->grille[tuile_coord_voisine.first][tuile_coord_voisine.second];
+                    if(tuile_voisine != nullptr)
+                    {
+                        //Logging::log(Logging::DEBUG, "Tuile voisine %d", tuile_voisine->getId());
+                        //Logging::log(Logging::DEBUG, "Comparaison des bordures voisines <%d==%d> ", bordure_voisines, bordure_tuiles);
+                         
+                        Bordure * bordure_voisine = tuile_voisine->getBordure(bordure_voisines);
+                        Bordure * bordure_tuile = tuile->getBordure(bordure_tuiles);
+                                        
+                        for(int k = 0; k < 3; k++) 
+                        {
+                            //Logging::log(Logging::DEBUG, "Tuile voisine bordure %d", bordure_voisine->get_bordure_fils(k)->get_type_element());
+                            //Logging::log(Logging::DEBUG, "Tuile bordure Tuile pioche %d", bordure_tuile->get_bordure_fils(k)->get_type_element());
+                            if(bordure_voisine->get_bordure_fils(k)->get_type_element() != bordure_tuile->get_bordure_fils(k)->get_type_element())
+                            {
+                                est_compatible = false;
+                            }
+                        }
+                    } else {
+                        /*
+                        Bordure * bordure_tuile = tuile->getBordure(bordure_tuiles);
+                        for(int k = 0; k < 3; k++) 
+                        {
+                            Logging::log(Logging::DEBUG, "Tuile bordure %d", bordure_tuile->get_bordure_fils(k)->get_type_element());
+                        }
+                        */
+                    }
+                    bordure_voisines = (1 + bordure_voisines) % 4;
+                    bordure_tuiles = (1 + bordure_tuiles) % 4;
+                }
+                if(est_compatible)
+                {
+                    std::array<int, 3> emplacement_libre = {emplacement.first, emplacement.second, i};
+                    this->liste_tuiles_emplacements_libres.push_back(emplacement_libre);
+                    Logging::log(Logging::DEBUG, "ajout de l'emplacement libre <%d,%d,%d>", emplacement_libre.at(0), emplacement_libre.at(1), emplacement_libre.at(2));
+                }
+                tuile->rotationHoraire();
+                Logging::log(Logging::DEBUG, "on tourne la carte"); 
+        }   
+        Logging::log(Logging::DEBUG, "on change d'emplacement");
+    }
+    /*
 	// Calcul des orientations possibles pour chaque emplacement possible stocké dans tmp
 	for(long unsigned int i = 0; i < tmp.size(); i++)
 	{
@@ -123,6 +192,7 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
             copie->rotationHoraire();
         }
 	}
+    */
 }
 
 void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
@@ -131,8 +201,30 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
     {
         tuile->rotationHoraire();
     }
+    
+    if(this->grille != nullptr) {
+        // delete la tuile candidate sur la grille 
+    }
 
     this->grille[emplacement.at(0)][emplacement.at(1)] = tuile;
+
+    std::array<std::pair<int,int>, 4> tuile_voisines = {
+        std::make_pair(emplacement.at(0), emplacement.at(1) + 1),
+        std::make_pair(emplacement.at(0) + 1, emplacement.at(1)),
+        std::make_pair(emplacement.at(0), emplacement.at(1) - 1),
+        std::make_pair(emplacement.at(0) - 1, emplacement.at(1))
+    };
+
+    for(auto tuile_voisine : tuile_voisines)
+    {
+        if(this->grille[tuile_voisine.first][tuile_voisine.second] == nullptr)
+        {
+            std::array<Bordure *, 4> bordure_tmp;
+            std::list<Element *> element_tmp;
+            this->tuiles_candidates.push_back(std::make_pair(tuile_voisine.first,tuile_voisine.second));
+            this->grille[tuile_voisine.first][tuile_voisine.second] = new Tuile(-1, bordure_tmp, element_tmp);
+        }
+    }
 }
 
 Joueur *Plateau::joueur_suivant()
@@ -255,4 +347,9 @@ void Plateau::poser_meeple(Joueur * joueur, Element *elem, Tuile * tuile)
 void Plateau::ajouter_tuile_pioche(Tuile *tuile)
 {
     this->pioche.push_back(tuile);
+}
+
+std::vector<std::pair<int,int>> Plateau::get_tuiles_candidates() 
+{
+    return this->tuiles_candidates;
 }
