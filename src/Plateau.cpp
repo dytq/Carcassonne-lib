@@ -64,6 +64,7 @@ Tuile *Plateau::get_tuile_grille(int x, int y)
 
 void Plateau::calcul_emplacements_libres(Tuile *tuile)
 {
+    this->liste_tuiles_emplacements_libres.clear();
     Logging::log(Logging::TRACE, "Tuile = %d", tuile->getId());
     // On parcourt la liste des emplacements candidates
     for(auto tuile_candidate : this->tuiles_candidates) 
@@ -114,18 +115,10 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
                                 est_compatible = false;
                             }
                         }
-                    } else {
-                        /*
-                        Bordure * bordure_tuile = tuile->getBordure(bordure_tuiles);
-                        for(int k = 0; k < 3; k++) 
-                        {
-                            Logging::log(Logging::DEBUG, "Tuile bordure %d", bordure_tuile->get_bordure_fils(k)->get_type_element());
-                        }
-                        */
-                    }
-                    bordure_voisines = (1 + bordure_voisines) % 4;
-                    bordure_tuiles = (1 + bordure_tuiles) % 4;
+                    } 
                 }
+                bordure_voisines = (1 + bordure_voisines) % 4;
+                bordure_tuiles = (1 + bordure_tuiles) % 4;
             }
             if(est_compatible)
             {
@@ -310,7 +303,7 @@ void Plateau::afficher_plateau() {
         {
             if(grille[i][j] != nullptr)
             {
-                std::cout << "coords (" << 71 - i << "," << 71 - j << ")" << grille[i][j]->getId() << std::endl;
+                std::cout << "coords (" << i << "," << j << ")" << grille[i][j]->getId() << std::endl;
             }
         }
     }
