@@ -11,14 +11,15 @@ CXX=g++
 #CXX=clang++
 
 ### Flags ###
-CXXFLAGS := -Iinclude -MMD -MP -g
+CXXFLAGS := -Iinclude -MMD -O3 -MP -g
 CFLAGS   := -Wall
 LDFLAGS  := -Llib
 LDLIBS   := -lm
 
 ### all ###
 .PHONY: all clean
-all: $(EXE)
+run: $(EXE)
+	./$(EXE)
 
 $(EXE): $(OBJ) | $(TRG_DIR)
 	$(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
