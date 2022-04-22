@@ -17,11 +17,11 @@ class Tuile
         // VARIABLES
         int idTuile;
         std::array<Bordure *, 4> bordure;
-        std::list<Element *> element;
+        std::vector<Element *> element;
 
     public:
         // CONSTRUCTEURS
-        Tuile(int idTuile, std::array<Bordure *, 4> bordure, std::list<Element *> element);
+        Tuile(int idTuile, std::array<Bordure *, 4> bordure, std::vector<Element *> element);
 
         // DESTRUCTEUR
         ~Tuile();
@@ -31,7 +31,7 @@ class Tuile
         void rotationHoraire();
         bool borduresCompatibles(Tuile *tuileCompare, int cote);
         Bordure * getBordure(int cote);
-        std::list<Element *> getElements();
+        std::vector<Element *> getElements();
 };
 
 #endif

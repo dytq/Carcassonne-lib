@@ -19,7 +19,43 @@ using namespace std;
 // FONCTIONS
 void afficher_elements(vector<Element *> list_element)
 {
+    int i = 0;
+    for (Element *element : list_element)
+    {
+        cout << "Element n°" << i << ": " << element->get_type_element() << endl;
+        i++;
+    }
+}
 
+void afficher_plateau(Plateau *plateau) 
+{
+    for(int i = 0; i < 144; i++) 
+    {
+        for(int j = 0; j < 144; j++) 
+        {
+            if(plateau->get_tuile_grille(i,j) != nullptr)
+            {
+                Tuile *tuile = plateau->get_tuile_grille(i,j);
+
+                cout << "coords (" << i << "," << j << ") " << tuile->getId() << endl;
+                if(tuile->getId() != -1)
+                {
+                    cout << "Elements de la tuile: " << endl;
+                    for(auto element : tuile->getElements())
+                    {
+                        cout << " " << element->get_type_element();
+
+                        Meeple * meeple = element->get_meeple();
+                        if(meeple != nullptr) 
+                        {
+                            cout << " (meeple " << meeple->get_joueur()->get_couleur() << ")";
+                        }
+                    }
+                    cout << endl;
+                }
+            }
+        }
+    }
 }
 
 void afficher_liste_tuiles_emplacements_libres(vector<array<int, 3>> liste_tuiles_emplacements_libres)
@@ -147,7 +183,7 @@ void test_ajout_tuile_au_hasard()
         afficher_tuile(tuile_pioche);
         plateau->calcul_emplacements_libres(tuile_pioche);
         vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
-        plateau->afficher_plateau();
+        afficher_plateau(plateau);
         Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
         afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
         int index;
@@ -160,24 +196,44 @@ void test_ajout_tuile_au_hasard()
 
 void test_ajout_meeple() 
 {
-    Logging::log(Logging::DEBUG, "Test unitiare de l'ajout de meeples");
+    Logging::log(Logging::DEBUG, "Test unitaire de l'ajout de meeples");
     Plateau * plateau = init_plateau();
-
-    for(int i = 0; i < 10; i++) 
+    Joueur * joueur = new Joueur(Joueur::HUMAIN, Joueur::JAUNE);
+    plateau->ajouter_joueur(joueur, new Pion(7)); // ajouter joueur
+    
+    Tuile * tuile_pioche = plateau->piocher_tuile();
+    afficher_tuile(tuile_pioche);
+    plateau->calcul_emplacements_libres(tuile_pioche);
+    vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
+    afficher_plateau(plateau);
+    Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
+    afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
+    int index;
+    cin >> index;
+    plateau->poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[index]);
+    Logging::log(Logging::DEBUG, "Tuile %d placé sur la plateau de jeu", index);
+    
+    cout << "Poser pions ?" << endl;
+    string poser_pion;
+    cin >> poser_pion;
+    Logging::log(Logging::DEBUG, "Poser pion : %s", poser_pion.c_str());
+    if(!poser_pion.compare("yes")) 
     {
-        Tuile * tuile_pioche = plateau->piocher_tuile();
         afficher_tuile(tuile_pioche);
-        plateau->calcul_emplacements_libres(tuile_pioche);
-        vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
-        plateau->afficher_plateau();
-        Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
-        afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
+        afficher_plateau(plateau);
+
+        vector<Element *> list_element = tuile_pioche->getElements();
+        afficher_elements(list_element);
+        cout << "Choisir emplacement" << endl;
         int index;
         cin >> index;
-        plateau->poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[index]);
-        Logging::log(Logging::DEBUG, "Tuile %d placé sur la plateau de jeu", index);
-        liste_tuiles_emplacements_libres.clear();
+        plateau->poser_meeple(joueur, list_element[index], tuile_pioche); // Permet au joueur de placer un pion sur la tuile
     }
+
+    afficher_plateau(plateau);
+    // afficher tous les meeples du plateau
+    
+    liste_tuiles_emplacements_libres.clear();
 }
 
 // MAIN
@@ -186,13 +242,13 @@ int main()
 #ifdef TEST_UNIT
     // Test unitaire
     Logging::log(Logging::DEBUG, "Test unitaire");
-    test_init_plateau();
-    test_init_pioche();
-    test_piocher_tuile();
-    test_afficher_tuile();
-    test_rotation_tuile();
-    test_calcul_emplacement_libre();
-    test_ajout_tuile_au_hasard();
+    // test_init_plateau();
+    // test_init_pioche();
+    // test_piocher_tuile();
+    // test_afficher_tuile();
+    // test_rotation_tuile();
+    // test_calcul_emplacement_libre();
+    // test_ajout_tuile_au_hasard();
     test_ajout_meeple();
 #else 
     // * Initialisation du plateau
@@ -205,7 +261,7 @@ int main()
 
     joueurs.push_back(new Joueur(Joueur::HUMAIN));
     joueurs.push_back(new Joueur(Joueur::ROBOT));
-
+    
     for(int i = 0; i < nombre_de_joueurs; i++)
     {
         plateau->ajouter_joueur(joueurs[i], new Pion(7));
@@ -247,7 +303,7 @@ int main()
             string poser_pion;
             cin >> poser_pion;
 
-            if(poser_pion.compare("yes"))
+            if(!poser_pion.compare("yes"))
             {
                 cout << "Choisir emplacement" << endl;
                 //vector<Element *> list_element = tuile_pioche->get_element(tuile_pioche);

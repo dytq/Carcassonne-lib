@@ -161,7 +161,7 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
         if(this->grille[tuile_voisine.first][tuile_voisine.second] == nullptr)
         {
             std::array<Bordure *, 4> bordure_tmp;
-            std::list<Element *> element_tmp;
+            std::vector<Element *> element_tmp;
             Tuile * tuile_candidate = new Tuile(-1, bordure_tmp, element_tmp);
             this->grille[tuile_voisine.first][tuile_voisine.second] = tuile_candidate;
             this->tuiles_candidates[tuile_candidate] = std::make_pair(tuile_voisine.first,tuile_voisine.second);
@@ -294,17 +294,4 @@ void Plateau::ajouter_tuile_pioche(Tuile *tuile)
 std::map<Tuile *, std::pair<int,int>> Plateau::get_tuiles_candidates() 
 {
     return this->tuiles_candidates;
-}
-
-void Plateau::afficher_plateau() {
-    for(int i = 0; i < 144; i++) 
-    {
-        for(int j = 0; j < 144; j++) 
-        {
-            if(grille[i][j] != nullptr)
-            {
-                std::cout << "coords (" << i << "," << j << ")" << grille[i][j]->getId() << std::endl;
-            }
-        }
-    }
 }

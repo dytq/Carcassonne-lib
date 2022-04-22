@@ -7,10 +7,11 @@
  *
  * @param type_joueur  est le type de joueur
  * */
-Joueur::Joueur(Type_joueur type_joueur)
+Joueur::Joueur(Type_joueur type_joueur, Couleur couleur)
 {
     Logging::log(Logging::TRACE, "Création du joueur de type %d", type_joueur);
     this->type_joueur = type_joueur;
+    this->couleur = couleur;
     this->score = 0;
 }
 
@@ -53,4 +54,9 @@ void Joueur::add_score(int score)
 Joueur::Type_joueur Joueur::get_type_joueur()
 {
     return this->type_joueur;
+}
+
+Joueur::Couleur Joueur::get_couleur()
+{
+    return this->couleur;
 }
