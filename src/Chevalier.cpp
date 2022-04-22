@@ -32,27 +32,38 @@ bool Chevalier::compter_points(int status_du_jeu, std::map<Joueur *, std::list<M
         std::list<Noeud*>::iterator iterNoeud = pileNoeud.begin();
 
         Noeud * noeudCentrale = *iterNoeud;
+
+        Logging::log(Logging::TRACE, "Evaluation d'un noeud %d", noeudCentrale);
+        
         pileNoeud.pop_front();
 
         int i;
-
+    
         for(i = 0; i < noeudCentrale->get_nbr_voisins(); i++)
         {
-            Noeud * noeud_fils = noeudCentrale->noeud_fils(nullptr, i);
-
-            if(noeudCentrale->has_nullptr())
+            Noeud * noeud_fils = noeudCentrale->get_voisin(i);
+            Logging::log(Logging::TRACE, "Noeud fils %d %d", i, noeud_fils);
+            
+            if(noeud_fils == nullptr) 
             {
+                Logging::log(Logging::TRACE, "Noeud fils %d est null", i);
                 isComplete = false;
-            }
-
-            if(std::find(noeudMarque.begin(), noeudMarque.end(), noeud_fils) == noeudMarque.end())
+            } 
+            else 
             {
-                noeudMarque.push_back(noeud_fils);
-                pileNoeud.push_back(noeud_fils);
-                *score = noeud_fils->get_points(status_du_jeu);
+                Logging::log(Logging::TRACE, "Noeud fils %d est non null", i);
+                if(noeudMarque.end() == std::find(noeudMarque.begin(), noeudMarque.end(), noeud_fils))
+                {
+                    Logging::log(Logging::TRACE, "Noeud fils %d n'est pas marqué", i);
+                    *score += noeud_fils->get_points(status_du_jeu);
+                    pileNoeud.push_back(noeud_fils);
+                    noeudMarque.push_back(noeud_fils);
+                } else {
+                    Logging::log(Logging::TRACE, "Noeud fils %d est déjà marqué", i);
+                }
             }
         }
     }
-
+    
     return isComplete;
 }
