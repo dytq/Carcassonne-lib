@@ -65,8 +65,6 @@ class Plateau
         void evaluer_meeple(int status_du_jeu); // évaluation des scores
         bool stack_meeple_vide(Joueur *joueur);
         void poser_meeple(Joueur *joueur, Element *element, Tuile *tuile);
-
-        void afficher_plateau();
 };
 
 #endif

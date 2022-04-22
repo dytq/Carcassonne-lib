@@ -3,12 +3,16 @@
 
 // FONCTIONS
 /**
- * L'element est associé à un type élement.
+ * L'element est associé à un type élement, elle s'initialise à son emplacement meeple à nullptr
  *
  * @param type_element le type d'élément
  * */
 Element::Element(Noeud::type_element type_element)
 {
+    // initialise par défaut le meeple à nullptr
+    this->meeple = nullptr;
+
+    // permet d'assigner les points obtenu en fonctions du type d'élément lors du comptage des points
     Noeud::element = type_element;
     switch (type_element) {
         case Noeud::ABBAYE:
@@ -41,11 +45,11 @@ Element::~Element()
 {}
 
 /**
- * Permet de récupérer le meeple situé sur l'élément
+ * getter du meeple situé sur l'élément
  *
  * @return meeple
  * */
-Meeple * Element::recuperer_meeple()
+Meeple * Element::get_meeple()
 {
     return this->meeple;
 }

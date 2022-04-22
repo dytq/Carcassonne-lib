@@ -26,3 +26,7 @@ bool Meeple::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meep
 Noeud * Meeple::get_noeud() {
     return this->noeud;
 }
+
+Joueur * Meeple::get_joueur() {
+    return this->joueur;
+}

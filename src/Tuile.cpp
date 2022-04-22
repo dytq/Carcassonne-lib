@@ -2,7 +2,7 @@
 #include "Tuile.hpp"
 
 // FONCTIONS
-Tuile::Tuile(int idTuile, std::array<Bordure *, 4> bordure, std::list<Element *> element)
+Tuile::Tuile(int idTuile, std::array<Bordure *, 4> bordure, std::vector<Element *> element)
 {
     this->idTuile = idTuile;
     this->bordure = bordure;
@@ -46,7 +46,7 @@ Bordure * Tuile::getBordure(int cote) {
     return this->bordure[cote];
 }
 
-std::list<Element *> Tuile::getElements() {
+std::vector<Element *> Tuile::getElements() {
     return this->element;
 }
 
