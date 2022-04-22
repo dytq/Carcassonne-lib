@@ -42,17 +42,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les voisins
             // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(0)->set_voisin(element3);
-            bordure[1]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[1]->get_bordure_fils(2)->set_voisin(element4);
-
-            bordure[2]->get_bordure_fils(1)->set_voisin(element4);
-
-            bordure[3]->get_bordure_fils(0)->set_voisin(element4);
-            bordure[3]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[3]->get_bordure_fils(2)->set_voisin(element3);
 
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
@@ -69,8 +58,26 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout des liens additionelles
             element3->set_lien(element1);
+           
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Ajout element dans la vectore
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -122,18 +129,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element4 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(0)->set_voisin(element3);
-            bordure[1]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[1]->get_bordure_fils(2)->set_voisin(element4);
-
-            bordure[2]->get_bordure_fils(0)->set_voisin(element4);
-            bordure[2]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[2]->get_bordure_fils(2)->set_voisin(element3);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element4);
 
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
@@ -151,7 +146,25 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element3->set_lien(element1);
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -203,18 +216,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element4 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element3);
-
-            bordure[2]->get_bordure_fils(0)->set_voisin(element3);
-            bordure[2]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[2]->get_bordure_fils(2)->set_voisin(element4);
-
-            bordure[3]->get_bordure_fils(0)->set_voisin(element4);
-            bordure[3]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[3]->get_bordure_fils(2)->set_voisin(element3);
 
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
@@ -232,7 +233,24 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element3->set_lien(element1);
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+            // Ajout element dans le vector
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -282,14 +300,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element2 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element2);
-
-            bordure[2]->get_bordure_fils(1)->set_voisin(element2);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element2);
 
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
@@ -300,7 +310,25 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout des liens additionelles
             element2->set_lien(element1);
-            // Ajout element dans la vectore
+
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+            // Ajout element dans le vector
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
 
@@ -349,15 +377,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element3 = new Element(Noeud::VILLE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element2);
-
-            bordure[2]->get_bordure_fils(1)->set_voisin(element3);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element2);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
 
@@ -370,7 +389,26 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element2->set_lien(element1);
             element2->set_lien(element3);
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -420,15 +458,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element3 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element2);
-
-            bordure[2]->get_bordure_fils(1)->set_voisin(element3);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element3);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
 
@@ -441,7 +470,24 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element3->set_lien(element1);
             element3->set_lien(element2);
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -491,19 +537,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element3 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(0)->set_voisin(element1);
-            bordure[1]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[1]->get_bordure_fils(2)->set_voisin(element3);
-
-            bordure[2]->get_bordure_fils(1)->set_voisin(element3);
-
-            bordure[3]->get_bordure_fils(0)->set_voisin(element3);
-            bordure[3]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[3]->get_bordure_fils(2)->set_voisin(element1);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
             element1->set_voisin(bordure[1]->get_bordure_fils(0));
@@ -519,7 +552,28 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             // Aucun
 
-            // Ajout element dans la vectore
+
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -569,19 +623,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element3 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(0)->set_voisin(element1);
-            bordure[1]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[1]->get_bordure_fils(2)->set_voisin(element3);
-
-            bordure[2]->get_bordure_fils(0)->set_voisin(element3);
-            bordure[2]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[2]->get_bordure_fils(2)->set_voisin(element1);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element1);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
             element1->set_voisin(bordure[1]->get_bordure_fils(0));
@@ -596,7 +637,25 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             // Aucun
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -645,15 +704,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element2 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[2]->get_bordure_fils(1)->set_voisin(element2);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element2);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
 
@@ -665,7 +715,25 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element2->set_lien(element1);
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
 
@@ -713,15 +781,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element2 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[2]->get_bordure_fils(1)->set_voisin(element2);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element2);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
 
@@ -733,7 +792,25 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element2->set_lien(element1);
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
 
@@ -783,23 +860,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element4 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(0)->set_voisin(element3);
-            bordure[1]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[1]->get_bordure_fils(2)->set_voisin(element4);
-
-            bordure[2]->get_bordure_fils(0)->set_voisin(element4);
-            bordure[2]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[2]->get_bordure_fils(2)->set_voisin(element3);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element1);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
-            element1->set_voisin(bordure[3
-            ]->get_bordure_fils(1));
+            element1->set_voisin(bordure[3]->get_bordure_fils(1));
 
             element2->set_voisin(bordure[1]->get_bordure_fils(1));
             element2->set_voisin(bordure[2]->get_bordure_fils(1));
@@ -810,7 +873,25 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element3->set_lien(element1);
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -863,19 +944,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element4 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(0)->set_voisin(element3);
-            bordure[1]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[1]->get_bordure_fils(2)->set_voisin(element4);
-
-            bordure[2]->get_bordure_fils(0)->set_voisin(element4);
-            bordure[2]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[2]->get_bordure_fils(2)->set_voisin(element3);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element1);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
             element1->set_voisin(bordure[3
@@ -890,7 +958,25 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element3->set_lien(element1);
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -940,15 +1026,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element3 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element2);
-
-            bordure[2]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element3);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
             element1->set_voisin(bordure[2]->get_bordure_fils(1));
@@ -961,8 +1038,24 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element2->set_lien(element1);
             element3->set_lien(element1);
 
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
 
-        // Ajout element dans la vectore
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+           // Ajout element dans le vector
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -1011,15 +1104,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element3 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element2);
-
-            bordure[2]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element3);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
             element1->set_voisin(bordure[2]->get_bordure_fils(1));
@@ -1032,7 +1116,25 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element2->set_lien(element1);
             element3->set_lien(element1);
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -1081,15 +1183,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element2 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[2]->get_bordure_fils(1)->set_voisin(element2);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element1);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
             element1->set_voisin(bordure[1]->get_bordure_fils(1));
@@ -1100,7 +1193,25 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element2->set_lien(element1);
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
 
@@ -1114,7 +1225,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
     // Tuile 16 (x1)
     {
-
             std::array<Bordure *, 4> bordure;
             std::vector<Element *> element;
 
@@ -1147,15 +1257,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element2 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[2]->get_bordure_fils(1)->set_voisin(element2);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element1);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
             element1->set_voisin(bordure[1]->get_bordure_fils(1));
@@ -1166,7 +1267,24 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element2->set_lien(element1);
 
-        // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+            // Ajout element dans le vector
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
 
@@ -1179,7 +1297,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
     // Tuile 17 (x1)
     {
-
             std::array<Bordure *, 4> bordure;
             std::vector<Element *> element;
 
@@ -1211,15 +1328,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element1 = new Element(Noeud::VILLE_BLASON);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[2]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element1);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
             element1->set_voisin(bordure[1]->get_bordure_fils(1));
@@ -1229,7 +1337,24 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
                 // Aucun
 
-        // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
 
             // Creation de la carte
@@ -1276,17 +1401,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element4 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[2]->get_bordure_fils(0)->set_voisin(element3);
-            bordure[2]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[2]->get_bordure_fils(2)->set_voisin(element4);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element1);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
             element1->set_voisin(bordure[1]->get_bordure_fils(1));
@@ -1302,7 +1416,24 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element3->set_lien(element1);
             element4->set_lien(element1);
 
-        // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+           // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -1353,17 +1484,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element4 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[2]->get_bordure_fils(0)->set_voisin(element3);
-            bordure[2]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[2]->get_bordure_fils(2)->set_voisin(element4);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element1);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
             element1->set_voisin(bordure[1]->get_bordure_fils(1));
@@ -1379,7 +1499,25 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element3->set_lien(element1);
             element4->set_lien(element1);
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -1403,7 +1541,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // init bordure
             for(int i = 0; i < 4; i++)
             {
-            bordure.at(i) = new Bordure();
+                bordure.at(i) = new Bordure();
             }
 
             // init les bordures
@@ -1429,15 +1567,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element2 = new Element(Noeud::ABBAYE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[2]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element1);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
             element1->set_voisin(bordure[1]->get_bordure_fils(1));
@@ -1446,6 +1575,24 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout des liens additionelles
             // Aucun
+
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
 
             // Ajout des Tuiles dans le vector
             elementTuile.push_back(element1);
@@ -1469,7 +1616,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // init bordure
             for(int i = 0; i < 4; i++)
             {
-            bordure.at(i) = new Bordure();
+                bordure.at(i) = new Bordure();
             }
 
             // init les bordures
@@ -1496,17 +1643,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element3 = new Element(Noeud::ABBAYE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[2]->get_bordure_fils(0)->set_voisin(element1);
-            bordure[2]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[2]->get_bordure_fils(2)->set_voisin(element1);
-
-            bordure[3]->get_bordure_fils(1)->set_voisin(element1);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
             element1->set_voisin(bordure[1]->get_bordure_fils(1));
@@ -1518,7 +1654,25 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             // Aucun
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -1572,21 +1726,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element7 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(0)->set_voisin(element5);
-            bordure[1]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[1]->get_bordure_fils(2)->set_voisin(element6);
-
-            bordure[2]->get_bordure_fils(0)->set_voisin(element6);
-            bordure[2]->get_bordure_fils(1)->set_voisin(element3);
-            bordure[2]->get_bordure_fils(2)->set_voisin(element7);
-
-            bordure[3]->get_bordure_fils(0)->set_voisin(element7);
-            bordure[3]->get_bordure_fils(1)->set_voisin(element4);
-            bordure[3]->get_bordure_fils(2)->set_voisin(element5);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
 
@@ -1608,7 +1747,25 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element5->set_lien(element1);
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -1665,21 +1822,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element6 = new Element(Noeud::ROUTE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-
-            bordure[1]->get_bordure_fils(0)->set_voisin(element1);
-            bordure[1]->get_bordure_fils(1)->set_voisin(element2);
-            bordure[1]->get_bordure_fils(2)->set_voisin(element3);
-
-            bordure[2]->get_bordure_fils(0)->set_voisin(element3);
-            bordure[2]->get_bordure_fils(1)->set_voisin(element4);
-            bordure[2]->get_bordure_fils(2)->set_voisin(element5);
-
-            bordure[3]->get_bordure_fils(0)->set_voisin(element5);
-            bordure[3]->get_bordure_fils(1)->set_voisin(element6);
-            bordure[3]->get_bordure_fils(2)->set_voisin(element1);
-
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
             element1->set_voisin(bordure[1]->get_bordure_fils(0));
@@ -1700,7 +1842,25 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             // Aucun
 
-            // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -1757,23 +1917,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             Element * element8 = new Element(Noeud::PLAINE);
 
             // init les voisins
-            // bordure:
-            bordure[0]->get_bordure_fils(0)->set_voisin(element8);
-            bordure[0]->get_bordure_fils(1)->set_voisin(element1);
-            bordure[0]->get_bordure_fils(2)->set_voisin(element2);
-
-            bordure[1]->get_bordure_fils(0)->set_voisin(element2);
-            bordure[1]->get_bordure_fils(1)->set_voisin(element3);
-            bordure[1]->get_bordure_fils(2)->set_voisin(element4);
-
-            bordure[2]->get_bordure_fils(0)->set_voisin(element4);
-            bordure[2]->get_bordure_fils(1)->set_voisin(element5);
-            bordure[2]->get_bordure_fils(2)->set_voisin(element6);
-
-            bordure[3]->get_bordure_fils(0)->set_voisin(element6);
-            bordure[3]->get_bordure_fils(1)->set_voisin(element7);
-            bordure[3]->get_bordure_fils(2)->set_voisin(element8);
-
             // element:
             element1->set_voisin(bordure[1]->get_bordure_fils(1));
 
@@ -1798,7 +1941,25 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
                 // Aucun
 
-        // Ajout element dans la vectore
+            // ajoute nullptr vers voisin de la bordure non connecté
+            bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[0]->get_bordure_fils(2)->set_lien(nullptr);
+           
+            bordure[1]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[1]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[2]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[2]->get_bordure_fils(2)->set_lien(nullptr);
+
+            bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
+            bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
+
+
+            // Ajout element dans le vecteur
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
