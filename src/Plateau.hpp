@@ -56,7 +56,8 @@ class Plateau
         
         Tuile *get_tuile_grille(int x, int y);
 
-        Tuile *piocher_tuile();
+        Tuile *piocher_tuile(int index);
+        Tuile *piocher_tuile_aleat();
         void calcul_emplacements_libres(Tuile *tuile);
         void poser_tuile(Tuile *tuile, std::array<int, 3> emplacement);
         void compter_points(Joueur *joueur);

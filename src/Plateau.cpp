@@ -45,15 +45,19 @@ std::vector<Tuile *> Plateau::get_pioche()
     return this->pioche;
 }
 
-Tuile *Plateau::piocher_tuile()
+Tuile *Plateau::piocher_tuile_aleat()
 {
     srand(time(NULL));
 	int random = rand() % this->pioche.size();
     Logging::log(Logging::TRACE, "Pioche la tuile %d", random);
 
+    return this->piocher_tuile(random);
+}
+
+Tuile *Plateau::piocher_tuile(int index)
+{
 	Tuile *tuile = this->pioche[random];
 	pioche.erase(pioche.begin() + random);
-
     return tuile;
 }
 
