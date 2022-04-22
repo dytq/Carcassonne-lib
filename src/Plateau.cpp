@@ -56,8 +56,9 @@ Tuile *Plateau::piocher_tuile_aleat()
 
 Tuile *Plateau::piocher_tuile(int index)
 {
-	Tuile *tuile = this->pioche[random];
-	pioche.erase(pioche.begin() + random);
+    Tuile *tuile = this->pioche[index];
+	pioche.erase(pioche.begin() + index);
+    
     return tuile;
 }
 
