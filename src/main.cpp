@@ -158,6 +158,28 @@ void test_ajout_tuile_au_hasard()
     }
 }
 
+void test_ajout_meeple() 
+{
+    Logging::log(Logging::DEBUG, "Test unitiare de l'ajout de meeples");
+    Plateau * plateau = init_plateau();
+
+    for(int i = 0; i < 10; i++) 
+    {
+        Tuile * tuile_pioche = plateau->piocher_tuile();
+        afficher_tuile(tuile_pioche);
+        plateau->calcul_emplacements_libres(tuile_pioche);
+        vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
+        plateau->afficher_plateau();
+        Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
+        afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
+        int index;
+        cin >> index;
+        plateau->poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[index]);
+        Logging::log(Logging::DEBUG, "Tuile %d placé sur la plateau de jeu", index);
+        liste_tuiles_emplacements_libres.clear();
+    }
+}
+
 // MAIN
 int main()
 {
@@ -171,6 +193,7 @@ int main()
     test_rotation_tuile();
     test_calcul_emplacement_libre();
     test_ajout_tuile_au_hasard();
+    test_ajout_meeple();
 #else 
     // * Initialisation du plateau
     Plateau *plateau = BaseDeDonnees::generer_plateau_vanilla();    // Instancie le plateau

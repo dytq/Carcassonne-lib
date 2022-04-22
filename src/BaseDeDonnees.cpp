@@ -8,7 +8,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb <NOMBRE_TUILES_4 ; nb++)
     {
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -34,7 +34,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::PLAINE);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE);
             Element * element2 = new Element(Noeud::ROUTE);
             Element * element3 = new Element(Noeud::PLAINE);
@@ -70,7 +70,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element3->set_lien(element1);
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -89,7 +89,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++)
     {
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -115,7 +115,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE);
             Element * element2 = new Element(Noeud::ROUTE);
             Element * element3 = new Element(Noeud::PLAINE);
@@ -151,7 +151,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element3->set_lien(element1);
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -170,7 +170,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -196,7 +196,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::PLAINE);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE);
             Element * element2 = new Element(Noeud::ROUTE);
             Element * element3 = new Element(Noeud::PLAINE);
@@ -232,7 +232,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element3->set_lien(element1);
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -251,7 +251,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_5 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -277,7 +277,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE);
             Element * element2 = new Element(Noeud::PLAINE);
 
@@ -300,7 +300,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // Ajout des liens additionelles
             element2->set_lien(element1);
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
 
@@ -317,7 +317,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -343,7 +343,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE);
             Element * element2 = new Element(Noeud::PLAINE);
             Element * element3 = new Element(Noeud::VILLE);
@@ -370,7 +370,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element2->set_lien(element1);
             element2->set_lien(element3);
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -388,7 +388,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -414,7 +414,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE);
             Element * element2 = new Element(Noeud::VILLE);
             Element * element3 = new Element(Noeud::PLAINE);
@@ -441,7 +441,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element3->set_lien(element1);
             element3->set_lien(element2);
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -459,7 +459,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_8 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -485,7 +485,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::PLAINE);
             Element * element2 = new Element(Noeud::ROUTE);
             Element * element3 = new Element(Noeud::PLAINE);
@@ -519,7 +519,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             // Aucun
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -537,7 +537,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_9 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -563,7 +563,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::PLAINE);
             Element * element2 = new Element(Noeud::ROUTE);
             Element * element3 = new Element(Noeud::PLAINE);
@@ -596,7 +596,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             // Aucun
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -614,7 +614,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -640,7 +640,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE);
             Element * element2 = new Element(Noeud::PLAINE);
 
@@ -665,7 +665,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element2->set_lien(element1);
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
 
@@ -682,7 +682,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -708,7 +708,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE_BLASON);
             Element * element2 = new Element(Noeud::PLAINE);
 
@@ -733,7 +733,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element2->set_lien(element1);
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
 
@@ -750,7 +750,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -776,7 +776,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE);
             Element * element2 = new Element(Noeud::ROUTE);
             Element * element3 = new Element(Noeud::PLAINE);
@@ -810,7 +810,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element3->set_lien(element1);
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -830,7 +830,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -856,7 +856,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE_BLASON);
             Element * element2 = new Element(Noeud::ROUTE);
             Element * element3 = new Element(Noeud::PLAINE);
@@ -890,7 +890,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element3->set_lien(element1);
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -908,7 +908,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     {
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -934,7 +934,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE);
             Element * element2 = new Element(Noeud::PLAINE);
             Element * element3 = new Element(Noeud::PLAINE);
@@ -962,7 +962,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element3->set_lien(element1);
 
 
-        // Ajout element dans la liste
+        // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -979,7 +979,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -1005,7 +1005,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE_BLASON);
             Element * element2 = new Element(Noeud::PLAINE);
             Element * element3 = new Element(Noeud::PLAINE);
@@ -1032,7 +1032,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element2->set_lien(element1);
             element3->set_lien(element1);
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -1050,7 +1050,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -1076,7 +1076,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE);
             Element * element2 = new Element(Noeud::PLAINE);
 
@@ -1100,7 +1100,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element2->set_lien(element1);
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
 
@@ -1116,7 +1116,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     {
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -1142,7 +1142,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE_BLASON);
             Element * element2 = new Element(Noeud::PLAINE);
 
@@ -1166,7 +1166,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element2->set_lien(element1);
 
-        // Ajout element dans la liste
+        // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
 
@@ -1181,7 +1181,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     {
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -1207,7 +1207,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE_BLASON);
 
             // init les voisins
@@ -1229,7 +1229,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
                 // Aucun
 
-        // Ajout element dans la liste
+        // Ajout element dans la vectore
             elementTuile.push_back(element1);
 
             // Creation de la carte
@@ -1243,7 +1243,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     {
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -1269,7 +1269,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE);
             Element * element2 = new Element(Noeud::ROUTE);
             Element * element3 = new Element(Noeud::PLAINE);
@@ -1302,7 +1302,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element3->set_lien(element1);
             element4->set_lien(element1);
 
-        // Ajout element dans la liste
+        // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -1320,7 +1320,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -1346,7 +1346,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE_BLASON);
             Element * element2 = new Element(Noeud::ROUTE);
             Element * element3 = new Element(Noeud::PLAINE);
@@ -1379,7 +1379,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element3->set_lien(element1);
             element4->set_lien(element1);
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -1398,7 +1398,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_4 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -1424,7 +1424,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::PLAINE);
             Element * element2 = new Element(Noeud::ABBAYE);
 
@@ -1447,11 +1447,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             // Aucun
 
-            // Ajout des Tuiles dans la liste
-            elementTuile.push_back(element1);
-            elementTuile.push_back(element2);
-
-            // Ajout element dans la liste
+            // Ajout des Tuiles dans le vector
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
 
@@ -1468,7 +1464,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -1494,7 +1490,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::PLAINE);
             Element * element2 = new Element(Noeud::ROUTE);
             Element * element3 = new Element(Noeud::ABBAYE);
@@ -1522,7 +1518,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             // Aucun
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -1540,7 +1536,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -1566,7 +1562,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::PLAINE);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE);
             Element * element2 = new Element(Noeud::ROUTE);
             Element * element3 = new Element(Noeud::ROUTE);
@@ -1612,7 +1608,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             element5->set_lien(element1);
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -1634,7 +1630,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     for (int nb = 0 ; nb < NOMBRE_TUILES_4 ; nb++){
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -1660,7 +1656,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::PLAINE);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::PLAINE);
             Element * element2 = new Element(Noeud::ROUTE);
             Element * element3 = new Element(Noeud::PLAINE);
@@ -1704,7 +1700,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
             // Aucun
 
-            // Ajout element dans la liste
+            // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
@@ -1724,7 +1720,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
     {
 
             std::array<Bordure *, 4> bordure;
-            std::list<Element *> element;
+            std::vector<Element *> element;
 
             // init bordure
             for(int i = 0; i < 4; i++)
@@ -1750,7 +1746,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->set_bordure_fils(2, Noeud::PLAINE);
 
             // init les elements
-            std::list<Element *> elementTuile;
+            std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::ROUTE);
             Element * element2 = new Element(Noeud::PLAINE);
             Element * element3 = new Element(Noeud::ROUTE);
@@ -1802,7 +1798,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // Ajout des liens additionelles
                 // Aucun
 
-        // Ajout element dans la liste
+        // Ajout element dans la vectore
             elementTuile.push_back(element1);
             elementTuile.push_back(element2);
             elementTuile.push_back(element3);
