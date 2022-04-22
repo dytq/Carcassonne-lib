@@ -50,7 +50,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element2->set_voisin(bordure[3]->get_bordure_fils(1));
 
             element3->set_voisin(bordure[1]->get_bordure_fils(0));
-            element3->set_voisin(bordure[3]->get_bordure_fils(0));
+            element3->set_voisin(bordure[3]->get_bordure_fils(2));
 
             element4->set_voisin(bordure[1]->get_bordure_fils(2));
             element4->set_voisin(bordure[2]->get_bordure_fils(1));
