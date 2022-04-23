@@ -24,7 +24,7 @@ int Noeud::get_points(int status_du_jeu)
  * */
 void Noeud::set_lien(Noeud *noeud)
 {
-    this->noeuds_voisins.push_front(noeud);
+    this->noeuds_voisins.push_back(noeud);
 }
 
 /**
@@ -83,7 +83,7 @@ int Noeud::get_nbr_voisins()
  * */
 bool Noeud::has_nullptr()
 {
-    std::list<Noeud *>::iterator iter = std::find(this->noeuds_voisins.begin(),this->noeuds_voisins.end(), nullptr);
+    std::vector<Noeud *>::iterator iter = std::find(this->noeuds_voisins.begin(),this->noeuds_voisins.end(), nullptr);
     return iter != this->noeuds_voisins.end();
 }
 
@@ -111,7 +111,20 @@ void Noeud::supprimer_meeple()
     Logging::log(Logging::DEBUG, "Le noeud ne represente pas un element");
 }
 
-Noeud * Noeud::get_front_voisin()
+Noeud * Noeud::get_voisin(int index)
 {
-    return this->noeuds_voisins.front();
+    return this->noeuds_voisins[index];
+}
+
+// supprime en fonction de l'addresse du noeuds donner en param, si le noeud est null, il suprime le noeud null
+void Noeud::remove_tuile_voisin(Noeud * noeud)
+{
+    for(int i = 0; i < (int) this->noeuds_voisins.size(); i++)
+    {
+        if(this->noeuds_voisins[i] == noeud)
+        {
+            this->noeuds_voisins.erase(this->noeuds_voisins.begin() + i);
+            return;
+        }
+    }
 }

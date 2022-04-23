@@ -13,10 +13,12 @@ class Moine : public Meeple
     private:
     // VARIABLES
     Tuile * tuile;
+    std::array<std::array<Tuile *,144>,144> * etat_du_jeu;
+    std::pair<int,int> position_tuile;
 
     public:
     // CONSTRUCTEURS
-    Moine(Joueur * joueur, Noeud * noeud, Tuile * tuile);
+    Moine(Joueur * joueur, Noeud * noeud, std::array<std::array<Tuile *, 144>,144> * etat_du_jeu, std::pair<int,int> position);
 
     // DESTRUCTEUR
     ~Moine();
