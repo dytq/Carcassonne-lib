@@ -24,7 +24,7 @@ Pion::~Pion()
  * @param tuile pour connaitre son emplacement lors de certaine évaluation
  * @return Meeple un meeple généré, sinon l'élément n'est pas reconnu renvoie nullptr
  * */
-Meeple * Pion::generate_meeple(Joueur * joueur, Element * element, Tuile * tuile)
+Meeple * Pion::generate_meeple(Joueur * joueur, Element * element, std::array<std::array<Tuile *, 144>,144> * etat_du_jeu, std::pair<int,int> position_tuile)
 {
     if(element->get_type_element() == Noeud::VILLE || element->get_type_element() == Noeud::VILLE_BLASON)
     {
@@ -41,7 +41,7 @@ Meeple * Pion::generate_meeple(Joueur * joueur, Element * element, Tuile * tuile
     if(element->get_type_element() == Noeud::ABBAYE)
     {
         Logging::log(Logging::TRACE, "génération d'un moine");
-        return new Moine(joueur, element, tuile);
+        return new Moine(joueur, element, etat_du_jeu, position_tuile);
     }
 
     if(element->get_type_element() == Noeud::PLAINE)

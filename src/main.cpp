@@ -445,8 +445,8 @@ int main()
     // test_ajout_tuile_au_hasard();
     // test_ajout_meeple();
     // test_chevalier();
-    test_brigand();
-    // test_moine();
+    // test_brigand();
+    test_moine();
 
     return 0;
 }

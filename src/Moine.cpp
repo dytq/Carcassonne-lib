@@ -2,11 +2,12 @@
 #include "Moine.hpp"
 
 // FONCTIONS
-Moine::Moine(Joueur * joueur, Noeud * noeud, Tuile * tuile, Plateau * plateau)
+Moine::Moine(Joueur * joueur, Noeud * noeud, std::array<std::array<Tuile *, 144>,144> * etat_du_jeu, std::pair<int,int> position)
 {
     Meeple::joueur = joueur;
     Meeple::noeud = noeud;
-    this->tuile = tuile;
+    this->etat_du_jeu = etat_du_jeu;
+    this->position_tuile = position;
 }
 
 Moine::~Moine()

@@ -353,7 +353,7 @@ bool Plateau::stack_meeple_vide(Joueur * joueur)
  * */
 void Plateau::poser_meeple(Joueur * joueur, Element *elem, std::pair<int, int> position)
 {
-    Meeple * meeple = Pion::generate_meeple(joueur, elem, this->grille, position);
+    Meeple * meeple = Pion::generate_meeple(joueur, elem, &this->grille, position);
     elem->ajouter_meeple(meeple);
     Pion * pion = this->mapJoueursPions.at(joueur);
     pion->ajouter_meeple(meeple);

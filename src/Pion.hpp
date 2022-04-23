@@ -36,7 +36,7 @@ class Pion
         ~Pion();
 
         // METHODES STATIC
-        static Meeple * generate_meeple(Joueur * joueur, Element * element, Tuile * tuile);
+        static Meeple * generate_meeple(Joueur * joueur, Element * element, std::array<std::array<Tuile*, 144>, 144> * etat_du_jeu, std::pair<int, int> position_tuile);
         static int estimer_meeple_points(Meeple * meeple, int status_du_jeu);
 
         // METHODES OBJETS PION
