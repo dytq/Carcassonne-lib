@@ -24,7 +24,6 @@ void Plateau::init_plateau()
    
     Logging::log(Logging::DEBUG, "Ajout de la Tuile de base au plateau %d ", pioche[0]);
     
-    //this->grille[NBR_TUILES-1][NBR_TUILES-1] = pioche[0];
     std::array<int, 3> coord = {NBR_TUILES-1, NBR_TUILES-1, 0};
     this->poser_tuile(pioche[0], coord);
     pioche.erase(pioche.begin());
@@ -60,7 +59,7 @@ Tuile *Plateau::piocher_tuile(int index)
 	pioche.erase(pioche.begin() + index);
     
     return tuile;
-}
+}      
 
 Tuile *Plateau::get_tuile_grille(int x, int y)
 {
@@ -352,9 +351,9 @@ bool Plateau::stack_meeple_vide(Joueur * joueur)
  *
  * @return bool si le meeple peut être posé
  * */
-void Plateau::poser_meeple(Joueur * joueur, Element *elem, Tuile * tuile)
+void Plateau::poser_meeple(Joueur * joueur, Element *elem, std::pair<int, int> position)
 {
-    Meeple * meeple = Pion::generate_meeple(joueur, elem, tuile);
+    Meeple * meeple = Pion::generate_meeple(joueur, elem, this->grille, position);
     elem->ajouter_meeple(meeple);
     Pion * pion = this->mapJoueursPions.at(joueur);
     pion->ajouter_meeple(meeple);

@@ -26,7 +26,7 @@ class Plateau
 {
     private:
         // VARIABLES
-        Tuile *grille[NBR_TUILES * 2][NBR_TUILES * 2]; // grille représentant le plateau
+        std::array<std::array<Tuile *,144>,144> grille;
         std::vector<Tuile *> pioche; // la pioche
         std::list<Joueur *> list_joueur; // liste des joueurs
         std::vector<std::array<int, 3>> liste_tuiles_emplacements_libres; // liste des emplacements libres {abscisse, ordonnée, orientation}
@@ -65,7 +65,7 @@ class Plateau
 
         void evaluer_meeple(int status_du_jeu); // évaluation des scores
         bool stack_meeple_vide(Joueur *joueur);
-        void poser_meeple(Joueur *joueur, Element *element, Tuile *tuile);
+        void poser_meeple(Joueur *joueur, Element *element, std::pair<int, int> position);
 };
 
 #endif

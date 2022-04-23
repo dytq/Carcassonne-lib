@@ -71,6 +71,7 @@ void afficher_liste_tuiles_emplacements_libres(vector<array<int, 3>> liste_tuile
 }
 
 // TEST UNITAIRE
+#ifdef TEST_UNIT
 
 Plateau * init_plateau() {
     Plateau *plateau = BaseDeDonnees::generer_plateau_vanilla();
@@ -284,7 +285,8 @@ void test_ajout_meeple()
         cout << "Choisir emplacement" << endl;
         int index;
         cin >> index;
-        plateau->poser_meeple(joueur, list_element[index], tuile_pioche); // Permet au joueur de placer un pion sur la tuile
+        // todo creer coord std::pair pour poser meeple 
+        //plateau->poser_meeple(joueur, list_element[index], tuile_pioche); // Permet au joueur de placer un pion sur la tuile
     }
 
     afficher_plateau(plateau);
@@ -310,6 +312,9 @@ void test_chevalier()
     
     Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
     afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
+
+    std::pair <int, int> coord = { liste_tuiles_emplacements_libres[0][0], liste_tuiles_emplacements_libres[0][1] };
+    
     plateau->poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[0]);
     Logging::log(Logging::DEBUG, "Tuile %d placé sur la plateau de jeu", 0);
     
@@ -319,7 +324,7 @@ void test_chevalier()
     vector<Element *> list_element = tuile_pioche->getElements();
     afficher_elements(list_element);
     
-    plateau->poser_meeple(joueur, list_element[0], tuile_pioche); // Permet au joueur de placer un pion sur la tuile
+    plateau->poser_meeple(joueur, list_element[0], coord); // Permet au joueur de placer un pion sur la tuile
 
     afficher_plateau(plateau);
     // afficher tous les meeples du plateau
@@ -372,6 +377,8 @@ void test_brigand()
     Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
     afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
     plateau->poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[0]);
+    std::pair <int, int> coord = { liste_tuiles_emplacements_libres[0][0], liste_tuiles_emplacements_libres[0][1] };
+
     Logging::log(Logging::DEBUG, "Tuile %d placé sur la plateau de jeu", 0);
     
     afficher_tuile(tuile_pioche);
@@ -380,7 +387,7 @@ void test_brigand()
     vector<Element *> list_element = tuile_pioche->getElements();
     afficher_elements(list_element);
     
-    plateau->poser_meeple(joueur, list_element[5], tuile_pioche); // Permet au joueur de placer un pion sur la tuile
+    plateau->poser_meeple(joueur, list_element[5],coord); // Permet au joueur de placer un pion sur la tuile
 
     afficher_plateau(plateau);
     // afficher tous les meeples du plateau
@@ -427,7 +434,6 @@ void test_moine()
 // MAIN
 int main()
 {
-#ifdef TEST_UNIT
     // Test unitaire
     Logging::log(Logging::DEBUG, "Test unitaire");
     // test_init_plateau();
@@ -439,9 +445,14 @@ int main()
     // test_ajout_tuile_au_hasard();
     // test_ajout_meeple();
     // test_chevalier();
-    // test_brigand();
-    test_moine();
+    test_brigand();
+    // test_moine();
+
+    return 0;
+}
 #else 
+int main() 
+{
     // * Initialisation du plateau
     Plateau *plateau = BaseDeDonnees::generer_plateau_vanilla();    // Instancie le plateau
     plateau->init_plateau();                                        // Init le plateau en posant la première tuile sur le plateau->(Tuile de base)
@@ -519,6 +530,6 @@ int main()
     {
         cout << "Joueur " << (*it)->get_type_joueur() << " a obtenu " << (*it)->get_score();
     }
-#endif // TEST_UNIT
     return 0;
 }
+#endif // TEST_UNIT
