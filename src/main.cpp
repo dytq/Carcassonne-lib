@@ -81,30 +81,87 @@ void afficher_tuile(Tuile * tuile)
 {
     Logging::log(Logging::DEBUG, "Affichage de la tuile de type n° %d", tuile->getId());
     Logging::log(Logging::DEBUG, "0: vide, 1: route, 2: ville, 3: ville blason, 4: abbaye, 5: plaine");
+    
     Logging::log(Logging::DEBUG, "Nord : ");
     Bordure * bordureNord = tuile->getBordure(0);
-    for(int i = 0; i < 3; i++) 
+    for(int i = 0; i < 3; i++)
     {
-        Logging::log(Logging::DEBUG, "> %d -> %d ", bordureNord->get_bordure_fils(i)->get_type_element(), bordureNord->get_bordure_fils(i)->get_front_voisin());
+        Bordure * bordure_fils = bordureNord->get_bordure_fils(i);
+        Logging::log(Logging::DEBUG, "Element: %d", bordure_fils->get_type_element());
+        Logging::log(Logging::DEBUG, "Voisins de la bordure: ");
+        for(int j = 0; j < bordure_fils->get_nbr_voisins(); j++)
+        {
+            Noeud * noeud = bordure_fils->get_voisin(j);
+            if(noeud != nullptr) 
+            {
+                Logging::log(Logging::DEBUG," %d,", noeud->get_type_element());
+            } else 
+            {
+                Logging::log(Logging::DEBUG," 0,");
+            }
+        }
     }
+
     Logging::log(Logging::DEBUG, "Est : ");
     Bordure * bordureEst = tuile->getBordure(1);
-    for(int i = 0; i < 3; i++) 
+    for(int i = 0; i < 3; i++)
     {
-        Logging::log(Logging::DEBUG, "> %d -> %d ", bordureEst->get_bordure_fils(i)->get_type_element(), bordureEst->get_bordure_fils(i)->get_front_voisin());
+        Bordure * bordure_fils = bordureEst->get_bordure_fils(i);
+        Logging::log(Logging::DEBUG, "Element: %d", bordure_fils->get_type_element());
+        Logging::log(Logging::DEBUG, "Voisins de la bordure: ");
+        for(int j = 0; j < bordure_fils->get_nbr_voisins(); j++)
+        {
+            Noeud * noeud = bordure_fils->get_voisin(j);
+            if(noeud != nullptr) 
+            {
+                Logging::log(Logging::DEBUG," %d,", noeud->get_type_element());
+            } else 
+            {
+                Logging::log(Logging::DEBUG," 0,");
+            }
+        }
     }
+
     Logging::log(Logging::DEBUG, "Sud : ");
     Bordure * bordureSud = tuile->getBordure(2);
-    for(int i = 0; i < 3; i++) 
+    for(int i = 0; i < 3; i++)
     {
-        Logging::log(Logging::DEBUG, "> %d -> %d ", bordureSud->get_bordure_fils(i)->get_type_element(), bordureSud->get_bordure_fils(i)->get_front_voisin());
+        Bordure * bordure_fils = bordureSud->get_bordure_fils(i);
+        Logging::log(Logging::DEBUG, "Element: %d", bordure_fils->get_type_element());
+        Logging::log(Logging::DEBUG, "Voisins de la bordure: ");
+        for(int j = 0; j < bordure_fils->get_nbr_voisins(); j++)
+        {
+            Noeud * noeud = bordure_fils->get_voisin(j);
+            if(noeud != nullptr) 
+            {
+                Logging::log(Logging::DEBUG," %d,", noeud->get_type_element());
+            } else 
+            {
+                Logging::log(Logging::DEBUG," 0,");
+            }
+        }
     }
+
     Logging::log(Logging::DEBUG, "Ouest : ");
     Bordure * bordureOuest = tuile->getBordure(3);
-    for(int i = 0; i < 3; i++) 
+    for(int i = 0; i < 3; i++)
     {
-        Logging::log(Logging::DEBUG, "> %d -> %d ", bordureOuest->get_bordure_fils(i)->get_type_element(), bordureOuest->get_bordure_fils(i)->get_front_voisin());
+        Bordure * bordure_fils = bordureOuest->get_bordure_fils(i);
+        Logging::log(Logging::DEBUG, "Element: %d", bordure_fils->get_type_element());
+        Logging::log(Logging::DEBUG, "Voisins de la bordure: ");
+        for(int j = 0; j < bordure_fils->get_nbr_voisins(); j++)
+        {
+            Noeud * noeud = bordure_fils->get_voisin(j);
+            if(noeud != nullptr) 
+            {
+                Logging::log(Logging::DEBUG," %d,", noeud->get_type_element());
+            } else 
+            {
+                Logging::log(Logging::DEBUG," 0,");
+            }
+        }
     }
+
 
     Logging::log(Logging::DEBUG, "affichage des éléments");
     for(auto element : tuile->getElements())
@@ -136,8 +193,8 @@ void test_piocher_tuile()
     Logging::log(Logging::DEBUG, "Test unitaire de la fonction piocher_tuile()");
     Plateau *plateau = init_plateau();
     Logging::log(Logging::DEBUG, "Nombre de tuiles dans la pioche : %d ", plateau->get_pioche().size());
-    plateau->piocher_tuile();
-    plateau->piocher_tuile();
+    plateau->piocher_tuile_aleat();
+    plateau->piocher_tuile_aleat();
     Logging::log(Logging::DEBUG, "Nombre de tuiles dans la pioche après avoir pioché 2 fois: %d ", plateau->get_pioche().size());
 }
 
@@ -165,7 +222,7 @@ void test_calcul_emplacement_libre()
     Logging::log(Logging::DEBUG, "Test unitaire de la fonction calcul_emplacement_libre()");
     Plateau *plateau = init_plateau();
     Logging::log(Logging::DEBUG, "Nbr de tuiles candidates %d", plateau->get_tuiles_candidates().size());
-    Tuile * tuile = plateau->piocher_tuile();
+    Tuile * tuile = plateau->piocher_tuile_aleat();
     afficher_tuile(tuile);
     plateau->calcul_emplacements_libres(tuile);
     vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
@@ -179,7 +236,7 @@ void test_ajout_tuile_au_hasard()
     
     for(int i = 0; i < 10; i++) 
     {
-        Tuile * tuile_pioche = plateau->piocher_tuile();
+        Tuile * tuile_pioche = plateau->piocher_tuile_aleat();
         afficher_tuile(tuile_pioche);
         plateau->calcul_emplacements_libres(tuile_pioche);
         vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
@@ -201,7 +258,7 @@ void test_ajout_meeple()
     Joueur * joueur = new Joueur(Joueur::HUMAIN, Joueur::JAUNE);
     plateau->ajouter_joueur(joueur, new Pion(7)); // ajouter joueur
     
-    Tuile * tuile_pioche = plateau->piocher_tuile();
+    Tuile * tuile_pioche = plateau->piocher_tuile(1);
     afficher_tuile(tuile_pioche);
     plateau->calcul_emplacements_libres(tuile_pioche);
     vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
@@ -236,6 +293,137 @@ void test_ajout_meeple()
     liste_tuiles_emplacements_libres.clear();
 }
 
+void test_chevalier() 
+{
+    Logging::log(Logging::DEBUG, "Test unitaire de chevalier");
+    Plateau * plateau = init_plateau();
+    
+    Joueur * joueur = new Joueur(Joueur::HUMAIN, Joueur::JAUNE);
+    plateau->ajouter_joueur(joueur, new Pion(7)); // ajouter joueur
+    
+    Tuile * tuile_pioche = plateau->piocher_tuile(37);
+    afficher_tuile(tuile_pioche);
+
+    plateau->calcul_emplacements_libres(tuile_pioche);
+    vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
+    afficher_plateau(plateau);
+    
+    Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
+    afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
+    plateau->poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[0]);
+    Logging::log(Logging::DEBUG, "Tuile %d placé sur la plateau de jeu", 0);
+    
+    afficher_tuile(tuile_pioche);
+    afficher_plateau(plateau);
+
+    vector<Element *> list_element = tuile_pioche->getElements();
+    afficher_elements(list_element);
+    
+    plateau->poser_meeple(joueur, list_element[0], tuile_pioche); // Permet au joueur de placer un pion sur la tuile
+
+    afficher_plateau(plateau);
+    // afficher tous les meeples du plateau
+
+    plateau->evaluer_meeple(STATUS_EN_COURS); 
+
+    // tirage d'une autre tuile 
+
+    liste_tuiles_emplacements_libres.clear();
+    
+    tuile_pioche = plateau->piocher_tuile(0);
+    afficher_tuile(tuile_pioche);
+
+    plateau->calcul_emplacements_libres(tuile_pioche);
+    liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
+    afficher_plateau(plateau);
+    
+    Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
+    afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
+    plateau->poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[7]);
+    Logging::log(Logging::DEBUG, "Tuile %d placé sur la plateau de jeu", tuile_pioche->getId());
+    
+
+    afficher_tuile(tuile_pioche);
+    afficher_plateau(plateau);
+
+    list_element.clear();
+    list_element = tuile_pioche->getElements();
+    afficher_elements(list_element);
+    
+    afficher_plateau(plateau);
+    plateau->evaluer_meeple(STATUS_EN_COURS); 
+    liste_tuiles_emplacements_libres.clear();
+}
+void test_brigand() 
+{
+    Logging::log(Logging::DEBUG, "Test unitaire de chevalier");
+    Plateau * plateau = init_plateau();
+    
+    Joueur * joueur = new Joueur(Joueur::HUMAIN, Joueur::JAUNE);
+    plateau->ajouter_joueur(joueur, new Pion(7)); // ajouter joueur
+    
+    Tuile * tuile_pioche = plateau->piocher_tuile(68);
+    afficher_tuile(tuile_pioche);
+
+    plateau->calcul_emplacements_libres(tuile_pioche);
+    vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
+    afficher_plateau(plateau);
+    
+    Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
+    afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
+    plateau->poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[0]);
+    Logging::log(Logging::DEBUG, "Tuile %d placé sur la plateau de jeu", 0);
+    
+    afficher_tuile(tuile_pioche);
+    afficher_plateau(plateau);
+
+    vector<Element *> list_element = tuile_pioche->getElements();
+    afficher_elements(list_element);
+    
+    plateau->poser_meeple(joueur, list_element[5], tuile_pioche); // Permet au joueur de placer un pion sur la tuile
+
+    afficher_plateau(plateau);
+    // afficher tous les meeples du plateau
+    
+    
+    plateau->evaluer_meeple(STATUS_EN_COURS); 
+
+    // tirage d'une autre tuile 
+    
+    liste_tuiles_emplacements_libres.clear();
+    
+    tuile_pioche = plateau->piocher_tuile(68);
+    afficher_tuile(tuile_pioche);
+
+    plateau->calcul_emplacements_libres(tuile_pioche);
+    liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
+    afficher_plateau(plateau);
+    
+    Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
+    afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
+    plateau->poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[1]);
+    Logging::log(Logging::DEBUG, "Tuile %d placé sur la plateau de jeu", tuile_pioche->getId());
+    
+
+    afficher_tuile(tuile_pioche);
+    afficher_plateau(plateau);
+
+    list_element.clear();
+    list_element = tuile_pioche->getElements();
+    afficher_elements(list_element);
+    
+    afficher_plateau(plateau);
+    plateau->evaluer_meeple(STATUS_EN_COURS); 
+    liste_tuiles_emplacements_libres.clear();
+    
+}
+
+void test_moine()
+{
+
+
+}
+
 // MAIN
 int main()
 {
@@ -249,7 +437,10 @@ int main()
     // test_rotation_tuile();
     // test_calcul_emplacement_libre();
     // test_ajout_tuile_au_hasard();
-    test_ajout_meeple();
+    // test_ajout_meeple();
+    // test_chevalier();
+    // test_brigand();
+    test_moine();
 #else 
     // * Initialisation du plateau
     Plateau *plateau = BaseDeDonnees::generer_plateau_vanilla();    // Instancie le plateau
@@ -278,7 +469,7 @@ int main()
         tour = (tour + 1) % nombre_de_joueurs;
 
         // * Piocher une tuile
-        Tuile *tuile_pioche =  plateau->piocher_tuile(); // Pioche une tuile au hasard (recupère l'addresse de la tuile) et l'enlève de la pioche
+        Tuile *tuile_pioche =  plateau->piocher_tuile_aleat(); // Pioche une tuile au hasard (recupère l'addresse de la tuile) et l'enlève de la pioche
         cout << "Tuile piochée : " << tuile_pioche->getId() << endl;
 
         // * Chercher les emplacements libres

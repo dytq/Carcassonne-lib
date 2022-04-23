@@ -56,7 +56,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element4->set_voisin(bordure[2]->get_bordure_fils(1));
             element4->set_voisin(bordure[3]->get_bordure_fils(0));
 
-            // Ajout des liens additionelles
+            // Ajout des liens additionels
             element3->set_lien(element1);
            
             // ajoute nullptr vers voisin de la bordure non connecté
@@ -706,8 +706,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // init les voisins
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
-
-            element2->set_voisin(bordure[1]->get_bordure_fils(1));
+            element1->set_voisin(bordure[1]->get_bordure_fils(1));
 
             element2->set_voisin(bordure[2]->get_bordure_fils(1));
             element2->set_voisin(bordure[3]->get_bordure_fils(1));
@@ -1824,20 +1823,20 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // init les voisins
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
-            element1->set_voisin(bordure[1]->get_bordure_fils(0));
             element1->set_voisin(bordure[3]->get_bordure_fils(2));
-
+            element1->set_voisin(bordure[1]->get_bordure_fils(0));
+            
             element2->set_voisin(bordure[1]->get_bordure_fils(1));
 
             element3->set_voisin(bordure[1]->get_bordure_fils(2));
-            element3->set_voisin(bordure[2]->get_bordure_fils(1));
+            element3->set_voisin(bordure[2]->get_bordure_fils(0));
 
             element4->set_voisin(bordure[2]->get_bordure_fils(1));
 
             element5->set_voisin(bordure[2]->get_bordure_fils(2));
             element5->set_voisin(bordure[3]->get_bordure_fils(0));
 
-            element6->set_voisin(bordure[1]->get_bordure_fils(1));
+            element6->set_voisin(bordure[3]->get_bordure_fils(1));
 
             // Ajout des liens additionelles
             // Aucun

@@ -6,6 +6,7 @@
 #include "Meeple.hpp"
 #include "Joueur.hpp"
 #include "Tuile.hpp"
+#include "Plateau.hpp"
 
 // CLASSE
 class Moine : public Meeple

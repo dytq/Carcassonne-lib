@@ -3,7 +3,7 @@
 #define NOEUD_HPP
 
 // LIBRAIRIES
-#include <list>
+#include <vector>
 #include <algorithm>
 
 #include "Logging.hpp"
@@ -22,7 +22,7 @@ class Noeud
         static enum type_element{VOID, ROUTE, VILLE, VILLE_BLASON, ABBAYE, PLAINE} element_enum;
 
     protected:
-        std::list<Noeud *> noeuds_voisins;
+        std::vector<Noeud *> noeuds_voisins;
         type_element element;
         int point_en_cours;
         int point_final;
@@ -36,9 +36,10 @@ class Noeud
         // METHODES
         void set_lien(Noeud * noeud);   // ajoute un lien simple
         void set_voisin(Noeud * noeud); // ajoute un lien voisin
-        Noeud * get_front_voisin();      // retourne le voisin front
+        Noeud * get_voisin(int index);  // retourne le voisin front
         virtual int get_points(int status_du_jeu);
         virtual void supprimer_meeple();
+        void remove_tuile_voisin(Noeud * noeud); // supprime en fonction de l'addresse du noeuds donné en param
 
         bool has_nullptr();
         int get_nbr_voisins();
