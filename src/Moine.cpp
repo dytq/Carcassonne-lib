@@ -15,5 +15,35 @@ Moine::~Moine()
 
 bool Moine::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> * mapJoueurListeMeeple, int * score)
 {
-    return 0;
+    std::vector<std::pair<int,int>> voisins_coord = {
+        std::make_pair(position_tuile.first, position_tuile.second + 1),
+        std::make_pair(position_tuile.first + 1, position_tuile.second + 1),
+        std::make_pair(position_tuile.first + 1, position_tuile.second),
+        std::make_pair(position_tuile.first + 1, position_tuile.second - 1),
+        std::make_pair(position_tuile.first, position_tuile.second - 1),
+        std::make_pair(position_tuile.first - 1, position_tuile.second - 1),
+        std::make_pair(position_tuile.first - 1, position_tuile.second),
+        std::make_pair(position_tuile.first - 1, position_tuile.second + 1)
+    };
+   
+    bool est_complete = true;
+    *score = 1; // on compte la tuile de base 
+    for(auto voisin_coord : voisins_coord) 
+    {
+        Tuile * tuile = etat_du_jeu->at(voisin_coord.first).at(voisin_coord.second);
+        if(tuile  != nullptr)
+        {
+            Logging::log(Logging::DEBUG, "Moine::compter_points %d <%d,%d>", tuile->getId(), voisin_coord.first, voisin_coord.second);
+            if(tuile->getId() != -1)
+            {
+                *score += 1;
+            }
+        }
+        else 
+        {
+            est_complete =false;
+        }
+    }
+
+    return est_complete;
 }
