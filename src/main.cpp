@@ -427,8 +427,68 @@ void test_brigand()
 
 void test_moine()
 {
+    Logging::log(Logging::DEBUG, "Test unitaire de chevalier");
+    Plateau * plateau = init_plateau();
+    
+    Joueur * joueur = new Joueur(Joueur::HUMAIN, Joueur::JAUNE);
+    plateau->ajouter_joueur(joueur, new Pion(7)); // ajouter joueur
+    
+    Tuile * tuile_pioche = plateau->piocher_tuile(58);
+    afficher_tuile(tuile_pioche);
 
+    plateau->calcul_emplacements_libres(tuile_pioche);
+    vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
+    afficher_plateau(plateau);
+    
+    Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
+    afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
+    plateau->poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[0]);
+    std::pair <int, int> coord = { liste_tuiles_emplacements_libres[0][0], liste_tuiles_emplacements_libres[0][1] };
 
+    Logging::log(Logging::DEBUG, "Tuile %d placé sur la plateau de jeu", 0);
+    
+    afficher_tuile(tuile_pioche);
+    afficher_plateau(plateau);
+    
+    vector<Element *> list_element = tuile_pioche->getElements();
+    afficher_elements(list_element);
+    
+    plateau->poser_meeple(joueur, list_element[1],coord); // Permet au joueur de placer un pion sur la tuile
+
+    afficher_plateau(plateau);
+    plateau->evaluer_meeple(STATUS_EN_COURS); 
+    // afficher tous les meeples du plateau
+    
+    
+    plateau->evaluer_meeple(STATUS_EN_COURS); 
+
+    // tirage d'une autre tuile 
+    
+    liste_tuiles_emplacements_libres.clear();
+    
+    tuile_pioche = plateau->piocher_tuile(68);
+    afficher_tuile(tuile_pioche);
+
+    plateau->calcul_emplacements_libres(tuile_pioche);
+    liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
+    afficher_plateau(plateau);
+    
+    Logging::log(Logging::DEBUG, "Nombre d'emplacements libres : %d", liste_tuiles_emplacements_libres.size());
+    afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
+    plateau->poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[1]);
+    Logging::log(Logging::DEBUG, "Tuile %d placé sur la plateau de jeu", tuile_pioche->getId());
+    
+
+    afficher_tuile(tuile_pioche);
+    afficher_plateau(plateau);
+
+    list_element.clear();
+    list_element = tuile_pioche->getElements();
+    afficher_elements(list_element);
+    
+    afficher_plateau(plateau);
+    plateau->evaluer_meeple(STATUS_EN_COURS); 
+    liste_tuiles_emplacements_libres.clear();
 }
 
 // MAIN
