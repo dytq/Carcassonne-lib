@@ -37,6 +37,7 @@
 #define DEBUG_MSG    // Permet de journaliser quand il y a une erreur qui n'échoue pas le programme
 #define TRACE_MSG    // Permet de tracer le déroulement de la partie
 
+#define TEST_UNIT    // Test unitaire
 /* -------------------------------------------- */
 
 #endif
