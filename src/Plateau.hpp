@@ -15,6 +15,8 @@
 #include "Pion.hpp"
 #include "Constantes.hpp"
 #include "Logging.hpp"
+#include "Element.hpp"
+#include "Noeud.hpp"
 
 // CLASSE
 /**
@@ -66,6 +68,7 @@ class Plateau
         void evaluer_meeple(int status_du_jeu); // évaluation des scores
         bool stack_meeple_vide(Joueur *joueur);
         void poser_meeple(Joueur *joueur, Element *element, std::pair<int, int> position);
-};
+        static bool verifier_si_meeple(Noeud * noeud, Noeud::type_element type_element); 
+};  
 
 #endif
