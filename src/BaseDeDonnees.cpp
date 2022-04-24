@@ -1,5 +1,12 @@
 #include "BaseDeDonnees.hpp"
 
+/**
+ * @title : génération d'un plateau de jeu de type vanilla
+ *
+ * @description : cette fonction permet de générer un plateau de jeu de type vanilla, on initialise tous les tuiles de la pioche. Dans le jeu vanialla, il y a 72 tuiles, certaines tuiles sont en double.
+ *
+ * @return : le plateau de jeu généré
+ */
 Plateau * BaseDeDonnees::generer_plateau_vanilla()
 {
     Plateau * plateau = new Plateau();
