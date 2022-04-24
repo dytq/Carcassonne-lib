@@ -26,7 +26,7 @@ bool Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Mee
     *score = this->noeud->get_points(status_du_jeu);
     pileNoeud.push_back(this->noeud);
     noeudMarque.push_back(this->noeud);
-
+        
     while(!pileNoeud.empty())
     {
         std::list<Noeud*>::iterator iterNoeud = pileNoeud.begin();
@@ -43,7 +43,18 @@ bool Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Mee
         {
             Noeud * noeud_fils = noeudCentrale->get_voisin(i);
             Logging::log(Logging::TRACE, "Noeud fils %d %d", i, noeud_fils);
+             
+            Element * element = dynamic_cast<Element *>(noeudCentrale);
             
+            if(element != nullptr)
+            {
+                Meeple * meeple = element->get_meeple();
+                if(meeple != nullptr) 
+                {
+                    Logging::log(Logging::TRACE, "On a un meeple");
+                }
+            } 
+
             if(noeud_fils == nullptr) 
             {
                 Logging::log(Logging::TRACE, "Noeud fils %d est null", i);

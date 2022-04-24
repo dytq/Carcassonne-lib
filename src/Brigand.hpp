@@ -4,6 +4,7 @@
 #include "Meeple.hpp"
 #include "Joueur.hpp"
 #include "Noeud.hpp"
+#include "Element.hpp"
 
 class Brigand : public Meeple
 {

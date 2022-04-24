@@ -79,12 +79,12 @@ Tuile *Plateau::get_tuile_grille(int x, int y)
 void Plateau::calcul_emplacements_libres(Tuile *tuile)
 {
     this->liste_tuiles_emplacements_libres.clear();
-    Logging::log(Logging::TRACE, "Tuile = %d", tuile->getId());
+    // Logging::log(Logging::TRACE, "Tuile = %d", tuile->getId());
     // On parcourt la liste des emplacements candidates
     for(auto tuile_candidate : this->tuiles_candidates) 
     {
         std::pair<int, int> emplacement = tuile_candidate.second;
-        Logging::log(Logging::DEBUG, "Tuile candidates : <%d,%d> %d", emplacement.first, emplacement.second, tuile_candidate.first->getId());
+        // Logging::log(Logging::DEBUG, "Tuile candidates : <%d,%d> %d", emplacement.first, emplacement.second, tuile_candidate.first->getId());
         std::array<std::pair<int,int>, 4> tuile_coords_voisines = {
             std::make_pair(emplacement.first, emplacement.second + 1),
             std::make_pair(emplacement.first + 1, emplacement.second),
@@ -114,17 +114,12 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
                          
                         Bordure * bordure_voisine = tuile_voisine->getBordure(bordure_voisines);
                         Bordure * bordure_tuile = tuile->getBordure(bordure_tuiles);
-                        if(bordure_voisine == nullptr) {
-                            Logging::log(Logging::DEBUG, "bordure voisine null");
-                        }
-                        if(bordure_tuile == nullptr) {
-                            Logging::log(Logging::DEBUG, "bordure tuile null");
-                        }
+                        
                         for(int k = 0; k < 3; k++) 
                         {
                             //Logging::log(Logging::DEBUG, "Tuile voisine bordure %d", bordure_voisine->get_bordure_fils(k)->get_type_element());
                             //Logging::log(Logging::DEBUG, "Tuile bordure Tuile pioche %d", bordure_tuile->get_bordure_fils(k)->get_type_element());
-                            if(bordure_voisine->get_bordure_fils(k)->get_type_element() != bordure_tuile->get_bordure_fils(k)->get_type_element())
+                            if(bordure_voisine->get_bordure_fils(2 - k)->get_type_element() != bordure_tuile->get_bordure_fils(k)->get_type_element())
                             {
                                 est_compatible = false;
                             }
@@ -138,15 +133,13 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
             {
                 std::array<int, 3> emplacement_libre = {emplacement.first, emplacement.second, i};
                 this->liste_tuiles_emplacements_libres.push_back(emplacement_libre);
-                Logging::log(Logging::DEBUG, "ajout de l'emplacement libre <%d,%d,%d>", emplacement_libre.at(0), emplacement_libre.at(1), emplacement_libre.at(2));
+                //Logging::log(Logging::DEBUG, "ajout de l'emplacement libre <%d,%d,%d>", emplacement_libre.at(0), emplacement_libre.at(1), emplacement_libre.at(2));
             }
             tuile->rotationHoraire();
-            Logging::log(Logging::DEBUG, "on tourne la carte"); 
         }   
-        Logging::log(Logging::DEBUG, "on change d'emplacement");
+        //Logging::log(Logging::DEBUG, "on change d'emplacement");
     }
 }
-
 
 /** 
  * @titre : Fonction qui permet de poser une tuile sur le plateau.
@@ -170,7 +163,7 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
     // supprime l'ancienne tuile candidate qu'on doit remplacer 
     if(this->grille[emplacement.at(0)][emplacement.at(1)] != nullptr) {
         Tuile * tuile_a_suppr = this->grille[emplacement.at(0)][emplacement.at(1)];
-        Logging::log(Logging::DEBUG, "supprime tuile tmp %d : <%d %d>", tuile_a_suppr, emplacement.at(0), emplacement.at(1));
+        Logging::log(Logging::TRACE, "supprime tuile tmp %d : <%d %d>", tuile_a_suppr, emplacement.at(0), emplacement.at(1));
         this->tuiles_candidates.erase(tuile_a_suppr);
         this->grille[emplacement.at(0)][emplacement.at(1)] = nullptr;
     } else {
@@ -367,4 +360,64 @@ void Plateau::ajouter_tuile_pioche(Tuile *tuile)
 std::map<Tuile *, std::pair<int,int>> Plateau::get_tuiles_candidates() 
 {
     return this->tuiles_candidates;
+}
+
+bool Plateau::verifier_si_meeple(Noeud * noeud, Noeud::type_element type_element) 
+{
+    std::list<Noeud*> pileNoeud;   // pile pour le parcours des fils
+    std::list<Noeud*> noeudMarque; // marque tous les noeuds rencontrés
+
+    bool meeple_est_present = false;
+
+    pileNoeud.push_back(noeud);
+    noeudMarque.push_back(noeud);
+   
+    while(!pileNoeud.empty())
+    {
+        std::list<Noeud*>::iterator iterNoeud = pileNoeud.begin();
+
+        Noeud * noeudCentrale = *iterNoeud;
+        
+        Element * element = dynamic_cast<Element *>(noeudCentrale);
+        if(element != nullptr)
+        {
+            if(element->get_type_element() == type_element || noeudCentrale != noeud)
+            {
+                Meeple * meeple = element->get_meeple();
+                if(meeple != nullptr) 
+                {
+                    // Logging::log(Logging::TRACE, "Meeple trouvé");
+                    meeple_est_present = true;
+                    break;
+                }
+            }
+            
+        } 
+
+        // Logging::log(Logging::TRACE, "Evaluation d'un noeud %d", noeudCentrale);
+        
+        pileNoeud.pop_front();
+
+        int i;
+    
+        for(i = 0; i < noeudCentrale->get_nbr_voisins(); i++)
+        {
+            Noeud * noeud_fils = noeudCentrale->get_voisin(i);
+            // Logging::log(Logging::TRACE, "Noeud fils %d %d", i, noeud_fils);
+            // Logging::log(Logging::TRACE, "Noeud fils %d est non null", i);
+            if(noeud_fils != nullptr)
+            {
+                if(noeudMarque.end() == std::find(noeudMarque.begin(), noeudMarque.end(), noeud_fils))
+                {
+                    //Logging::log(Logging::TRACE, "Noeud fils %d n'est pas marqué", i);
+                    pileNoeud.push_back(noeud_fils);
+                    noeudMarque.push_back(noeud_fils);
+                } else {
+                    //Logging::log(Logging::TRACE, "Noeud fils %d est déjà marqué", i);
+                }
+            }
+        }
+    }
+
+    return meeple_est_present;
 }

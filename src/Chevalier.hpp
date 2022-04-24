@@ -5,6 +5,7 @@
 // LIBRAIRIES
 #include "Meeple.hpp"
 #include "Joueur.hpp"
+#include "Element.hpp"
 
 // CLASSE
 class Chevalier : public Meeple
