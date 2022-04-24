@@ -12,7 +12,7 @@ Plateau::~Plateau()
 
 void Plateau::init_plateau()
 {
-    Logging::log(Logging::TRACE, "Chargement de la base de données");
+    Logging::log(Logging::TRACE, "Initilisation de la grille");
 
     for(int i = 0; i < (NBR_TUILES * 2); i++)
     {
@@ -32,11 +32,6 @@ void Plateau::init_plateau()
 void Plateau::ajouter_joueur(Joueur * joueur, Pion * pion)
 {
     this->mapJoueursPions.insert(std::pair<Joueur *, Pion *>(joueur, pion));
-}
-
-Joueur * Plateau::get_joueur()
-{
-    return nullptr;
 }
 
 std::vector<Tuile *> Plateau::get_pioche()
@@ -69,8 +64,6 @@ Tuile *Plateau::get_tuile_grille(int x, int y)
 /**
  * @title : Calculer les emplacments libres
  *
- * @description : selectionne parmis les tuiles candidates les tuiles 
- * qui peuvent être posées de façon cohérentes. On parcours tous les 
  * tuiles candidates, on effectue des rotations et on vérifie si les 
  * interfaces de bordures sont compatibles.
  *
@@ -119,9 +112,22 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
                         {
                             //Logging::log(Logging::DEBUG, "Tuile voisine bordure %d", bordure_voisine->get_bordure_fils(k)->get_type_element());
                             //Logging::log(Logging::DEBUG, "Tuile bordure Tuile pioche %d", bordure_tuile->get_bordure_fils(k)->get_type_element());
-                            if(bordure_voisine->get_bordure_fils(2 - k)->get_type_element() != bordure_tuile->get_bordure_fils(k)->get_type_element())
+                            Noeud::type_element type_element_voisine = bordure_voisine->get_bordure_fils(2 - k)->get_type_element();
+                            Noeud::type_element type_element_tuile = bordure_tuile->get_bordure_fils(k)->get_type_element();
+                            if(type_element_tuile == Noeud::VILLE || type_element_tuile == Noeud::VILLE_BLASON)
                             {
-                                est_compatible = false;
+                                if(type_element_voisine != Noeud::VILLE && type_element_voisine != Noeud::VILLE_BLASON)
+                                {
+                                    est_compatible = false;
+                                }
+
+                            } 
+                            else 
+                            {
+                                if(type_element_tuile != type_element_voisine)
+                                {
+                                    est_compatible = false;
+                                }
                             }
                         }
                     } 
@@ -226,11 +232,6 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
     }
 }
 
-Joueur *Plateau::joueur_suivant()
-{
-    return nullptr;
-}
-
 /**
  * Recherche le Joueur qui à obtenue le plus de pions.
  *
@@ -322,11 +323,6 @@ void Plateau::evaluer_meeple(int status_du_jeu)
             }
         }
     }
-}
-
-std::list<Joueur *> Plateau::get_joueur_liste()
-{
-    return this->list_joueur;
 }
 
 std::vector<std::array<int, 3>> Plateau::get_liste_tuiles_emplacements_libres()
