@@ -28,12 +28,12 @@ class Plateau
 {
     private:
         // VARIABLES
-        std::array<std::array<Tuile *,144>,144> grille;
+        std::array<std::array<Tuile *, 144>, 144> grille;
         std::vector<Tuile *> pioche; // la pioche
         std::list<Joueur *> list_joueur; // liste des joueurs
         std::vector<std::array<int, 3>> liste_tuiles_emplacements_libres; // liste des emplacements libres {abscisse, ordonnée, orientation}
         std::map<Joueur *, Pion *> mapJoueursPions; // associe une pile de pions à un Joueur
-        std::map<Tuile *, std::pair<int,int>> tuiles_candidates; // liste des tuiles candidates
+        std::map<Tuile *, std::pair<int, int>> tuiles_candidates; // liste des tuiles candidates
 
         // METHODES
         std::list<Joueur *> rechercher_Joueur_plus_de_Pions(std::map<Joueur *, std::list<Meeple *>>mapJoueurListeMeeple);
