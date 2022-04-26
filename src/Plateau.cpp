@@ -96,7 +96,7 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
             for(auto tuile_coord_voisine : tuile_coords_voisines)
             {
             
-                Tuile * tuile_voisine = this->grille[tuile_coord_voisine.first][tuile_coord_voisine.second];
+                Tuile *tuile_voisine = this->grille[tuile_coord_voisine.first][tuile_coord_voisine.second];
                 if(tuile_voisine != nullptr)
                 {
                     if(tuile_voisine->getId() != -1)
@@ -105,8 +105,8 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
                         //Logging::log(Logging::DEBUG, "Tuile voisine %d", tuile_voisine->getId());
                         //Logging::log(Logging::DEBUG, "Comparaison des bordures voisines <%d==%d> ", bordure_voisines, bordure_tuiles);
                          
-                        Bordure * bordure_voisine = tuile_voisine->getBordure(bordure_voisines);
-                        Bordure * bordure_tuile = tuile->getBordure(bordure_tuiles);
+                        Bordure *bordure_voisine = tuile_voisine->getBordure(bordure_voisines);
+                        Bordure *bordure_tuile = tuile->getBordure(bordure_tuiles);
                         
                         for(int k = 0; k < 3; k++) 
                         {
@@ -168,7 +168,7 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
     
     // supprime l'ancienne tuile candidate qu'on doit remplacer 
     if(this->grille[emplacement.at(0)][emplacement.at(1)] != nullptr) {
-        Tuile * tuile_a_suppr = this->grille[emplacement.at(0)][emplacement.at(1)];
+        Tuile *tuile_a_suppr = this->grille[emplacement.at(0)][emplacement.at(1)];
         Logging::log(Logging::TRACE, "supprime tuile tmp %d : <%d %d>", tuile_a_suppr, emplacement.at(0), emplacement.at(1));
         this->tuiles_candidates.erase(tuile_a_suppr);
         this->grille[emplacement.at(0)][emplacement.at(1)] = nullptr;
