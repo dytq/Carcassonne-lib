@@ -12,8 +12,6 @@
 #include "Constantes.hpp"
 #include "BaseDeDonnees.hpp"
 
-#define TEST_UNIT
-
 using namespace std;
 
 // FONCTIONS
@@ -462,7 +460,6 @@ void test_moine()
     plateau->poser_meeple(joueur, list_element[1],coord); // Permet au joueur de placer un pion sur la tuile
 
     afficher_plateau(plateau);
-    plateau->evaluer_meeple(STATUS_EN_COURS); 
     // afficher tous les meeples du plateau
     
     
@@ -576,92 +573,93 @@ int main()
     // test_calcul_emplacement_libre();
     // test_ajout_tuile_au_hasard();
     // test_ajout_meeple();
-    //test_chevalier();
+    // test_chevalier();
     // test_brigand();
     // test_moine();
-    test_double_meeple();
+    // test_double_meeple();
     return 0;
 }
 #else 
+
+// MAIN
 int main() 
 {
-    // * Initialisation du plateau
-    Plateau *plateau = BaseDeDonnees::generer_plateau_vanilla();    // Instancie le plateau
-    plateau->init_plateau();                                        // Init le plateau en posant la première tuile sur le plateau->(Tuile de base)
+    /* Initialisation du plateau */
+    Plateau *plateau = BaseDeDonnees::generer_plateau_vanilla();    // Génération du plateau depuis la base de données
+    plateau->init_plateau();                                        // Initialisation du plateau en plaçcant la tuile de base 
 
-    // * Ajout des joueurs
-    int nombre_de_joueurs = 2;
-    vector<Joueur *> joueurs;
-
-    joueurs.push_back(new Joueur(Joueur::HUMAIN));
-    joueurs.push_back(new Joueur(Joueur::ROBOT));
+    /* Initialisation des joueurs */
+    Joueur * joueur1 = new Joueur(Joueur::HUMAIN, Joueur::JAUNE);
+    Joueur * joueur2 = new Joueur(Joueur::ROBOT, Joueur::ROUGE);
     
-    for(int i = 0; i < nombre_de_joueurs; i++)
+    plateau->ajouter_joueur(joueur1, new Pion(7));
+    plateau->ajouter_joueur(joueur2, new Pion(7));
+
+    int token = 0;                                                  // Token pour savoir qui joue
+    
+    Joueur * joueur;                                                // Joueur qui joue  
+
+    /* Boucle principale */
+    while(plateau->get_pioche().size() > 0)
     {
-        plateau->ajouter_joueur(joueurs[i], new Pion(7));
-    }
+        /* Détermine le joueur qui joue */
+        if(token == 0)
+        {
+            joueur = joueur1;
+        }
+        else
+        {
+            joueur = joueur2;
+        }
 
-    // * Initialisation du nombre de tours
-    int tour = 0;
+        /* Afficher le plateau */
+        afficher_plateau(plateau);
 
-    // Main loop
-    if(plateau->get_pioche().size() > 0)
-    {
-        // Détermine le joueur qui doit jouer
-        Joueur *joueur = joueurs[tour];
-        tour = (tour + 1) % nombre_de_joueurs;
+        /* Piocher une tuile */
+        Tuile *tuile_pioche =  plateau->piocher_tuile_aleat();  // Pioche une tuile au hasard et l'enlève de la pioche
+        cout << "Tuile piochée n°" << tuile_pioche->getId() << endl;
 
-        // * Piocher une tuile
-        Tuile *tuile_pioche =  plateau->piocher_tuile_aleat(); // Pioche une tuile au hasard (recupère l'addresse de la tuile) et l'enlève de la pioche
-        cout << "Tuile piochée : " << tuile_pioche->getId() << endl;
-
-        // * Chercher les emplacements libres
-        plateau->calcul_emplacements_libres(tuile_pioche); // Détermine tous les emplacements possibles sur le plateau
+        /* Chercher les emplacements libres et les afficher */
+        plateau->calcul_emplacements_libres(tuile_pioche);      // Détermine tous les emplacements possibles sur le plateau
         vector<array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
-
-        // * Afficher les emplacements libres
         cout << "Choisir l'index d'un emplacement de 0 à " << liste_tuiles_emplacements_libres.size() << endl;
         afficher_liste_tuiles_emplacements_libres(liste_tuiles_emplacements_libres);
 
-        // * Choisir une case et orientation parmi celles proposées
-        int index;
-        cin >> index;
+        /* choisir un emplacement libre et poser la tuile*/
+        int indice_emplacement_libre;
+        cin >> indice_emplacement_libre;
+        plateau->poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[indice_emplacement_libre]);
 
-        // * Poser la tuile sur l'emplacement
-        plateau->poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[index]);
-
-        // * Poser un pion ?
-        if(plateau->stack_meeple_vide(joueur))
+        std::pair <int, int> coordonnee_tuile_pioche = { liste_tuiles_emplacements_libres[indice_emplacement_libre][0], liste_tuiles_emplacements_libres[indice_emplacement_libre][1] };
+        
+        /* Placer un meeple sur la tuile pioché */
+        if(plateau->stack_meeple_vide(joueur))                  // on regarde si le joueur à bien assez de tuile
         {
-            cout << "Poser pions ?" << endl;
+            cout << "Joueur" << token + 1 << "veut-il poser pions ?(oui/non)" << endl;   // le joueur n'est pas obligé de poser un meeple
             string poser_pion;
             cin >> poser_pion;
 
-            if(!poser_pion.compare("yes"))
+            if(!poser_pion.compare("oui"))
             {
                 cout << "Choisir emplacement" << endl;
-                //vector<Element *> list_element = tuile_pioche->get_element(tuile_pioche);
-                //afficher_elements(list_element);
-                int index;
-                cin >> index;
-                //plateau->poser_meeple(joueur, list_element[index], tuile_pioche); // Permet au joueur de placer un pion sur la tuile
+                
+                vector<Element *> list_element = tuile_pioche->getElements();
+                afficher_elements(list_element);
+                int indice_element;
+                cin >> indice_element;
+                plateau->poser_meeple(joueur, list_element[indice_element], coordonnee_tuile_pioche); // Permet au joueur de placer un pion sur la tuile
             }
         }
 
-        // * compter les points
-        plateau->evaluer_meeple(STATUS_EN_COURS); // Compte les points totalisés par les meaples mis en jeu si il y a lieu
+        /* Compter les points de tous les joueurs */
+        plateau->evaluer_meeple(STATUS_EN_COURS); 
+        
+        /* Joueur suivant */
+        token = 1 - token; 
     }
 
-    // Compte les derniers points de fin de partie
-    list<Joueur *> list_joueur = plateau->get_joueur_liste();
-    list<Joueur *>::iterator it;
-
+    /* Compter les derniers points de fin de partie */
     plateau->evaluer_meeple(STATUS_FINAL);
-    
-    for(it = list_joueur.begin(); it != list_joueur.end(); ++it)
-    {
-        cout << "Joueur " << (*it)->get_type_joueur() << " a obtenu " << (*it)->get_score();
-    }
     return 0;
 }
 #endif // TEST_UNIT

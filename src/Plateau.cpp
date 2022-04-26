@@ -237,7 +237,7 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
  *
  * @param mapJoueurListeMeeple Joueur associé à une liste de Meeple
  * */
-std::list<Joueur *> Plateau::rechercher_Joueur_plus_de_Pions(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple)
+int rechercher_max_list_meeple(std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple) 
 {
     std::list<Joueur *> list_joueur;
     int max = 0;
@@ -248,21 +248,7 @@ std::list<Joueur *> Plateau::rechercher_Joueur_plus_de_Pions(std::map<Joueur*, s
             max = tmp;
         }
     }
-
-    for(auto const & joueur : this->mapJoueursPions)
-    {
-        int tmp = joueur.second->get_stack_meeple().size();
-        if(tmp == max)
-        {
-            list_joueur.push_back(joueur.first);
-        }
-    }
-
-    if(list_joueur.empty())
-    {
-        //Logging::DEBUG("Attention il y pas de joueur qui reçoit les points lors de l'évaluation");
-    }
-    return list_joueur;
+    return max;
 }
 
 /**
@@ -307,17 +293,20 @@ void Plateau::evaluer_meeple(int status_du_jeu)
             int score = 0;
             std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple; // Associe un joueur et une pile de pions
             Logging::log(Logging::TRACE, "Comptage de points");
-            int est_tuileComparelet = itMeeple->compter_points(status_du_jeu, & mapJoueurListeMeeple, &score);
+            bool est_complet = itMeeple->compter_points(status_du_jeu, & mapJoueurListeMeeple, &score);
             Logging::log(Logging::TRACE, "Score obtenu : %d", score);
 
-            if(est_tuileComparelet == true || status_du_jeu )
+            if(est_complet == true || status_du_jeu == STATUS_FINAL)
             {
-                std::list<Joueur *> list_joueur_max;
-                list_joueur_max = this->rechercher_Joueur_plus_de_Pions(mapJoueurListeMeeple);// problème: en cas d'égalité
-                for(auto const & joueur : list_joueur_max)
+                Logging::log(Logging::TRACE, "Evaluation des points");
+                int max_lenght = 0; // valeur max de meeple
+                max_lenght = rechercher_max_list_meeple(mapJoueurListeMeeple);
+                for(auto const &mapitr : mapJoueurListeMeeple)
                 {
-                    joueur->add_score(score);
-                    // Logging
+                    if((int) mapitr.second.size() == max_lenght)
+                    {
+                        mapitr.first->add_score(score);
+                    }
                 }
                 this->desindexer_Meeple_dans_la_map(mapJoueurListeMeeple);
             }
@@ -360,29 +349,29 @@ std::map<Tuile *, std::pair<int,int>> Plateau::get_tuiles_candidates()
 
 bool Plateau::verifier_si_meeple(Noeud * noeud, Noeud::type_element type_element) 
 {
-    std::list<Noeud*> pileNoeud;   // pile pour le parcours des fils
-    std::list<Noeud*> noeudMarque; // marque tous les noeuds rencontrés
+    std::list<Noeud*> pilenoeud;   // pile pour le parcours des fils
+    std::list<Noeud*> noeudmarque; // marque tous les noeuds rencontrés
 
     bool meeple_est_present = false;
 
-    pileNoeud.push_back(noeud);
-    noeudMarque.push_back(noeud);
+    pilenoeud.push_back(noeud);
+    noeudmarque.push_back(noeud);
    
-    while(!pileNoeud.empty())
+    while(!pilenoeud.empty())
     {
-        std::list<Noeud*>::iterator iterNoeud = pileNoeud.begin();
+        std::list<Noeud*>::iterator iternoeud = pilenoeud.begin();
 
-        Noeud * noeudCentrale = *iterNoeud;
+        Noeud * noeudcentrale = *iternoeud;
         
-        Element * element = dynamic_cast<Element *>(noeudCentrale);
+        Element * element = dynamic_cast<Element *>(noeudcentrale);
         if(element != nullptr)
         {
-            if(element->get_type_element() == type_element || noeudCentrale != noeud)
+            if(element->get_type_element() == type_element || noeudcentrale != noeud)
             {
                 Meeple * meeple = element->get_meeple();
                 if(meeple != nullptr) 
                 {
-                    // Logging::log(Logging::TRACE, "Meeple trouvé");
+                    // logging::log(logging::trace, "meeple trouvé");
                     meeple_est_present = true;
                     break;
                 }
@@ -390,30 +379,37 @@ bool Plateau::verifier_si_meeple(Noeud * noeud, Noeud::type_element type_element
             
         } 
 
-        // Logging::log(Logging::TRACE, "Evaluation d'un noeud %d", noeudCentrale);
+        // logging::log(logging::trace, "evaluation d'un noeud %d", noeudcentrale);
         
-        pileNoeud.pop_front();
+        pilenoeud.pop_front();
 
         int i;
     
-        for(i = 0; i < noeudCentrale->get_nbr_voisins(); i++)
+        for(i = 0; i < noeudcentrale->get_nbr_voisins(); i++)
         {
-            Noeud * noeud_fils = noeudCentrale->get_voisin(i);
-            // Logging::log(Logging::TRACE, "Noeud fils %d %d", i, noeud_fils);
-            // Logging::log(Logging::TRACE, "Noeud fils %d est non null", i);
+            Noeud * noeud_fils = noeudcentrale->get_voisin(i);
+            // logging::log(logging::trace, "noeud fils %d %d", i, noeud_fils);
+            // logging::log(logging::trace, "noeud fils %d est non null", i);
             if(noeud_fils != nullptr)
             {
-                if(noeudMarque.end() == std::find(noeudMarque.begin(), noeudMarque.end(), noeud_fils))
+                if(noeudmarque.end() == std::find(noeudmarque.begin(), noeudmarque.end(), noeud_fils))
                 {
-                    //Logging::log(Logging::TRACE, "Noeud fils %d n'est pas marqué", i);
-                    pileNoeud.push_back(noeud_fils);
-                    noeudMarque.push_back(noeud_fils);
+                    //logging::log(logging::trace, "noeud fils %d n'est pas marqué", i);
+                    pilenoeud.push_back(noeud_fils);
+                    noeudmarque.push_back(noeud_fils);
                 } else {
-                    //Logging::log(Logging::TRACE, "Noeud fils %d est déjà marqué", i);
+                    //logging::log(logging::trace, "noeud fils %d est déjà marqué", i);
                 }
             }
         }
     }
 
     return meeple_est_present;
+}
+
+int Plateau::get_nbr_pion_restant(Joueur * joueur) 
+{
+    Pion *pion = this->mapJoueursPions[joueur];
+    int nbr_restant = 7 - pion.get_size();
+    return nbr_restant;
 }

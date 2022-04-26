@@ -32,17 +32,24 @@ bool Chevalier::compter_points(int status_du_jeu, std::map<Joueur *, std::list<M
         std::list<Noeud*>::iterator iterNoeud = pileNoeud.begin();
 
         Noeud * noeudCentrale = *iterNoeud;
-        
+       
         Element * element = dynamic_cast<Element *>(noeudCentrale);
         if(element != nullptr)
         {
-            Meeple * meeple = element->get_meeple();
-            if(meeple != nullptr) 
+            if(noeudCentrale != noeud)
             {
-                Logging::log(Logging::TRACE, "On a un meeple");
+                Meeple * meeple = element->get_meeple();
+                if(meeple != nullptr) 
+                {
+                    Logging::log(Logging::TRACE, "Meeple trouvé");
+                    Joueur * joueur = meeple->get_joueur();
+                    mapJoueurListeMeeple->at(joueur).push_back(meeple);
+                    break;
+                }
             }
-        } 
-
+            
+        }
+        
         Logging::log(Logging::TRACE, "Evaluation d'un noeud %d", noeudCentrale);
         
         pileNoeud.pop_front();
