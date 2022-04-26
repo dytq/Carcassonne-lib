@@ -1,5 +1,12 @@
 #include "BaseDeDonnees.hpp"
 
+/**
+ * @title : génération d'un plateau de jeu de type vanilla
+ *
+ * @description : cette fonction permet de générer un plateau de jeu de type vanilla, on initialise tous les tuiles de la pioche. Dans le jeu vanialla, il y a 72 tuiles, certaines tuiles sont en double.
+ *
+ * @return : le plateau de jeu généré
+ */
 Plateau * BaseDeDonnees::generer_plateau_vanilla()
 {
     Plateau * plateau = new Plateau();
@@ -514,20 +521,20 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             }
 
             // init les bordures
-            bordure[0]->set_bordure_fils(0, Noeud::VOID);
-            bordure[0]->set_bordure_fils(1, Noeud::PLAINE);
-            bordure[0]->set_bordure_fils(2, Noeud::VOID);
+            bordure[0]->set_bordure_fils(0, Noeud::PLAINE);
+            bordure[0]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[0]->set_bordure_fils(2, Noeud::PLAINE);
 
             bordure[1]->set_bordure_fils(0, Noeud::VOID);
-            bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
-            bordure[2]->set_bordure_fils(0, Noeud::VOID);
-            bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
-            bordure[2]->set_bordure_fils(2, Noeud::VOID);
+            bordure[2]->set_bordure_fils(0, Noeud::PLAINE);
+            bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[2]->set_bordure_fils(2, Noeud::PLAINE);
 
             bordure[3]->set_bordure_fils(0, Noeud::VOID);
-            bordure[3]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
@@ -538,20 +545,19 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les voisins
             // element:
-            element1->set_voisin(bordure[0]->get_bordure_fils(1));
-            element1->set_voisin(bordure[1]->get_bordure_fils(0));
-            element1->set_voisin(bordure[3]->get_bordure_fils(2));
+            element1->set_voisin(bordure[0]->get_bordure_fils(0));
+            element1->set_voisin(bordure[3]->get_bordure_fils(1));
+            element1->set_voisin(bordure[2]->get_bordure_fils(2));
 
-            element2->set_voisin(bordure[1]->get_bordure_fils(1));
-            element2->set_voisin(bordure[3]->get_bordure_fils(1));
+            element2->set_voisin(bordure[0]->get_bordure_fils(1));
+            element2->set_voisin(bordure[2]->get_bordure_fils(1));
 
-            element3->set_voisin(bordure[1]->get_bordure_fils(2));
-            element3->set_voisin(bordure[2]->get_bordure_fils(1));
-            element3->set_voisin(bordure[3]->get_bordure_fils(0));
+            element3->set_voisin(bordure[0]->get_bordure_fils(2));
+            element3->set_voisin(bordure[1]->get_bordure_fils(1));
+            element3->set_voisin(bordure[2]->get_bordure_fils(0));
 
             // Ajout des liens additionelles
             // Aucun
-
 
             // ajoute nullptr vers voisin de la bordure non connecté
             bordure[0]->get_bordure_fils(0)->set_lien(nullptr);
@@ -569,9 +575,6 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(0)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
-
-
-
 
             // Ajout element dans le vecteur
             elementTuile.push_back(element1);
@@ -605,16 +608,16 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::VOID);
-            bordure[1]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
-            bordure[2]->set_bordure_fils(0, Noeud::VOID);
+            bordure[2]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
-            bordure[2]->set_bordure_fils(2, Noeud::VOID);
+            bordure[2]->set_bordure_fils(2, Noeud::PLAINE);
 
-            bordure[3]->set_bordure_fils(0, Noeud::VOID);
-            bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
-            bordure[3]->set_bordure_fils(2, Noeud::VOID);
+            bordure[3]->set_bordure_fils(0, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(1, Noeud::ROUTE);
+            bordure[3]->set_bordure_fils(2, Noeud::PLAINE);
 
             // init les elements
             std::vector<Element *> elementTuile;
@@ -625,14 +628,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // init les voisins
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
-            element1->set_voisin(bordure[1]->get_bordure_fils(0));
-            element1->set_voisin(bordure[3]->get_bordure_fils(1));
+            element1->set_voisin(bordure[1]->get_bordure_fils(1));
+            element1->set_voisin(bordure[2]->get_bordure_fils(0));
 
-            element2->set_voisin(bordure[1]->get_bordure_fils(1));
             element2->set_voisin(bordure[2]->get_bordure_fils(1));
+            element2->set_voisin(bordure[3]->get_bordure_fils(1));
 
-            element3->set_voisin(bordure[1]->get_bordure_fils(2));
-            element3->set_voisin(bordure[2]->get_bordure_fils(0));
+            element3->set_voisin(bordure[2]->get_bordure_fils(2));
+            element3->set_voisin(bordure[3]->get_bordure_fils(0));
 
             // Ajout des liens additionelles
             // Aucun
@@ -1003,19 +1006,19 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les bordures
             bordure[0]->set_bordure_fils(0, Noeud::VOID);
-            bordure[0]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[0]->set_bordure_fils(1, Noeud::PLAINE);
             bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::VOID);
-            bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(1, Noeud::VILLE);
             bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[2]->set_bordure_fils(0, Noeud::VOID);
-            bordure[2]->set_bordure_fils(1, Noeud::VILLE);
+            bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(2, Noeud::VOID);
             
             bordure[3]->set_bordure_fils(0, Noeud::VOID);
-            bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(1, Noeud::VILLE);
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
@@ -1026,12 +1029,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les voisins
             // element:
-            element1->set_voisin(bordure[0]->get_bordure_fils(1));
-            element1->set_voisin(bordure[2]->get_bordure_fils(1));
+            element1->set_voisin(bordure[1]->get_bordure_fils(1));
+            element1->set_voisin(bordure[3]->get_bordure_fils(1));
 
-            element2->set_voisin(bordure[1]->get_bordure_fils(1));
+            element2->set_voisin(bordure[0]->get_bordure_fils(1));
 
-            element3->set_voisin(bordure[3]->get_bordure_fils(1));
+            element3->set_voisin(bordure[2]->get_bordure_fils(1));
 
             // Ajout des liens additionelles
             element2->set_lien(element1);
@@ -1081,19 +1084,19 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les bordures
             bordure[0]->set_bordure_fils(0, Noeud::VOID);
-            bordure[0]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[0]->set_bordure_fils(1, Noeud::PLAINE);
             bordure[0]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[1]->set_bordure_fils(0, Noeud::VOID);
-            bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[1]->set_bordure_fils(1, Noeud::VILLE_BLASON);
             bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[2]->set_bordure_fils(0, Noeud::VOID);
-            bordure[2]->set_bordure_fils(1, Noeud::VILLE_BLASON);
+            bordure[2]->set_bordure_fils(1, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(2, Noeud::VOID);
 
             bordure[3]->set_bordure_fils(0, Noeud::VOID);
-            bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
+            bordure[3]->set_bordure_fils(1, Noeud::VILLE_BLASON);
             bordure[3]->set_bordure_fils(2, Noeud::VOID);
 
             // init les elements
@@ -1104,12 +1107,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les voisins
             // element:
-            element1->set_voisin(bordure[0]->get_bordure_fils(1));
-            element1->set_voisin(bordure[2]->get_bordure_fils(1));
+            element1->set_voisin(bordure[1]->get_bordure_fils(1));
+            element1->set_voisin(bordure[3]->get_bordure_fils(1));
 
-            element2->set_voisin(bordure[1]->get_bordure_fils(1));
+            element2->set_voisin(bordure[0]->get_bordure_fils(1));
 
-            element3->set_voisin(bordure[3]->get_bordure_fils(1));
+            element3->set_voisin(bordure[2]->get_bordure_fils(1));
 
             // Ajout des liens additionelles
             element2->set_lien(element1);

@@ -30,7 +30,6 @@ class Plateau
         // VARIABLES
         std::array<std::array<Tuile *, 144>, 144> grille;
         std::vector<Tuile *> pioche; // la pioche
-        std::list<Joueur *> list_joueur; // liste des joueurs
         std::vector<std::array<int, 3>> liste_tuiles_emplacements_libres; // liste des emplacements libres {abscisse, ordonnée, orientation}
         std::map<Joueur *, Pion *> mapJoueursPions; // associe une pile de pions à un Joueur
         std::map<Tuile *, std::pair<int, int>> tuiles_candidates; // liste des tuiles candidates
@@ -50,12 +49,11 @@ class Plateau
         void init_plateau();
         void ajouter_joueur(Joueur * joueur, Pion * pion);
         void ajouter_tuile_pioche(Tuile * tuile);
-        Joueur *get_joueur();
         std::vector<Tuile *> get_pioche();
-        std::list<Joueur *> get_joueur_liste();
         std::vector<std::array<int, 3>> get_liste_tuiles_emplacements_libres();
         std::map<Tuile *,std::pair<int,int>> get_tuiles_candidates();
-        
+        int get_nbr_pion_restant(Joueur * joueur);
+
         Tuile *get_tuile_grille(int x, int y);
 
         Tuile *piocher_tuile(int index);
@@ -63,7 +61,6 @@ class Plateau
         void calcul_emplacements_libres(Tuile *tuile);
         void poser_tuile(Tuile *tuile, std::array<int, 3> emplacement);
         void compter_points(Joueur *joueur);
-        Joueur *joueur_suivant();
 
         void evaluer_meeple(int status_du_jeu); // évaluation des scores
         bool stack_meeple_vide(Joueur *joueur);

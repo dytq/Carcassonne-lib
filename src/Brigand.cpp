@@ -45,15 +45,21 @@ bool Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Mee
             Logging::log(Logging::TRACE, "Noeud fils %d %d", i, noeud_fils);
              
             Element * element = dynamic_cast<Element *>(noeudCentrale);
-            
             if(element != nullptr)
             {
-                Meeple * meeple = element->get_meeple();
-                if(meeple != nullptr) 
+                if(noeudCentrale != noeud)
                 {
-                    Logging::log(Logging::TRACE, "On a un meeple");
+                    Meeple * meeple = element->get_meeple();
+                    if(meeple != nullptr) 
+                    {
+                        Logging::log(Logging::TRACE, "Meeple trouvé");
+                        Joueur * joueur = meeple->get_joueur();
+                        mapJoueurListeMeeple->at(joueur).push_back(meeple);
+                        break;
+                    }
                 }
-            } 
+            }
+             
 
             if(noeud_fils == nullptr) 
             {

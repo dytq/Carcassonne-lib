@@ -33,10 +33,15 @@
 #define STATUS_FINAL 0
 
 /* Debug: choisir le type de message à afficher */
-#define CRITICAL_MSG // Permet de journaliser quand le programme échoue
+#define ALL_MSG      // Tous les messages 
+
+#ifdef ALL_MSG
+#define CRITICAL_MSG // Permet de journaliser quand le programme échoue 
 #define DEBUG_MSG    // Permet de journaliser quand il y a une erreur qui n'échoue pas le programme
 #define TRACE_MSG    // Permet de tracer le déroulement de la partie
+#endif // ALL_MSG
 
+// #define TEST_UNIT    // Test unitaire
 /* -------------------------------------------- */
 
-#endif
+#endif // CONSTANTES_HPP
