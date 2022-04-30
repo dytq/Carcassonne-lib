@@ -23,6 +23,7 @@ public:
     void calcul_emplacement_libre();
     Dictionary get_coord_emplacement_libre();
     void poser_tuile_pioche(int x, int y, int orientation);
+    Array get_coord_element_tuile_pioche();
 };
 
 #endif // CARCASSONNE_HPP

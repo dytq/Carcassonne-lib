@@ -52,7 +52,7 @@ Bordure * Tuile::getBordure(int cote) {
     return this->bordure[cote];
 }
 
-std::vector<Element *> Tuile::getElements() {
+const std::vector<Element *> Tuile::getElements() {
     return this->element;
 }
 

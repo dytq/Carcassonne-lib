@@ -7,6 +7,7 @@
 #include "Meeple.hpp"
 #include "Joueur.hpp"
 #include "Constantes.hpp"
+#include <utility>
 
 /**
  * Classe Element
@@ -18,10 +19,11 @@ class Element : public Noeud
     private:
         // VARIABLES
         Meeple * meeple;
+        std::pair<float,float> coordonnees;
 
     public:
         // CONSTRUCTEURS
-        Element(Noeud::type_element type_noeud);
+        Element(Noeud::type_element type_noeud, std::pair<float,float> coordonnees);
 
         // DESTRUCTEUR
         ~Element();
@@ -32,6 +34,7 @@ class Element : public Noeud
         void set_point(int point, int i);
         void ajouter_meeple(Meeple * meeple);
         int get_points(int status_du_jeu);
+        const std::pair<float, float> get_coords();
 };
 
 #endif

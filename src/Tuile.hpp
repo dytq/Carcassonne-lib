@@ -33,7 +33,7 @@ class Tuile
         void rotationHoraire();
         bool borduresCompatibles(Tuile *tuileCompare, int cote);
         Bordure * getBordure(int cote);
-        std::vector<Element *> getElements();
+        const std::vector<Element *> getElements();
 };
 
 #endif

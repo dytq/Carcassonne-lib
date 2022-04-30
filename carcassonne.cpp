@@ -4,8 +4,9 @@
 #include "core/dictionary.h"
 #include "core/math/vector2.h"
 #include <array>
+#include <vector>
 
-/* API de Carcasonne */
+/* API de Carcassonne */
 
 void Carcassonne::init_jeu() {
     this->plateau = BaseDeDonnees::generer_plateau_vanilla();
@@ -69,6 +70,16 @@ void Carcassonne::poser_tuile_pioche(int x, int y, int orientation) {
     this->plateau->poser_tuile(tuile_pioche, emplacement);
 }
 
+Array Carcassonne::get_coord_element_tuile_pioche() {
+    Array element_tuile;
+    for(auto element : this->tuile_pioche->getElements()) 
+    {
+        Vector2 coord = Vector2(element->get_coords().first, element->get_coords().second);
+        element_tuile.append(coord);
+    }
+    return element_tuile;
+}
+
 void Carcassonne::_bind_methods() {
     ClassDB::bind_method(D_METHOD("init_jeu"),&Carcassonne::init_jeu);
     ClassDB::bind_method(D_METHOD("piocher_tuile"),&Carcassonne::piocher_tuile);
@@ -77,6 +88,7 @@ void Carcassonne::_bind_methods() {
     ClassDB::bind_method(D_METHOD("calcul_emplacement_libre"),&Carcassonne::calcul_emplacement_libre);
     ClassDB::bind_method(D_METHOD("get_coord_emplacement_libre"),&Carcassonne::get_coord_emplacement_libre);
     ClassDB::bind_method(D_METHOD("poser_tuile_pioche", "x", "y", "orientation"),&Carcassonne::poser_tuile_pioche);
+    ClassDB::bind_method(D_METHOD("get_coord_element_tuile_pioche"),&Carcassonne::get_coord_element_tuile_pioche);
 }
 
 Carcassonne::Carcassonne() {
