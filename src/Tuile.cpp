@@ -2,8 +2,9 @@
 #include "Tuile.hpp"
 
 // FONCTIONS
-Tuile::Tuile(int idTuile, std::array<Bordure *, 4> bordure, std::vector<Element *> element)
+Tuile::Tuile(int id, int idTuile, std::array<Bordure *, 4> bordure, std::vector<Element *> element)
 {
+    this->id = id;
     this->idTuile = idTuile;
     this->bordure = bordure;
     this->element = element;
@@ -12,7 +13,12 @@ Tuile::Tuile(int idTuile, std::array<Bordure *, 4> bordure, std::vector<Element 
 Tuile::~Tuile()
 {}
 
-int Tuile::getId()
+int Tuile::get_id()
+{
+    return this->id;
+}
+
+int Tuile::get_id_groupe()
 {
     return this->idTuile;
 }

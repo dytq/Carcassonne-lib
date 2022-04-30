@@ -99,7 +99,7 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
                 Tuile *tuile_voisine = this->grille[tuile_coord_voisine.first][tuile_coord_voisine.second];
                 if(tuile_voisine != nullptr)
                 {
-                    if(tuile_voisine->getId() != -1)
+                    if(tuile_voisine->get_id() != -1)
                     {
 
                         //Logging::log(Logging::DEBUG, "Tuile voisine %d", tuile_voisine->getId());
@@ -202,15 +202,15 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
         {
             std::array<Bordure *, 4> bordure_tmp;
             std::vector<Element *> element_tmp;
-            Tuile * tuile_candidate = new Tuile(-1, bordure_tmp, element_tmp);
+            Tuile * tuile_candidate = new Tuile(-1, -1, bordure_tmp, element_tmp);
             this->grille[tuile_coord_voisine.first][tuile_coord_voisine.second] = tuile_candidate;
             this->tuiles_candidates[tuile_candidate] = std::make_pair(tuile_coord_voisine.first,tuile_coord_voisine.second);
         } 
         else 
         {
-            if(tuile_voisine->getId() != -1) 
+            if(tuile_voisine->get_id() != -1) 
             {
-                Logging::log(Logging::TRACE, "set border tuile voisine %d", tuile_voisine->getId());
+                Logging::log(Logging::TRACE, "set border tuile voisine %d", tuile_voisine->get_id());
                 for(int i = 0; i < 3; i++)
                 {
                     Bordure * bordure_tuile_voisine_fils = tuile_voisine->getBordure(bordure_voisines)->get_bordure_fils(i);
@@ -410,6 +410,6 @@ bool Plateau::verifier_si_meeple(Noeud * noeud, Noeud::type_element type_element
 int Plateau::get_nbr_pion_restant(Joueur * joueur) 
 {
     Pion *pion = this->mapJoueursPions[joueur];
-    int nbr_restant = 7 - pion.get_size();
+    int nbr_restant = 7; //- pion.get_size();
     return nbr_restant;
 }

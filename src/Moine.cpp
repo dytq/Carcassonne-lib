@@ -46,8 +46,8 @@ bool Moine::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meepl
         Tuile * tuile = etat_du_jeu->at(voisin_coord.first).at(voisin_coord.second);
         if(tuile  != nullptr)
         {
-            Logging::log(Logging::DEBUG, "Moine::compter_points %d <%d,%d>", tuile->getId(), voisin_coord.first, voisin_coord.second);
-            if(tuile->getId() != -1)
+            Logging::log(Logging::DEBUG, "Moine::compter_points %d <%d,%d>", tuile->get_id_groupe(), voisin_coord.first, voisin_coord.second);
+            if(tuile->get_id_groupe() != -1)
             {
                 *score += 1;
             }

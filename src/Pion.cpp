@@ -1,5 +1,6 @@
 // LIBRAIRIES
 #include "Pion.hpp"
+#include <cstddef>
 
 // FONCTIONS
 /**
@@ -73,7 +74,7 @@ void Pion::supprimer_meeple(Meeple * meeple) {
 void Pion::ajouter_meeple(Meeple * meeple)
 {
     if(si_pion_non_place() == true) {
-       if(meeple == NULL)
+       if(meeple == nullptr)
         {
             Logging::log(Logging::DEBUG, "essaie d'inserer un meeple null dans la pile");
         }
