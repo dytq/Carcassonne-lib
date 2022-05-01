@@ -332,7 +332,9 @@ bool Plateau::stack_meeple_vide(Joueur * joueur)
 void Plateau::poser_meeple(Joueur * joueur, Element *elem, std::pair<int, int> position)
 {
     Meeple * meeple = Pion::generate_meeple(joueur, elem, &this->grille, position);
+    Logging::log(Logging::DEBUG, "Ajout meeple %d dans element", meeple);
     elem->ajouter_meeple(meeple);
+    Logging::log(Logging::DEBUG, "Ajout meeple %d dans pion pour le joueur", meeple);
     Pion * pion = this->mapJoueursPions.at(joueur);
     pion->ajouter_meeple(meeple);
 }
@@ -347,7 +349,7 @@ std::map<Tuile *, std::pair<int,int>> Plateau::get_tuiles_candidates()
     return this->tuiles_candidates;
 }
 
-bool Plateau::verifier_si_meeple(Noeud * noeud, Noeud::type_element type_element) 
+bool Plateau::verifier_si_meeple_voisin(Noeud * noeud, Noeud::type_element type_element) 
 {
     std::list<Noeud*> pilenoeud;   // pile pour le parcours des fils
     std::list<Noeud*> noeudmarque; // marque tous les noeuds rencontrés
@@ -366,15 +368,18 @@ bool Plateau::verifier_si_meeple(Noeud * noeud, Noeud::type_element type_element
         Element * element = dynamic_cast<Element *>(noeudcentrale);
         if(element != nullptr)
         {
-            if(element->get_type_element() == type_element || noeudcentrale != noeud)
+            if(noeudcentrale != noeud)
             {
-                Meeple * meeple = element->get_meeple();
-                if(meeple != nullptr) 
-                {
-                    // logging::log(logging::trace, "meeple trouvé");
-                    meeple_est_present = true;
-                    break;
-                }
+                //if(Noeud::compare_type_element(element->get_type_element(), type_element)) // comparaison à cause du lien entre prés et ville pour le comptage de point du paysan
+                //{
+                    Meeple * meeple = element->get_meeple();
+                    if(meeple != nullptr) 
+                    {
+                        Logging::log(Logging::DEBUG, "meeple trouvé %d %d", meeple->get_noeud()->get_type_element(), type_element);
+                        meeple_est_present = true;
+                        break;
+                    }
+                //}
             }
             
         } 
@@ -392,13 +397,16 @@ bool Plateau::verifier_si_meeple(Noeud * noeud, Noeud::type_element type_element
             // logging::log(logging::trace, "noeud fils %d est non null", i);
             if(noeud_fils != nullptr)
             {
-                if(noeudmarque.end() == std::find(noeudmarque.begin(), noeudmarque.end(), noeud_fils))
+                if(Noeud::compare_type_element(noeud_fils->get_type_element(), type_element)) 
                 {
-                    //logging::log(logging::trace, "noeud fils %d n'est pas marqué", i);
-                    pilenoeud.push_back(noeud_fils);
-                    noeudmarque.push_back(noeud_fils);
-                } else {
-                    //logging::log(logging::trace, "noeud fils %d est déjà marqué", i);
+                    if(noeudmarque.end() == std::find(noeudmarque.begin(), noeudmarque.end(), noeud_fils))
+                    {
+                        //logging::log(logging::trace, "noeud fils %d n'est pas marqué", i);
+                        pilenoeud.push_back(noeud_fils);
+                        noeudmarque.push_back(noeud_fils);
+                    } else {
+                        //logging::log(logging::trace, "noeud fils %d est déjà marqué", i);
+                    }
                 }
             }
         }
@@ -407,9 +415,25 @@ bool Plateau::verifier_si_meeple(Noeud * noeud, Noeud::type_element type_element
     return meeple_est_present;
 }
 
-int Plateau::get_nbr_pion_restant(Joueur * joueur) 
+int Plateau::get_nbr_pion(Joueur * joueur) 
 {
     Pion *pion = this->mapJoueursPions[joueur];
-    int nbr_restant = 7; //- pion.get_size();
-    return nbr_restant;
+    return pion->get_stack_meeple().size();
+}
+
+void Plateau::calculer_element_libre(Tuile * tuile) {
+    std::vector<Element *> list_elements = tuile->getElements();
+    this->element_libre.clear();
+
+    for(auto element : list_elements) {
+        if(! Plateau::verifier_si_meeple_voisin(element, element->get_type_element())) 
+        {
+            this->element_libre.push_back(element);
+        }
+    }
+}
+
+const std::vector<Element *> Plateau::get_element_libre() 
+{
+    return this->element_libre;
 }

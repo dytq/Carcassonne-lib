@@ -8,9 +8,6 @@
 
 class Brigand : public Meeple
 {
-    private:
-        Noeud * noeud_gauche;
-        Noeud * noeud_droite;
     public:
         // CONSTRUCTEURS
         Brigand(Joueur * joueur, Noeud * noeud);

@@ -33,7 +33,7 @@ class Element : public Noeud
         void supprimer_meeple() override;
         void set_point(int point, int i);
         void ajouter_meeple(Meeple * meeple);
-        int get_points(int status_du_jeu);
+        int get_points(int status_du_jeu) override;
         const std::pair<float, float> get_coords();
 };
 

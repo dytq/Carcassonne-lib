@@ -467,7 +467,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // init les elements
             std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE,std::make_pair(0.5,0.9));
-            Element * element2 = new Element(Noeud::VILLE,std::make_pair(0.5,0.9));
+            Element * element2 = new Element(Noeud::VILLE,std::make_pair(0.9,0.5));
             Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.5,0.5));
 
             // init les voisins
@@ -868,8 +868,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // init les elements
             std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE,std::make_pair(0.2,0.8));
-            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.6,0.6));
-            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.8,0.3));
+            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.3));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.2,0.1));
             Element * element4 = new Element(Noeud::PLAINE,std::make_pair(0.9,0.1));
 
             // init les voisins
@@ -956,8 +956,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // init les elements
             std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE_BLASON,std::make_pair(0.2,0.8));
-            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.6,0.6));
-            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.8,0.3));
+            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.3));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.2,0.1));
             Element * element4 = new Element(Noeud::PLAINE,std::make_pair(0.9,0.1));
 
             // init les voisins

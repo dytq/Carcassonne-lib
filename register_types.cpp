@@ -2,13 +2,13 @@
 
 #include "register_types.h"
 
-#include "core/class_db.h"
 #include "carcassonne.hpp"
+#include "core/class_db.h"
 
-void register_carcasonne_types() {
-    ClassDB::register_class<Carcassonne>();
+void register_carcassonne_types() {
+	ClassDB::register_class<Carcassonne>();
 }
 
-void unregister_carcasonne_types() {
-   // Nothing to do here in this example.
+void unregister_carcassonne_types() {
+	// Nothing to do here in this example.
 }

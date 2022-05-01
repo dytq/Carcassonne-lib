@@ -33,6 +33,7 @@ class Plateau
         std::vector<std::array<int, 3>> liste_tuiles_emplacements_libres; // liste des emplacements libres {abscisse, ordonnée, orientation}
         std::map<Joueur *, Pion *> mapJoueursPions; // associe une pile de pions à un Joueur
         std::map<Tuile *, std::pair<int, int>> tuiles_candidates; // liste des tuiles candidates
+        std::vector<Element *> element_libre;
 
         // METHODES
         std::list<Joueur *> rechercher_Joueur_plus_de_Pions(std::map<Joueur *, std::list<Meeple *>>mapJoueurListeMeeple);
@@ -52,7 +53,10 @@ class Plateau
         std::vector<Tuile *> get_pioche();
         std::vector<std::array<int, 3>> get_liste_tuiles_emplacements_libres();
         std::map<Tuile *,std::pair<int,int>> get_tuiles_candidates();
-        int get_nbr_pion_restant(Joueur * joueur);
+
+        void calculer_element_libre(Tuile * tuile);
+
+        int get_nbr_pion(Joueur * joueur);
 
         Tuile *get_tuile_grille(int x, int y);
 
@@ -65,7 +69,9 @@ class Plateau
         void evaluer_meeple(int status_du_jeu); // évaluation des scores
         bool stack_meeple_vide(Joueur *joueur);
         void poser_meeple(Joueur *joueur, Element *element, std::pair<int, int> position);
-        static bool verifier_si_meeple(Noeud * noeud, Noeud::type_element type_element); 
+        static bool verifier_si_meeple_voisin(Noeud * noeud, Noeud::type_element type_element); 
+
+        const std::vector<Element *> get_element_libre();
 };  
 
 #endif

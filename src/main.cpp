@@ -18,7 +18,7 @@ using namespace std;
 void afficher_elements(vector<Element *> list_element) {
 	int i = 0;
 	for (Element *element : list_element) {
-		if (!Plateau::verifier_si_meeple(element, element->get_type_element())) {
+		if (!Plateau::verifier_si_meeple_voisin(element, element->get_type_element())) {
 			cout << "Element n°" << i << ": " << element->get_type_element() << endl;
 		} else {
 			cout << "Element n°" << i << " (impossible à placer): " << element->get_type_element() << endl;

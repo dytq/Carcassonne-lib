@@ -40,7 +40,7 @@ class Noeud
         virtual int get_points(int status_du_jeu);
         virtual void supprimer_meeple();
         void remove_tuile_voisin(Noeud * noeud); // supprime en fonction de l'addresse du noeuds donné en param
-
+        bool static compare_type_element(Noeud::type_element type_element1, Noeud::type_element type_element2); // compare deux types éléments sans prendre en compte des options (ville est égale à ville_blason)
         bool has_nullptr();
         int get_nbr_voisins();
         Noeud::type_element get_type_element();
