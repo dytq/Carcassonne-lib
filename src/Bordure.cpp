@@ -9,7 +9,7 @@ Bordure::~Bordure()
 /**
  * Permet de récupérer la bordure fils.
  *
- * @param l'indice de la bordure
+ * @param Indice de la bordure
  * */
 Bordure * Bordure::get_bordure_fils(int indice)
 {

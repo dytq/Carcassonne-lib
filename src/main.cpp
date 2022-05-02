@@ -531,8 +531,8 @@ int main() {
 	Joueur *joueur1 = new Joueur(Joueur::HUMAIN, Joueur::JAUNE);
 	Joueur *joueur2 = new Joueur(Joueur::ROBOT, Joueur::ROUGE);
 
-	plateau->ajouter_joueur(joueur1, new Pion(7));
-	plateau->ajouter_joueur(joueur2, new Pion(7));
+	plateau->ajouter_joueur(joueur1, new Pion());
+	plateau->ajouter_joueur(joueur2, new Pion());
 
 	int token = 0; // Token pour savoir qui joue
 
@@ -581,7 +581,7 @@ int main() {
 				afficher_elements(list_element);
 				int indice_element;
 				cin >> indice_element;
-				plateau->poser_meeple(joueur, list_element[indice_element], coordonnee_tuile_pioche); // Permet au joueur de placer un pion sur la tuile
+				//plateau->poser_meeple(joueur, list_element[indice_element], coordonnee_tuile_pioche); // Permet au joueur de placer un pion sur la tuile
 			}
 		}
 

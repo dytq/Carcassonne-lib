@@ -1,8 +1,9 @@
 // LIBRAIRIES
 #include "Moine.hpp"
+#include "modules/carcassonne/src/Joueur.hpp"
 
 // FONCTIONS
-Moine::Moine(Joueur * joueur, Noeud * noeud, std::array<std::array<Tuile *, 144>,144> * etat_du_jeu, std::pair<int,int> position)
+Moine::Moine(Joueur * joueur, Noeud * noeud, const std::array<std::array<Tuile *, 144>,144> * etat_du_jeu, std::pair<int,int> position)
 {
     Meeple::joueur = joueur;
     Meeple::noeud = noeud;
@@ -27,6 +28,9 @@ Moine::~Moine()
  */
 bool Moine::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> * mapJoueurListeMeeple, int * score)
 {
+    Element * element_noeud = dynamic_cast<Element *>(this->noeud);
+    mapJoueurListeMeeple->insert(std::pair<Joueur *, std::list<Meeple *>>(this->joueur, {element_noeud->get_meeple()}));
+
     // On récupère la liste des tuiles adjacentes tuile où se trouve le moine
     std::vector<std::pair<int,int>> voisins_coord = {
         std::make_pair(position_tuile.first, position_tuile.second + 1),
@@ -44,12 +48,19 @@ bool Moine::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meepl
     for(auto voisin_coord : voisins_coord) 
     {
         Tuile * tuile = etat_du_jeu->at(voisin_coord.first).at(voisin_coord.second);
-        if(tuile  != nullptr)
+        if(tuile != nullptr)
         {
-            Logging::log(Logging::DEBUG, "Moine::compter_points %d <%d,%d>", tuile->get_id_groupe(), voisin_coord.first, voisin_coord.second);
-            if(tuile->get_id_groupe() != -1)
+            if(tuile->get_id() != -1)
             {
-                *score += 1;
+                Logging::log(Logging::DEBUG, "Moine::compter_points %d <%d,%d>", tuile->get_id_groupe(), voisin_coord.first, voisin_coord.second);
+                if(tuile->get_id_groupe() != -1)
+                {
+                    *score += 1;
+                }
+            }
+            else
+            {
+                est_complete = false;
             }
         }
         else 

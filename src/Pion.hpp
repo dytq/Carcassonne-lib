@@ -3,7 +3,7 @@
 #define PION_HPP
 
 // LIBRAIRIES
-#include <list>
+#include <array>
 
 #include "Meeple.hpp"
 #include "Tuile.hpp"
@@ -25,25 +25,27 @@ class Pion
 {
     private:
         // VARIABLES
-        std::list<Meeple *> stackMeeple;
-        int nbr_meeple_max;
+        std::array<Meeple *,7> stackMeeple;
 
     public:
         // CONSTRUCTEURS
-        Pion(int nbr_pions);
+        Pion();
 
         // DESTRUCTEUR
         ~Pion();
 
         // METHODES STATIC
-        static Meeple * generate_meeple(Joueur * joueur, Element * element, std::array<std::array<Tuile*, 144>, 144> * etat_du_jeu, std::pair<int, int> position_tuile);
-        static int estimer_meeple_points(Meeple * meeple, int status_du_jeu);
+        static Meeple * generate_meeple(Joueur * joueur, Element * element, const std::array<std::array<Tuile*, 144>, 144> * etat_du_jeu, std::pair<int, int> position_tuile);
+        static int estimer_element_points(Joueur * joueur, Element * element, int status_du_jeu, const std::array<std::array<Tuile *, 144>, 144> *etat_du_jeu, std::pair<int, int> position_tuile);
 
         // METHODES OBJETS PION
-        void ajouter_meeple(Meeple * meeple);
+        void ajouter_meeple(Meeple * meeple, int indice);
         void supprimer_meeple(Meeple * meeple);
-        const std::list<Meeple *> get_stack_meeple();
+        const std::array<Meeple *,7> get_stack_meeple();
         bool si_pion_non_place();
+        int get_nbr_meeple();
+        int get_indice(Meeple * meeple);
+        int get_premier_indice_libre();
 };
 
 #endif

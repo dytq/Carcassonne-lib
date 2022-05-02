@@ -56,9 +56,10 @@ class Plateau
 
         void calculer_element_libre(Tuile * tuile);
 
-        int get_nbr_pion(Joueur * joueur);
+        int get_nbr_meeple(Joueur * joueur);
 
         Tuile *get_tuile_grille(int x, int y);
+        const std::array<std::array<Tuile *, 144>, 144> * get_grille();
 
         Tuile *piocher_tuile(int index);
         Tuile *piocher_tuile_aleat();
@@ -68,10 +69,14 @@ class Plateau
 
         void evaluer_meeple(int status_du_jeu); // évaluation des scores
         bool stack_meeple_vide(Joueur *joueur);
-        void poser_meeple(Joueur *joueur, Element *element, std::pair<int, int> position);
+        void poser_meeple(Joueur *joueur, Element *element, Meeple * meeple, int indice);
         static bool verifier_si_meeple_voisin(Noeud * noeud, Noeud::type_element type_element); 
 
         const std::vector<Element *> get_element_libre();
+
+        Pion * get_pion_joueur(Joueur * joueur);
+
+        bool pioche_est_vide();
 };  
 
 #endif

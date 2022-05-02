@@ -25,7 +25,10 @@ class Carcassonne : public Reference {
     Tuile   * tuile_pioche;
     Joueur  * joueur1;
     Joueur  * joueur2;
-    std::array<int, 3> emplacement_tuile_pioche;
+    std::array<int, 3> emplacement_tuile_pioche; 
+    
+    /* Méthode privée */
+    Joueur * get_joueur(int joueur_id);   
 
 protected:
     static void _bind_methods();
@@ -42,9 +45,14 @@ public:
     void calcul_element_libre();
     Array get_coord_element_tuile_pioche();
     int get_nbr_pion_joueur(int joueur_id);
-    void poser_meeple(int joueur_id, int indice_element);
+    void poser_meeple(int joueur_id, int indice_element, int indice);
     void evaluation_points_meeple();
     void evaluation_points_meeple_final();
+    int get_points_espere_element(int element_id, int joueur_id);
+    Array get_meeple_pose_array(int joueur_id);
+    int get_premier_meeple_indice_libre(int joueur_id);
+    int get_joueur_score(int joueur_id);
+    bool fin_du_jeu();
 };
 
 #endif // CARCASSONNE_HPP

@@ -1421,8 +1421,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             std::vector<Element *> elementTuile;
             Element * element1 = new Element(Noeud::VILLE,std::make_pair(0.5,0.5));
             Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.1));
-            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.6,0.1));
-            Element * element4 = new Element(Noeud::PLAINE,std::make_pair(0.4,0.1));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.7,0.1));
+            Element * element4 = new Element(Noeud::PLAINE,std::make_pair(0.3,0.1));
 
             // init les voisins
             // element:
@@ -1432,9 +1432,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             element2->set_voisin(bordure[2]->get_bordure_fils(1));
 
-            element3->set_voisin(bordure[2]->get_bordure_fils(0));
+            element3->set_voisin(bordure[2]->get_bordure_fils(2));
 
-            element4->set_voisin(bordure[2]->get_bordure_fils(2));
+            element4->set_voisin(bordure[2]->get_bordure_fils(0));
 
             // Ajout des liens additionelles
             element3->set_lien(element1);

@@ -258,12 +258,14 @@ int rechercher_max_list_meeple(std::map<Joueur *, std::list<Meeple *>> mapJoueur
  * */
 void Plateau::desindexer_Meeple_dans_la_map(std::map<Joueur*, std::list<Meeple *>> mapJoueurListeMeeple)
 {
+    Logging::log(Logging::TRACE, "Desindexation des meeples");
     for(auto const & itMap : mapJoueurListeMeeple)
     {
         Joueur * joueur = itMap.first;
         for(auto const &meeple : itMap.second)
         {
             this->mapJoueursPions.at(joueur)->supprimer_meeple(meeple);
+            Logging::log(Logging::TRACE, "Desindexe meeple: %d du joueur %d",meeple, joueur->get_type_joueur() + 1);
         }
     }
 }
@@ -286,29 +288,34 @@ void Plateau::evaluer_meeple(int status_du_jeu)
     for(auto const &itMap : this->mapJoueursPions)
     {
         Logging::log(Logging::TRACE, "Evaluation pour des meeples du Joueur %d", itMap.first->get_couleur());
-        const std::list<Meeple *> listMeeple = itMap.second->get_stack_meeple();
+        const std::array<Meeple *, 7> arrayMeeple = itMap.second->get_stack_meeple();
 
-        for(auto const &itMeeple : listMeeple)
+        for(auto const &itMeeple : arrayMeeple)
         {
-            int score = 0;
-            std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple; // Associe un joueur et une pile de pions
-            Logging::log(Logging::TRACE, "Comptage de points");
-            bool est_complet = itMeeple->compter_points(status_du_jeu, & mapJoueurListeMeeple, &score);
-            Logging::log(Logging::TRACE, "Score obtenu : %d", score);
-
-            if(est_complet == true || status_du_jeu == STATUS_FINAL)
+            if(itMeeple != nullptr)
             {
-                Logging::log(Logging::TRACE, "Evaluation des points");
-                int max_lenght = 0; // valeur max de meeple
-                max_lenght = rechercher_max_list_meeple(mapJoueurListeMeeple);
-                for(auto const &mapitr : mapJoueurListeMeeple)
+                int score = 0;
+                std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple; // Associe un joueur et une pile de pions
+                Logging::log(Logging::TRACE, "Comptage de points");
+                bool est_complet = itMeeple->compter_points(status_du_jeu, & mapJoueurListeMeeple, &score);
+                Logging::log(Logging::TRACE, "Score obtenu : %d", score);
+
+                if(est_complet == true || status_du_jeu == STATUS_FINAL)
                 {
-                    if((int) mapitr.second.size() == max_lenght)
+                    Logging::log(Logging::TRACE, "Evaluation des points");
+                    int max_lenght = 0; // valeur max de meeple
+                    max_lenght = rechercher_max_list_meeple(mapJoueurListeMeeple);
+                    Logging::log(Logging::TRACE, "max meeple: %d", max_lenght);
+                    for(auto const &mapitr : mapJoueurListeMeeple)
                     {
-                        mapitr.first->add_score(score);
+                        if((int) mapitr.second.size() == max_lenght)
+                        {
+                            mapitr.first->add_score(score);
+                            Logging::log(Logging::TRACE, "ajout du score %d",score);
+                        }
                     }
+                    this->desindexer_Meeple_dans_la_map(mapJoueurListeMeeple);
                 }
-                this->desindexer_Meeple_dans_la_map(mapJoueurListeMeeple);
             }
         }
     }
@@ -329,14 +336,13 @@ bool Plateau::stack_meeple_vide(Joueur * joueur)
  *
  * @return bool si le meeple peut être posé
  * */
-void Plateau::poser_meeple(Joueur * joueur, Element *elem, std::pair<int, int> position)
+void Plateau::poser_meeple(Joueur * joueur, Element *elem, Meeple * meeple, int indice)
 {
-    Meeple * meeple = Pion::generate_meeple(joueur, elem, &this->grille, position);
     Logging::log(Logging::DEBUG, "Ajout meeple %d dans element", meeple);
     elem->ajouter_meeple(meeple);
-    Logging::log(Logging::DEBUG, "Ajout meeple %d dans pion pour le joueur", meeple);
+    Logging::log(Logging::DEBUG, "Ajout meeple %d dans pion pour le joueur %d", meeple, joueur->get_type_joueur());
     Pion * pion = this->mapJoueursPions.at(joueur);
-    pion->ajouter_meeple(meeple);
+    pion->ajouter_meeple(meeple, indice);
 }
 
 void Plateau::ajouter_tuile_pioche(Tuile *tuile)
@@ -361,25 +367,22 @@ bool Plateau::verifier_si_meeple_voisin(Noeud * noeud, Noeud::type_element type_
    
     while(!pilenoeud.empty())
     {
-        std::list<Noeud*>::iterator iternoeud = pilenoeud.begin();
+        std::list<Noeud*>::iterator iterNoeud = pilenoeud.begin();
 
-        Noeud * noeudcentrale = *iternoeud;
+        Noeud * noeudcentrale = *iterNoeud;
         
         Element * element = dynamic_cast<Element *>(noeudcentrale);
         if(element != nullptr)
         {
             if(noeudcentrale != noeud)
             {
-                //if(Noeud::compare_type_element(element->get_type_element(), type_element)) // comparaison à cause du lien entre prés et ville pour le comptage de point du paysan
-                //{
-                    Meeple * meeple = element->get_meeple();
-                    if(meeple != nullptr) 
-                    {
-                        Logging::log(Logging::DEBUG, "meeple trouvé %d %d", meeple->get_noeud()->get_type_element(), type_element);
-                        meeple_est_present = true;
-                        break;
-                    }
-                //}
+                Meeple * meeple = element->get_meeple();
+                if(meeple != nullptr) 
+                {
+                    Logging::log(Logging::DEBUG, "meeple trouvé %d %d", meeple->get_noeud()->get_type_element(), type_element);
+                    meeple_est_present = true;
+                    break;
+                }
             }
             
         } 
@@ -397,7 +400,7 @@ bool Plateau::verifier_si_meeple_voisin(Noeud * noeud, Noeud::type_element type_
             // logging::log(logging::trace, "noeud fils %d est non null", i);
             if(noeud_fils != nullptr)
             {
-                if(Noeud::compare_type_element(noeud_fils->get_type_element(), type_element)) 
+                if(Noeud::compare_type_element(noeud_fils->get_type_element(), type_element)) // un prés peut pointer vers une ville
                 {
                     if(noeudmarque.end() == std::find(noeudmarque.begin(), noeudmarque.end(), noeud_fils))
                     {
@@ -415,10 +418,10 @@ bool Plateau::verifier_si_meeple_voisin(Noeud * noeud, Noeud::type_element type_
     return meeple_est_present;
 }
 
-int Plateau::get_nbr_pion(Joueur * joueur) 
+int Plateau::get_nbr_meeple(Joueur * joueur) 
 {
     Pion *pion = this->mapJoueursPions[joueur];
-    return pion->get_stack_meeple().size();
+    return pion->get_nbr_meeple();
 }
 
 void Plateau::calculer_element_libre(Tuile * tuile) {
@@ -436,4 +439,22 @@ void Plateau::calculer_element_libre(Tuile * tuile) {
 const std::vector<Element *> Plateau::get_element_libre() 
 {
     return this->element_libre;
+}
+
+const std::array<std::array<Tuile *, 144>, 144> * Plateau::get_grille() 
+{
+    return &this->grille;
+}
+
+Pion * Plateau::get_pion_joueur(Joueur * joueur) 
+{
+    return this->mapJoueursPions[joueur];
+}
+
+bool Plateau::pioche_est_vide()
+{
+    if(this->pioche.empty()) {
+        return true;
+    }
+    return false;
 }
