@@ -1,6 +1,8 @@
 // LIBRAIRIES
 #include "Pion.hpp"
 #include "modules/carcassonne/src/Logging.hpp"
+#include "modules/carcassonne/src/Meeple.hpp"
+#include <map>
 
 // FONCTIONS
 /**
@@ -148,7 +150,8 @@ int Pion::estimer_element_points(Joueur * joueur, Element * element, int status_
 {
     int score = 0;
     Meeple *meeple = Pion::generate_meeple(joueur, element, etat_du_jeu, position_tuile);
-    meeple->compter_points(status_du_jeu, nullptr , &score);
+    std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple;
+    meeple->compter_points(status_du_jeu, &mapJoueurListeMeeple, &score);
     delete [] meeple;
     return score;
 }

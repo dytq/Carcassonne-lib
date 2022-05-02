@@ -1,6 +1,7 @@
 // LIBRAIRIES
 #include "Paysan.hpp"
-#include "Chevalier.hpp"
+#include "modules/carcassonne/src/Logging.hpp"
+#include <cstddef>
 
 // FONCTIONS
 /**
@@ -24,22 +25,26 @@ Paysan::Paysan(Joueur * joueur, Noeud * noeud)
  * @param la liste des villes marqué
  * @param le noeuds courant
  * */
-bool est_complet(std::list<Noeud*> ville_marque, Noeud * noeud_courant)
+bool est_complet_ville(std::list<Noeud*> * ville_marque, Noeud * noeud_courant, bool etat_complet)
 {
-    if(noeud_courant == nullptr) {
+    if(noeud_courant == nullptr) 
+    {
         return false;
     }
 
-    bool etat_complet = true;
     int i;
     for(i = 0; i <  noeud_courant->get_nbr_voisins(); i++)
     {
-        Noeud * noeud_voisin = noeud_courant->noeud_fils(nullptr, i);
-
-        if(std::find(ville_marque.begin(), ville_marque.end(), noeud_voisin) == ville_marque.end())
+        Noeud * noeud_voisin = noeud_courant->get_voisin(i);
+        if(noeud_voisin == nullptr) 
         {
-            ville_marque.push_back(noeud_voisin);
-            etat_complet = est_complet(ville_marque, noeud_courant);
+            etat_complet = false;
+        }
+        Logging::log(Logging::TRACE, "parcours ville %d", noeud_voisin);
+        if(std::find(ville_marque->begin(), ville_marque->end(), noeud_voisin) == ville_marque->end())
+        {
+            ville_marque->push_back(noeud_voisin);
+            etat_complet = est_complet_ville(ville_marque, noeud_voisin, etat_complet);
         }
     }
     return etat_complet;
@@ -57,23 +62,118 @@ bool est_complet(std::list<Noeud*> ville_marque, Noeud * noeud_courant)
  * */
 bool Paysan::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> * mapJoueurListeMeeple, int *score)
 {
+    bool est_complete = true;
+    
     if(status_du_jeu == STATUS_EN_COURS)
     {
-        return false;
+        est_complete = false;
     }
+
+    std::list<Noeud*> pileNoeud;            // pile pour le parcours des fils
+    std::list<Noeud*> noeudMarque;          // marque tous les noeuds rencontrés
+    std::list<Noeud *> noeud_ville_marque;  // ville marque 
+
+    *score = this->noeud->get_points(status_du_jeu);
+    Element * element_noeud = dynamic_cast<Element *>(this->noeud);
+    mapJoueurListeMeeple->insert(std::pair<Joueur *, std::list<Meeple *>>(this->joueur, {element_noeud->get_meeple()}));
+
+    
+    pileNoeud.push_back(this->noeud);
+    noeudMarque.push_back(this->noeud);
+        
+    while(!pileNoeud.empty())
+    {
+        std::list<Noeud*>::iterator iterNoeud = pileNoeud.begin();
+
+        Noeud * noeudCentrale = *iterNoeud;
+
+        //Logging::log(Logging::TRACE, "Evaluation d'un noeud %d", noeudCentrale);
+        
+        Element * element = dynamic_cast<Element *>(noeudCentrale);
+        if(element != nullptr)
+        {
+            if(noeudCentrale != noeud)
+            {
+                Meeple * meeple = element->get_meeple();
+                if(meeple != nullptr) 
+                {
+                    Logging::log(Logging::DEBUG, "meeple paysan trouvé %d %d", meeple->get_noeud()->get_type_element());
+                    Joueur * joueur = meeple->get_joueur();
+                    if(!mapJoueurListeMeeple->count(joueur)) 
+                    {
+                        mapJoueurListeMeeple->insert(std::pair<Joueur *, std::list<Meeple *>>(joueur, {meeple}));
+                    }
+                    else 
+                    {
+                        mapJoueurListeMeeple->at(joueur).push_back(meeple);
+                    }
+                    break;
+                }
+            }
+        } 
+
+
+        pileNoeud.pop_front();
+
+        int i;
+    
+        for(i = 0; i < noeudCentrale->get_nbr_voisins(); i++)
+        {
+            Noeud * noeud_fils = noeudCentrale->get_voisin(i);
+            //Logging::log(Logging::TRACE, "Noeud fils %d %d", i, noeud_fils);           
+
+            if(noeud_fils != nullptr) 
+            {
+                if(noeud_fils->get_type_element() == Noeud::VILLE || noeud_fils->get_type_element() == Noeud::VILLE_BLASON)
+                {
+                    if(noeud_ville_marque.end() == std::find(noeud_ville_marque.begin(), noeud_ville_marque.end(), noeud_fils))
+                    {
+                        Logging::log(Logging::TRACE, "noeud ville");
+                        noeud_ville_marque.push_back(noeud_fils);
+                        noeudMarque.push_back(noeud_fils);
+                        if(est_complet_ville(&noeud_ville_marque, noeud_fils,true))
+                        {
+                            Logging::log(Logging::TRACE, "Ville complète trouvée");
+                            *score = *score + POINTS_PAYSANS;
+                        } 
+                        else
+                        {
+                            Logging::log(Logging::TRACE, "Ville non complète");
+                        }
+                    }
+                } 
+                else 
+                {
+                    Logging::log(Logging::TRACE, "Noeud fils %d est non null", i);
+                    if(noeudMarque.end() == std::find(noeudMarque.begin(), noeudMarque.end(), noeud_fils))
+                    {
+                        Logging::log(Logging::TRACE, "Noeud fils %d n'est pas marqué", i);
+                        pileNoeud.push_back(noeud_fils);
+                        noeudMarque.push_back(noeud_fils);
+                    } else {
+                        Logging::log(Logging::TRACE, "Noeud fils %d est déjà marqué", i);
+                    }
+                }
+            }
+        }
+    }
+    
+
+    /*
 
     std::list<Noeud *> ville_marque;
 
     Noeud * noeud_courant = this->noeud;
-    // manque le parcour du graphe noeud
+    // manque le parcours du graphe noeud
     if(noeud_courant->get_type_element() == Noeud::VILLE &&
        std::find(ville_marque.begin(), ville_marque.end(), noeud_courant) == ville_marque.end())
     {
-        if(est_complet(ville_marque, noeud_courant))
+        Logging::log(Logging::DEBUG, "on entre dans la ville");
+        if(est_complet_ville(ville_marque, noeud_courant))
         {
             *score = *score + POINTS_PAYSANS;
         }
     }
-
-    return true;
+    */
+    return est_complete;
 }

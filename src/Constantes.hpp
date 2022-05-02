@@ -10,13 +10,13 @@
 // Points
 // Evaluation des points en cours de jeu
 #define POINTS_VILLE_COMPLET   2
-#define POINTS_VILLE_BLASON_COMPLET   2
+#define POINTS_VILLE_BLASON_COMPLET   4
 #define POINTS_ROUTE_COMPLET   1
 #define POINTS_ABBAYE_COMPLET   9
 
 // Evaluation des points en fin de jeu
 #define POINTS_VILLE_INCOMPLET   1
-#define POINTS_VILLE_BLASON_INCOMPLET   1
+#define POINTS_VILLE_BLASON_INCOMPLET   2
 #define POINTS_ROUTE_INCOMPLET   1
 #define POINTS_ABBAYE_INCOMPLET   1
 #define POINTS_PAYSANS   3

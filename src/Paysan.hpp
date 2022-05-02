@@ -9,6 +9,7 @@
 #include "Meeple.hpp"
 #include "Noeud.hpp"
 #include "Constantes.hpp"
+#include "Element.hpp"
 
 // CLASSE
 class Paysan : public Meeple
