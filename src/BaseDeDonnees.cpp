@@ -9,6 +9,7 @@
  */
 Plateau * BaseDeDonnees::generer_plateau_vanilla()
 {
+    int id = 0;
     Plateau * plateau = new Plateau();
     // Tuile 1 (x4)
     {
@@ -42,10 +43,10 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE);
-            Element * element2 = new Element(Noeud::ROUTE);
-            Element * element3 = new Element(Noeud::PLAINE);
-            Element * element4 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE,std::make_pair(0.5, 0.9));
+            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.5, 0.5));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.5,0.7));
+            Element * element4 = new Element(Noeud::PLAINE,std::make_pair(0.5,0.2));
 
             // init les voisins
             // bordure:
@@ -91,11 +92,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * tuile = new Tuile(1, bordure, elementTuile);
-
+            Tuile * tuile = new Tuile(id, 1, bordure, elementTuile);
+            
+            id ++;
             // AJOUT de la carte dans le pioche
             plateau->ajouter_tuile_pioche(tuile);
-
+        
     }
     }
     // Tuile 2 (x3)
@@ -130,10 +132,10 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE);
-            Element * element2 = new Element(Noeud::ROUTE);
-            Element * element3 = new Element(Noeud::PLAINE);
-            Element * element4 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE, std::make_pair(0.5,0.9));
+            Element * element2 = new Element(Noeud::ROUTE, std::make_pair(0.5,0.5));
+            Element * element3 = new Element(Noeud::PLAINE, std::make_pair(0.2,0.5));
+            Element * element4 = new Element(Noeud::PLAINE, std::make_pair(0.8,0.1));
 
             // init les voisins
 
@@ -148,7 +150,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             element3->set_voisin(bordure[3]->get_bordure_fils(1));
 
             element4->set_voisin(bordure[1]->get_bordure_fils(2));
-            element4->set_voisin(bordure[2]->get_bordure_fils(1));
+            element4->set_voisin(bordure[2]->get_bordure_fils(0));
 
             // Ajout des liens additionelles
             element3->set_lien(element1);
@@ -178,7 +180,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(2, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 2, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte);
@@ -217,10 +220,10 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE);
-            Element * element2 = new Element(Noeud::ROUTE);
-            Element * element3 = new Element(Noeud::PLAINE);
-            Element * element4 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE,std::make_pair(0.5,0.9));
+            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.5));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.8,0.5));
+            Element * element4 = new Element(Noeud::PLAINE,std::make_pair(0.2,0.2));
 
             // init les voisins
 
@@ -264,7 +267,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(3, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 3, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -303,8 +307,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE);
-            Element * element2 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE,std::make_pair(0.5,0.9));
+            Element * element2 = new Element(Noeud::PLAINE,std::make_pair(0.5,0.5));
 
             // init les voisins
 
@@ -340,7 +344,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(4, bordure, elementTuile);
+            Tuile * carte = new Tuile(id,4, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -379,9 +384,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE);
-            Element * element2 = new Element(Noeud::PLAINE);
-            Element * element3 = new Element(Noeud::VILLE);
+            Element * element1 = new Element(Noeud::VILLE,std::make_pair(0.5,0.9));
+            Element * element2 = new Element(Noeud::PLAINE,std::make_pair(0.5,0.5));
+            Element * element3 = new Element(Noeud::VILLE,std::make_pair(0.5,0.1));
 
             // init les voisins
             // element:
@@ -421,7 +426,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(5, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 5, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -460,9 +466,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE);
-            Element * element2 = new Element(Noeud::VILLE);
-            Element * element3 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE,std::make_pair(0.5,0.9));
+            Element * element2 = new Element(Noeud::VILLE,std::make_pair(0.9,0.5));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.5,0.5));
 
             // init les voisins
             // element:
@@ -500,7 +506,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(6, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 6, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -539,9 +546,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::PLAINE);
-            Element * element2 = new Element(Noeud::ROUTE);
-            Element * element3 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::PLAINE,std::make_pair(0.2,0.5));
+            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.5));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.8,0.8));
 
             // init les voisins
             // element:
@@ -582,7 +589,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(7, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 7, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -621,15 +629,16 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::PLAINE);
-            Element * element2 = new Element(Noeud::ROUTE);
-            Element * element3 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::PLAINE,std::make_pair(0.9,0.9));
+            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.5));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.1,0.1));
 
             // init les voisins
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
             element1->set_voisin(bordure[1]->get_bordure_fils(1));
             element1->set_voisin(bordure[2]->get_bordure_fils(0));
+            element1->set_voisin(bordure[3]->get_bordure_fils(2));
 
             element2->set_voisin(bordure[2]->get_bordure_fils(1));
             element2->set_voisin(bordure[3]->get_bordure_fils(1));
@@ -664,7 +673,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(8, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 8, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -703,8 +713,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE);
-            Element * element2 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE,std::make_pair(0.8,0.8));
+            Element * element2 = new Element(Noeud::PLAINE,std::make_pair(0.4,0.4));
 
             // init les voisins
             // element:
@@ -740,7 +750,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(9, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 9, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -779,14 +790,13 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE_BLASON);
-            Element * element2 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE_BLASON,std::make_pair(0.8,0.8));
+            Element * element2 = new Element(Noeud::PLAINE,std::make_pair(0.4,0.4));
 
             // init les voisins
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
-
-            element2->set_voisin(bordure[1]->get_bordure_fils(1));
+            element1->set_voisin(bordure[1]->get_bordure_fils(1));
 
             element2->set_voisin(bordure[2]->get_bordure_fils(1));
             element2->set_voisin(bordure[3]->get_bordure_fils(1));
@@ -817,7 +827,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(10, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 10, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -856,10 +867,10 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE);
-            Element * element2 = new Element(Noeud::ROUTE);
-            Element * element3 = new Element(Noeud::PLAINE);
-            Element * element4 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE,std::make_pair(0.2,0.8));
+            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.3));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.2,0.1));
+            Element * element4 = new Element(Noeud::PLAINE,std::make_pair(0.9,0.1));
 
             // init les voisins
             // element:
@@ -871,6 +882,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             element3->set_voisin(bordure[1]->get_bordure_fils(0));
             element3->set_voisin(bordure[2]->get_bordure_fils(2));
+        
+            element4->set_voisin(bordure[1]->get_bordure_fils(2));
+            element4->set_voisin(bordure[2]->get_bordure_fils(0));
 
             // Ajout des liens additionelles
             element3->set_lien(element1);
@@ -901,7 +915,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
 
             // Creation de la carte
-            Tuile * carte = new Tuile(11, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 11, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -940,23 +955,24 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE_BLASON);
-            Element * element2 = new Element(Noeud::ROUTE);
-            Element * element3 = new Element(Noeud::PLAINE);
-            Element * element4 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE_BLASON,std::make_pair(0.2,0.8));
+            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.3));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.2,0.1));
+            Element * element4 = new Element(Noeud::PLAINE,std::make_pair(0.9,0.1));
 
             // init les voisins
             // element:
             element1->set_voisin(bordure[0]->get_bordure_fils(1));
-            element1->set_voisin(bordure[3
-            ]->get_bordure_fils(1));
+            element1->set_voisin(bordure[3]->get_bordure_fils(1));
 
             element2->set_voisin(bordure[1]->get_bordure_fils(1));
             element2->set_voisin(bordure[2]->get_bordure_fils(1));
 
             element3->set_voisin(bordure[1]->get_bordure_fils(0));
             element3->set_voisin(bordure[2]->get_bordure_fils(2));
-
+            
+            element4->set_voisin(bordure[1]->get_bordure_fils(2));
+            element4->set_voisin(bordure[2]->get_bordure_fils(0));
             // Ajout des liens additionelles
             element3->set_lien(element1);
 
@@ -985,7 +1001,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(12, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 12, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1023,9 +1040,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE);
-            Element * element2 = new Element(Noeud::PLAINE);
-            Element * element3 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE,std::make_pair(0.5,0.5));
+            Element * element2 = new Element(Noeud::PLAINE,std::make_pair(0.5,0.9));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.5,0.1));
 
             // init les voisins
             // element:
@@ -1063,7 +1080,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(13, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 13, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1101,9 +1119,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE_BLASON);
-            Element * element2 = new Element(Noeud::PLAINE);
-            Element * element3 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE_BLASON,std::make_pair(0.5,0.5));
+            Element * element2 = new Element(Noeud::PLAINE,std::make_pair(0.5,0.9));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.5,0.1));
 
             // init les voisins
             // element:
@@ -1142,7 +1160,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(14, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 14, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1181,8 +1200,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE);
-            Element * element2 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE,std::make_pair(0.5,0.5));
+            Element * element2 = new Element(Noeud::PLAINE,std::make_pair(0.5,0.1));
 
             // init les voisins
             // element:
@@ -1218,7 +1237,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(15, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 15, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1255,8 +1275,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE_BLASON);
-            Element * element2 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE_BLASON,std::make_pair(0.5,0.5));
+            Element * element2 = new Element(Noeud::PLAINE,std::make_pair(0.5,0.1));
 
             // init les voisins
             // element:
@@ -1291,7 +1311,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(16, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 16, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1327,7 +1348,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE_BLASON);
+            Element * element1 = new Element(Noeud::VILLE_BLASON,std::make_pair(0.5,0.5));
 
             // init les voisins
             // element:
@@ -1360,7 +1381,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element1);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(17, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 17, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1397,10 +1419,10 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE);
-            Element * element2 = new Element(Noeud::ROUTE);
-            Element * element3 = new Element(Noeud::PLAINE);
-            Element * element4 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE,std::make_pair(0.5,0.5));
+            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.1));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.7,0.1));
+            Element * element4 = new Element(Noeud::PLAINE,std::make_pair(0.3,0.1));
 
             // init les voisins
             // element:
@@ -1410,9 +1432,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             element2->set_voisin(bordure[2]->get_bordure_fils(1));
 
-            element3->set_voisin(bordure[2]->get_bordure_fils(0));
+            element3->set_voisin(bordure[2]->get_bordure_fils(2));
 
-            element4->set_voisin(bordure[2]->get_bordure_fils(2));
+            element4->set_voisin(bordure[2]->get_bordure_fils(0));
 
             // Ajout des liens additionelles
             element3->set_lien(element1);
@@ -1442,7 +1464,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(18, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 18, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1480,10 +1503,10 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE_BLASON);
-            Element * element2 = new Element(Noeud::ROUTE);
-            Element * element3 = new Element(Noeud::PLAINE);
-            Element * element4 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE_BLASON,std::make_pair(0.5,0.5));
+            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.1));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.6,0.1));
+            Element * element4 = new Element(Noeud::PLAINE,std::make_pair(0.4,0.1));
 
             // init les voisins
             // element:
@@ -1526,7 +1549,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(19, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 19, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1565,8 +1589,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::PLAINE);
-            Element * element2 = new Element(Noeud::ABBAYE);
+            Element * element1 = new Element(Noeud::PLAINE,std::make_pair(0.9,0.9));
+            Element * element2 = new Element(Noeud::ABBAYE,std::make_pair(0.5,0.5));
 
             // init les voisins
             // element:
@@ -1601,7 +1625,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(20, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 20, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1630,9 +1655,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[1]->set_bordure_fils(1, Noeud::PLAINE);
             bordure[1]->set_bordure_fils(2, Noeud::VOID);
 
-            bordure[2]->set_bordure_fils(0, Noeud::VOID);
+            bordure[2]->set_bordure_fils(0, Noeud::PLAINE);
             bordure[2]->set_bordure_fils(1, Noeud::ROUTE);
-            bordure[2]->set_bordure_fils(2, Noeud::VOID);
+            bordure[2]->set_bordure_fils(2, Noeud::PLAINE);
 
             bordure[3]->set_bordure_fils(0, Noeud::VOID);
             bordure[3]->set_bordure_fils(1, Noeud::PLAINE);
@@ -1640,9 +1665,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::PLAINE);
-            Element * element2 = new Element(Noeud::ROUTE);
-            Element * element3 = new Element(Noeud::ABBAYE);
+            Element * element1 = new Element(Noeud::PLAINE,std::make_pair(0.9,0.9));
+            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.1));
+            Element * element3 = new Element(Noeud::ABBAYE,std::make_pair(0.5,0.5));
 
             // init les voisins
             // element:
@@ -1680,7 +1705,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(21, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 21, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1719,13 +1745,13 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::VILLE);
-            Element * element2 = new Element(Noeud::ROUTE);
-            Element * element3 = new Element(Noeud::ROUTE);
-            Element * element4 = new Element(Noeud::ROUTE);
-            Element * element5 = new Element(Noeud::PLAINE);
-            Element * element6 = new Element(Noeud::PLAINE);
-            Element * element7 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::VILLE,std::make_pair(0.5,0.9));
+            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.8,0.5));
+            Element * element3 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.2));
+            Element * element4 = new Element(Noeud::ROUTE,std::make_pair(0.2,0.5));
+            Element * element5 = new Element(Noeud::PLAINE,std::make_pair(0.5,0.6));
+            Element * element6 = new Element(Noeud::PLAINE,std::make_pair(0.8,0.2));
+            Element * element7 = new Element(Noeud::PLAINE,std::make_pair(0.2,0.2));
 
             // init les voisins
             // element:
@@ -1777,7 +1803,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element7);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(22, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 22, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1816,12 +1843,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::PLAINE);
-            Element * element2 = new Element(Noeud::ROUTE);
-            Element * element3 = new Element(Noeud::PLAINE);
-            Element * element4 = new Element(Noeud::ROUTE);
-            Element * element5 = new Element(Noeud::PLAINE);
-            Element * element6 = new Element(Noeud::ROUTE);
+            Element * element1 = new Element(Noeud::PLAINE,std::make_pair(0.5,0.8));
+            Element * element2 = new Element(Noeud::ROUTE,std::make_pair(0.8,0.5));
+            Element * element3 = new Element(Noeud::PLAINE,std::make_pair(0.8,0.2));
+            Element * element4 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.2));
+            Element * element5 = new Element(Noeud::PLAINE,std::make_pair(0.2,0.2));
+            Element * element6 = new Element(Noeud::ROUTE,std::make_pair(0.2,0.5));
 
             // init les voisins
             // element:
@@ -1871,7 +1898,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element6);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(23, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 23, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte
@@ -1909,14 +1937,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
             // init les elements
             std::vector<Element *> elementTuile;
-            Element * element1 = new Element(Noeud::ROUTE);
-            Element * element2 = new Element(Noeud::PLAINE);
-            Element * element3 = new Element(Noeud::ROUTE);
-            Element * element4 = new Element(Noeud::PLAINE);
-            Element * element5 = new Element(Noeud::ROUTE);
-            Element * element6 = new Element(Noeud::PLAINE);
-            Element * element7 = new Element(Noeud::ROUTE);
-            Element * element8 = new Element(Noeud::PLAINE);
+            Element * element1 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.8));
+            Element * element2 = new Element(Noeud::PLAINE,std::make_pair(0.8,0.8));
+            Element * element3 = new Element(Noeud::ROUTE,std::make_pair(0.8,0.5));
+            Element * element4 = new Element(Noeud::PLAINE,std::make_pair(0.8,0.2));
+            Element * element5 = new Element(Noeud::ROUTE,std::make_pair(0.5,0.2));
+            Element * element6 = new Element(Noeud::PLAINE,std::make_pair(0.2,0.2));
+            Element * element7 = new Element(Noeud::ROUTE,std::make_pair(0.2,0.5));
+            Element * element8 = new Element(Noeud::PLAINE,std::make_pair(0.2,0.8));
 
             // init les voisins
             // element:
@@ -1972,7 +2000,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element8);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(24, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, 24, bordure, elementTuile);
+            id++;
 
             // Ajout de la carte dans le pioche
             plateau->ajouter_tuile_pioche(carte); // front pour la première carte

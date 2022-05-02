@@ -24,6 +24,10 @@ bool Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Mee
     bool isComplete = true;
 
     *score = this->noeud->get_points(status_du_jeu);
+    Element * element_noeud = dynamic_cast<Element *>(this->noeud);
+    mapJoueurListeMeeple->insert(std::pair<Joueur *, std::list<Meeple *>>(this->joueur, {element_noeud->get_meeple()}));
+    //mapJoueurListeMeeple->at(this->joueur).push_back(element_noeud->get_meeple());
+    
     pileNoeud.push_back(this->noeud);
     noeudMarque.push_back(this->noeud);
         
@@ -33,8 +37,34 @@ bool Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Mee
 
         Noeud * noeudCentrale = *iterNoeud;
 
-        Logging::log(Logging::TRACE, "Evaluation d'un noeud %d", noeudCentrale);
+        //Logging::log(Logging::TRACE, "Evaluation d'un noeud %d", noeudCentrale);
         
+        Element * element = dynamic_cast<Element *>(noeudCentrale);
+        if(element != nullptr)
+        {
+            if(noeudCentrale != noeud)
+            {
+                Meeple * meeple = element->get_meeple();
+                if(meeple != nullptr) 
+                {
+                    Logging::log(Logging::DEBUG, "meeple brigand trouvé %d %d", meeple->get_noeud()->get_type_element());
+                    Joueur * joueur = meeple->get_joueur();
+                    if(!mapJoueurListeMeeple->count(joueur)) 
+                    {
+                        mapJoueurListeMeeple->insert(std::pair<Joueur *, std::list<Meeple *>>(joueur, {meeple}));
+                    } 
+                    else 
+                    {
+                        mapJoueurListeMeeple->at(joueur).push_back(meeple);
+                    }
+                    
+                    break;
+                }
+            }
+            
+        } 
+
+
         pileNoeud.pop_front();
 
         int i;
@@ -42,24 +72,7 @@ bool Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Mee
         for(i = 0; i < noeudCentrale->get_nbr_voisins(); i++)
         {
             Noeud * noeud_fils = noeudCentrale->get_voisin(i);
-            Logging::log(Logging::TRACE, "Noeud fils %d %d", i, noeud_fils);
-             
-            Element * element = dynamic_cast<Element *>(noeudCentrale);
-            if(element != nullptr)
-            {
-                if(noeudCentrale != noeud)
-                {
-                    Meeple * meeple = element->get_meeple();
-                    if(meeple != nullptr) 
-                    {
-                        Logging::log(Logging::TRACE, "Meeple trouvé");
-                        Joueur * joueur = meeple->get_joueur();
-                        mapJoueurListeMeeple->at(joueur).push_back(meeple);
-                        break;
-                    }
-                }
-            }
-             
+            //Logging::log(Logging::TRACE, "Noeud fils %d %d", i, noeud_fils);           
 
             if(noeud_fils == nullptr) 
             {

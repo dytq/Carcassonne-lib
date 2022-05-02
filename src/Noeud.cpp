@@ -128,3 +128,17 @@ void Noeud::remove_tuile_voisin(Noeud * noeud)
         }
     }
 }
+
+bool Noeud::compare_type_element(Noeud::type_element type_element1, Noeud::type_element type_element2) 
+{
+    if(type_element1 == type_element2) {
+        return true;
+    } else {
+        if(type_element1 == Noeud::VILLE || type_element1 == Noeud::VILLE_BLASON) {
+            if(type_element2 == Noeud::VILLE || type_element2 == Noeud::VILLE_BLASON) {
+                return true;
+            }
+        }
+    }
+    return false;
+}

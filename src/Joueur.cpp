@@ -36,13 +36,13 @@ int Joueur::get_score()
  * */
 void Joueur::add_score(int score)
 {
-    if (score < 0)
+    if (score >= 0)
     {
         this->score = this->score + score;
     }
     else
     {
-        Logging::log(Logging::DEBUG, "On ne peut pas ajouter en argument un score inférieur à 0 au joueur");
+        Logging::log(Logging::DEBUG, "On ne peut pas ajouter en argument un score inférieur à 0 au joueur transaction annulé");
     }
 }
 

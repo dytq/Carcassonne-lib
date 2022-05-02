@@ -7,8 +7,12 @@
  *
  * @param type_element le type d'élément
  * */
-Element::Element(Noeud::type_element type_element)
+Element::Element(Noeud::type_element type_element, std::pair<float,float> coordonnees)
 {
+    // initialise les coordonnées
+    this->coordonnees.first = coordonnees.first;
+    this->coordonnees.second = coordonnees.second;
+
     // initialise par défaut le meeple à nullptr
     this->meeple = nullptr;
 
@@ -88,4 +92,9 @@ int Element::get_points(int status_du_jeu) {
     }
     Logging::log(Logging::DEBUG, "status du jeu non évalué pour l'élément");
     return 0;
+}
+
+const std::pair<float, float> Element::get_coords() 
+{
+    return this->coordonnees;
 }

@@ -24,15 +24,21 @@ bool Chevalier::compter_points(int status_du_jeu, std::map<Joueur *, std::list<M
     bool isComplete = true;
 
     *score = this->noeud->get_points(status_du_jeu);
+    Element * element_noeud = dynamic_cast<Element *>(this->noeud);
+    mapJoueurListeMeeple->insert(std::pair<Joueur *, std::list<Meeple *>>(this->joueur, {element_noeud->get_meeple()}));
+    //mapJoueurListeMeeple->at(this->joueur).push_back(element_noeud->get_meeple());
+    
     pileNoeud.push_back(this->noeud);
     noeudMarque.push_back(this->noeud);
-   
+        
     while(!pileNoeud.empty())
     {
         std::list<Noeud*>::iterator iterNoeud = pileNoeud.begin();
 
         Noeud * noeudCentrale = *iterNoeud;
-       
+
+        //Logging::log(Logging::TRACE, "Evaluation d'un noeud %d", noeudCentrale);
+        
         Element * element = dynamic_cast<Element *>(noeudCentrale);
         if(element != nullptr)
         {
@@ -41,17 +47,24 @@ bool Chevalier::compter_points(int status_du_jeu, std::map<Joueur *, std::list<M
                 Meeple * meeple = element->get_meeple();
                 if(meeple != nullptr) 
                 {
-                    Logging::log(Logging::TRACE, "Meeple trouvé");
+                    Logging::log(Logging::DEBUG, "meeple brigand trouvé %d %d", meeple->get_noeud()->get_type_element());
                     Joueur * joueur = meeple->get_joueur();
-                    mapJoueurListeMeeple->at(joueur).push_back(meeple);
+                    if(!mapJoueurListeMeeple->count(joueur)) 
+                    {
+                        mapJoueurListeMeeple->insert(std::pair<Joueur *, std::list<Meeple *>>(joueur, {meeple}));
+                    } 
+                    else 
+                    {
+                        mapJoueurListeMeeple->at(joueur).push_back(meeple);
+                    }
+                    
                     break;
                 }
             }
             
-        }
-        
-        Logging::log(Logging::TRACE, "Evaluation d'un noeud %d", noeudCentrale);
-        
+        } 
+
+
         pileNoeud.pop_front();
 
         int i;
@@ -59,8 +72,8 @@ bool Chevalier::compter_points(int status_du_jeu, std::map<Joueur *, std::list<M
         for(i = 0; i < noeudCentrale->get_nbr_voisins(); i++)
         {
             Noeud * noeud_fils = noeudCentrale->get_voisin(i);
-            Logging::log(Logging::TRACE, "Noeud fils %d %d", i, noeud_fils);
-            
+            //Logging::log(Logging::TRACE, "Noeud fils %d %d", i, noeud_fils);           
+
             if(noeud_fils == nullptr) 
             {
                 Logging::log(Logging::TRACE, "Noeud fils %d est null", i);

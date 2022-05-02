@@ -1,16 +1,23 @@
 // LIBRAIRIES
 #include "Pion.hpp"
+#include "modules/carcassonne/src/Logging.hpp"
+#include "modules/carcassonne/src/Meeple.hpp"
+#include <map>
 
 // FONCTIONS
 /**
  * Permet la création d'une pile de Pion
  *
- * @param nbr_meeple est le nombre de meeple qu'on souhaite disposer pour le joueur
  * */
-Pion::Pion(int nbr_meeple)
+Pion::Pion()
 {
     Logging::log(Logging::TRACE, "création d'un stack de Pion");
-    this->nbr_meeple_max = nbr_meeple;
+    
+    // initialisation du tableau de meeple
+    for(int i = 0; i < (int) this->stackMeeple.max_size(); i++) 
+    {
+        this->stackMeeple[i] = nullptr;
+    }
 }
 
 Pion::~Pion()
@@ -24,8 +31,14 @@ Pion::~Pion()
  * @param tuile pour connaitre son emplacement lors de certaine évaluation
  * @return Meeple un meeple généré, sinon l'élément n'est pas reconnu renvoie nullptr
  * */
-Meeple * Pion::generate_meeple(Joueur * joueur, Element * element, std::array<std::array<Tuile *, 144>,144> * etat_du_jeu, std::pair<int,int> position_tuile)
+Meeple * Pion::generate_meeple(Joueur * joueur, Element * element, const std::array<std::array<Tuile *, 144>,144> * etat_du_jeu, std::pair<int,int> position_tuile)
 {
+    if(element->get_type_element() == Noeud::VOID) 
+    {
+        Logging::log(Logging::DEBUG, "l'élement ou tente de forger un meeple est de type VOID, ne peut générer un meeple");
+        return nullptr;
+    }
+
     if(element->get_type_element() == Noeud::VILLE || element->get_type_element() == Noeud::VILLE_BLASON)
     {
         Logging::log(Logging::TRACE, "génération d'un chevalier");
@@ -50,19 +63,31 @@ Meeple * Pion::generate_meeple(Joueur * joueur, Element * element, std::array<st
         return new Paysan(joueur, element);
     }
 
-    Logging::log(Logging::DEBUG,"génération d'un meeple à échoué");
+    Logging::log(Logging::DEBUG,"génération d'un meeple à échoué, type element %d non reconnu", element->get_type_element());
     return nullptr;
 }
 
 /**
- * Permet de supprimer un meeple du tableau.
+ * Permet de supprimer un meeple du tableau et du plateau.
  *
  * @param meeple le meeple à supprimer.
  * */
 void Pion::supprimer_meeple(Meeple * meeple) {
     Noeud * noeud = meeple->get_noeud();
     noeud->supprimer_meeple();
-    this->stackMeeple.remove(meeple);
+
+    for(int i = 0; i < (int) this->stackMeeple.max_size(); i++) 
+    {
+        if(this->stackMeeple[i] == meeple) 
+        {
+            this->stackMeeple[i] = nullptr;
+            delete [] meeple;
+            return;
+        }
+    }
+
+    Logging::log(Logging::DEBUG, "emplacement dans le tableau non trouvé le meeple sera détruit alors qu'il ne se trouvait pas dans le tableau");
+    delete [] meeple;
 }
 
 /**
@@ -70,14 +95,16 @@ void Pion::supprimer_meeple(Meeple * meeple) {
  *
  * @param meeple le meeple à ajouter.
  * */
-void Pion::ajouter_meeple(Meeple * meeple)
+void Pion::ajouter_meeple(Meeple * meeple,int indice)
 {
-    if(si_pion_non_place() == true) {
-       if(meeple == NULL)
-        {
-            Logging::log(Logging::DEBUG, "essaie d'inserer un meeple null dans la pile");
-        }
-       this->stackMeeple.push_front(meeple);
+    if(meeple == nullptr)
+    {
+        Logging::log(Logging::DEBUG, "essaie d'inserer un meeple null dans le tableau");
+    }
+    if(this->stackMeeple[indice] == nullptr) 
+    {
+        Logging::log(Logging::TRACE, "ajout meeple à l'indice %d", indice);
+        this->stackMeeple[indice] = meeple;
     }
 }
 
@@ -86,9 +113,22 @@ void Pion::ajouter_meeple(Meeple * meeple)
  *
  * @return la liste de meeple
  * */
-const std::list<Meeple *> Pion::get_stack_meeple()
+const std::array<Meeple *,7> Pion::get_stack_meeple()
 {
     return this->stackMeeple;
+}
+
+int Pion::get_nbr_meeple()
+{
+    int nbr_meeple = 0;
+    for(int i = 0; i < (int) this->stackMeeple.max_size(); i++)
+    {
+        if(stackMeeple[i] != nullptr) 
+        {
+            nbr_meeple++;
+        }
+    }
+    return nbr_meeple;
 }
 
 /**
@@ -96,16 +136,51 @@ const std::list<Meeple *> Pion::get_stack_meeple()
  *
  * @return bool si le pion est placé
  * */
-bool Pion::si_pion_non_place() {
-    if((int) this->stackMeeple.size() < this->nbr_meeple_max) {
+bool Pion::si_pion_non_place() 
+{
+    auto iter = std::find(this->stackMeeple.begin(), this->stackMeeple.end(), nullptr);
+    if(iter == std::end(this->stackMeeple))
+    {
         return true;
     }
     return false;
 }
 
-int Pion::estimer_meeple_points(Meeple *meeple, int status_du_jeu)
+int Pion::estimer_element_points(Joueur * joueur, Element * element, int status_du_jeu, const std::array<std::array<Tuile *, 144>, 144> *etat_du_jeu, std::pair<int, int> position_tuile)
 {
-    int score;
-    meeple->compter_points(status_du_jeu, nullptr , &score);
+    int score = 0;
+    Meeple *meeple = Pion::generate_meeple(joueur, element, etat_du_jeu, position_tuile);
+    std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple;
+    meeple->compter_points(status_du_jeu, &mapJoueurListeMeeple, &score);
+    delete [] meeple;
     return score;
+}
+
+int Pion::get_indice(Meeple * meeple) 
+{
+    int indice = -1;
+    for(int i = 0; i < (int) this->stackMeeple.max_size(); i++) 
+    {
+        if(meeple == this->stackMeeple[i])
+        {
+            if(indice != - 1)
+            {
+                Logging::log(Logging::DEBUG, "Il y a plusieurs occurences d'un même meeple dans la pile");
+            }
+            indice = i;
+        }
+    }
+    return indice;
+}
+
+int Pion::get_premier_indice_libre()
+{
+    for(int i = 0; i < (int) this->stackMeeple.max_size(); i++)
+    {
+        if(this->stackMeeple[i] == nullptr) 
+        {
+            return i;
+        }
+    }
+    return -1;
 }

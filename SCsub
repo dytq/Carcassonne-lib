@@ -1,0 +1,13 @@
+# SCsub
+
+Import('env')
+
+module_env = env.Clone()
+src_list = ["carcassonne.cpp", "register_types.cpp", "src/BaseDeDonnees.cpp", "src/Bordure.cpp", "src/Brigand.cpp", "src/Chevalier.cpp", "src/Element.cpp", "src/Joueur.cpp", "src/Logging.cpp", "src/Meeple.cpp", "src/Moine.cpp", "src/Noeud.cpp", "src/Paysan.cpp", "src/Pion.cpp", "src/Plateau.cpp", "src/Tuile.cpp"]
+module_env.add_source_files(env.modules_sources, src_list)
+
+# Append CCFLAGS flags for both C and C++ code.
+module_env.Append(CCFLAGS=['-O2'])
+# If you need to, you can:
+# - Append CFLAGS for C code only.
+# - Append CXXFLAGS for C++ code only.
