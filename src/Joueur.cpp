@@ -2,19 +2,6 @@
 #include "Joueur.hpp"
 
 // FONCTIONS
-/**
- * @title: Constructeur d'un joueur
- *
- * @param type_joueur  est le type de joueur
- * @param couleur est la couleur des ses pions 
- * */
-Joueur::Joueur(Type_joueur type_joueur, Couleur couleur)
-{
-    Logging::log(Logging::TRACE, "Création du joueur de type %d", type_joueur);
-    this->type_joueur = type_joueur;
-    this->couleur = couleur;
-    this->score = 0;
-}
 
 Joueur::~Joueur()
 {}
@@ -47,22 +34,20 @@ void Joueur::add_score(int score)
     }
 }
 
-/**
- * @title: Retourne le type de joueur
- *
- * @return type de joueur
- * */
-Joueur::Type_joueur Joueur::get_type_joueur()
+// never used
+int Joueur::choix_de_emplacement_libre() 
 {
-    return this->type_joueur;
+    return 0;
 }
 
-/**
- * @title: Retourne la couleur du joueur
- *
- * @return couleur
- * */
-Joueur::Couleur Joueur::get_couleur()
+// never used
+bool Joueur::choix_si_poser_meeple() 
 {
-    return this->couleur;
+    return false;
 }
+
+// never used
+int Joueur::choix_de_element_libre() 
+{
+    return 0;
+} 

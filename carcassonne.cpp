@@ -45,7 +45,7 @@ int Carcassonne::tuile_pioche_id() {
 int Carcassonne::get_coord_id(int x, int y) {
     Tuile * tuile = this->plateau->get_tuile_grille(x, y);
     if(tuile != nullptr) {
-        return tuile->get_id_groupe();
+        return tuile->get_id();
     } 
     return -2;
 }
