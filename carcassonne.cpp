@@ -21,8 +21,8 @@ void Carcassonne::init_jeu()
     this->plateau = BaseDeDonnees::generer_plateau_vanilla();
     plateau->init_plateau();
     
-    Joueur * joueur1 = new Joueur(Joueur::HUMAIN, Joueur::JAUNE);
-    Joueur * joueur2 = new Joueur(Joueur::ROBOT, Joueur::ROUGE);
+    Joueur * joueur1 = new Humain();
+    Joueur * joueur2 = new Humain();
     
     plateau->ajouter_joueur(joueur1, new Pion());
     plateau->ajouter_joueur(joueur2, new Pion());
