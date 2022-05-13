@@ -7,7 +7,7 @@ Humain::Humain()
 
 int Humain::choix_de_emplacement_libre()
 {
-    int indice_emplacement_libre;
+    int indice_emplacement_libre = 0;
     std::cin >> indice_emplacement_libre;
     
     return indice_emplacement_libre;

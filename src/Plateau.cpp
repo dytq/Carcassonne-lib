@@ -7,6 +7,18 @@ Plateau::Plateau()
     Logging::log(Logging::TRACE, "Création du plateau");
 }
 
+Plateau::Plateau(const Plateau & plateau)
+{
+    Logging::log(Logging::TRACE, "Clonnage du plateau");
+    this->grille = plateau.grille; 
+    this->pioche = plateau.pioche;
+    this->liste_tuiles_emplacements_libres = plateau.liste_tuiles_emplacements_libres; 
+    this->element_libre = plateau.element_libre; 
+    this->mapJoueursPions = plateau.mapJoueursPions; 
+    this->tuiles_candidates = plateau.tuiles_candidates; 
+}
+
+
 Plateau::~Plateau()
 {}
 

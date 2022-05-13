@@ -22,6 +22,7 @@ class Tuile
     public:
         // CONSTRUCTEURS
         Tuile(int id, std::array<Bordure *, 4> bordure, std::vector<Element *> element);
+        Tuile(const Tuile & tuile); // clone une tuile
 
         // DESTRUCTEUR
         ~Tuile();
