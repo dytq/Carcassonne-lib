@@ -333,7 +333,7 @@ std::vector<std::array<int, 3>> Plateau::get_liste_tuiles_emplacements_libres()
 
 bool Plateau::stack_meeple_vide(Joueur * joueur)
 {
-    return this->mapJoueursPions.at(joueur)->si_pion_non_place();
+    return !this->mapJoueursPions.at(joueur)->si_pion_non_place();
 }
 
 /**
