@@ -7,11 +7,13 @@
 #include "Joueur.hpp"
 #include "Element.hpp"
 
-// CLASSE
+/**
+ * @title: Meeple de type chevalier
+ *
+ * @description: Cette classe définit un chevalier. Un chevalier est posé sur une ville ou bien un ville blason. Pour compter le nombre de points que peut rapporter un chevalier on regarde si la ville est entouré de forteresse.
+ * */
 class Chevalier : public Meeple
 {
-        // VARIABLES
-
     public:
         // CONSTRUCTEURS
         Chevalier(Joueur * joueur, Noeud * noeud);

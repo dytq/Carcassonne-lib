@@ -5,7 +5,7 @@
 // LIBRAIRIES
 #include <iostream>
 #include <string>
-#include <stdarg.h>  // args
+#include <stdarg.h>  
 #include <stdio.h>
 
 #include "Constantes.hpp"

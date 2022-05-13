@@ -2,10 +2,16 @@
 #include "Tuile.hpp"
 
 // FONCTIONS
-Tuile::Tuile(int id, int idTuile, std::array<Bordure *, 4> bordure, std::vector<Element *> element)
+/**
+ * @title: Constructeur de la Tuile
+ *
+ * @param: id est l'identifiant de la tuile depuis la base de données
+ * @param: bordure est la bordure de la tuile 
+ * @param: element est l'ensemble des éléments que compose la tuile
+ * */
+Tuile::Tuile(int id, std::array<Bordure *, 4> bordure, std::vector<Element *> element)
 {
     this->id = id;
-    this->idTuile = idTuile;
     this->bordure = bordure;
     this->element = element;
 }
@@ -13,16 +19,17 @@ Tuile::Tuile(int id, int idTuile, std::array<Bordure *, 4> bordure, std::vector<
 Tuile::~Tuile()
 {}
 
+/**
+ * @title: Récupère l'id de la tuile
+ * */
 int Tuile::get_id()
 {
     return this->id;
 }
 
-int Tuile::get_id_groupe()
-{
-    return this->idTuile;
-}
-
+/**
+ * @title: Fait une rotation logique horaire de la tuile
+ * */
 void Tuile::rotationHoraire()
 {
     Bordure *tmp = this->bordure[0];
@@ -38,20 +45,21 @@ void Tuile::rotationHoraire()
     this->bordure[1] = tmp;
 }
 
-bool Tuile::borduresCompatibles(Tuile *tuileCompare, int cote)
+/**
+ * @title: Récupère la bordure fils
+ * 
+ * @return: bordure fils
+ * */
+Bordure * Tuile::getBordure(int cote) 
 {
-    if((tuileCompare == nullptr) || (this->bordure[cote] == tuileCompare->bordure[(cote + 2) % NBR_ORIENTATIONS_TUILES]))
-    {
-        return true;
-    }
-
-    return false;
-}
-
-Bordure * Tuile::getBordure(int cote) {
     return this->bordure[cote];
 }
 
+/**
+ * @title: Récupère les éléments de la tuile
+ * 
+ * @return: les éléments
+ * */
 const std::vector<Element *> Tuile::getElements() {
     return this->element;
 }

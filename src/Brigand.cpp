@@ -2,6 +2,12 @@
 #include "Brigand.hpp"
 
 // FONCTIONS
+/**
+ * @title: Constructeur Brigand 
+ *
+ * @param Joueur associé
+ * @param Noeud sur laquelle se trouve le noeud 
+ **/
 Brigand::Brigand(Joueur * joueur, Noeud * noeud)
 {
     Meeple::joueur = joueur;
@@ -12,9 +18,13 @@ Brigand::~Brigand()
 {}
 
 /**
- * Algorithme de comptage des points d'un brigand
+ * @title: Algorithme de comptage des points d'un brigand
  *
- * Même algorithme que pour le comptage des points d'un chevalier
+ * @description: Même algorithme que pour le comptage des points d'un chevalier
+ *
+ * @param: status_du_jeu est l'état du jeu 
+ * @param: mapJoueurListeMeeple est la map qui permet de savoir combien de meeple a recolté chaque joueur
+ * @param: *score est le score obtenu
  **/
 bool Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> * mapJoueurListeMeeple, int * score)
 {
@@ -94,6 +104,5 @@ bool Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Mee
             }
         }
     }
-    
     return isComplete;
 }

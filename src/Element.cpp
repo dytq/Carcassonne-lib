@@ -3,9 +3,12 @@
 
 // FONCTIONS
 /**
- * L'element est associé à un type élement, elle s'initialise à son emplacement meeple à nullptr
+ * @title: Constructeur de l'élément. 
  *
- * @param type_element le type d'élément
+ * @description: L'element est associé à un type élement, elle s'initialise à son emplacement meeple à nullptr. Elle initialise ses coordonnées et le nombres de points qu'il peut rapporter.
+ *
+ * @param type_element le type d'élément.
+ * @param pair de coordonnées flottantes.
  * */
 Element::Element(Noeud::type_element type_element, std::pair<float,float> coordonnees)
 {
@@ -49,7 +52,7 @@ Element::~Element()
 {}
 
 /**
- * getter du meeple situé sur l'élément
+ * @title: getter du meeple situé sur l'élément
  *
  * @return meeple
  * */
@@ -59,9 +62,9 @@ Meeple * Element::get_meeple()
 }
 
 /**
- * Permet d'ajouter un meeple sur l'élément
+ * @title: Ajoute un meeple sur l'élément
  *
- * @return meeple
+ * @param meeple à ajouter
  * */
 void Element::ajouter_meeple(Meeple * meeple)
 {
@@ -69,7 +72,7 @@ void Element::ajouter_meeple(Meeple * meeple)
 }
 
 /**
- * Permet de supprimer symboliquement un meeple actuellement situé sur l'élément
+ * @title: Supprimer symboliquement sans détruire un meeple actuellement situé sur l'élément
  *
  * */
 void Element::supprimer_meeple()
@@ -78,7 +81,7 @@ void Element::supprimer_meeple()
 }
 
 /**
- * Permet de recupérer le nombre de points obtenu par la case
+ * @title: Recupère le nombre de points obtenu par la case
  *
  * @param status du jeu le nombre de points obtenu selon le status du jeu est différent
  * @return retourne le score reçut
@@ -94,6 +97,11 @@ int Element::get_points(int status_du_jeu) {
     return 0;
 }
 
+/**
+ * @title: Recupère les coordonnées de l'élément
+ *
+ * @return retourne les coordonnées de l'élément
+ * */
 const std::pair<float, float> Element::get_coords() 
 {
     return this->coordonnees;

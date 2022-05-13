@@ -1,6 +1,5 @@
 // LIBRAIRIES
 #include "Moine.hpp"
-#include "modules/carcassonne/src/Joueur.hpp"
 
 // FONCTIONS
 Moine::Moine(Joueur * joueur, Noeud * noeud, const std::array<std::array<Tuile *, 144>,144> * etat_du_jeu, std::pair<int,int> position)
@@ -52,8 +51,8 @@ bool Moine::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meepl
         {
             if(tuile->get_id() != -1)
             {
-                Logging::log(Logging::DEBUG, "Moine::compter_points %d <%d,%d>", tuile->get_id_groupe(), voisin_coord.first, voisin_coord.second);
-                if(tuile->get_id_groupe() != -1)
+                Logging::log(Logging::DEBUG, "Moine::compter_points %d <%d,%d>", tuile->get_id(), voisin_coord.first, voisin_coord.second);
+                if(tuile->get_id() != -1)
                 {
                     *score += 1;
                 }

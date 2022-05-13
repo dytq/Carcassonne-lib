@@ -1,10 +1,10 @@
 // LIBRAIRIES
 #include "Logging.hpp"
 
-
-// FONCTIONS
 /**
- * Permet la journalisation d'un message.
+ * @title: Journalisation d'un message.
+ * 
+ * @description: Voir dans Constantes.h pour activer/desactiver les logs selon le niveau de log souhaité (DEBUG et/ou TRACE).
  *
  * @param type message le type de message
  * @param message la chaine de caractère du message
@@ -38,7 +38,7 @@ void Logging::log(TypeMessage type_message, char * message)
 }
 
 /**
- * Permet la journalisation d'un message.
+ * @title: Journalisation d'un message avec arguments.
  *
  * @param type message le type de message
  * @param format permet d'afficher un messages avec une liste d'argument

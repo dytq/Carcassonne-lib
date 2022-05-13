@@ -3,9 +3,10 @@
 
 // FONCTIONS
 /**
- * Permet de créer un joueur. Elle initialise son score à 0 par défaut.
+ * @title: Constructeur d'un joueur
  *
  * @param type_joueur  est le type de joueur
+ * @param couleur est la couleur des ses pions 
  * */
 Joueur::Joueur(Type_joueur type_joueur, Couleur couleur)
 {
@@ -20,7 +21,7 @@ Joueur::~Joueur()
 
 
 /**
- * Permet de récuperer le score obtenu par le joueur
+ * @title: Récupère le score obtenu par le joueur
  *
  * @return score
  * */
@@ -30,7 +31,7 @@ int Joueur::get_score()
 }
 
 /**
- * Permet d'ajouter en concatenant le score
+ * @title: Ajout en concatenant le score
  *
  * @param score le score doit être supérieur à 0
  * */
@@ -47,7 +48,7 @@ void Joueur::add_score(int score)
 }
 
 /**
- * Permet d'obtenir le type de joueur
+ * @title: Retourne le type de joueur
  *
  * @return type de joueur
  * */
@@ -56,6 +57,11 @@ Joueur::Type_joueur Joueur::get_type_joueur()
     return this->type_joueur;
 }
 
+/**
+ * @title: Retourne la couleur du joueur
+ *
+ * @return couleur
+ * */
 Joueur::Couleur Joueur::get_couleur()
 {
     return this->couleur;

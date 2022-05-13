@@ -9,9 +9,9 @@
 #include "Logging.hpp"
 
 /**
- * Classe Noeud
- *
- * Permet de faire l'interface pour le pacours de la couche 'noeud'.
+ * @titre: Noeud
+ * 
+ * @description: Permet de faire l'interface pour le pacours de la couche 'noeud'.
  * La couche 'noeud' est un réseau constitué d'élément de bordure indistingable lors de parcours du réseau.
  * Un noeuds peut être de plusieurs type, comme une route, une ville, une plaine ou bien une abbaye.
  * */

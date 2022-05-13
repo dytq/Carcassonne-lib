@@ -2,6 +2,12 @@
 #include "Chevalier.hpp"
 
 // FONCTIONS
+/**
+ * @title: Constructeur du Chevalier
+ *
+ * @param: Joueur est le joueur
+ * @param: Noeud est le noeud ou se trouve le chevalier
+ * */
 Chevalier::Chevalier(Joueur * joueur, Noeud * noeud)
 {
     Meeple::joueur = joueur;
@@ -12,9 +18,13 @@ Chevalier::~Chevalier()
 {}
 
 /**
- * Algorithme du comptage des points pour le Chevalier.
+ * @title: Algorithme du comptage des points pour le Chevalier.
  *
- * Parcours du réseau de noeuds en profondeur.
+ * @description: Parcours du réseau de noeuds en profondeur.
+ * 
+ * @param: status_du_jeu est l'état du jeu (si fin ou en cour de jeu.
+ * @param: mapJoueurListeMeeple permet de savoir combien de meeple à récolté chaque joueur.
+ * @param: *score est le score obtenu dans l'évalutation de la zone.
  **/
 bool Chevalier::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meeple *>> * mapJoueurListeMeeple, int * score)
 {

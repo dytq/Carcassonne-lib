@@ -1,13 +1,9 @@
 // LIBRAIRIES
 #include "Pion.hpp"
-#include "modules/carcassonne/src/Logging.hpp"
-#include "modules/carcassonne/src/Meeple.hpp"
-#include <map>
 
 // FONCTIONS
 /**
- * Permet la création d'une pile de Pion
- *
+ * @title: Création d'un sac de Pion
  * */
 Pion::Pion()
 {
@@ -24,7 +20,7 @@ Pion::~Pion()
 {}
 
 /**
- * Permet de générer un meeple selon l'emplacement ou il se situe
+ * @title: Génere un meeple selon l'emplacement ou il se situe
  *
  * @param Joueur pour mettre le type joueur sur le meeple généré
  * @param element permet de savoir sur quelle élément il est situé
@@ -68,7 +64,7 @@ Meeple * Pion::generate_meeple(Joueur * joueur, Element * element, const std::ar
 }
 
 /**
- * Permet de supprimer un meeple du tableau et du plateau.
+ * @title: Supprime un meeple du tableau et du plateau.
  *
  * @param meeple le meeple à supprimer.
  * */
@@ -91,7 +87,7 @@ void Pion::supprimer_meeple(Meeple * meeple) {
 }
 
 /**
- * Permet d'ajouter un meeple dans un tableau.
+ * @title: Ajouter un meeple dans un tableau.
  *
  * @param meeple le meeple à ajouter.
  * */
@@ -109,7 +105,7 @@ void Pion::ajouter_meeple(Meeple * meeple,int indice)
 }
 
 /**
- * Permet de récuperé de façon constante la pile de meeple stocké
+ * @title: Récuperé de façon constante la pile de meeple stocké
  *
  * @return la liste de meeple
  * */
@@ -118,6 +114,9 @@ const std::array<Meeple *,7> Pion::get_stack_meeple()
     return this->stackMeeple;
 }
 
+/**
+ * @title: récupère le nombre de meeple posé
+ * */
 int Pion::get_nbr_meeple()
 {
     int nbr_meeple = 0;
@@ -132,7 +131,7 @@ int Pion::get_nbr_meeple()
 }
 
 /**
- * Permet de savoir s'il reste des pions à placer.
+ * @title: Determine s'il reste des pions à placer.
  *
  * @return bool si le pion est placé
  * */
@@ -146,16 +145,34 @@ bool Pion::si_pion_non_place()
     return false;
 }
 
-int Pion::estimer_element_points(Joueur * joueur, Element * element, int status_du_jeu, const std::array<std::array<Tuile *, 144>, 144> *etat_du_jeu, std::pair<int, int> position_tuile)
+/**
+ * @title: Estime le nombre de points d'un élément
+ *
+ * @description: créer une meeple virtuelle sur l'éléments pour determiner le nombre de points qu'il potentiellment peut reporter à un élément donné 
+ *
+ * @param: le joueur qui fait l'évaluation
+ * @param: element l'élément sur laquelle on estime le nombre de points que le joueur peut gagner
+ * @param: le status du jeu
+ * @param: etat_du_jeu est l'état du jeu courant
+ * @param: position_tuile est la position de la tuile
+ * */
+int Pion::estimer_element_points(Joueur * joueur,  Element * element, int status_du_jeu, const std::array<std::array<Tuile *, 144>, 144> *etat_du_jeu, std::pair<int, int> position_tuile)
 {
     int score = 0;
     Meeple *meeple = Pion::generate_meeple(joueur, element, etat_du_jeu, position_tuile);
     std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple;
     meeple->compter_points(status_du_jeu, &mapJoueurListeMeeple, &score);
-    delete [] meeple;
+    delete [] meeple; // supprime le meeple temporaire
     return score;
 }
 
+/**
+ * @title: récupère l'indice du meeple dans le sac
+ *
+ * @param: l'adresse du meeple
+ *
+ * @return: l'indice dans le sac
+ * */
 int Pion::get_indice(Meeple * meeple) 
 {
     int indice = -1;
@@ -173,6 +190,11 @@ int Pion::get_indice(Meeple * meeple)
     return indice;
 }
 
+/**
+ * Récupère le premier indice libre dans le sac
+ *
+ * @return l'indice correspondant si rien trouvé renvoie -1
+ * */
 int Pion::get_premier_indice_libre()
 {
     for(int i = 0; i < (int) this->stackMeeple.max_size(); i++)

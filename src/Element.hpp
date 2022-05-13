@@ -10,16 +10,14 @@
 #include <utility>
 
 /**
- * Classe Element
- *
- * Hérite de la classe Noeud et permet de représenter les emplacements ou l'on pose un Pion.
+ * @title: Element est une case dans laquelle on peut poser un meeple
  * */
 class Element : public Noeud
 {
     private:
         // VARIABLES
         Meeple * meeple;
-        std::pair<float,float> coordonnees;
+        std::pair<float,float> coordonnees; // échelle de la coordonnées (x,y flottant entre [0,1])
 
     public:
         // CONSTRUCTEURS

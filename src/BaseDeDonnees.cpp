@@ -3,9 +3,13 @@
 /**
  * @title : génération d'un plateau de jeu de type vanilla
  *
- * @description : cette fonction permet de générer un plateau de jeu de type vanilla, on initialise tous les tuiles de la pioche. Dans le jeu vanialla, il y a 72 tuiles, certaines tuiles sont en double.
+ * @description : cette fonction permet de générer un plateau de jeu de type vanilla, on initialise toutes les tuiles de la pioche. Dans le jeu vanialla, il y a 72 tuiles, certaines tuiles sont en double.
+ * - On commence par initaliser les bordures qui contiennent 3 bordures fils (les bordures de la tuile pour la connexion itertuile). 
+ * - Ensuite on initalise les éléments, qui représentent les emplacements où l'on peut poser un meeple. 
+ * - On réalise les connexions entre les bordures et les éléments, si besoin on ajoute les liens additionels pour l'évaluation des paysans. 
+ * - Enfin on ajoute la tuile dans pioche.
  *
- * @return : le plateau de jeu généré
+ * @return : le plateau du jeu généré
  */
 Plateau * BaseDeDonnees::generer_plateau_vanilla()
 {
@@ -92,7 +96,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * tuile = new Tuile(id, 1, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             
             id ++;
             // AJOUT de la carte dans le pioche
@@ -180,7 +184,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 2, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -267,7 +271,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 3, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -344,7 +348,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id,4, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -426,7 +430,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 5, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -506,7 +510,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 6, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -589,7 +593,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 7, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -673,7 +677,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 8, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -750,7 +754,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 9, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -827,7 +831,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 10, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -915,7 +919,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 11, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -1001,7 +1005,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 12, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -1080,7 +1084,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 13, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -1160,7 +1164,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 14, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -1237,7 +1241,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 15, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -1311,7 +1315,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 16, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -1381,7 +1385,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element1);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 17, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -1464,7 +1468,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 18, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -1549,7 +1553,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 19, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -1625,7 +1629,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element2);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 20, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -1705,7 +1709,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element3);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 21, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -1803,7 +1807,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element7);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 22, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -1898,7 +1902,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element6);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 23, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
@@ -2000,7 +2004,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element8);
 
             // Creation de la carte
-            Tuile * carte = new Tuile(id, 24, bordure, elementTuile);
+            Tuile * carte = new Tuile(id, bordure, elementTuile);
             id++;
 
             // Ajout de la carte dans le pioche
