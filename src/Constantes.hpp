@@ -41,7 +41,6 @@
 #define TRACE_MSG    // Permet de tracer le déroulement de la partie
 #endif // ALL_MSG
 
-// #define TEST_UNIT    // Test unitaire
 /* -------------------------------------------- */
 
 #endif // CONSTANTES_HPP

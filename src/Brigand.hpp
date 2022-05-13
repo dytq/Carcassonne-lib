@@ -6,6 +6,11 @@
 #include "Noeud.hpp"
 #include "Element.hpp"
 
+/**
+ * @title: Meeple de type Brigand
+ *
+ * @description: Cette classe représente un meeple de type Brigand. Un brigand est placé sur une route. On otient des points quand soit une route se termine ou bien lorsque la route forme une boucle.
+ * */
 class Brigand : public Meeple
 {
     public:

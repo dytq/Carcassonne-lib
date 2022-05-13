@@ -34,17 +34,11 @@ void Plateau::ajouter_joueur(Joueur * joueur, Pion * pion)
     this->mapJoueursPions.insert(std::pair<Joueur *, Pion *>(joueur, pion));
 }
 
-std::vector<Tuile *> Plateau::get_pioche()
-{
-    return this->pioche;
-}
-
 Tuile *Plateau::piocher_tuile_aleat()
 {
     srand(time(NULL));
 	int random = rand() % this->pioche.size();
     Logging::log(Logging::TRACE, "Pioche la tuile %d", random);
-
     return this->piocher_tuile(random);
 }
 
@@ -52,7 +46,6 @@ Tuile *Plateau::piocher_tuile(int index)
 {
     Tuile *tuile = this->pioche[index];
 	pioche.erase(pioche.begin() + index);
-    
     return tuile;
 }      
 
@@ -202,7 +195,7 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
         {
             std::array<Bordure *, 4> bordure_tmp;
             std::vector<Element *> element_tmp;
-            Tuile * tuile_candidate = new Tuile(-1, -1, bordure_tmp, element_tmp);
+            Tuile * tuile_candidate = new Tuile(-1, bordure_tmp, element_tmp);
             this->grille[tuile_coord_voisine.first][tuile_coord_voisine.second] = tuile_candidate;
             this->tuiles_candidates[tuile_candidate] = std::make_pair(tuile_coord_voisine.first,tuile_coord_voisine.second);
         } 
@@ -345,16 +338,29 @@ void Plateau::poser_meeple(Joueur * joueur, Element *elem, Meeple * meeple, int 
     pion->ajouter_meeple(meeple, indice);
 }
 
+void Plateau::poser_meeple(Joueur * joueur, Element *elem, std::pair<int, int> position)
+{
+    Meeple * meeple = Pion::generate_meeple(joueur, elem, &this->grille, position);
+    elem->ajouter_meeple(meeple);
+    Pion * pion = this->mapJoueursPions.at(joueur);
+    pion->ajouter_meeple(meeple, pion->get_premier_indice_libre());
+}
+
 void Plateau::ajouter_tuile_pioche(Tuile *tuile)
 {
     this->pioche.push_back(tuile);
 }
 
-std::map<Tuile *, std::pair<int,int>> Plateau::get_tuiles_candidates() 
-{
-    return this->tuiles_candidates;
-}
-
+/**
+ * @title: Vérifie si il y a un meeple dans une même zone
+ *
+ * @description: réalise un parcours en profondeur et récolte les meeples.
+ *
+ * @param: Noeud est le noeud de départ
+ * @param: type_element pour ne faire que le parcour si un même type d'éléments 
+ *
+ * @return si il y a un meeple sur une même zone
+ * */
 bool Plateau::verifier_si_meeple_voisin(Noeud * noeud, Noeud::type_element type_element) 
 {
     std::list<Noeud*> pilenoeud;   // pile pour le parcours des fils
@@ -414,7 +420,6 @@ bool Plateau::verifier_si_meeple_voisin(Noeud * noeud, Noeud::type_element type_
             }
         }
     }
-
     return meeple_est_present;
 }
 

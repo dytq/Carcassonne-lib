@@ -11,9 +11,7 @@
 #include "Logging.hpp"
 
 /**
- * Classe Meeple
- *
- * Représente un meeple posé dans un noeud
+ * @title: Représente un meeple posé dans un noeud
  **/
 class Meeple
 {

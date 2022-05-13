@@ -1,5 +1,4 @@
 #include "carcassonne.hpp"
-#include "core/class_db.h"
 
 Joueur * Carcassonne::get_joueur(int joueur_id) 
 {
@@ -161,6 +160,7 @@ Array Carcassonne::get_meeple_pose_array(int joueur_id)
     return list_meeple_pose;
 }
 
+// Récupère le premier meeple rencontré dans la liste 
 int Carcassonne::get_premier_meeple_indice_libre(int joueur_id)
 {
     Joueur * joueur = get_joueur(joueur_id);
@@ -168,37 +168,55 @@ int Carcassonne::get_premier_meeple_indice_libre(int joueur_id)
     return pion->get_premier_indice_libre();
 }
 
+// récupère le score du joueur
 int Carcassonne::get_joueur_score(int joueur_id) 
 {
     Joueur * joueur = get_joueur(joueur_id);
     return joueur->get_score();
 }
 
+// determine si c'est la fin du jeu
 bool Carcassonne::fin_du_jeu()
 {
     return this->plateau->pioche_est_vide();
 }
 
+// Binding method pour GODOT
 void Carcassonne::_bind_methods() 
 {
+    /* Initialisation du Jeu */
     ClassDB::bind_method(D_METHOD("init_jeu"),&Carcassonne::init_jeu);
+
+    /* Calcul pendant le jeu */ 
+    
+    // 1. Piocher un Tuile 
     ClassDB::bind_method(D_METHOD("piocher_tuile"),&Carcassonne::piocher_tuile);
     ClassDB::bind_method(D_METHOD("tuile_pioche_id"),&Carcassonne::tuile_pioche_id);
-    ClassDB::bind_method(D_METHOD("get_coord_id", "x", "y"),&Carcassonne::get_coord_id);
+    
+    // 2. Méthodes pour poser une Tuile
     ClassDB::bind_method(D_METHOD("calcul_emplacement_libre"),&Carcassonne::calcul_emplacement_libre);
     ClassDB::bind_method(D_METHOD("get_coord_emplacement_libre"),&Carcassonne::get_coord_emplacement_libre);
     ClassDB::bind_method(D_METHOD("poser_tuile_pioche", "x", "y", "orientation"),&Carcassonne::poser_tuile_pioche);
+    
+    // 3. Méthodes pour poser un Meeple
     ClassDB::bind_method(D_METHOD("get_coord_element_tuile_pioche"),&Carcassonne::get_coord_element_tuile_pioche);
     ClassDB::bind_method(D_METHOD("poser_meeple", "joueur_id", "indice_id", "indice_pion_meeple"),&Carcassonne::poser_meeple);
+    ClassDB::bind_method(D_METHOD("get_premier_meeple_indice_libre", "joueur_id"),&Carcassonne::get_premier_meeple_indice_libre);
+
+    // 4. Méthode pour compter/évaluer/estimer les points
     ClassDB::bind_method(D_METHOD("evaluation_points_meeple"),&Carcassonne::evaluation_points_meeple);
-    ClassDB::bind_method(D_METHOD("evaluation_points_meeple_final"),&Carcassonne::evaluation_points_meeple_final);
     ClassDB::bind_method(D_METHOD("calcul_element_libre"),&Carcassonne::calcul_element_libre);
     ClassDB::bind_method(D_METHOD("get_nbr_pion_joueur", "joueur_id"),&Carcassonne::get_nbr_pion_joueur);
     ClassDB::bind_method(D_METHOD("get_meeple_pose_array", "joueur_id"),&Carcassonne::get_meeple_pose_array);
     ClassDB::bind_method(D_METHOD("get_points_espere_element", "element_id", "joueur_id"),&Carcassonne::get_points_espere_element);
-    ClassDB::bind_method(D_METHOD("get_premier_meeple_indice_libre", "joueur_id"),&Carcassonne::get_premier_meeple_indice_libre);
     ClassDB::bind_method(D_METHOD("get_joueur_score", "joueur_id"),&Carcassonne::get_joueur_score);
+    
+    /* Fin du jeu */
+    ClassDB::bind_method(D_METHOD("evaluation_points_meeple_final"),&Carcassonne::evaluation_points_meeple_final);
     ClassDB::bind_method(D_METHOD("fin_du_jeu"),&Carcassonne::fin_du_jeu);
+
+    /* Autres méthodes */
+    ClassDB::bind_method(D_METHOD("get_coord_id", "x", "y"),&Carcassonne::get_coord_id);
 }
 
 Carcassonne::Carcassonne() {}
