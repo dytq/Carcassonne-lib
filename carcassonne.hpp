@@ -1,20 +1,23 @@
 #ifndef CARCASSONNE_H
 #define CARCASSONNE_H
 
-#include "core/dictionary.h"
-#include "core/reference.h"
-#include "modules/carcassonne/src/Joueur.hpp"
 #include "src/Plateau.hpp"
 #include "src/BaseDeDonnees.hpp"
-#include "core/array.h"
-#include "core/class_db.h"
-#include "core/dictionary.h"
-#include "core/math/vector2.h"
-#include "modules/carcassonne/src/Joueur.hpp"
+#include "src/Humain.hpp"
+#include "src/Robot.hpp"
+#include "src/Joueur.hpp"
+
 #include <array>
 #include <cstddef>
 #include <utility>
 #include <vector>
+
+#include "core/dictionary.h"
+#include "core/reference.h"
+#include "core/array.h"
+#include "core/class_db.h"
+#include "core/dictionary.h"
+#include "core/math/vector2.h"
 
 class Carcassonne : public Reference {
     /* API GODOT */

@@ -22,6 +22,7 @@ void Robot::script_robot_minimax(Plateau * plateau, Tuile * tuile)
 void Robot::update_ia(const Plateau * plateau, const Tuile * tuile_pioche)
 {
     Logging::log(Logging::TRACE, "mise à jour de l'IA");
+    
     Plateau * plateau_tmp = new Plateau(*plateau); // clonnage du plateau
     Tuile * tuile_pioche_tmp = new Tuile(*tuile_pioche); // clonnage de la tuile
     
