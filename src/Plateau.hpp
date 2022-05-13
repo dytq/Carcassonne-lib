@@ -44,7 +44,8 @@ class Plateau
     public:
         // CONSTRUCTEUR
         Plateau();
-
+        Plateau(const Plateau & plateau); // clone plateau
+        
         // DESTRUCTEUR
         ~Plateau();
 

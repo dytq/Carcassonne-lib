@@ -16,6 +16,14 @@ Tuile::Tuile(int id, std::array<Bordure *, 4> bordure, std::vector<Element *> el
     this->element = element;
 }
 
+
+Tuile::Tuile(const Tuile & tuile)
+{
+    this->id = tuile.id; 
+    this->bordure = tuile.bordure;
+    this->element = tuile.element;
+}
+
 Tuile::~Tuile()
 {}
 

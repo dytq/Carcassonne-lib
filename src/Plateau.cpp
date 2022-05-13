@@ -7,6 +7,18 @@ Plateau::Plateau()
     Logging::log(Logging::TRACE, "Création du plateau");
 }
 
+Plateau::Plateau(const Plateau & plateau)
+{
+    Logging::log(Logging::TRACE, "Clonnage du plateau");
+    this->grille = plateau.grille; 
+    this->pioche = plateau.pioche;
+    this->liste_tuiles_emplacements_libres = plateau.liste_tuiles_emplacements_libres; 
+    this->element_libre = plateau.element_libre; 
+    this->mapJoueursPions = plateau.mapJoueursPions; 
+    this->tuiles_candidates = plateau.tuiles_candidates; 
+}
+
+
 Plateau::~Plateau()
 {}
 
@@ -258,7 +270,7 @@ void Plateau::desindexer_Meeple_dans_la_map(std::map<Joueur*, std::list<Meeple *
         for(auto const &meeple : itMap.second)
         {
             this->mapJoueursPions.at(joueur)->supprimer_meeple(meeple);
-            Logging::log(Logging::TRACE, "Desindexe meeple: %d du joueur %d",meeple, joueur->get_type_joueur() + 1);
+            //Logging::log(Logging::TRACE, "Desindexe meeple: %d du joueur %d",meeple, joueur->get_type_joueur() + 1);
         }
     }
 }
@@ -280,7 +292,7 @@ void Plateau::evaluer_meeple(int status_du_jeu)
 {
     for(auto const &itMap : this->mapJoueursPions)
     {
-        Logging::log(Logging::TRACE, "Evaluation pour des meeples du Joueur %d", itMap.first->get_couleur());
+        //Logging::log(Logging::TRACE, "Evaluation pour des meeples du Joueur %d", itMap.first->get_couleur());
         const std::array<Meeple *, 7> arrayMeeple = itMap.second->get_stack_meeple();
 
         for(auto const &itMeeple : arrayMeeple)
@@ -333,7 +345,7 @@ void Plateau::poser_meeple(Joueur * joueur, Element *elem, Meeple * meeple, int 
 {
     Logging::log(Logging::DEBUG, "Ajout meeple %d dans element", meeple);
     elem->ajouter_meeple(meeple);
-    Logging::log(Logging::DEBUG, "Ajout meeple %d dans pion pour le joueur %d", meeple, joueur->get_type_joueur());
+    // Logging::log(Logging::DEBUG, "Ajout meeple %d dans pion pour le joueur %d", meeple, joueur->get_type_joueur());
     Pion * pion = this->mapJoueursPions.at(joueur);
     pion->ajouter_meeple(meeple, indice);
 }
