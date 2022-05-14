@@ -76,7 +76,7 @@ int main() {
 
 	/* Initialisation des joueurs */
     vector<Joueur *> list_joueur;
-    list_joueur.push_back(new Humain());
+    list_joueur.push_back(new Robot(Robot::ALEAT));
     list_joueur.push_back(new Robot(Robot::ALEAT));
 
     for(Joueur * joueur : list_joueur)
@@ -142,5 +142,8 @@ int main() {
 
 	/* Compter les derniers points de fin de partie */
 	plateau->evaluer_meeple(STATUS_FINAL);
+
+    /* free data */
+    delete plateau;
 	return 0;
 }

@@ -35,3 +35,8 @@ Noeud * Meeple::get_noeud() {
 Joueur * Meeple::get_joueur() {
     return this->joueur;
 }
+
+Meeple::~Meeple() 
+{
+
+}

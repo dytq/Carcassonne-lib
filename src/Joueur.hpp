@@ -15,7 +15,7 @@ class Joueur
 
     public:
         // DESTRUCTEUR
-        ~Joueur();
+        virtual ~Joueur();
 
         // METHODES
         int get_score();

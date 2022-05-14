@@ -17,7 +17,12 @@ Pion::Pion()
 }
 
 Pion::~Pion()
-{}
+{
+    for(int i = 0; i < 7; i++)
+    {
+        delete this->stackMeeple[i];
+    }
+}
 
 /**
  * @title: Génere un meeple selon l'emplacement ou il se situe
@@ -162,7 +167,7 @@ int Pion::estimer_element_points(Joueur * joueur,  Element * element, int status
     Meeple *meeple = Pion::generate_meeple(joueur, element, etat_du_jeu, position_tuile);
     std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple;
     meeple->compter_points(status_du_jeu, &mapJoueurListeMeeple, &score);
-    delete [] meeple; // supprime le meeple temporaire
+    delete meeple; // supprime le meeple temporaire
     return score;
 }
 

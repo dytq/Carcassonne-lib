@@ -7,7 +7,16 @@
  * @title: Constructeur d'une bordure
  * */
 Bordure::~Bordure()
-{}
+{
+    for(int i = 0; i < 3; i++)
+    {
+        if(bordureFils[i] != nullptr)
+        {
+            // Logging::log(Logging::TRACE, "delete bordure fils %d", bordureFils[i]);
+            delete bordureFils[i];
+        }
+    }
+}
 
 /**
  * @title: Obtention de la bordure fils

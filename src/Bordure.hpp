@@ -17,7 +17,6 @@ class Bordure : public Noeud
 {
     private:
         // VARIABLES
-        Noeud::type_element type_noeud;
         std::array<Bordure *, 3> bordureFils;
 
     public:

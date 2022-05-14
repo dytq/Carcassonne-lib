@@ -32,19 +32,23 @@ void Carcassonne::init_jeu()
 }
 
 // Pioche une tuile
-void Carcassonne::piocher_tuile() {
+void Carcassonne::piocher_tuile() 
+{
     this->tuile_pioche = plateau->piocher_tuile_aleat();
 }
 
 // Récupere l'identifiant d'une tuile
-int Carcassonne::tuile_pioche_id() {
+int Carcassonne::tuile_pioche_id() 
+{
     return this->tuile_pioche->get_id() +1;
 }
 
 // Récupere l'identifiant d'une tuile d'une coordonées x y
-int Carcassonne::get_coord_id(int x, int y) {
+int Carcassonne::get_coord_id(int x, int y) 
+{
     Tuile * tuile = this->plateau->get_tuile_grille(x, y);
-    if(tuile != nullptr) {
+    if(tuile != nullptr) 
+    {
         return tuile->get_id();
     } 
     return -2;
@@ -53,13 +57,15 @@ int Carcassonne::get_coord_id(int x, int y) {
 // Calcul les emplacements libre d'une tuile
 void Carcassonne::calcul_emplacement_libre() 
 {
+    this->plateau->clear_emplacement_libres();
     this->plateau->calcul_emplacements_libres(this->tuile_pioche);
 }
 
 // Calcul les élements libre d'une tuile
 void Carcassonne::calcul_element_libre() 
 {
-    this->plateau->calculer_element_libre(this->tuile_pioche);
+    this->plateau->clear_element_libres();
+    this->plateau->calculer_element_libres(this->tuile_pioche);
 }
 
 // Récupère les coordonnées des emplacements libre
@@ -86,7 +92,8 @@ Dictionary Carcassonne::get_coord_emplacement_libre()
 }
 
 // Pose la tuile pioché sur la grille
-void Carcassonne::poser_tuile_pioche(int x, int y, int orientation) {
+void Carcassonne::poser_tuile_pioche(int x, int y, int orientation) 
+{
     this->emplacement_tuile_pioche.at(0) = x;
     this->emplacement_tuile_pioche.at(1) = y;
     this->emplacement_tuile_pioche.at(2) = orientation;
@@ -94,7 +101,8 @@ void Carcassonne::poser_tuile_pioche(int x, int y, int orientation) {
 }
 
 // Récupère les coordonnées des éléments de la tuile piochée
-Array Carcassonne::get_coord_element_tuile_pioche() {
+Array Carcassonne::get_coord_element_tuile_pioche() 
+{
     Array element_tuile;
     for(auto element : this->plateau->get_element_libre()) 
     {
@@ -105,12 +113,14 @@ Array Carcassonne::get_coord_element_tuile_pioche() {
 }
 
 // Evalue les points des meeples en cours de jeu
-void Carcassonne::evaluation_points_meeple() {
+void Carcassonne::evaluation_points_meeple() 
+{
     this->plateau->evaluer_meeple(STATUS_EN_COURS);
 }
 
 // Evalue les points des meeples en fin de jeu
-void Carcassonne::evaluation_points_meeple_final() {
+void Carcassonne::evaluation_points_meeple_final() 
+{
     this->plateau->evaluer_meeple(STATUS_FINAL);
 }
 

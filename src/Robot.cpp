@@ -41,11 +41,9 @@ void Robot::update_ia(const Plateau * plateau, const Tuile * tuile_pioche)
              indice_emplacement_libre = 0;
              si_poser_meeple = false;
              indice_element_libre = 0;
-    }
-    
-    // delete clone 
-    delete tuile_pioche_tmp;
-    delete plateau_tmp;
+    } 
+    // delete plateau_tmp;
+    // delete tuile_pioche_tmp;
 }
 
 int Robot::choix_de_emplacement_libre()

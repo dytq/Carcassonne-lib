@@ -72,9 +72,12 @@ class Plateau
         void ajouter_joueur(Joueur * joueur, Pion * pion); 
         void ajouter_tuile_pioche(Tuile * tuile); 
         
-        void calculer_element_libre(Tuile * tuile); 
+        void calculer_element_libres(Tuile * tuile); 
         void calcul_emplacements_libres(Tuile *tuile); 
         
+        void clear_element_libres();
+        void clear_emplacement_libres();
+
         void poser_tuile(Tuile *tuile, std::array<int, 3> emplacement); 
         void poser_meeple(Joueur *joueur, Element *element, Meeple * meeple, int indice); 
         void poser_meeple(Joueur *joueur, Element *element, std::pair<int, int> position);
