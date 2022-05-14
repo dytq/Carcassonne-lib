@@ -76,7 +76,7 @@ int main() {
 
 	/* Initialisation des joueurs */
     vector<Joueur *> list_joueur;
-    list_joueur.push_back(new Humain());
+    list_joueur.push_back(new Robot(Robot::ALEAT));
     list_joueur.push_back(new Robot(Robot::ALEAT));
 
     for(Joueur * joueur : list_joueur)
@@ -89,7 +89,6 @@ int main() {
     /* Boucle principale */
 	while (!plateau->pioche_est_vide()) {
         Joueur * joueur_courant = list_joueur[i%2];
-        i = i + 1;
 
 		/* Afficher le plateau */
 		afficher_plateau(plateau);
@@ -123,10 +122,10 @@ int main() {
         /* Placer un meeple sur la tuile pioché */
         if (plateau->stack_meeple_vide(joueur_courant)) // on regarde si le joueur_courant à bien assez de tuile
         {
-            cout << "Joueur" << i << "veut-il poser pions ?(oui/non)" << endl; // le joueur_courant n'est pas obligé de poser un meeple
+            cout << "Joueur" << i%2 << "veut-il poser pions ?(oui/non)" << endl; // le joueur_courant n'est pas obligé de poser un meeple
             if (joueur_courant->choix_si_poser_meeple()) 
             {
-                cout << "Choisir emplacement" << endl;
+                cout << "Choisir élement" << endl;
                 vector<Element *> list_element = tuile_pioche->getElements();
                 afficher_elements(list_element);
                 std::pair<int, int> coordonnee_tuile_pioche = { liste_tuiles_emplacements_libres[indice_emplacement_libre][0], liste_tuiles_emplacements_libres[indice_emplacement_libre][1] };
@@ -138,9 +137,13 @@ int main() {
 
 		/* Compter les points de tous les joueurs */
 		plateau->evaluer_meeple(STATUS_EN_COURS); 
-	}
+        i = i + 1; // joueur suivant
+    }
 
 	/* Compter les derniers points de fin de partie */
 	plateau->evaluer_meeple(STATUS_FINAL);
+
+    /* free data */
+    delete plateau;
 	return 0;
 }

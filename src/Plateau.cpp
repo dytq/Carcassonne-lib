@@ -10,7 +10,7 @@ Plateau::Plateau()
 Plateau::Plateau(const Plateau & plateau)
 {
     Logging::log(Logging::TRACE, "Clonnage du plateau");
-    this->grille = plateau.grille; 
+    this->grille = plateau.grille;
     this->pioche = plateau.pioche;
     this->liste_tuiles_emplacements_libres = plateau.liste_tuiles_emplacements_libres; 
     this->element_libre = plateau.element_libre; 
@@ -18,9 +18,26 @@ Plateau::Plateau(const Plateau & plateau)
     this->tuiles_candidates = plateau.tuiles_candidates; 
 }
 
-
 Plateau::~Plateau()
-{}
+{
+    for(auto mapjoueurpion : mapJoueursPions) 
+    {
+        Pion * pion = this->get_pion_joueur(mapjoueurpion.first); 
+        delete pion;
+        delete mapjoueurpion.first;
+    }
+
+    for(int i = 0; i < 144; i++)
+    {
+        for(int j = 0; j < 144; j++)
+        {
+            if(this->grille[i][j] != nullptr)
+            {
+                delete this->grille[i][j];
+            }
+        }
+    }
+}
 
 void Plateau::init_plateau()
 {
@@ -150,6 +167,10 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
         }   
         //Logging::log(Logging::DEBUG, "on change d'emplacement");
     }
+    if(liste_tuiles_emplacements_libres.size() == 0) 
+    {
+        Logging::log(Logging::DEBUG, "Aucun emplacement libre de trouvé");
+    }
 }
 
 /** 
@@ -172,12 +193,16 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
     }
     
     // supprime l'ancienne tuile candidate qu'on doit remplacer 
-    if(this->grille[emplacement.at(0)][emplacement.at(1)] != nullptr) {
+    if(this->grille[emplacement.at(0)][emplacement.at(1)] != nullptr) 
+    {
         Tuile *tuile_a_suppr = this->grille[emplacement.at(0)][emplacement.at(1)];
         Logging::log(Logging::TRACE, "supprime tuile tmp %d : <%d %d>", tuile_a_suppr, emplacement.at(0), emplacement.at(1));
         this->tuiles_candidates.erase(tuile_a_suppr);
+        delete tuile_a_suppr; 
         this->grille[emplacement.at(0)][emplacement.at(1)] = nullptr;
-    } else {
+    } 
+    else 
+    {
         Logging::log(Logging::DEBUG, "supprime pas tuile tmp null");
         Logging::log(Logging::DEBUG, "%d <%d,%d>", this->grille[emplacement.at(0)][emplacement.at(1)], emplacement.at(0), emplacement.at(1));
     }
@@ -205,8 +230,8 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
 
         if(tuile_voisine == nullptr)
         {
-            std::array<Bordure *, 4> bordure_tmp;
-            std::vector<Element *> element_tmp;
+            std::array<Bordure *, 4> bordure_tmp = {nullptr, nullptr, nullptr, nullptr};
+            std::vector<Element *> element_tmp = {nullptr};
             Tuile * tuile_candidate = new Tuile(-1, bordure_tmp, element_tmp);
             this->grille[tuile_coord_voisine.first][tuile_coord_voisine.second] = tuile_candidate;
             this->tuiles_candidates[tuile_candidate] = std::make_pair(tuile_coord_voisine.first,tuile_coord_voisine.second);
@@ -333,7 +358,7 @@ std::vector<std::array<int, 3>> Plateau::get_liste_tuiles_emplacements_libres()
 
 bool Plateau::stack_meeple_vide(Joueur * joueur)
 {
-    return this->mapJoueursPions.at(joueur)->si_pion_non_place();
+    return !this->mapJoueursPions.at(joueur)->si_pion_non_place();
 }
 
 /**
@@ -441,7 +466,7 @@ int Plateau::get_nbr_meeple(Joueur * joueur)
     return pion->get_nbr_meeple();
 }
 
-void Plateau::calculer_element_libre(Tuile * tuile) {
+void Plateau::calculer_element_libres(Tuile * tuile) {
     std::vector<Element *> list_elements = tuile->getElements();
     this->element_libre.clear();
 
@@ -474,4 +499,24 @@ bool Plateau::pioche_est_vide()
         return true;
     }
     return false;
+}
+
+/**
+ * @title: vider la table d'élément libres
+ * 
+ * @description: vide seulement la table sans détruitre les objets pointé
+ */ 
+void Plateau::clear_element_libres() 
+{
+    this->element_libre.clear();
+}
+
+/**
+ * @title: vider la table d'emplacement libres
+ * 
+ * @description: vide seulement la table sans détruitre les objets pointé
+ */ 
+void Plateau::clear_emplacement_libres() 
+{
+    this->liste_tuiles_emplacements_libres.clear();
 }

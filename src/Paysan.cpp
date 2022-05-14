@@ -14,6 +14,11 @@ Paysan::Paysan(Joueur * joueur, Noeud * noeud)
     Meeple::noeud = noeud;
 }
 
+Paysan::~Paysan()
+{
+
+}
+
 /**
  * @title: Algorithme qui permet de vérifié si une ville marqué est complète.
  * 

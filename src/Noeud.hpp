@@ -31,7 +31,7 @@ class Noeud
     public:
          // CONSTRUCTEURS
         // DESTRUCTEUR
-        ~Noeud();
+        virtual ~Noeud();
 
         // METHODES
         void set_lien(Noeud * noeud);   // ajoute un lien simple
