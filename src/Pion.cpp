@@ -82,7 +82,7 @@ void Pion::supprimer_meeple(Meeple * meeple) {
         if(this->stackMeeple[i] == meeple) 
         {
             this->stackMeeple[i] = nullptr;
-            delete [] meeple;
+            delete meeple;
             return;
         }
     }
@@ -132,7 +132,7 @@ int Pion::get_nbr_meeple()
             nbr_meeple++;
         }
     }
-    return nbr_meeple;
+    return 7 - nbr_meeple;
 }
 
 /**
