@@ -96,9 +96,9 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             elementTuile.push_back(element4);
 
             // Creation de la carte
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
-            
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);   
             id ++;
+            
             // AJOUT de la carte dans le pioche
             plateau->ajouter_tuile_pioche(tuile);
         

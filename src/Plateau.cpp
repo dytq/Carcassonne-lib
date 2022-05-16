@@ -295,7 +295,7 @@ void Plateau::desindexer_Meeple_dans_la_map(std::map<Joueur*, std::list<Meeple *
         for(auto const &meeple : itMap.second)
         {
             this->mapJoueursPions.at(joueur)->supprimer_meeple(meeple);
-            //Logging::log(Logging::TRACE, "Desindexe meeple: %d du joueur %d",meeple, joueur->get_type_joueur() + 1);
+            Logging::log(Logging::TRACE, "Desindexe meeple: %d",meeple);
         }
     }
 }
@@ -318,15 +318,16 @@ void Plateau::evaluer_meeple(int status_du_jeu)
     for(auto const &itMap : this->mapJoueursPions)
     {
         //Logging::log(Logging::TRACE, "Evaluation pour des meeples du Joueur %d", itMap.first->get_couleur());
-        const std::array<Meeple *, 7> arrayMeeple = itMap.second->get_stack_meeple();
-
-        for(auto const &itMeeple : arrayMeeple)
+        const std::array<Meeple *, 7> arrayMeeple_const = itMap.second->get_stack_meeple();
+        std::array<Meeple *, 7> arrayMeeple = arrayMeeple_const; // clonnage car il y a mise à jour implicite lors de la desindexation
+        
+        for(Meeple * itMeeple: arrayMeeple)
         {
             if(itMeeple != nullptr)
             {
                 int score = 0;
                 std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple; // Associe un joueur et une pile de pions
-                Logging::log(Logging::TRACE, "Comptage de points");
+                Logging::log(Logging::TRACE, "Comptage de points de %d", itMeeple);
                 bool est_complet = itMeeple->compter_points(status_du_jeu, & mapJoueurListeMeeple, &score);
                 Logging::log(Logging::TRACE, "Score obtenu : %d", score);
 
@@ -345,6 +346,7 @@ void Plateau::evaluer_meeple(int status_du_jeu)
                         }
                     }
                     this->desindexer_Meeple_dans_la_map(mapJoueurListeMeeple);
+                    arrayMeeple = itMap.second->get_stack_meeple(); // mise à jour de l'array non mise à jour car const
                 }
             }
         }
