@@ -67,8 +67,6 @@ bool Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Mee
                     {
                         mapJoueurListeMeeple->at(joueur).push_back(meeple);
                     }
-                    
-                    break;
                 }
             }
             

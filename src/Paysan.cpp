@@ -117,7 +117,6 @@ bool Paysan::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meep
                     {
                         mapJoueurListeMeeple->at(joueur).push_back(meeple);
                     }
-                    break;
                 }
             }
         } 
