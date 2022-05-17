@@ -1,4 +1,12 @@
 #include "carcassonne.hpp"
+#include "core/array.h"
+#include "core/class_db.h"
+#include "core/dictionary.h"
+#include "modules/carcassonne/src/Humain.hpp"
+#include "modules/carcassonne/src/Logging.hpp"
+#include "modules/carcassonne/src/Robot.hpp"
+#include <array>
+#include <cstddef>
 
 Joueur * Carcassonne::get_joueur(int joueur_id) 
 {
@@ -13,16 +21,35 @@ Joueur * Carcassonne::get_joueur(int joueur_id)
     return nullptr;
 }
 
+Joueur * generer_joueur(String type_joueur, String difficult_joueur)
+{
+    if(type_joueur == "HUMAIN") 
+    {
+        return new Humain();
+    }
+    if(type_joueur == "ROBOT")
+    {
+        if(difficult_joueur == "FACILE")
+        {
+            return new Robot(Robot::ALEAT);
+        }
+        if(difficult_joueur == "DIFFICILE")
+        {
+            return new Robot(Robot::MINIMAX);
+        }
+    }
+    return new Humain(); // retourne humain par défaut
+}
 /* API de Carcassonne */
 
 // Initialise le jeu (génération d'un plateau)
-void Carcassonne::init_jeu() 
+void Carcassonne::init_jeu(Dictionary Game_Data) 
 {
     this->plateau = BaseDeDonnees::generer_plateau_vanilla();
     plateau->init_plateau();
     
-    Joueur * joueur1 = new Humain();
-    Joueur * joueur2 = new Humain();
+    Joueur * joueur1 = generer_joueur(Game_Data["type_joueur_1"], Game_Data["difficult_joueur_1"]);
+    Joueur * joueur2 = generer_joueur(Game_Data["type_joueur_2"], Game_Data["difficult_joueur_2"]);
     
     plateau->ajouter_joueur(joueur1, new Pion());
     plateau->ajouter_joueur(joueur2, new Pion());
@@ -191,6 +218,58 @@ bool Carcassonne::fin_du_jeu()
     return this->plateau->pioche_est_vide();
 }
 
+Array Carcassonne::get_joueur_emplacement_choisi(int joueur_id)
+{
+    Array position;
+    Joueur * joueur = get_joueur(joueur_id);
+    int indice_emplacement = joueur->choix_de_emplacement_libre();
+    const std::array<int, 3> coordonnees_position =  plateau->get_liste_tuiles_emplacements_libres()[indice_emplacement];
+    for(int i = 0; i < 3; i++)
+    {
+        position.append(coordonnees_position[i]);
+    }
+    return position;
+}
+
+int Carcassonne::get_joueur_element_choisi(int joueur_id)
+{
+    Joueur * joueur = get_joueur(joueur_id);
+    return joueur->choix_de_element_libre();
+}
+
+bool Carcassonne::get_joueur_si_placer_meeple(int joueur_id)
+{
+    Joueur * joueur = get_joueur(joueur_id);
+    return joueur->choix_si_poser_meeple();
+}
+
+void Carcassonne::ia_joue(int joueur_id)
+{
+    Joueur * joueur = get_joueur(joueur_id);
+    Robot * robot = dynamic_cast<Robot *>(joueur);
+    if(robot == nullptr)
+    {
+        // n'est pas un robot
+        return;
+    }
+    
+    robot->update_ia(this->plateau, this->tuile_pioche);
+    
+    int indice_emplacement_libre = robot->choix_de_emplacement_libre();
+    std::vector<std::array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
+    plateau->poser_tuile(this->tuile_pioche, liste_tuiles_emplacements_libres[indice_emplacement_libre]);    
+    
+    if(robot->choix_si_poser_meeple())
+    {
+        if(this->plateau->get_nbr_meeple(robot) > 0)
+        {
+            std::vector<Element *> list_element = tuile_pioche->getElements();
+            std::pair<int, int> coordonnee_tuile_pioche = { liste_tuiles_emplacements_libres[indice_emplacement_libre][0], liste_tuiles_emplacements_libres[indice_emplacement_libre][1] };
+            int indice_element = robot->choix_de_element_libre();
+            plateau->poser_meeple(robot, list_element[indice_element], coordonnee_tuile_pioche); // Permet au joueur_courant de placer un pion sur la tuile
+        }
+    }
+}
 // Binding method pour GODOT
 void Carcassonne::_bind_methods() 
 {
@@ -214,7 +293,13 @@ void Carcassonne::_bind_methods()
     ClassDB::bind_method(D_METHOD("get_premier_meeple_indice_libre", "joueur_id"),&Carcassonne::get_premier_meeple_indice_libre);
     ClassDB::bind_method(D_METHOD("get_nbr_pion_joueur", "joueur_id"),&Carcassonne::get_nbr_pion_joueur);
     
-    // 4. Méthode pour compter/évaluer/estimer les points
+    // 4. Méthodes pour faire jouer l'IA
+    ClassDB::bind_method(D_METHOD("ia_joue", "joueur_id"),&Carcassonne::ia_joue);
+    ClassDB::bind_method(D_METHOD("get_joueur_emplacement_choisi", "joueur_id"),&Carcassonne::get_joueur_emplacement_choisi);
+    ClassDB::bind_method(D_METHOD("get_joueur_element_choisi", "joueur_id"),&Carcassonne::get_joueur_element_choisi);
+    ClassDB::bind_method(D_METHOD("get_joueur_si_placer_meeple", "joueur_id"),&Carcassonne::get_joueur_si_placer_meeple);
+
+    // 5. Méthode pour compter/évaluer/estimer les points
     ClassDB::bind_method(D_METHOD("evaluation_points_meeple"),&Carcassonne::evaluation_points_meeple);
     ClassDB::bind_method(D_METHOD("calcul_element_libre"),&Carcassonne::calcul_element_libre);
     ClassDB::bind_method(D_METHOD("get_meeple_pose_array", "joueur_id"),&Carcassonne::get_meeple_pose_array);

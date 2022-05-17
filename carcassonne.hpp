@@ -38,7 +38,7 @@ protected:
 
 public:
     Carcassonne();
-    void init_jeu();
+    void init_jeu(Dictionary Game_Data);
     void piocher_tuile();
     int tuile_pioche_id();
     int get_coord_id(int x, int y);
@@ -55,6 +55,10 @@ public:
     Array get_meeple_pose_array(int joueur_id);
     int get_premier_meeple_indice_libre(int joueur_id);
     int get_joueur_score(int joueur_id);
+    void ia_joue(int joueur_id);
+    bool get_joueur_si_placer_meeple(int joueur_id);
+    int get_joueur_element_choisi(int joueur_id);
+    Array get_joueur_emplacement_choisi(int joueur_id);
     bool fin_du_jeu();
 };
 
