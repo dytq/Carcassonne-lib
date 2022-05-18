@@ -1,7 +1,6 @@
 // LIBRAIRIES
 #include "Plateau.hpp"
 
-
 // FONCTIONS
 Plateau::Plateau()
 {
@@ -20,17 +19,21 @@ Plateau::Plateau(const Plateau & plateau)
             Tuile * tuile_tmp = plateau.grille[i][j];
             if(tuile_tmp != nullptr)
             {
-                Tuile * tuile = new Tuile(*tuile_tmp);
-                // TODO clone élements 
+                Tuile * tuile = new Tuile(*tuile_tmp); // nouvelle adresse de tuile
                 this->grille[i][j] = tuile;
             }
         }
     }
 
-    // TODO clone la pioche
-    this->pioche = plateau.pioche;
-    // this->liste_tuiles_emplacements_libres = plateau.liste_tuiles_emplacements_libres;
-    // this->element_libre = plateau.element_libre;
+    int i = 0;
+    std::vector<Tuile *> pioche_clone;
+    for(Tuile * tuile : plateau.pioche)
+    {
+        pioche_clone.push_back(new Tuile(*tuile));
+        i++;
+    }
+    this->pioche = pioche_clone;
+
     // TODO clone mapJoueursPions
     this->mapJoueursPions = plateau.mapJoueursPions;
     // this->tuiles_candidates = plateau.tuiles_candidates;
