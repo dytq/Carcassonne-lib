@@ -1,15 +1,22 @@
-#include "Robot.hpp"
+#include "Robot.hpp"    
+#include <cstddef>
+#include <cstdlib>
 
 Robot::Robot(Type_robot type_robot)
 {
     this->type_robot = type_robot;
     Joueur::score = 0;
+    srand(time(0)); // robot aléatoire
 }
 
 void Robot::script_robot_aleat(Plateau * plateau, Tuile * tuile)
 {
-    // TODO
-    this->indice_emplacement_libre = 0;
+    plateau->calcul_emplacements_libres(tuile);
+    
+    int size_liste = plateau->get_liste_tuiles_emplacements_libres().size();
+    this->indice_emplacement_libre = rand() % size_liste;
+    //Logging::log(Logging::TRACE, "robot a choisi: %d / %d", this->indice_emplacement_libre, plateau->get_liste_tuiles_emplacements_libres().size());
+    
     this->si_poser_meeple = false;
     this->indice_element_libre = 0;
 }
