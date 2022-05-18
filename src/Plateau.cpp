@@ -1,25 +1,44 @@
 // LIBRAIRIES
 #include "Plateau.hpp"
 
+
 // FONCTIONS
 Plateau::Plateau()
 {
     Logging::log(Logging::TRACE, "Création du plateau");
 }
 
+// créer une nouvelle image du plateau
 Plateau::Plateau(const Plateau & plateau)
 {
-    Logging::log(Logging::TRACE, "Clonnage du plateau");
-    this->grille = plateau.grille;
+    Logging::log(Logging::TRACE, "clonnage du plateau");
+    // clonnage de la grille
+    for(int i = 0; i < 144; i++)
+    {
+        for(int j = 0; j < 144; j++)
+        {
+            Tuile * tuile_tmp = plateau.grille[i][j];
+            if(tuile_tmp != nullptr)
+            {
+                Tuile * tuile = new Tuile(*tuile_tmp);
+                // TODO clone élements 
+                this->grille[i][j] = tuile;
+            }
+        }
+    }
+
+    // TODO clone la pioche
     this->pioche = plateau.pioche;
-    this->liste_tuiles_emplacements_libres = plateau.liste_tuiles_emplacements_libres; 
-    this->element_libre = plateau.element_libre; 
-    this->mapJoueursPions = plateau.mapJoueursPions; 
-    this->tuiles_candidates = plateau.tuiles_candidates; 
+    // this->liste_tuiles_emplacements_libres = plateau.liste_tuiles_emplacements_libres;
+    // this->element_libre = plateau.element_libre;
+    // TODO clone mapJoueursPions
+    this->mapJoueursPions = plateau.mapJoueursPions;
+    // this->tuiles_candidates = plateau.tuiles_candidates;
 }
 
 Plateau::~Plateau()
 {
+    /*
     for(auto mapjoueurpion : mapJoueursPions) 
     {
         Pion * pion = this->get_pion_joueur(mapjoueurpion.first); 
@@ -37,6 +56,7 @@ Plateau::~Plateau()
             }
         }
     }
+    */
 }
 
 void Plateau::init_plateau()

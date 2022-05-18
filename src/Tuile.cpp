@@ -1,5 +1,6 @@
 // LIBRAIRIES
 #include "Tuile.hpp"
+#include <array>
 
 // FONCTIONS
 /**
@@ -20,8 +21,30 @@ Tuile::Tuile(int id, std::array<Bordure *, 4> bordure, std::vector<Element *> el
 Tuile::Tuile(const Tuile & tuile)
 {
     this->id = tuile.id; 
-    this->bordure = tuile.bordure;
+    
+    std::array<Bordure *, 4> bordure_tmp;
+    bordure_tmp = Tuile::clone_bordure(tuile.bordure);
+    
+    this->bordure = bordure_tmp;
+    
+    // TODO clone element
     this->element = tuile.element;
+}
+
+std::array<Bordure *, 4> Tuile::clone_bordure(std::array<Bordure *, 4> bordure)
+{
+    std::array<Bordure *, 4> bordure_tmp;
+
+    for(int k = 0; k < 4; k++)
+    {
+        Bordure * bordure_tuile_tmp =  bordure[k];
+        if(bordure_tuile_tmp != nullptr)
+        {
+            bordure_tmp[k] = new Bordure(bordure_tuile_tmp);  
+        }
+    }
+
+    return bordure_tmp;
 }
 
 Tuile::~Tuile()

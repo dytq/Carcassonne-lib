@@ -88,7 +88,7 @@ class Plateau
                 
         Tuile *piocher_tuile(int indice_pioche); 
         Tuile *piocher_tuile_aleat(); 
-        
+
         bool pioche_est_vide();
 };
 

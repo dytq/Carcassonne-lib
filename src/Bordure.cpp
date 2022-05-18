@@ -3,6 +3,31 @@
 
 // FONCTIONS
 
+Bordure::Bordure(Bordure * bordure)
+{
+    for(int l = 0; l < 3; l++)
+    {
+        Bordure * bordure_fils_tmp = this->get_bordure_fils(l);
+        if(bordure->get_bordure_fils(l)!= nullptr)
+        {
+            bordure_fils_tmp = new Bordure();
+            bordure_fils_tmp->set_type_element(bordure->get_bordure_fils(l)->get_type_element());
+            for(int m = 0; m < bordure->get_bordure_fils(l)->get_nbr_voisins(); m++)
+            {
+                if(bordure->get_bordure_fils(l)->get_voisin(m) == nullptr)
+                {
+                    bordure_fils_tmp->set_lien(nullptr);
+                }
+                else 
+                {
+                    bordure_fils_tmp->set_voisin(bordure->get_bordure_fils(l)->get_voisin(m));
+                }
+            }
+            this->set_bordure_fils(l,bordure_fils_tmp);
+        }
+    }
+}
+
 /**
  * @title: Constructeur d'une bordure
  * */
@@ -60,7 +85,8 @@ void Bordure::set_type_element(Noeud::type_element type_noeud)
  * */
 void Bordure::set_bordure_fils(int indice, Noeud::type_element element)
 {
-    if(indice >= 0 && indice <= 3) {
+    if(indice >= 0 && indice <= 3) 
+    {
         this->bordureFils.at(indice) = new Bordure();
         this->bordureFils.at(indice)->set_type_element(element);
     } 
@@ -68,4 +94,9 @@ void Bordure::set_bordure_fils(int indice, Noeud::type_element element)
     {
         Logging::log(Logging::DEBUG, "Impossible de set une bordure fils: l'indice n'est pas comprise entre 0 et 3");
     }
+}
+
+void Bordure::set_bordure_fils(int indice, Bordure * bordure_fils)
+{
+    this->bordureFils[indice] = bordure_fils;
 }

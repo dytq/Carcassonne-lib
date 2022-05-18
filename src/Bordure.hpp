@@ -22,13 +22,14 @@ class Bordure : public Noeud
     public:
         // CONSTRUCTEURS
         Bordure() {};
-
+        Bordure(Bordure * bordure);
         // DESTRUCTEUR
         ~Bordure();
 
         // METHODES
         Bordure * get_bordure_fils(int indice);
         void set_bordure_fils(int indice, Noeud::type_element element);
+        void set_bordure_fils(int indice, Bordure * bordure_fils);
         int get_points(int status_du_jeu);
         void set_type_element(Noeud::type_element type_noeud);
 };
