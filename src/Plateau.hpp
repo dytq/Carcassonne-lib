@@ -37,6 +37,8 @@ class Plateau
         std::map<Joueur *, Pion *> mapJoueursPions; // associe un sac de pions à un Joueur
         std::map<Tuile *, std::pair<int, int>> tuiles_candidates; // liste des tuiles candidates
 
+        std::map<Noeud *, std::vector<Noeud*>> noeuds_plateau; // liste de tous les noeuds du plateau
+        
         // METHODES
         std::list<Joueur *> rechercher_Joueur_plus_de_Pions(std::map<Joueur *, std::list<Meeple *>>mapJoueurListeMeeple); // recherche concurencielle
         void desindexer_Meeple_dans_la_map(std::map<Joueur *, std::list<Meeple *>> mapJoueurListeMeeple); // met à jour les sacs de pions
@@ -88,6 +90,8 @@ class Plateau
                 
         Tuile *piocher_tuile(int indice_pioche); 
         Tuile *piocher_tuile_aleat(); 
+
+        void ajouter_noeuds(Noeud * noeuds);
 
         bool pioche_est_vide();
 };

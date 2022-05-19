@@ -22,7 +22,7 @@ class Noeud
         static enum type_element{VOID, ROUTE, VILLE, VILLE_BLASON, ABBAYE, PLAINE} element_enum;
 
     protected:
-        std::vector<Noeud *> noeuds_voisins;
+        std::vector<Noeud *> * noeuds_voisins;
         type_element element;
         int point_en_cours;
         int point_final;
@@ -37,6 +37,10 @@ class Noeud
         void set_lien(Noeud * noeud);   // ajoute un lien simple
         void set_voisin(Noeud * noeud); // ajoute un lien voisin
         Noeud * get_voisin(int index);  // retourne le voisin front
+        
+        std::vector<Noeud *> * get_noeud_voisins();
+        void set_noeud_voisins(std::vector<Noeud *> *);
+
         virtual int get_points(int status_du_jeu);
         virtual void supprimer_meeple();
         void remove_tuile_voisin(Noeud * noeud); // supprime en fonction de l'addresse du noeuds donné en param
@@ -46,6 +50,7 @@ class Noeud
         Noeud::type_element get_type_element();
         void set_type_element(Noeud::type_element type);
         Noeud * noeud_fils(Noeud * noeud_pere, int indexe);
+
 };
 
 #endif
