@@ -1,6 +1,12 @@
 // LIBRAIRIES
 #include "Element.hpp"
 
+Element::Element(Element * element)
+{
+    
+}
+
+
 // FONCTIONS
 /**
  * @title: Constructeur de l'élément. 

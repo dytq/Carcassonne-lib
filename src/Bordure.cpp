@@ -12,18 +12,6 @@ Bordure::Bordure(Bordure * bordure)
         {
             bordure_fils_tmp = new Bordure();
             bordure_fils_tmp->set_type_element(bordure->get_bordure_fils(l)->get_type_element());
-            for(int m = 0; m < bordure->get_bordure_fils(l)->get_nbr_voisins(); m++)
-            {
-                if(bordure->get_bordure_fils(l)->get_voisin(m) == nullptr)
-                {
-                    bordure_fils_tmp->set_lien(nullptr);
-                }
-                else 
-                {
-                    bordure_fils_tmp->set_voisin(bordure->get_bordure_fils(l)->get_voisin(m));
-                }
-            }
-            this->set_bordure_fils(l,bordure_fils_tmp);
         }
     }
 }
@@ -99,4 +87,14 @@ void Bordure::set_bordure_fils(int indice, Noeud::type_element element)
 void Bordure::set_bordure_fils(int indice, Bordure * bordure_fils)
 {
     this->bordureFils[indice] = bordure_fils;
+}
+
+// TODO : const value
+std::array<Bordure *, 3> Bordure::get_BordureFils()
+{
+    return this->bordureFils;
+}
+void Bordure::set_BordureFils(std::array<Bordure *, 3> BordureFils)
+{
+    this->bordureFils = BordureFils;
 }

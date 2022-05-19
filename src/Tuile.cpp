@@ -1,6 +1,5 @@
 // LIBRAIRIES
 #include "Tuile.hpp"
-#include <array>
 
 // FONCTIONS
 /**
@@ -20,35 +19,89 @@ Tuile::Tuile(int id, std::array<Bordure *, 4> bordure, std::vector<Element *> el
 
 Tuile::Tuile(const Tuile & tuile)
 {
-    this->id = tuile.id; 
-    
-    std::array<Bordure *, 4> bordure_tmp;
-    bordure_tmp = Tuile::clone_bordure(tuile.bordure);
-    
-    this->bordure = bordure_tmp;
-    
-    // TODO clone element
-    this->element = tuile.element;
-}
+    Logging::log(Logging::DEBUG, "clonnage de la tuile");
+    // this->id = tuile.id; 
 
-std::array<Bordure *, 4> Tuile::clone_bordure(std::array<Bordure *, 4> bordure)
-{
-    std::array<Bordure *, 4> bordure_tmp;
+    /*
+    std::array<Bordure *,4> tuile_bordures;
+    std::array<Bordure *,3> tuile_bordures_fils;
+    std::vector<Noeud *> noeuds_voisins;
+    */
 
-    for(int k = 0; k < 4; k++)
+    /*
+    std::array<Bordure *,4> tuile_bordures;
+
+    for(int i = 0; i < 4; i++)
     {
-        Bordure * bordure_tuile_tmp =  bordure[k];
-        if(bordure_tuile_tmp != nullptr)
+        std::array<Bordure *,3> tuile_bordures_fils;
+
+        if(tuile.bordure[i] != nullptr)
         {
-            bordure_tmp[k] = new Bordure(bordure_tuile_tmp);  
+            for(int j = 0; j < 3; j++)
+            {
+                if(tuile.bordure[i]->get_bordure_fils(j) != nullptr)
+                {
+                    std::vector<Noeud *> noeuds_voisins;
+                    
+                    for(int k = 0; k < tuile.bordure[i]->get_bordure_fils(j)->get_nbr_voisins(); k++)
+                    {
+                        noeuds_voisins.push_back(tuile.bordure[i]->get_bordure_fils(j)->get_voisin(k));
+                    }
+
+                    bordure_fils->set_noeud_voisins(noeuds_voisins);
+
+                    tuile_bordures_fils[j] = bordure_fils;
+                }
+                else
+                {
+                    tuile_bordures_fils[j] = nullptr;
+                }
+            }
+
+            tuile_bordures[i]->set_BordureFils(tuile_bordures_fils);
         }
+            
     }
 
-    return bordure_tmp;
+    /*
+    for(int i = 0; i < 4; i++)
+    {
+        Bordure * bordure_clone = tuile_clone.bordure[i];
+
+        if(bordure_clone != nullptr)
+        {
+            std::array<Bordure *,3> tuile_bordure_fils;
+            
+            for(int j = 0; j < 3; j++)
+            {
+                Bordure * bordure_fils = tuile.bordure[i]->get_BordureFils()[j];
+
+                tuile_bordure_fils[j] = bordure_fils;
+                
+                std::vector<Noeud *> noeuds_voisins;
+                
+                for(int k = 0; k < bordure_fils->get_nbr_voisins(); k++)
+                {
+                    noeuds_voisins.push_back(bordure_fils->get_voisin(k));
+                }
+
+                bordure_clone->get_bordure_fils(j)->set_noeud_voisins(noeuds_voisins);
+            }
+            bordure_clone->set_BordureFils(tuile_bordure_fils);
+        }
+        
+        tuile_bordure[i] = bordure_clone;
+    }
+    */
+
+    //this->bordure = tuile_bordures;
+
+    // this->element = tuile.element;
 }
 
 Tuile::~Tuile()
 {
+    /*
     for(Element * element : this->element)
     {
         delete element;
@@ -61,6 +114,7 @@ Tuile::~Tuile()
             delete this->bordure[i];
         }
     }
+    */
 }
 
 /**

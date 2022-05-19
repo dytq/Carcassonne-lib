@@ -32,6 +32,8 @@ class Bordure : public Noeud
         void set_bordure_fils(int indice, Bordure * bordure_fils);
         int get_points(int status_du_jeu);
         void set_type_element(Noeud::type_element type_noeud);
+        std::array<Bordure *, 3> get_BordureFils();
+        void set_BordureFils(std::array<Bordure *, 3>);
 };
 
 #endif

@@ -7,7 +7,6 @@
 #include "Meeple.hpp"
 #include "Joueur.hpp"
 #include "Constantes.hpp"
-#include <utility>
 
 /**
  * @title: Element est une case dans laquelle on peut poser un meeple
@@ -22,6 +21,7 @@ class Element : public Noeud
     public:
         // CONSTRUCTEURS
         Element(Noeud::type_element type_noeud, std::pair<float,float> coordonnees);
+        Element(Element * element);
 
         // DESTRUCTEUR
         ~Element();
