@@ -4,6 +4,7 @@
 
 // LIBRAIRIES
 #include <vector>
+#include <map>
 #include <algorithm>
 
 #include "Logging.hpp"
@@ -21,8 +22,10 @@ class Noeud
         // VARIABLES
         static enum type_element{VOID, ROUTE, VILLE, VILLE_BLASON, ABBAYE, PLAINE} element_enum;
 
-    protected:
-        std::vector<Noeud *> * noeuds_voisins;
+    private:
+        std::map<Noeud*, std::vector<Noeud *>> * noeuds_plateau;  
+    
+    protected:        
         type_element element;
         int point_en_cours;
         int point_final;
@@ -38,8 +41,8 @@ class Noeud
         void set_voisin(Noeud * noeud); // ajoute un lien voisin
         Noeud * get_voisin(int index);  // retourne le voisin front
         
-        std::vector<Noeud *> * get_noeud_voisins();
-        void set_noeud_voisins(std::vector<Noeud *> *);
+        // std::map<Noeud*, std::vector<Noeud *>> * get_noeud_plateau();
+        void set_noeud_plateau(std::map<Noeud*, std::vector<Noeud *>> *);
 
         virtual int get_points(int status_du_jeu);
         virtual void supprimer_meeple();
@@ -48,9 +51,16 @@ class Noeud
         bool has_nullptr();
         int get_nbr_voisins();
         Noeud::type_element get_type_element();
+        std::map<Noeud*, std::vector<Noeud *>> * get_noeud_plateau();
         void set_type_element(Noeud::type_element type);
         Noeud * noeud_fils(Noeud * noeud_pere, int indexe);
-
+        /*
+        void test(Plateau * p1)
+        {
+            p1->init_plateau();
+        };
+        */
+        std::vector<Noeud *> * get_noeud_voisins();
 };
 
 #endif

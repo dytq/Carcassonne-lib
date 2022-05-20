@@ -25,7 +25,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -50,7 +50,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                    Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             
@@ -70,7 +70,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }
 
             // init les voisins
@@ -128,8 +128,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -153,7 +153,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -172,7 +172,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }
             // init les voisins
 
@@ -228,8 +228,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -253,7 +253,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -272,7 +272,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }
 
             // init les voisins
@@ -330,8 +330,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -355,7 +355,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                    Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -370,7 +370,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }
             // init les voisins
 
@@ -420,8 +420,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -445,7 +445,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -462,7 +462,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element, plateau);
             }
             // init les voisins
             // element:
@@ -513,8 +513,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -539,7 +539,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -555,7 +555,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element, plateau);
             }
 
             // init les voisins
@@ -607,8 +607,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -632,7 +632,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -648,7 +648,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
               // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }          
             // init les voisins
             // element:
@@ -702,8 +702,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -727,7 +727,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -744,7 +744,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }
 
             // init les voisins
@@ -799,8 +799,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -824,7 +824,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -838,7 +838,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
                         // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }
             // init les voisins
             // element:
@@ -887,8 +887,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -912,7 +912,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -926,7 +926,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
                         // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }
             // init les voisins
             // element:
@@ -975,8 +975,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -1000,7 +1000,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -1018,7 +1018,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
                         // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }
             // init les voisins
             // element:
@@ -1073,8 +1073,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -1098,7 +1098,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -1116,7 +1116,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
                         // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }
             // init les voisins
             // element:
@@ -1169,8 +1169,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -1194,7 +1194,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -1210,7 +1210,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
                         // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }
             // init les voisins
             // element:
@@ -1260,8 +1260,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -1285,7 +1285,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -1301,7 +1301,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }            
             // init les voisins
             // element:
@@ -1352,8 +1352,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -1377,7 +1377,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -1391,7 +1391,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }
             // init les voisins
             // element:
@@ -1438,8 +1438,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -1463,7 +1463,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -1477,7 +1477,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }            
             // init les voisins
             // element:
@@ -1523,8 +1523,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -1548,7 +1548,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -1560,7 +1560,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }            
             // init les voisins
             // element:
@@ -1607,8 +1607,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -1632,7 +1632,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -1650,7 +1650,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }            
             // init les voisins
             // element:
@@ -1703,8 +1703,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -1728,7 +1728,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -1746,7 +1746,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }            
             // init les voisins
             // element:
@@ -1800,8 +1800,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -1825,7 +1825,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -1839,7 +1839,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }            
             // init les voisins
             // element:
@@ -1887,8 +1887,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -1912,7 +1912,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -1928,7 +1928,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }            
             // init les voisins
             // element:
@@ -1978,8 +1978,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -2003,7 +2003,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -2027,7 +2027,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }            
             // init les voisins
             // element:
@@ -2087,8 +2087,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -2112,7 +2112,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -2134,7 +2134,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }           
             // init les voisins
             // element:
@@ -2192,8 +2192,8 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
-                plateau->ajouter_noeuds(bordure[i]);
-                plateau->ajouter_noeuds(bordure.at(i));
+                Plateau::ajouter_noeuds(bordure[i], plateau);
+                Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
             // init les bordures
@@ -2217,7 +2217,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             {
                 for(int j = 0; j < 3; j++)
                 {
-                        plateau->ajouter_noeuds(bordure.at(i)->get_bordure_fils(j));
+                        Plateau::ajouter_noeuds(bordure.at(i)->get_bordure_fils(j),plateau);
                 }
             }
             // init les elements
@@ -2243,7 +2243,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             // noeuds element dans plateau
             for(Element * element : elementTuile)
             {
-                plateau->ajouter_noeuds(element);
+                Plateau::ajouter_noeuds(element,plateau);
             }            
             // init les voisins
             // element:

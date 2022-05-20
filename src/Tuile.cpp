@@ -20,7 +20,7 @@ Tuile::Tuile(int id, std::array<Bordure *, 4> bordure, std::vector<Element *> el
 Tuile::Tuile(const Tuile & tuile)
 {
     Logging::log(Logging::DEBUG, "clonnage de la tuile");
-    // this->id = tuile.id; 
+    this->id = tuile.id; 
 
     /*
     std::array<Bordure *,4> tuile_bordures;
@@ -94,9 +94,9 @@ Tuile::Tuile(const Tuile & tuile)
     }
     */
 
-    //this->bordure = tuile_bordures;
+    this->bordure = tuile.bordure;
 
-    // this->element = tuile.element;
+    this->element = tuile.element;
 }
 
 Tuile::~Tuile()

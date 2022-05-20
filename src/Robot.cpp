@@ -49,12 +49,13 @@ void Robot::script_robot_minimax(Plateau * plateau, Tuile * tuile)
     // TODO
 }
 
-void Robot::update_ia(const Plateau * plateau, const Tuile * tuile_pioche)
+void Robot::update_ia(Plateau plateau, const Tuile * tuile_pioche)
 {
+    /*
     Logging::log(Logging::TRACE, "mise à jour de l'IA");    
     
-    Plateau * plateau_tmp = new Plateau(*plateau); // clonnage du plateau
-    Tuile * tuile_pioche_tmp = new Tuile(*tuile_pioche); // clonnage de la tuile
+    //Plateau * plateau_tmp = new Plateau(*plateau); // clonnage du plateau
+    //Tuile * tuile_pioche_tmp = new Tuile(*tuile_pioche); // clonnage de la tuile
     
     if(tuile_pioche_tmp == nullptr)
     {
@@ -80,6 +81,7 @@ void Robot::update_ia(const Plateau * plateau, const Tuile * tuile_pioche)
     } 
     delete plateau_tmp;
     // delete tuile_pioche_tmp;
+    */
 }
 
 int Robot::choix_de_emplacement_libre()

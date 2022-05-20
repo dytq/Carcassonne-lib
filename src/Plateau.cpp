@@ -1,6 +1,11 @@
 // LIBRAIRIES
 #include "Plateau.hpp"
-#include <vector>
+
+/* Initialise variable statique d'une instance Plateau */
+int Plateau::current_index_plateau = 0;
+std::vector<Noeud *> Plateau::list_noeuds;
+std::vector<Plateau *> Plateau::list_plateau;
+Plateau * Plateau::current_plateau = nullptr;
 
 // FONCTIONS
 Plateau::Plateau()
@@ -11,9 +16,9 @@ Plateau::Plateau()
 // créer une nouvelle image du plateau
 Plateau::Plateau(const Plateau & plateau)
 {
-    Logging::log(Logging::TRACE, "clonnage du plateau");
-    // clonnage de la grille
-    
+    Logging::log(Logging::TRACE, "clonnage du plateau %d", &plateau);
+    // clonnage de la grille 
+    /*
     for(int i = 0; i < 144; i++)
     {
         for(int j = 0; j < 144; j++)
@@ -30,8 +35,10 @@ Plateau::Plateau(const Plateau & plateau)
             }
         }
     }
-    
-
+    this->grille = plateau.grille;
+    */
+    this->grille = plateau.grille;
+    //this->noeuds_plateau.clear();
     /*
     int i = 0;
     std::vector<Tuile *> pioche_clone;
@@ -40,16 +47,36 @@ Plateau::Plateau(const Plateau & plateau)
         pioche_clone.push_back(new Tuile(*tuile));
         i++;
     }
-    this->pioche = pioche_clone;
+        
+    
+    //std::map<Noeud*, std::vector<Noeud *>> noeudlist_voisin;
+    //std::map<Noeud*, std::vector<Noeud *>>::iterator it;
+    /*
+    std::vector<Noeud *> keys;
+    for(auto it = plateau.noeuds_plateau.begin() ; it!=plateau.noeuds_plateau.end() ; ++it)
+    {
+        //Logging::log(Logging::TRACE, "clonnage du tableau:");
+        std::vector<Noeud *> noeud_voisin;
+        for (int i = 0; i < noeud_voisin.size(); i++)
+            noeud_voisin.push_back(it->second[i]);
+        noeudlist_voisin.insert({it->first, noeud_voisin});
+    }
+
+    this->noeuds_plateau = noeudlist_voisin;
+    // Logging::log(Logging::TRACE, "adress 1 %d et adress 2 %d", noeudlist_voisin)
     */
     //this->grille = plateau.grille;
-    this->pioche = plateau.pioche;
+    this->noeuds_plateau = plateau.noeuds_plateau;
     this->mapJoueursPions = plateau.mapJoueursPions;
     this->tuiles_candidates = plateau.tuiles_candidates;
 
+    this->pioche = plateau.pioche;
+
     this->liste_tuiles_emplacements_libres = plateau.liste_tuiles_emplacements_libres;
     this->element_libre = plateau.element_libre;
+    
 }
+
 
 Plateau::~Plateau()
 {
@@ -76,46 +103,55 @@ Plateau::~Plateau()
 
 void Plateau::init_plateau()
 {
+
     Logging::log(Logging::TRACE, "Initilisation de la grille");
 
     for(int i = 0; i < (NBR_TUILES * 2); i++)
     {
         for(int j = 0; j < (NBR_TUILES * 2); j++)
         {
-            this->grille[i][j] = nullptr;
+            current_plateau->grille[i][j] = nullptr;
         }
     }
    
-    Logging::log(Logging::DEBUG, "Ajout de la Tuile de base au plateau %d ", pioche[0]);
+    Logging::log(Logging::DEBUG, "Ajout de la Tuile de base au plateau %d ", current_plateau->pioche[0]);
     
     std::array<int, 3> coord = {NBR_TUILES-1, NBR_TUILES-1, 0};
-    this->poser_tuile(pioche[0], coord);
-    pioche.erase(pioche.begin());
+    current_plateau->poser_tuile(current_plateau->pioche[0], coord);
+    current_plateau->pioche.erase(current_plateau->pioche.begin());
 }
 
 void Plateau::ajouter_joueur(Joueur * joueur, Pion * pion)
 {
-    this->mapJoueursPions.insert(std::pair<Joueur *, Pion *>(joueur, pion));
+    current_plateau->mapJoueursPions.insert(std::pair<Joueur *, Pion *>(joueur, pion));
+}
+
+std::map<Noeud *, std::vector<Noeud*>> * get_table_node_data()
+{
+    /*
+    return & Plateau::list_plateau[Plateau::current_index_plateau]->noeuds_plateau;
+    */
+    return nullptr;
 }
 
 Tuile *Plateau::piocher_tuile_aleat()
 {
     srand(time(NULL));
-	int random = rand() % this->pioche.size();
+	int random = rand() % current_plateau->pioche.size();
     Logging::log(Logging::TRACE, "Pioche la tuile %d", random);
-    return this->piocher_tuile(random);
+    return current_plateau->piocher_tuile(random);
 }
 
 Tuile *Plateau::piocher_tuile(int index)
 {
-    Tuile *tuile = this->pioche[index];
+    Tuile *tuile = current_plateau->pioche[index];
 	pioche.erase(pioche.begin() + index);
     return tuile;
 }      
 
 Tuile *Plateau::get_tuile_grille(int x, int y)
 {
-    return this->grille[x][y];
+    return current_plateau->grille[x][y];
 }
 
 /**
@@ -128,10 +164,10 @@ Tuile *Plateau::get_tuile_grille(int x, int y)
  * */
 void Plateau::calcul_emplacements_libres(Tuile *tuile)
 {
-    this->liste_tuiles_emplacements_libres.clear();
+    current_plateau->liste_tuiles_emplacements_libres.clear();
     // Logging::log(Logging::TRACE, "Tuile = %d", tuile->get_id());
     // On parcourt la liste des emplacements candidates
-    for(auto tuile_candidate : this->tuiles_candidates) 
+    for(auto tuile_candidate : current_plateau->tuiles_candidates) 
     {
         std::pair<int, int> emplacement = tuile_candidate.second;
         // Logging::log(Logging::DEBUG, "Tuile candidates : <%d,%d> %d", emplacement.first, emplacement.second, tuile_candidate.first->get_id());
@@ -153,7 +189,7 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
             for(auto tuile_coord_voisine : tuile_coords_voisines)
             {
             
-                Tuile *tuile_voisine = this->grille[tuile_coord_voisine.first][tuile_coord_voisine.second];
+                Tuile *tuile_voisine = current_plateau->grille[tuile_coord_voisine.first][tuile_coord_voisine.second];
                 if(tuile_voisine != nullptr)
                 {
                     if(tuile_voisine->get_id() != -1)
@@ -195,7 +231,7 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
             if(est_compatible)
             {
                 std::array<int, 3> emplacement_libre = {emplacement.first, emplacement.second, i};
-                this->liste_tuiles_emplacements_libres.push_back(emplacement_libre);
+                current_plateau->liste_tuiles_emplacements_libres.push_back(emplacement_libre);
                 //Logging::log(Logging::DEBUG, "ajout de l'emplacement libre <%d,%d,%d>", emplacement_libre.at(0), emplacement_libre.at(1), emplacement_libre.at(2));
             }
             tuile->rotationHoraire();
@@ -228,22 +264,22 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
     }
     
     // supprime l'ancienne tuile candidate qu'on doit remplacer 
-    if(this->grille[emplacement.at(0)][emplacement.at(1)] != nullptr) 
+    if(current_plateau->grille[emplacement.at(0)][emplacement.at(1)] != nullptr) 
     {
-        Tuile *tuile_a_suppr = this->grille[emplacement.at(0)][emplacement.at(1)];
+        Tuile *tuile_a_suppr = current_plateau->grille[emplacement.at(0)][emplacement.at(1)];
         Logging::log(Logging::TRACE, "supprime tuile tmp %d : <%d %d>", tuile_a_suppr, emplacement.at(0), emplacement.at(1));
-        this->tuiles_candidates.erase(tuile_a_suppr);
+        current_plateau->tuiles_candidates.erase(tuile_a_suppr);
         delete tuile_a_suppr; 
-        this->grille[emplacement.at(0)][emplacement.at(1)] = nullptr;
+        current_plateau->grille[emplacement.at(0)][emplacement.at(1)] = nullptr;
     } 
     else 
     {
         Logging::log(Logging::DEBUG, "supprime pas tuile tmp null");
-        Logging::log(Logging::DEBUG, "%d <%d,%d>", this->grille[emplacement.at(0)][emplacement.at(1)], emplacement.at(0), emplacement.at(1));
+        Logging::log(Logging::DEBUG, "%d <%d,%d>", current_plateau->grille[emplacement.at(0)][emplacement.at(1)], emplacement.at(0), emplacement.at(1));
     }
 
     // placement de la tuile (tableau de rotation de tuile)
-    this->grille[emplacement.at(0)][emplacement.at(1)] = tuile;
+    current_plateau->grille[emplacement.at(0)][emplacement.at(1)] = tuile;
 
     // liste des coordonnées des voisins de la tuile 
     std::array<std::pair<int,int>, 4> tuile_voisines = {
@@ -261,15 +297,15 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
     // ajout des tuiles candidates sur la grille et connection des bordures
     for(auto tuile_coord_voisine : tuile_voisines)
     {
-        Tuile * tuile_voisine = this->grille[tuile_coord_voisine.first][tuile_coord_voisine.second];
+        Tuile * tuile_voisine = current_plateau->grille[tuile_coord_voisine.first][tuile_coord_voisine.second];
 
         if(tuile_voisine == nullptr)
         {
             std::array<Bordure *, 4> bordure_tmp = {nullptr, nullptr, nullptr, nullptr};
             std::vector<Element *> element_tmp = {nullptr};
             Tuile * tuile_candidate = new Tuile(-1, bordure_tmp, element_tmp);
-            this->grille[tuile_coord_voisine.first][tuile_coord_voisine.second] = tuile_candidate;
-            this->tuiles_candidates[tuile_candidate] = std::make_pair(tuile_coord_voisine.first,tuile_coord_voisine.second);
+            current_plateau->grille[tuile_coord_voisine.first][tuile_coord_voisine.second] = tuile_candidate;
+            current_plateau->tuiles_candidates[tuile_candidate] = std::make_pair(tuile_coord_voisine.first,tuile_coord_voisine.second);
         } 
         else 
         {
@@ -329,7 +365,7 @@ void Plateau::desindexer_Meeple_dans_la_map(std::map<Joueur*, std::list<Meeple *
         Joueur * joueur = itMap.first;
         for(auto const &meeple : itMap.second)
         {
-            this->mapJoueursPions.at(joueur)->supprimer_meeple(meeple);
+            current_plateau->mapJoueursPions.at(joueur)->supprimer_meeple(meeple);
             Logging::log(Logging::TRACE, "Desindexe meeple: %d",meeple);
         }
     }
@@ -350,7 +386,7 @@ void Plateau::desindexer_Meeple_dans_la_map(std::map<Joueur*, std::list<Meeple *
  * */
 void Plateau::evaluer_meeple(int status_du_jeu)
 {
-    for(auto const &itMap : this->mapJoueursPions)
+    for(auto const &itMap : current_plateau->mapJoueursPions)
     {
         //Logging::log(Logging::TRACE, "Evaluation pour des meeples du Joueur %d", itMap.first->get_couleur());
         const std::array<Meeple *, 7> arrayMeeple_const = itMap.second->get_stack_meeple();
@@ -380,7 +416,7 @@ void Plateau::evaluer_meeple(int status_du_jeu)
                             Logging::log(Logging::TRACE, "ajout du score %d",score);
                         }
                     }
-                    this->desindexer_Meeple_dans_la_map(mapJoueurListeMeeple);
+                    current_plateau->desindexer_Meeple_dans_la_map(mapJoueurListeMeeple);
                     arrayMeeple = itMap.second->get_stack_meeple(); // mise à jour de l'array non mise à jour car const
                 }
             }
@@ -390,12 +426,12 @@ void Plateau::evaluer_meeple(int status_du_jeu)
 
 std::vector<std::array<int, 3>> Plateau::get_liste_tuiles_emplacements_libres()
 {
-    return this->liste_tuiles_emplacements_libres;
+    return current_plateau->liste_tuiles_emplacements_libres;
 }
 
 bool Plateau::stack_meeple_vide(Joueur * joueur)
 {
-    return !this->mapJoueursPions.at(joueur)->si_pion_non_place();
+    return !current_plateau->mapJoueursPions.at(joueur)->si_pion_non_place();
 }
 
 /**
@@ -408,16 +444,16 @@ void Plateau::poser_meeple(Joueur * joueur, Element *elem, Meeple * meeple, int 
     Logging::log(Logging::DEBUG, "Ajout meeple %d dans element", meeple);
     elem->ajouter_meeple(meeple);
     // Logging::log(Logging::DEBUG, "Ajout meeple %d dans pion pour le joueur %d", meeple, joueur->get_type_joueur());
-    Pion * pion = this->mapJoueursPions.at(joueur);
+    Pion * pion = current_plateau->mapJoueursPions.at(joueur);
     pion->ajouter_meeple(meeple, indice);
 }
 
 void Plateau::poser_meeple(Joueur * joueur, Element *elem, std::pair<int, int> position)
 {
-    Meeple * meeple = Pion::generate_meeple(joueur, elem, &this->grille, position);
+    Meeple * meeple = Pion::generate_meeple(joueur, elem, &current_plateau->grille, position);
     Logging::log(Logging::DEBUG, "Ajout meeple %d dans element", meeple);
     elem->ajouter_meeple(meeple);
-    Pion * pion = this->mapJoueursPions.at(joueur);
+    Pion * pion = current_plateau->mapJoueursPions.at(joueur);
     pion->ajouter_meeple(meeple, pion->get_premier_indice_libre());
 }
 
@@ -500,40 +536,40 @@ bool Plateau::verifier_si_meeple_voisin(Noeud * noeud, Noeud::type_element type_
 
 int Plateau::get_nbr_meeple(Joueur * joueur) 
 {
-    Pion *pion = this->mapJoueursPions[joueur];
+    Pion *pion = current_plateau->mapJoueursPions[joueur];
     return pion->get_nbr_meeple();
 }
 
 void Plateau::calculer_element_libres(Tuile * tuile) {
     std::vector<Element *> list_elements = tuile->getElements();
-    this->element_libre.clear();
+    current_plateau->element_libre.clear();
 
     for(auto element : list_elements) {
         if(! Plateau::verifier_si_meeple_voisin(element, element->get_type_element())) 
         {
-            this->element_libre.push_back(element);
+            current_plateau->element_libre.push_back(element);
         }
     }
 }
 
 const std::vector<Element *> Plateau::get_element_libre() 
 {
-    return this->element_libre;
+    return current_plateau->element_libre;
 }
 
 const std::array<std::array<Tuile *, 144>, 144> * Plateau::get_grille() 
 {
-    return &this->grille;
+    return &current_plateau->grille;
 }
 
 Pion * Plateau::get_pion_joueur(Joueur * joueur) 
 {
-    return this->mapJoueursPions[joueur];
+    return current_plateau->mapJoueursPions[joueur];
 }
 
 bool Plateau::pioche_est_vide()
 {
-    if(this->pioche.empty()) {
+    if(current_plateau->pioche.empty()) {
         return true;
     }
     return false;
@@ -546,7 +582,7 @@ bool Plateau::pioche_est_vide()
  */ 
 void Plateau::clear_element_libres() 
 {
-    this->element_libre.clear();
+    current_plateau->element_libre.clear();
 }
 
 /**
@@ -556,11 +592,5 @@ void Plateau::clear_element_libres()
  */ 
 void Plateau::clear_emplacement_libres() 
 {
-    this->liste_tuiles_emplacements_libres.clear();
-}
-
-void Plateau::ajouter_noeuds(Noeud * noeud) 
-{
-    this->noeuds_plateau.insert({noeud, std::vector<Noeud *> ()}); //insert(noeud, noeuds_voisins);
-    noeud->set_noeud_voisins(& this->noeuds_plateau.at(noeud));
+    current_plateau->liste_tuiles_emplacements_libres.clear();
 }

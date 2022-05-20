@@ -1,3 +1,4 @@
+#pragma once
 // DIRECTIVES
 #ifndef PAYSAN_HPP
 #define PAYSAN_HPP
