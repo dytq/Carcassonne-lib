@@ -57,9 +57,13 @@ class Plateau
         // CONSTRUCTEUR
         Plateau(const Plateau & plateau); // clone plateau   
         Plateau();
+
         // DESTRUCTEUR
         ~Plateau();
+
         friend class BaseDeDonnees; // allow use this keys
+
+
         // METHODES
         // GETTER 
         Tuile * get_tuile_grille(int x, int y); 
@@ -117,7 +121,7 @@ class Plateau
 
         static void remove_back_child()
         {
-            Plateau::list_plateau.erase(Plateau::list_plateau.end());
+            Plateau::list_plateau.pop_back();
             Plateau::set_at_back_child();
         }
 
@@ -127,6 +131,24 @@ class Plateau
         }
         
         // void static get_child(int nbr); // TODO tree plateau
+
+        // TODO non static function
+        static void ajouter_noeuds(Noeud * noeud, Plateau * plateau) 
+        {
+            plateau->noeuds_plateau.insert({noeud, std::vector<Noeud *> ()}); //insert(noeud, noeuds_voisins);
+            list_noeuds.push_back(noeud);
+            noeud->set_noeud_plateau(& plateau->noeuds_plateau);
+        }
+
+        std::vector<Noeud *> get_list_noeuds()
+        {
+            return current_plateau->list_noeuds;
+        }
+
+        std::map<Noeud*, std::vector<Noeud *>> get_noeud_plateau()
+        {
+            return current_plateau->noeuds_plateau;
+        }
 
         // FONCTIONS 
 
@@ -152,21 +174,7 @@ class Plateau
         Tuile *piocher_tuile_aleat(); 
 
         // TODO noeud appelle plateau au lieu de plateau update noeud
-        void update_noeud()
-        {
-            for(auto noeud : Plateau::list_noeuds)
-            {
-                noeud->set_noeud_plateau(&this->noeuds_plateau);
-            }
-        }
-
-        // TODO non static function
-        static void ajouter_noeuds(Noeud * noeud, Plateau * plateau) 
-        {
-            plateau->noeuds_plateau.insert({noeud, std::vector<Noeud *> ()}); //insert(noeud, noeuds_voisins);
-            list_noeuds.push_back(noeud);
-            noeud->set_noeud_plateau(& plateau->noeuds_plateau);
-        }
+        void update_noeud();
 
         bool pioche_est_vide();
 };

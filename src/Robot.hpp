@@ -22,7 +22,7 @@ class Robot : public Joueur
     public: 
         Robot(Type_robot type_robot);
         
-        void update_ia(Plateau plateau, const Tuile * tuile_pioche);
+        void update_ia(Plateau * plateau, Tuile * tuile_pioche);
         
         int choix_de_emplacement_libre() override;
         bool choix_si_poser_meeple() override;

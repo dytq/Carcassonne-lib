@@ -21,7 +21,6 @@ class Element : public Noeud
     public:
         // CONSTRUCTEURS
         Element(Noeud::type_element type_noeud, std::pair<float,float> coordonnees);
-        Element(Element * element);
 
         // DESTRUCTEUR
         ~Element();

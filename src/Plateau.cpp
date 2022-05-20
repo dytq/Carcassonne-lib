@@ -1,6 +1,5 @@
 // LIBRAIRIES
 #include "Plateau.hpp"
-
 /* Initialise variable statique d'une instance Plateau */
 int Plateau::current_index_plateau = 0;
 std::vector<Noeud *> Plateau::list_noeuds;
@@ -17,64 +16,16 @@ Plateau::Plateau()
 Plateau::Plateau(const Plateau & plateau)
 {
     Logging::log(Logging::TRACE, "clonnage du plateau %d", &plateau);
-    // clonnage de la grille 
-    /*
-    for(int i = 0; i < 144; i++)
-    {
-        for(int j = 0; j < 144; j++)
-        {
-            Tuile * tuile_tmp = plateau.grille[i][j];
-            if(tuile_tmp != nullptr)
-            {
-                Tuile * tuile = new Tuile(*tuile_tmp); // nouvelle adresse de tuile
-                this->grille[i][j] = tuile;
-            }
-            else  
-            {
-                this->grille[i][j] = nullptr;
-            }
-        }
-    }
     this->grille = plateau.grille;
-    */
-    this->grille = plateau.grille;
-    //this->noeuds_plateau.clear();
-    /*
-    int i = 0;
-    std::vector<Tuile *> pioche_clone;
-    for(Tuile * tuile : plateau.pioche)
-    {
-        pioche_clone.push_back(new Tuile(*tuile));
-        i++;
-    }
-        
+    this->pioche = plateau.pioche;
     
-    //std::map<Noeud*, std::vector<Noeud *>> noeudlist_voisin;
-    //std::map<Noeud*, std::vector<Noeud *>>::iterator it;
-    /*
-    std::vector<Noeud *> keys;
-    for(auto it = plateau.noeuds_plateau.begin() ; it!=plateau.noeuds_plateau.end() ; ++it)
-    {
-        //Logging::log(Logging::TRACE, "clonnage du tableau:");
-        std::vector<Noeud *> noeud_voisin;
-        for (int i = 0; i < noeud_voisin.size(); i++)
-            noeud_voisin.push_back(it->second[i]);
-        noeudlist_voisin.insert({it->first, noeud_voisin});
-    }
-
-    this->noeuds_plateau = noeudlist_voisin;
-    // Logging::log(Logging::TRACE, "adress 1 %d et adress 2 %d", noeudlist_voisin)
-    */
-    //this->grille = plateau.grille;
-    this->noeuds_plateau = plateau.noeuds_plateau;
-    this->mapJoueursPions = plateau.mapJoueursPions;
+    //this->liste_tuiles_emplacements_libres = plateau.liste_tuiles_emplacements_libres; 
+    //this->element_libre = plateau.element_libre;
+    
+    this->mapJoueursPions = plateau.mapJoueursPions; 
     this->tuiles_candidates = plateau.tuiles_candidates;
 
-    this->pioche = plateau.pioche;
-
-    this->liste_tuiles_emplacements_libres = plateau.liste_tuiles_emplacements_libres;
-    this->element_libre = plateau.element_libre;
-    
+    this->noeuds_plateau = plateau.noeuds_plateau; 
 }
 
 
@@ -115,10 +66,10 @@ void Plateau::init_plateau()
     }
    
     Logging::log(Logging::DEBUG, "Ajout de la Tuile de base au plateau %d ", current_plateau->pioche[0]);
-    
     std::array<int, 3> coord = {NBR_TUILES-1, NBR_TUILES-1, 0};
     current_plateau->poser_tuile(current_plateau->pioche[0], coord);
     current_plateau->pioche.erase(current_plateau->pioche.begin());
+    Logging::log(Logging::DEBUG, "pioche size :%d", current_plateau->pioche.size());
 }
 
 void Plateau::ajouter_joueur(Joueur * joueur, Pion * pion)
@@ -138,14 +89,14 @@ Tuile *Plateau::piocher_tuile_aleat()
 {
     srand(time(NULL));
 	int random = rand() % current_plateau->pioche.size();
-    Logging::log(Logging::TRACE, "Pioche la tuile %d", random);
+    Logging::log(Logging::TRACE, "Pioche la tuile à l'emplacement %d", random);
     return current_plateau->piocher_tuile(random);
 }
 
 Tuile *Plateau::piocher_tuile(int index)
 {
     Tuile *tuile = current_plateau->pioche[index];
-	pioche.erase(pioche.begin() + index);
+	current_plateau->pioche.erase(current_plateau->pioche.begin() + index);
     return tuile;
 }      
 
@@ -194,15 +145,32 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
                 {
                     if(tuile_voisine->get_id() != -1)
                     {
+                        if(tuile_voisine->get_id() > 72)
+                        {
+                            Logging::log(Logging::DEBUG, "L'ID de la tuile voisine ne fait pas du domaine de définition");
+                            
+                        }
 
-                        //Logging::log(Logging::DEBUG, "Tuile voisine %d", tuile_voisine->getId());
-                        //Logging::log(Logging::DEBUG, "Comparaison des bordures voisines <%d==%d> ", bordure_voisines, bordure_tuiles);
+                        //Logging::log(Logging::TRACE, "Tuile voisine %d", tuile_voisine->get_id());
+                        //Logging::log(Logging::TRACE, "Comparaison des bordures voisines <%d==%d> ", bordure_voisines, bordure_tuiles);
                          
                         Bordure *bordure_voisine = tuile_voisine->getBordure(bordure_voisines);
                         Bordure *bordure_tuile = tuile->getBordure(bordure_tuiles);
                         
+                        if((bordure_voisine == nullptr) || (bordure_tuile == nullptr))
+                        {
+                            Logging::log(Logging::DEBUG, "La Bordure de la tuile de la tuile %d à comparer est null", tuile->get_id());
+                            Logging::log(Logging::DEBUG, "La Bordure de la tuile voisine de la tuile %d à comparer est null", tuile_voisine->get_id());
+                            
+                        }
                         for(int k = 0; k < 3; k++) 
                         {
+                            if((bordure_voisine->get_bordure_fils(2 - k) == nullptr) || (bordure_tuile->get_bordure_fils(k) == nullptr))
+                            {
+                                Logging::log(Logging::DEBUG, "La Bordure de la tuile fils %d de la tuile %d à comparer est null", 2-k, tuile->get_id());
+                                Logging::log(Logging::DEBUG, "La Bordure de la tuile fils voisine %d de la tuile %d à comparer est null", k, tuile_voisine->get_id());
+                                
+                            }
                             //Logging::log(Logging::DEBUG, "Tuile voisine bordure %d", bordure_voisine->get_bordure_fils(k)->get_type_element());
                             //Logging::log(Logging::DEBUG, "Tuile bordure Tuile pioche %d", bordure_tuile->get_bordure_fils(k)->get_type_element());
                             Noeud::type_element type_element_voisine = bordure_voisine->get_bordure_fils(2 - k)->get_type_element();
@@ -238,7 +206,7 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
         }   
         //Logging::log(Logging::DEBUG, "on change d'emplacement");
     }
-    if(liste_tuiles_emplacements_libres.size() == 0) 
+    if(current_plateau->liste_tuiles_emplacements_libres.size() == 0) 
     {
         Logging::log(Logging::DEBUG, "Aucun emplacement libre de trouvé");
     }
@@ -257,6 +225,11 @@ void Plateau::calcul_emplacements_libres(Tuile *tuile)
  */
 void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
 {
+    if(tuile->get_id() == -1 || tuile->get_id() > 72)
+    {
+        Logging::log(Logging::DEBUG, "La tuile ID %d ne peut pas être placé", tuile->get_id());
+        return;
+    }
     // effectue la rotation de la tuile à placer
     for(int i = 0; i < emplacement.at(2); i++)
     {
@@ -269,7 +242,7 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
         Tuile *tuile_a_suppr = current_plateau->grille[emplacement.at(0)][emplacement.at(1)];
         Logging::log(Logging::TRACE, "supprime tuile tmp %d : <%d %d>", tuile_a_suppr, emplacement.at(0), emplacement.at(1));
         current_plateau->tuiles_candidates.erase(tuile_a_suppr);
-        delete tuile_a_suppr; 
+        //delete tuile_a_suppr; 
         current_plateau->grille[emplacement.at(0)][emplacement.at(1)] = nullptr;
     } 
     else 
@@ -311,6 +284,10 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
         {
             if(tuile_voisine->get_id() != -1) 
             {
+                if(tuile_voisine->get_id() > 72)
+                {
+                    Logging::log(Logging::DEBUG, "L'ID de la tuile n'est pas reconnue");
+                }
                 Logging::log(Logging::TRACE, "set border tuile voisine %d", tuile_voisine->get_id());
                 for(int i = 0; i < 3; i++)
                 {
@@ -569,7 +546,8 @@ Pion * Plateau::get_pion_joueur(Joueur * joueur)
 
 bool Plateau::pioche_est_vide()
 {
-    if(current_plateau->pioche.empty()) {
+    if(current_plateau->pioche.empty()) 
+    {
         return true;
     }
     return false;
@@ -593,4 +571,17 @@ void Plateau::clear_element_libres()
 void Plateau::clear_emplacement_libres() 
 {
     current_plateau->liste_tuiles_emplacements_libres.clear();
+}
+
+void Plateau::update_noeud()
+{
+    for(auto noeud : Plateau::list_noeuds)
+    {
+        noeud->set_noeud_plateau(&current_plateau->noeuds_plateau);
+    }
+}
+
+const std::map<Tuile *,std::pair<int,int>> Plateau::get_tuiles_candidates()
+{
+    return current_plateau->tuiles_candidates;
 }

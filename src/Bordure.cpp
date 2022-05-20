@@ -3,24 +3,12 @@
 
 // FONCTIONS
 
-Bordure::Bordure(Bordure * bordure)
-{
-    for(int l = 0; l < 3; l++)
-    {
-        Bordure * bordure_fils_tmp = this->get_bordure_fils(l);
-        if(bordure->get_bordure_fils(l)!= nullptr)
-        {
-            bordure_fils_tmp = new Bordure();
-            bordure_fils_tmp->set_type_element(bordure->get_bordure_fils(l)->get_type_element());
-        }
-    }
-}
-
 /**
  * @title: Constructeur d'une bordure
  * */
 Bordure::~Bordure()
 {
+    Logging::log(Logging::DEBUG, "Call destructor bordure");
     for(int i = 0; i < 3; i++)
     {
         if(bordureFils[i] != nullptr)
@@ -84,11 +72,12 @@ void Bordure::set_bordure_fils(int indice, Noeud::type_element element)
     }
 }
 
+/*
 void Bordure::set_bordure_fils(int indice, Bordure * bordure_fils)
 {
     this->bordureFils[indice] = bordure_fils;
 }
-
+*/
 // TODO : const value
 std::array<Bordure *, 3> Bordure::get_BordureFils()
 {

@@ -6,6 +6,7 @@
 #include <array>
 
 #include "Noeud.hpp"
+#include "Logging.hpp"
 
 /**
  * @title: Bordure d'une tuile

@@ -25,6 +25,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             for(int i = 0; i < 4; i++)
             {
                 bordure.at(i) = new Bordure();
+                Plateau::ajouter_noeuds(bordure[i], plateau);
                 Plateau::ajouter_noeuds(bordure.at(i), plateau);
             }
 
@@ -109,11 +110,11 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
+            // Creation de la tuile
             Tuile * tuile = new Tuile(id, bordure, elementTuile);   
             id ++;
             
-            // AJOUT de la carte dans le pioche
+            // AJOUT de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile);
         
     }
@@ -209,12 +210,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte);
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile);
     }
     }
 
@@ -311,12 +312,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -401,12 +402,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -494,12 +495,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -588,12 +589,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -683,12 +684,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -780,12 +781,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -868,12 +869,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -956,12 +957,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -1054,12 +1055,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -1151,12 +1152,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -1242,12 +1243,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
 
     // Tuile 14 (x2)
@@ -1333,12 +1334,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -1421,12 +1422,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -1507,12 +1508,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
 
     // Tuile 17 (x1)
@@ -1590,12 +1591,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
 
     // Tuile 18 (x1)
@@ -1685,12 +1686,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
 
     // Tuile 19 (x2)
@@ -1781,12 +1782,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -1868,12 +1869,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -1959,12 +1960,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -2068,12 +2069,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -2174,12 +2175,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
 
@@ -2287,12 +2288,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(1)->set_lien(nullptr);
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
-            // Creation de la carte
-            Tuile * carte = new Tuile(id, bordure, elementTuile);
+            // Creation de la tuile
+            Tuile * tuile = new Tuile(id, bordure, elementTuile);
             id++;
 
-            // Ajout de la carte dans le pioche
-            plateau->ajouter_tuile_pioche(carte); // front pour la première carte
+            // Ajout de la tuile dans le pioche
+            plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     return plateau;
 }

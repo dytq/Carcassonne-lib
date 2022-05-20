@@ -1,12 +1,6 @@
 // LIBRAIRIES
 #include "Element.hpp"
 
-Element::Element(Element * element)
-{
-    
-}
-
-
 // FONCTIONS
 /**
  * @title: Constructeur de l'élément. 
@@ -55,7 +49,9 @@ Element::Element(Noeud::type_element type_element, std::pair<float,float> coordo
 }
 
 Element::~Element()
-{}
+{
+    Logging::log(Logging::DEBUG, "Call destructor bordure");
+}
 
 /**
  * @title: getter du meeple situé sur l'élément
