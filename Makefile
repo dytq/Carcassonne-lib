@@ -32,7 +32,7 @@ $(TRG_DIR):
 
 ### Supprime les fichiers temporaires ###
 clean:
-	@$(RM) -rv $(TRG_DIR)
+	@$(RM) -rv $(TRG_DIR) *.Rout *.pdf *.data
 	clear
 
 -include $(OBJ:.o=.d)

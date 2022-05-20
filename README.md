@@ -23,3 +23,6 @@ Pour nettoyer le projet des fichiers temporaires :
 ```bash
 	make clean
 ```
+
+Pour générer l'étude de performance :
+R CMD BATCH study.R
