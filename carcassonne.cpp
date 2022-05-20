@@ -4,6 +4,7 @@
 #include "core/dictionary.h"
 #include "modules/carcassonne/src/Humain.hpp"
 #include "modules/carcassonne/src/Logging.hpp"
+#include "modules/carcassonne/src/Plateau.hpp"
 #include "modules/carcassonne/src/Robot.hpp"
 #include <array>
 #include <cstddef>
@@ -47,7 +48,8 @@ void Carcassonne::init_jeu(Dictionary Game_Data)
 {
     this->plateau = BaseDeDonnees::generer_plateau_vanilla();
     plateau->init_plateau();
-    
+    //Plateau * plateau_tmp = new Plateau(*plateau); // clonnage du plateau
+
     Joueur * joueur1 = generer_joueur(Game_Data["type_joueur_1"], Game_Data["difficult_joueur_1"]);
     Joueur * joueur2 = generer_joueur(Game_Data["type_joueur_2"], Game_Data["difficult_joueur_2"]);
     
@@ -202,6 +204,7 @@ int Carcassonne::get_premier_meeple_indice_libre(int joueur_id)
 {
     Joueur * joueur = get_joueur(joueur_id);
     Pion * pion = this->plateau->get_pion_joueur(joueur);
+    std::cout << pion->get_stack_meeple()[0] << std::endl;
     return pion->get_premier_indice_libre();
 }
 
@@ -249,26 +252,27 @@ void Carcassonne::ia_joue(int joueur_id)
     Robot * robot = dynamic_cast<Robot *>(joueur);
     if(robot == nullptr)
     {
-        // n'est pas un robot
+        // n'est pas un robot...
         return;
     }
-    
-    robot->update_ia(this->plateau, this->tuile_pioche);
+ 
+    robot->update_ia(plateau, this->tuile_pioche);
     
     int indice_emplacement_libre = robot->choix_de_emplacement_libre();
     std::vector<std::array<int, 3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
     plateau->poser_tuile(this->tuile_pioche, liste_tuiles_emplacements_libres[indice_emplacement_libre]);    
-    
+    /*
     if(robot->choix_si_poser_meeple())
     {
         if(this->plateau->get_nbr_meeple(robot) > 0)
         {
             std::vector<Element *> list_element = tuile_pioche->getElements();
             std::pair<int, int> coordonnee_tuile_pioche = { liste_tuiles_emplacements_libres[indice_emplacement_libre][0], liste_tuiles_emplacements_libres[indice_emplacement_libre][1] };
-            int indice_element = robot->choix_de_element_libre();
-            plateau->poser_meeple(robot, list_element[indice_element], coordonnee_tuile_pioche); // Permet au joueur_courant de placer un pion sur la tuile
+            // int indice_element = robot->choix_de_element_libre();
+            // plateau->poser_meeple(robot, list_element[indice_element], coordonnee_tuile_pioche); // Permet au joueur_courant de placer un pion sur la tuile
         }
     }
+    */
 }
 // Binding method pour GODOT
 void Carcassonne::_bind_methods() 
