@@ -6,6 +6,7 @@
 #include <array>
 
 #include "Noeud.hpp"
+#include "Logging.hpp"
 
 /**
  * @title: Bordure d'une tuile
@@ -22,15 +23,18 @@ class Bordure : public Noeud
     public:
         // CONSTRUCTEURS
         Bordure() {};
-
+        Bordure(Bordure * bordure);
         // DESTRUCTEUR
         ~Bordure();
 
         // METHODES
         Bordure * get_bordure_fils(int indice);
         void set_bordure_fils(int indice, Noeud::type_element element);
+        void set_bordure_fils(int indice, Bordure * bordure_fils);
         int get_points(int status_du_jeu);
         void set_type_element(Noeud::type_element type_noeud);
+        std::array<Bordure *, 3> get_BordureFils();
+        void set_BordureFils(std::array<Bordure *, 3>);
 };
 
 #endif

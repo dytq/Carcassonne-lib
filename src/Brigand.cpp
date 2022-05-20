@@ -84,20 +84,20 @@ bool Brigand::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Mee
 
             if(noeud_fils == nullptr) 
             {
-                Logging::log(Logging::TRACE, "Noeud fils %d est null", i);
+                //Logging::log(Logging::TRACE, "Noeud fils %d est null", i);
                 isComplete = false;
             } 
             else 
             {
-                Logging::log(Logging::TRACE, "Noeud fils %d est non null", i);
+                //Logging::log(Logging::TRACE, "Noeud fils %d est non null", i);
                 if(noeudMarque.end() == std::find(noeudMarque.begin(), noeudMarque.end(), noeud_fils))
                 {
-                    Logging::log(Logging::TRACE, "Noeud fils %d n'est pas marqué", i);
+                    //Logging::log(Logging::TRACE, "Noeud fils %d n'est pas marqué", i);
                     *score += noeud_fils->get_points(status_du_jeu);
                     pileNoeud.push_back(noeud_fils);
                     noeudMarque.push_back(noeud_fils);
                 } else {
-                    Logging::log(Logging::TRACE, "Noeud fils %d est déjà marqué", i);
+                    //Logging::log(Logging::TRACE, "Noeud fils %d est déjà marqué", i);
                 }
             }
         }

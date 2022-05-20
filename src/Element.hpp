@@ -7,7 +7,6 @@
 #include "Meeple.hpp"
 #include "Joueur.hpp"
 #include "Constantes.hpp"
-#include <utility>
 
 /**
  * @title: Element est une case dans laquelle on peut poser un meeple

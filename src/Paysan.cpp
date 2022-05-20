@@ -45,7 +45,7 @@ bool est_complet_ville(std::list<Noeud*> * ville_marque, Noeud * noeud_courant, 
         {
             etat_complet = false;
         }
-        Logging::log(Logging::TRACE, "parcours ville %d", noeud_voisin);
+        //Logging::log(Logging::TRACE, "parcours ville %d", noeud_voisin);
         if(std::find(ville_marque->begin(), ville_marque->end(), noeud_voisin) == ville_marque->end())
         {
             ville_marque->push_back(noeud_voisin);
@@ -137,30 +137,30 @@ bool Paysan::compter_points(int status_du_jeu, std::map<Joueur *, std::list<Meep
                 {
                     if(noeud_ville_marque.end() == std::find(noeud_ville_marque.begin(), noeud_ville_marque.end(), noeud_fils))
                     {
-                        Logging::log(Logging::TRACE, "noeud ville");
+                        //Logging::log(Logging::TRACE, "noeud ville");
                         noeud_ville_marque.push_back(noeud_fils);
                         noeudMarque.push_back(noeud_fils);
                         if(est_complet_ville(&noeud_ville_marque, noeud_fils,true))
                         {
-                            Logging::log(Logging::TRACE, "Ville complète trouvée");
+                            //Logging::log(Logging::TRACE, "Ville complète trouvée");
                             *score = *score + POINTS_PAYSANS;
                         } 
                         else
                         {
-                            Logging::log(Logging::TRACE, "Ville non complète");
+                            //Logging::log(Logging::TRACE, "Ville non complète");
                         }
                     }
                 } 
                 else 
                 {
-                    Logging::log(Logging::TRACE, "Noeud fils %d est non null", i);
+                    //Logging::log(Logging::TRACE, "Noeud fils %d est non null", i);
                     if(noeudMarque.end() == std::find(noeudMarque.begin(), noeudMarque.end(), noeud_fils))
                     {
-                        Logging::log(Logging::TRACE, "Noeud fils %d n'est pas marqué", i);
+                        //Logging::log(Logging::TRACE, "Noeud fils %d n'est pas marqué", i);
                         pileNoeud.push_back(noeud_fils);
                         noeudMarque.push_back(noeud_fils);
                     } else {
-                        Logging::log(Logging::TRACE, "Noeud fils %d est déjà marqué", i);
+                        //Logging::log(Logging::TRACE, "Noeud fils %d est déjà marqué", i);
                     }
                 }
             }

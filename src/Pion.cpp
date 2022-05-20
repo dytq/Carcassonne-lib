@@ -98,6 +98,7 @@ void Pion::supprimer_meeple(Meeple * meeple) {
  * */
 void Pion::ajouter_meeple(Meeple * meeple,int indice)
 {
+    Logging::log(Logging::TRACE, "ajout d'un nouveau meeple %d", indice);
     if(meeple == nullptr)
     {
         Logging::log(Logging::DEBUG, "essaie d'inserer un meeple null dans le tableau");

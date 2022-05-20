@@ -32,6 +32,7 @@ class Tuile
         void rotationHoraire();
         Bordure * getBordure(int cote);
         const std::vector<Element *> getElements();
+        static std::array<Bordure *, 4> clone_bordure(std::array<Bordure *, 4> bordure);
 };
 
 #endif

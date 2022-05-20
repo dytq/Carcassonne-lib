@@ -1,5 +1,6 @@
 // LIBRAIRIES
 #include "Noeud.hpp"
+#include "Plateau.hpp"
 
 // FONCTIONS
 Noeud::Noeud()
@@ -29,7 +30,13 @@ int Noeud::get_points(int status_du_jeu)
  * */
 void Noeud::set_lien(Noeud *noeud)
 {
-    this->noeuds_voisins.push_back(noeud);
+    if(this->get_noeud_voisins() == nullptr)
+    {
+        Logging::log(Logging::DEBUG, "noeuds %d ne contient pas vecteur pour faire un lien", noeud);
+        return;
+    }
+    this->get_noeud_voisins()->push_back(noeud);
+    //Logging::log(Logging::DEBUG, "lien établie avec noeud %d", noeud);
 }
 
 /**
@@ -50,7 +57,7 @@ void Noeud::set_voisin(Noeud *noeud)
  * */
 int Noeud::get_nbr_voisins()
 {
-    return (int) this->noeuds_voisins.size();
+    return (int) this->get_noeud_voisins()->size();
 }
 
 /**
@@ -60,8 +67,14 @@ int Noeud::get_nbr_voisins()
  * */
 bool Noeud::has_nullptr()
 {
-    std::vector<Noeud *>::iterator iter = std::find(this->noeuds_voisins.begin(),this->noeuds_voisins.end(), nullptr);
-    return iter != this->noeuds_voisins.end();
+    if(this->get_noeud_voisins() == nullptr)
+    {
+        Logging::log(Logging::DEBUG, "Impossible de faire une recherche sans avoir de noeuds voisins");
+        return false;
+    }
+
+    std::vector<Noeud *>::iterator iter = std::find(this->get_noeud_voisins()->begin(),this->get_noeud_voisins()->end(), nullptr);
+    return iter != this->get_noeud_voisins()->end();
 }
 
 /**
@@ -97,21 +110,33 @@ void Noeud::supprimer_meeple()
  * */
 Noeud * Noeud::get_voisin(int index)
 {
-    return this->noeuds_voisins[index];
+    if(this->get_noeud_voisins() == nullptr)
+    {
+        Logging::log(Logging::DEBUG, "Ne peut retourner la valeur du voisins car noeuds voisins inexistant");
+        return nullptr;
+    }
+    
+    return this->get_noeud_voisins()->at(index);
 }
 
 // supprime en fonction de l'addresse du noeuds donner en param, si le noeud est null, il suprime le noeud null
 void Noeud::remove_tuile_voisin(Noeud * noeud)
 {
-    for(int i = 0; i < (int) this->noeuds_voisins.size(); i++)
+    if(this->get_noeud_voisins() == nullptr)
     {
-        if(this->noeuds_voisins[i] == noeud)
+        Logging::log(Logging::DEBUG, "Ne peut pas supprimer la tuile car il y a pas de noeuds voisins");
+        return;
+    }
+    for(int i = 0; i < (int) this->get_noeud_voisins()->size(); i++)
+    {
+        if(this->get_noeud_voisins()->at(i) == noeud)
         {
-            this->noeuds_voisins.erase(this->noeuds_voisins.begin() + i);
+            this->get_noeud_voisins()->erase(this->get_noeud_voisins()->begin() + i);
             return;
         }
     }
 }
+
 
 /**
  * @title: Compare le type d'élément
@@ -137,4 +162,25 @@ bool Noeud::compare_type_element(Noeud::type_element type_element1, Noeud::type_
         }
     }
     return false;
+}
+
+std::vector<Noeud *> * Noeud::get_noeud_voisins()
+{
+    return &noeuds_plateau->at(this);
+}
+
+// TODO const value
+std::map<Noeud*, std::vector<Noeud *>> * Noeud::get_noeud_plateau()
+{
+    //return this->plateau->get_table_node_data();
+    return nullptr;
+}
+
+void Noeud::set_noeud_plateau(std::map<Noeud*, std::vector<Noeud *>> * noeuds_plateau)
+{
+    if(noeuds_plateau == nullptr)
+    {
+        Logging::log(Logging::DEBUG, "noeuds voisins est un pointeur null");
+    }
+    this->noeuds_plateau = noeuds_plateau;
 }
