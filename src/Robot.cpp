@@ -18,34 +18,31 @@ void Robot::script_robot_aleat(Plateau * plateau, Tuile * tuile)
     
     plateau->calcul_emplacements_libres(tuile);
     plateau->get_liste_tuiles_emplacements_libres().clear();
-    Logging::log(Logging::TRACE, "nbr tuiles libre %d", plateau->get_liste_tuiles_emplacements_libres().size());
-    Logging::log(Logging::TRACE, "nbr tuiles candidate %d", (int) plateau->get_tuiles_candidates().size());
-    Logging::log(Logging::TRACE, "tuile id %d", tuile->get_id());
 
     int size_liste = plateau->get_liste_tuiles_emplacements_libres().size();
 
     this->indice_emplacement_libre = rand() % size_liste;
         
-    Logging::log(Logging::DEBUG, "emplacement choisi %d/%d", indice_emplacement_libre, (int) plateau->get_liste_tuiles_emplacements_libres().size());
+    // Logging::log(Logging::DEBUG, "emplacement choisi %d/%d", indice_emplacement_libre, (int) plateau->get_liste_tuiles_emplacements_libres().size());
 
     std::array<int,3> emplacement = plateau->get_liste_tuiles_emplacements_libres()[indice_emplacement_libre];
         
     plateau->poser_tuile(tuile, emplacement);
-    tuile = plateau->piocher_tuile_aleat();
-    Logging::log(Logging::TRACE, "nbr pion robot %d", plateau->get_nbr_meeple(this));
-        
+
     if(plateau->get_nbr_meeple(this) > 0)
     {
         this->si_poser_meeple = rand() % 2;
         if(true) 
         {
-            Logging::log(Logging::DEBUG, "robot veut poser une meeple");
             plateau->calculer_element_libres(tuile);
             int size_liste_element = plateau->get_element_libre().size();
             if(size_liste_element > 0)
             {
                 this->indice_element_libre = rand() % size_liste_element;
-                Logging::log(Logging::TRACE, "robot pose meeple sur element: %d/%d",this->indice_element_libre, size_liste_element);
+            }
+            else 
+            {
+                this->si_poser_meeple = false;
             }
         } 
         else  
@@ -57,7 +54,8 @@ void Robot::script_robot_aleat(Plateau * plateau, Tuile * tuile)
     {
         this->si_poser_meeple = false;
     }
-
+    
+    this->si_poser_meeple = false;
     plateau->remove_back_child(); // supprime le dernier et revient à l'état d'avant (root)
 }
 

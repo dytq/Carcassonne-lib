@@ -86,8 +86,6 @@ void afficher_liste_tuiles_emplacements_libres(vector<array<int, 3>> liste_tuile
 int main() {
     Plateau plateau;
     plateau.init_root(BaseDeDonnees::generer_plateau_vanilla());
-        cout << "size pioche " << plateau.pioche_est_vide() << endl;
-
     plateau.init_plateau();
 
 	
@@ -105,20 +103,16 @@ int main() {
     
     /* Boucle principale */
     
-    //while (!plateau.pioche_est_vide()) 
-    //{
-        for(int j = 0; j < 50; j++) {
-
-
+    while (!plateau.pioche_est_vide()) 
+    {
         Joueur * joueur_courant = list_joueur[i%2];
 
 		/* Afficher le plateau */
 		afficher_plateau(&plateau);
 
         /* Piocher une tuile */
-        //Tuile *tuile_pioche = plateau.piocher_tuile_aleat(); // Pioche une tuile au hasard et l'enlève de la pioche
-        Tuile *tuile_pioche = plateau.piocher_tuile(5);
-        cout << "Tuile piochée n° / " << tuile_pioche->get_id() << endl;
+        Tuile *tuile_pioche = plateau.piocher_tuile_aleat(); // Pioche une tuile au hasard et l'enlève de la pioche
+        cout << "Tuile piochée n° " << tuile_pioche->get_id() << endl;
 
         /* Mettre à jour IA */
         Robot * robot = dynamic_cast<Robot *>(joueur_courant);
@@ -140,10 +134,10 @@ int main() {
         plateau.poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[indice_emplacement_libre]);
         
         /* Placer un meeple sur la tuile pioché */
-        if (joueur_courant->choix_si_poser_meeple()) // on regarde si le joueur_courant à bien assez de tuile
+        if (plateau.get_nbr_meeple(joueur_courant) > 0) // on regarde si le joueur_courant à bien assez de tuile
         {
-            cout << "Joueur" << i%2 << "veut-il poser pions ?(oui/non)" << endl; // le joueur_courant n'est pas obligé de poser un meeple
-            if (joueur_courant->choix_si_poser_meeple()) 
+            cout << "Joueur" << i%2 << " à " << plateau.get_nbr_meeple(joueur_courant) << " :veut-il poser pions ?(oui/non)" << endl; // le joueur_courant n'est pas obligé de poser un meeple
+            if (!joueur_courant->choix_si_poser_meeple()) 
             {
                 cout << "Choisir élement" << endl;
                 vector<Element *> list_element = tuile_pioche->getElements();
@@ -160,6 +154,11 @@ int main() {
         i = i + 1; // joueur suivant
     }
     
+    plateau.evaluer_meeple(STATUS_FINAL);
+
+    cout << "Joueur 1 à gagner : " << list_joueur.at(0)->get_score() << endl;
+    cout << "Joueur 2 à gagner : " << list_joueur.at(1)->get_score() << endl;
+
     /* free data */
 	return 0;
 }
