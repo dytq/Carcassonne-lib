@@ -21,6 +21,7 @@ Tuile::Tuile(const Tuile & tuile)
 {
     Logging::log(Logging::DEBUG, "clonnage de la tuile");
     this->id = tuile.id; 
+    this->id_groupe = tuile.id_groupe;
     this->bordure = tuile.bordure;
     this->element = tuile.element;
 }

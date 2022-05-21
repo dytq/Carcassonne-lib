@@ -92,7 +92,7 @@ int main() {
 	
     /* Initialisation des joueurs */
     vector<Joueur *> list_joueur;
-    list_joueur.push_back(new Robot(Robot::ALEAT));
+    list_joueur.push_back(new Robot(Robot::MINIMAX));
     list_joueur.push_back(new Robot(Robot::ALEAT));
 
     for(Joueur * joueur : list_joueur)
@@ -105,7 +105,7 @@ int main() {
     /* Boucle principale */
     
     //while (!plateau.pioche_est_vide()) 
-    for(int x = 0; x < 10; x++)
+    for(int x = 0; x < 1; x++)
     {
         Joueur * joueur_courant = list_joueur[i%2];
 
