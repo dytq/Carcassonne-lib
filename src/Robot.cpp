@@ -82,7 +82,7 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, uint32_t *meilleur_score, in
         plateau->poser_tuile(tuile, emplacement);
 
         uint32_t score_courant = 0;  // Calculer score pour ce choix
-        uint32_t meilleur_score_adversaire_pondéré = INT32_MIN;
+        uint32_t meilleur_score_adversaire_pondere = INT32_MIN;
 
         for(int j = 0; j < NBR_TYPES_TUILES; j++)
         {
@@ -92,7 +92,7 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, uint32_t *meilleur_score, in
 
             for(int k = 0; k < plateau->get_liste_tuiles_emplacements_libres().size(); k++)
             {
-                // Calculer meilleur score adversaire pondéré par la probabilité pour lui de
+                // Calculer meilleur score adversaire pondere par la probabilité pour lui de
                 // piocher cette tuile
                 /*
 
@@ -103,9 +103,9 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, uint32_t *meilleur_score, in
                 std::array<int, 3> emplacement = plateau->get_liste_tuiles_emplacements_libres()[];
                 plateau->poser_tuile(tuile, emplacement);
 
-                if((score_adversaire_courant * proba_tuile_courante) > meilleur_score_adversaire_pondéré)
+                if((score_adversaire_courant * proba_tuile_courante) > meilleur_score_adversaire_pondere)
                 {
-                    meilleur_score_adversaire_pondéré = score_adversaire_courant * proba_tuile_courante;
+                    meilleur_score_adversaire_pondere = score_adversaire_courant * proba_tuile_courante;
                 }
 
                 plateau->remove_back_child();
@@ -113,7 +113,7 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, uint32_t *meilleur_score, in
             }
         }
         
-        score_courant -= meilleur_score_adversaire_pondéré;
+        score_courant -= meilleur_score_adversaire_pondere;
 
         if(score_courant > *meilleur_score)
         {
