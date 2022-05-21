@@ -86,7 +86,7 @@ class Plateau
             if(!Plateau::list_plateau.empty())
             {
                 Logging::log(Logging::DEBUG, "Plateau déjà initialisé");
-                return;
+                list_plateau.clear();
             }
             list_plateau.push_back(plateau_root);
             current_plateau = plateau_root;

@@ -85,6 +85,7 @@ void afficher_liste_tuiles_emplacements_libres(vector<array<int, 3>> liste_tuile
 // MAIN
 int main() {
     Plateau plateau;
+    
     plateau.init_root(BaseDeDonnees::generer_plateau_vanilla());
     plateau.init_plateau();
 
@@ -133,11 +134,12 @@ int main() {
 
         plateau.poser_tuile(tuile_pioche, liste_tuiles_emplacements_libres[indice_emplacement_libre]);
         
+        cout << "Joueur " << i%2 << " à " << plateau.get_nbr_meeple(joueur_courant) << " de meeple" << endl;
         /* Placer un meeple sur la tuile pioché */
         if (plateau.get_nbr_meeple(joueur_courant) > 0) // on regarde si le joueur_courant à bien assez de tuile
         {
-            cout << "Joueur" << i%2 << " à " << plateau.get_nbr_meeple(joueur_courant) << " :veut-il poser pions ?(oui/non)" << endl; // le joueur_courant n'est pas obligé de poser un meeple
-            if (!joueur_courant->choix_si_poser_meeple()) 
+            cout << "Joueur " << i%2 << " :veut-il poser pions ?(oui/non)" << endl; // le joueur_courant n'est pas obligé de poser un meeple
+            if (joueur_courant->choix_si_poser_meeple()) 
             {
                 cout << "Choisir élement" << endl;
                 vector<Element *> list_element = tuile_pioche->getElements();
