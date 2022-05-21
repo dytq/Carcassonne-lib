@@ -348,7 +348,7 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
         bordure_voisines = (1 + bordure_voisines) % 4;
     }
 
-    nombre_tuiles_type_pioche[tuile->get_id_groupe()]--;
+    current_plateau->nombre_tuiles_type_pioche[tuile->get_id_groupe()]--;
 }
 
 /**
@@ -358,7 +358,7 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
  * */
 float Plateau::proba_type_tuile(int type)
 {
-    return this->pioche.size()/this->nombre_tuiles_type_pioche[type];
+    return current_plateau->pioche.size()/current_plateau->nombre_tuiles_type_pioche[type];
 }
 
 /**
