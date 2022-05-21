@@ -1,5 +1,6 @@
 // LIBRAIRIES
 #include "Plateau.hpp"
+
 /* Initialise variable statique d'une instance Plateau */
 int Plateau::current_index_plateau = 0;
 std::vector<Noeud *> Plateau::list_noeuds;
@@ -365,7 +366,7 @@ void Plateau::evaluer_meeple(int status_du_jeu)
 {
     for(auto const &itMap : current_plateau->mapJoueursPions)
     {
-        //Logging::log(Logging::TRACE, "Evaluation pour des meeples du Joueur %d", itMap.first->get_couleur());
+        Logging::log(Logging::TRACE, "Evaluation pour des meeples du Joueur %d qui a %d meeple posé", itMap.first->get_score(), 7 - itMap.second->get_nbr_meeple());
         const std::array<Meeple *, 7> arrayMeeple_const = itMap.second->get_stack_meeple();
         std::array<Meeple *, 7> arrayMeeple = arrayMeeple_const; // clonnage car il y a mise à jour implicite lors de la desindexation
         

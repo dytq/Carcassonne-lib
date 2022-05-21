@@ -5,12 +5,12 @@ Robot::Robot(Type_robot type_robot)
 {
     this->type_robot = type_robot;
     Joueur::score = 0;
-    srand(time(0)); // robot aléatoire
 }
 
 void Robot::script_robot_aleat(Plateau * plateau, Tuile * tuile)
-{     
-    
+{  
+    time_t nTime;
+    srand((unsigned) time(&nTime));   
     Logging::log(Logging::DEBUG, "tuile %d", tuile);
            
     plateau->add_child();            // plateau ajout un enfant de lui meme
@@ -29,9 +29,24 @@ void Robot::script_robot_aleat(Plateau * plateau, Tuile * tuile)
         
     plateau->poser_tuile(tuile, emplacement);
 
+    Logging::log(Logging::DEBUG, "Robot à %d meeple", plateau->get_nbr_meeple(this));
+
     if(plateau->get_nbr_meeple(this) > 0)
     {
-        this->si_poser_meeple = rand() % 2;
+        Logging::log(Logging::DEBUG, "Robot à assez de meeple pour placer son meeple");
+        std::default_random_engine generator;
+        std::uniform_int_distribution<int> distribution(1,6);
+        int si_veut_placer = distribution(generator); 
+        Logging::log(Logging::DEBUG, ">> %d", si_veut_placer);
+        if(si_veut_placer < 50) // 50% de chance 
+        {
+             Logging::log(Logging::DEBUG, ">> true");
+            this->si_poser_meeple = true;
+        }
+        else  
+        {
+            this->si_poser_meeple = false;
+        }
         if(this->si_poser_meeple == true) 
         {
             Logging::log(Logging::DEBUG, "Robot veut placer un Meeple");
@@ -40,7 +55,7 @@ void Robot::script_robot_aleat(Plateau * plateau, Tuile * tuile)
             if(size_liste_element > 0)
             {
                 this->indice_element_libre = rand() % size_liste_element;
-                Logging::log(Logging::DEBUG, "Robot veut placer sont Meeple à %d", this->indice_element_libre);
+                Logging::log(Logging::DEBUG, "Robot veut placer son Meeple à %d", this->indice_element_libre);
             }
             else 
             {
@@ -69,7 +84,7 @@ void Robot::script_robot_minimax(Plateau *  plateau, Tuile * tuile)
 void Robot::update_ia(Plateau * plateau, Tuile * tuile_pioche)
 {
     Logging::log(Logging::TRACE, "mise à jour de l'IA");    
-    Tuile * tuile_pioche_tmp =  tuile_pioche; //new Tuile(*tuile_pioche);
+    Tuile * tuile_pioche_tmp =  new Tuile(*tuile_pioche);
 
     if(tuile_pioche_tmp == nullptr)
     {

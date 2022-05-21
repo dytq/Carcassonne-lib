@@ -1,6 +1,7 @@
 #ifndef ROBOT_HPP
 #define ROBOT_HPP
-
+#include <time.h>
+#include <random>
 #include "Joueur.hpp"
 #include "Plateau.hpp"
 #include "Tuile.hpp"
