@@ -87,13 +87,15 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *
     // Itération sur toutes les possibilités du robot
     for(long unsigned int i = 0; i < plateau->get_liste_tuiles_emplacements_libres().size(); i++)
     {
+        Tuile * tuile_tmp = new Tuile(*tuile);
+
         plateau->add_child();
         plateau->set_at_back_child();
 
         std::array<int, 3> emplacement = plateau->get_liste_tuiles_emplacements_libres()[i];
-        plateau->poser_tuile(tuile, emplacement);
+        plateau->poser_tuile(tuile_tmp, emplacement);
 
-        plateau->calculer_element_libres(tuile);
+        plateau->calculer_element_libres(tuile_tmp );
         int size_liste_element = plateau->get_element_libre().size();
 
         float score_courant = INT32_MIN;
@@ -127,7 +129,7 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *
         {
             if(plateau->proba_type_tuile(j) > 0)
             {
-                Tuile *tuile_courante = plateau->piocher_tuile_type(j);
+                Tuile *tuile_courante = new Tuile(*plateau->piocher_tuile_type(j));
                 float proba_tuile_courante = plateau->proba_type_tuile(tuile_courante->get_id_groupe());
                 plateau->calcul_emplacements_libres(tuile_courante);
 
@@ -195,17 +197,19 @@ void Robot::script_robot_minimax(Plateau *plateau, Tuile *tuile)
     plateau->add_child();
     plateau->set_at_back_child();
 
+    Tuile * tuile_tmp = new Tuile(*tuile);
+
     // Variables à chercher
     float meilleur_score = -FLT_MIN;
     int meilleur_choix = 0;
 
     // Minimax en profondeur 2
-    minimax(plateau, tuile, &meilleur_score, &meilleur_choix);
+    minimax(plateau, tuile_tmp, &meilleur_score, &meilleur_choix);
 
     // Affectation de l'indice à choisir et pose de la tuile
     this->indice_emplacement_libre = meilleur_choix;
     std::array<int, 3> emplacement = plateau->get_liste_tuiles_emplacements_libres()[indice_emplacement_libre];
-    plateau->poser_tuile(tuile, emplacement);
+    plateau->poser_tuile(tuile_tmp, emplacement);
 
     // retourner indice élement où placer meeple
 
