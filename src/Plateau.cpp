@@ -358,6 +358,11 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
  * */
 float Plateau::proba_type_tuile(int type)
 {
+    if(current_plateau->nombre_tuiles_type_pioche[type] == 0)
+    {
+        return 0;
+    }
+
     return current_plateau->pioche.size()/current_plateau->nombre_tuiles_type_pioche[type];
 }
 

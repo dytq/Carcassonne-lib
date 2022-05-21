@@ -95,10 +95,10 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *
         std::array<int, 3> emplacement = plateau->get_liste_tuiles_emplacements_libres()[i];
         plateau->poser_tuile(tuile_tmp, emplacement);
 
-        plateau->calculer_element_libres(tuile_tmp );
+        plateau->calculer_element_libres(tuile_tmp);
         int size_liste_element = plateau->get_element_libre().size();
 
-        float score_courant = INT32_MIN;
+        float score_courant = -FLT_MIN;
 
         if(size_liste_element > 0)
         {
@@ -122,7 +122,7 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *
             this->si_poser_meeple = false;
         }
 
-        float meilleur_score_adversaire_pondere = INT32_MIN;
+        float meilleur_score_adversaire_pondere = -FLT_MIN;
 
         // Itération sur toutes les possibilités de l'adversaire
         for(int j = 0; j < NBR_TYPES_TUILES; j++)
@@ -136,7 +136,7 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *
                 // Itération sur les types de tuiles tirables et leur probabilité de sortir
                 for(unsigned long int k = 0; k < plateau->get_liste_tuiles_emplacements_libres().size(); k++)
                 {
-                    float score_adversaire_courant = INT32_MIN;
+                    float score_adversaire_courant = -FLT_MIN;
 
                     plateau->add_child();
                     plateau->set_at_back_child();
@@ -211,7 +211,31 @@ void Robot::script_robot_minimax(Plateau *plateau, Tuile *tuile)
     std::array<int, 3> emplacement = plateau->get_liste_tuiles_emplacements_libres()[indice_emplacement_libre];
     plateau->poser_tuile(tuile_tmp, emplacement);
 
-    // retourner indice élement où placer meeple
+    // Emplacement du meeple
+    plateau->calculer_element_libres(tuile);
+    int size_liste_element_courant = plateau->get_element_libre().size();
+    float meilleur_score_meeple = -FLT_MIN;
+
+    if(size_liste_element_courant > 0)
+    {
+        for(int i = 0; i < size_liste_element_courant; i++)
+        {
+            float score_meeple = Pion::estimer_element_points(this, plateau->get_element_libre().at(i),
+            STATUS_EN_COURS, plateau->get_grille(), {emplacement[0], emplacement[1]});
+
+            if(score_meeple > meilleur_score_meeple)
+            {
+                this->si_poser_meeple = true;
+                this->indice_element_libre = i;
+                meilleur_score_meeple = score_meeple;
+            }
+        }
+    }
+
+    else
+    {
+        this->si_poser_meeple = false;
+    }
 
     plateau->remove_back_child();
 }

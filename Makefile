@@ -11,7 +11,7 @@ CXX=g++
 #CXX=clang++
 
 ### Flags ###
-CXXFLAGS := -Iinclude -MMD -O3 -MP -g
+CXXFLAGS := -Iinclude -MMD -Ofast -MP -g
 CFLAGS   := -Wall
 LDFLAGS  := -Llib
 LDLIBS   := -lm
