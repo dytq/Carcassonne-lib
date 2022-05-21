@@ -23,7 +23,7 @@ void Robot::script_robot_aleat(Plateau * plateau, Tuile * tuile)
 
     this->indice_emplacement_libre = rand() % size_liste;
         
-    // Logging::log(Logging::DEBUG, "emplacement choisi %d/%d", indice_emplacement_libre, (int) plateau->get_liste_tuiles_emplacements_libres().size());
+    Logging::log(Logging::DEBUG, "Robot a choisi emplacement %d/%d", indice_emplacement_libre, (int) plateau->get_liste_tuiles_emplacements_libres().size());
 
     std::array<int,3> emplacement = plateau->get_liste_tuiles_emplacements_libres()[indice_emplacement_libre];
         
@@ -32,16 +32,19 @@ void Robot::script_robot_aleat(Plateau * plateau, Tuile * tuile)
     if(plateau->get_nbr_meeple(this) > 0)
     {
         this->si_poser_meeple = rand() % 2;
-        if(true) 
+        if(this->si_poser_meeple == true) 
         {
+            Logging::log(Logging::DEBUG, "Robot veut placer un Meeple");
             plateau->calculer_element_libres(tuile);
             int size_liste_element = plateau->get_element_libre().size();
             if(size_liste_element > 0)
             {
                 this->indice_element_libre = rand() % size_liste_element;
+                Logging::log(Logging::DEBUG, "Robot veut placer sont Meeple à %d", this->indice_element_libre);
             }
             else 
             {
+                Logging::log(Logging::DEBUG, "Robot ne peux pas placer de Meeple");
                 this->si_poser_meeple = false;
             }
         } 
@@ -55,7 +58,6 @@ void Robot::script_robot_aleat(Plateau * plateau, Tuile * tuile)
         this->si_poser_meeple = false;
     }
     
-    this->si_poser_meeple = false;
     plateau->remove_back_child(); // supprime le dernier et revient à l'état d'avant (root)
 }
 
