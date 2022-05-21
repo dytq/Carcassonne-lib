@@ -18,7 +18,7 @@ class Robot : public Joueur
         bool si_poser_meeple;
         int indice_element_libre;
         void script_robot_aleat(Plateau * plateau, Tuile * tuile);
-        void Robot::minimax(Plateau *plateau, Tuile *tuile, uint32_t *meilleur_score, int *meilleur_choix);
+        void minimax(Plateau *plateau, Tuile *tuile, uint32_t *meilleur_score, int *meilleur_choix);
         void script_robot_minimax(Plateau * plateau, Tuile * tuile);
 
     public: 

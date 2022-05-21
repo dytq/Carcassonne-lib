@@ -7,8 +7,8 @@ SRC=$(wildcard $(SRC_DIR)/*.cpp)
 OBJ=$(SRC:$(SRC_DIR)/%.cpp=$(TRG_DIR)/%.o)
 
 ### Compilateur ###
-#CXX=g++
-CXX=clang++
+CXX=g++
+#CXX=clang++
 
 ### Flags ###
 CXXFLAGS := -Iinclude -MMD -O3 -MP -g
@@ -29,9 +29,6 @@ $(TRG_DIR)/%.o: $(SRC_DIR)/%.cpp | $(TRG_DIR)
 
 $(TRG_DIR):
 	mkdir -p $@
-
-run: $(EXE)
-	./$(EXE)
 
 ### Supprime les fichiers temporaires ###
 clean:
