@@ -4,6 +4,7 @@
 
 /* Constantes vanilla */
 #define NBR_TUILES   72
+#define NBR_TYPES_TUILES	24
 #define NBR_ORIENTATIONS_TUILES	4
 #define NBR_MEEPLE   7
 

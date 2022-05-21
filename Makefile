@@ -30,6 +30,9 @@ $(TRG_DIR)/%.o: $(SRC_DIR)/%.cpp | $(TRG_DIR)
 $(TRG_DIR):
 	mkdir -p $@
 
+run: $(EXE)
+	./$(EXE)
+
 ### Supprime les fichiers temporaires ###
 clean:
 	@$(RM) -rv $(TRG_DIR) *.Rout *.pdf *.data
