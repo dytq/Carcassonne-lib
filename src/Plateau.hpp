@@ -33,6 +33,7 @@ class Plateau
         std::array<std::array<Tuile *, 144>, 144> grille; // grille du jeu
         
         std::vector<Tuile *> pioche; // la pioche
+        int nombre_tuiles_type_pioche[NBR_TYPES_TUILES];
         std::vector<std::array<int, 3>> liste_tuiles_emplacements_libres; // liste des emplacements libres {abscisse, ordonnée, orientation}
         std::vector<Element *> element_libre; // liste des éléments libre
 
@@ -162,7 +163,8 @@ class Plateau
         void clear_element_libres();
         void clear_emplacement_libres();
 
-        void poser_tuile(Tuile *tuile, std::array<int, 3> emplacement); 
+        void poser_tuile(Tuile *tuile, std::array<int, 3> emplacement);
+        float proba_type_tuile(int type);
         void poser_meeple(Joueur *joueur, Element *element, Meeple * meeple, int indice); 
         void poser_meeple(Joueur *joueur, Element *element, std::pair<int, int> position);
 
@@ -171,7 +173,8 @@ class Plateau
         bool stack_meeple_vide(Joueur *joueur); 
                 
         Tuile *piocher_tuile(int indice_pioche); 
-        Tuile *piocher_tuile_aleat(); 
+        Tuile *piocher_tuile_aleat();
+        Tuile *piocher_tuile_type(int type);
 
         // TODO noeud appelle plateau au lieu de plateau update noeud
         void update_noeud();

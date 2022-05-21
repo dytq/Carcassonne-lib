@@ -9,9 +9,10 @@
  * @param: bordure est la bordure de la tuile 
  * @param: element est l'ensemble des éléments que compose la tuile
  * */
-Tuile::Tuile(int id, std::array<Bordure *, 4> bordure, std::vector<Element *> element)
+Tuile::Tuile(int id, int id_groupe, std::array<Bordure *, 4> bordure, std::vector<Element *> element)
 {
     this->id = id;
+    this->id_groupe = id_groupe;
     this->bordure = bordure;
     this->element = element;
 }
@@ -48,6 +49,14 @@ Tuile::~Tuile()
 int Tuile::get_id()
 {
     return this->id;
+}
+
+/**
+ * @title: Récupère l'id_groupe de la tuile
+ * */
+int Tuile::get_id_groupe()
+{
+    return this->id_groupe;
 }
 
 /**

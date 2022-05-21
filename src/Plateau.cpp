@@ -19,6 +19,31 @@ Plateau::Plateau(const Plateau & plateau)
     Logging::log(Logging::TRACE, "clonnage du plateau %d", &plateau);
     this->grille = plateau.grille;
     this->pioche = plateau.pioche;
+
+    this->nombre_tuiles_type_pioche[0] = 4;
+    this->nombre_tuiles_type_pioche[1] = 3;
+    this->nombre_tuiles_type_pioche[2] = 3;
+    this->nombre_tuiles_type_pioche[3] = 5;
+    this->nombre_tuiles_type_pioche[4] = 3;
+    this->nombre_tuiles_type_pioche[5] = 2;
+    this->nombre_tuiles_type_pioche[6] = 8;
+    this->nombre_tuiles_type_pioche[7] = 9;
+    this->nombre_tuiles_type_pioche[8] = 3;
+    this->nombre_tuiles_type_pioche[9] = 2;
+    this->nombre_tuiles_type_pioche[10] = 3;
+    this->nombre_tuiles_type_pioche[11] = 2;
+    this->nombre_tuiles_type_pioche[12] = 1;
+    this->nombre_tuiles_type_pioche[13] = 2;
+    this->nombre_tuiles_type_pioche[14] = 3;
+    this->nombre_tuiles_type_pioche[15] = 1;
+    this->nombre_tuiles_type_pioche[16] = 1;
+    this->nombre_tuiles_type_pioche[17] = 1;
+    this->nombre_tuiles_type_pioche[18] = 2;
+    this->nombre_tuiles_type_pioche[19] = 4;
+    this->nombre_tuiles_type_pioche[20] = 2;
+    this->nombre_tuiles_type_pioche[21] = 3;
+    this->nombre_tuiles_type_pioche[22] = 4;
+    this->nombre_tuiles_type_pioche[23] = 1;
     
     //this->liste_tuiles_emplacements_libres = plateau.liste_tuiles_emplacements_libres; 
     //this->element_libre = plateau.element_libre;
@@ -99,7 +124,20 @@ Tuile *Plateau::piocher_tuile(int index)
     Tuile *tuile = current_plateau->pioche[index];
 	current_plateau->pioche.erase(current_plateau->pioche.begin() + index);
     return tuile;
-}      
+}
+
+Tuile *Plateau::piocher_tuile_type(int type)
+{
+    for(unsigned long int i = 0; i < this->pioche.size(); i++)
+    {
+        if(this->pioche.at(i)->get_id_groupe() == type)
+        {
+            return piocher_tuile(i);
+        }
+    }
+
+    return piocher_tuile_aleat();
+}
 
 Tuile *Plateau::get_tuile_grille(int x, int y)
 {
@@ -277,7 +315,7 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
         {
             std::array<Bordure *, 4> bordure_tmp = {nullptr, nullptr, nullptr, nullptr};
             std::vector<Element *> element_tmp = {nullptr};
-            Tuile * tuile_candidate = new Tuile(-1, bordure_tmp, element_tmp);
+            Tuile * tuile_candidate = new Tuile(-1, -1, bordure_tmp, element_tmp);
             current_plateau->grille[tuile_coord_voisine.first][tuile_coord_voisine.second] = tuile_candidate;
             current_plateau->tuiles_candidates[tuile_candidate] = std::make_pair(tuile_coord_voisine.first,tuile_coord_voisine.second);
         } 
@@ -309,6 +347,18 @@ void Plateau::poser_tuile(Tuile *tuile, std::array<int, 3> emplacement)
         bordure_tuiles = (1 + bordure_tuiles) % 4;      
         bordure_voisines = (1 + bordure_voisines) % 4;
     }
+
+    nombre_tuiles_type_pioche[tuile->get_id_groupe()]--;
+}
+
+/**
+ * Retourne la probabilité de tirer une tuile d'un certain type.
+ *
+ * @param type numéro du type de tuile recherché
+ * */
+float Plateau::proba_type_tuile(int type)
+{
+    return this->pioche.size()/this->nombre_tuiles_type_pioche[type];
 }
 
 /**

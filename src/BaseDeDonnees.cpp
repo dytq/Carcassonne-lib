@@ -14,6 +14,8 @@
 Plateau * BaseDeDonnees::generer_plateau_vanilla()
 {
     int id = 0;
+    int id_groupe = 0;
+
     Plateau * plateau = new Plateau();
     // Tuile 1 (x4)
     {
@@ -111,7 +113,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);   
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);   
             id ++;
             
             // AJOUT de la tuile dans le pioche
@@ -119,6 +121,7 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
         
     }
     }
+    id_groupe++;
     // Tuile 2 (x3)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++)
@@ -211,14 +214,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile);
     }
     }
-
+    id_groupe++;
     // Tuile 3 (x3)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
@@ -313,14 +316,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
 
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 4 (x5)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_5 ; nb++){
@@ -403,14 +406,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 5 (x3)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
@@ -496,14 +499,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 6 (x2)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
@@ -590,14 +593,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 7 (x8)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_8 ; nb++){
@@ -685,14 +688,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 8 (x9)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_9 ; nb++){
@@ -782,14 +785,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 9 (x3)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
@@ -870,14 +873,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 10 (x2)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
@@ -958,14 +961,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 11 (x3)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
@@ -1056,14 +1059,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 12 (x2)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
@@ -1153,14 +1156,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 13 (x1)
     {
 
@@ -1244,13 +1247,13 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
-
+    id_groupe++;
     // Tuile 14 (x2)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
@@ -1335,14 +1338,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 15 (x3)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
@@ -1423,14 +1426,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 16 (x1)
     {
             std::array<Bordure *, 4> bordure;
@@ -1509,13 +1512,13 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
-
+    id_groupe++;
     // Tuile 17 (x1)
     {
             std::array<Bordure *, 4> bordure;
@@ -1592,13 +1595,13 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
-
+    id_groupe++;
     // Tuile 18 (x1)
     {
 
@@ -1687,13 +1690,13 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
-
+    id_groupe++;
     // Tuile 19 (x2)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
@@ -1783,14 +1786,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 20 (x4)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_4 ; nb++){
@@ -1870,14 +1873,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 21 (x2)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_2 ; nb++){
@@ -1961,14 +1964,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 22 (x3)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_3 ; nb++){
@@ -2070,14 +2073,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 23 (x4)
     {
     for (int nb = 0 ; nb < NOMBRE_TUILES_4 ; nb++){
@@ -2176,14 +2179,14 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
     }
-
+    id_groupe++;
     // Tuile 24 (x1)
     {
 
@@ -2289,11 +2292,12 @@ Plateau * BaseDeDonnees::generer_plateau_vanilla()
             bordure[3]->get_bordure_fils(2)->set_lien(nullptr);
 
             // Creation de la tuile
-            Tuile * tuile = new Tuile(id, bordure, elementTuile);
+            Tuile * tuile = new Tuile(id, id_groupe, bordure, elementTuile);
             id++;
 
             // Ajout de la tuile dans le pioche
             plateau->ajouter_tuile_pioche(tuile); // front pour la première tuile
     }
+    
     return plateau;
 }

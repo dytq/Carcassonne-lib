@@ -1,4 +1,5 @@
-#include "Robot.hpp"    
+#include "Robot.hpp"  
+#include <float.h>  
 
 Robot::Robot(Type_robot type_robot)
 {
@@ -69,47 +70,103 @@ void Robot::script_robot_aleat(Plateau * plateau, Tuile * tuile)
     plateau->remove_back_child(); // supprime le dernier et revient à l'état d'avant (root)
 }
 
-void Robot::minimax(Plateau *plateau, Tuile *tuile, uint32_t *meilleur_score, int *meilleur_choix)
+void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *meilleur_choix)
 {
+    // Calcul des emplacements libres, nous devrons en choisir un donc donner l'indice
+    // du meilleur choix et le meilleur score correspondant
     plateau->calcul_emplacements_libres(tuile);
-    int size_liste = plateau->get_liste_tuiles_emplacements_libres().size();
 
-    for(int i = 0; i < size_liste; i++)
+    // Itération sur toutes les possibilités du robot
+    for(long unsigned int i = 0; i < plateau->get_liste_tuiles_emplacements_libres().size(); i++)
     {
         plateau->add_child();
         plateau->set_at_back_child();
+
         std::array<int, 3> emplacement = plateau->get_liste_tuiles_emplacements_libres()[i];
         plateau->poser_tuile(tuile, emplacement);
 
-        uint32_t score_courant = 0;  // Calculer score pour ce choix
-        uint32_t meilleur_score_adversaire_pondere = INT32_MIN;
+        plateau->calculer_element_libres(tuile);
+        int size_liste_element = plateau->get_element_libre().size();
 
+        float score_courant = INT32_MIN;
+
+        if(size_liste_element > 0)
+        {
+            for(int j = 0; j < size_liste_element; j++)
+            {
+                score_courant = Pion::estimer_element_points(this, plateau->get_element_libre().at(j),
+                STATUS_EN_COURS, plateau->get_grille(), {emplacement[0], emplacement[1]});
+
+                if(score_courant > *meilleur_score)
+                {
+                    this->si_poser_meeple = true;
+                    this->indice_element_libre = j;
+                    *meilleur_score = score_courant;
+                }
+            }
+        }
+
+        else
+        {
+            score_courant = 0;
+            this->si_poser_meeple = false;
+        }
+
+        float meilleur_score_adversaire_pondere = INT32_MIN;
+
+        // Itération sur toutes les possibilités de l'adversaire
         for(int j = 0; j < NBR_TYPES_TUILES; j++)
         {
-            //tuile_courante = ;
-            //float proba_tuile_courante = ;
-            //plateau->calcul_emplacements_libres(tuile_courante);
-
-            for(int k = 0; k < plateau->get_liste_tuiles_emplacements_libres().size(); k++)
+            if(plateau->proba_type_tuile(j) > 0)
             {
-                // Calculer meilleur score adversaire pondere par la probabilité pour lui de
-                // piocher cette tuile
-                /*
+                Tuile *tuile_courante = plateau->piocher_tuile_type(j);
+                float proba_tuile_courante = plateau->proba_type_tuile(tuile_courante->get_id_groupe());
+                plateau->calcul_emplacements_libres(tuile_courante);
 
-                uint32_t score_adversaire_courant = INT32_MIN;
-
-                plateau->add_child();
-                plateau->set_at_back_child();
-                std::array<int, 3> emplacement = plateau->get_liste_tuiles_emplacements_libres()[];
-                plateau->poser_tuile(tuile, emplacement);
-
-                if((score_adversaire_courant * proba_tuile_courante) > meilleur_score_adversaire_pondere)
+                // Itération sur les types de tuiles tirables et leur probabilité de sortir
+                for(unsigned long int k = 0; k < plateau->get_liste_tuiles_emplacements_libres().size(); k++)
                 {
-                    meilleur_score_adversaire_pondere = score_adversaire_courant * proba_tuile_courante;
-                }
+                    float score_adversaire_courant = INT32_MIN;
 
-                plateau->remove_back_child();
-                */
+                    plateau->add_child();
+                    plateau->set_at_back_child();
+                    std::array<int, 3> emplacement_courant = plateau->get_liste_tuiles_emplacements_libres()[k];
+                    plateau->poser_tuile(tuile_courante, emplacement_courant);
+
+                    plateau->calculer_element_libres(tuile_courante);
+                    int size_liste_element_courant = plateau->get_element_libre().size();
+
+                    if(size_liste_element_courant > 0)
+                    {
+                        for(int l = 0; l < size_liste_element_courant; l++)
+                        {
+                            score_adversaire_courant = Pion::estimer_element_points(this, plateau->get_element_libre().at(l),
+                            STATUS_EN_COURS, plateau->get_grille(), {emplacement[0], emplacement[1]});
+
+                            if(score_adversaire_courant > *meilleur_score)
+                            {
+                                this->si_poser_meeple = true;
+                                this->indice_element_libre = l;
+                                *meilleur_score = score_adversaire_courant;
+                            }
+                        }
+                    }
+
+                    else
+                    {
+                        score_adversaire_courant = 0;
+                        this->si_poser_meeple = false;
+                    }
+
+                    meilleur_score_adversaire_pondere = score_adversaire_courant * proba_tuile_courante;
+
+                    if((score_adversaire_courant * proba_tuile_courante) > meilleur_score_adversaire_pondere)
+                    {
+                        meilleur_score_adversaire_pondere = score_adversaire_courant * proba_tuile_courante;
+                    }
+
+                    plateau->remove_back_child();
+                }
             }
         }
         
@@ -129,40 +186,20 @@ void Robot::script_robot_minimax(Plateau *plateau, Tuile *tuile)
 {
     plateau->add_child();
     plateau->set_at_back_child();
-    uint32_t meilleur_score = INT32_MIN;
+
+    // Variables à chercher
+    float meilleur_score = -FLT_MIN;
     int meilleur_choix = 0;
 
+    // Minimax en profondeur 2
     minimax(plateau, tuile, &meilleur_score, &meilleur_choix);
 
+    // Affectation de l'indice à choisir et pose de la tuile
     this->indice_emplacement_libre = meilleur_choix;
     std::array<int, 3> emplacement = plateau->get_liste_tuiles_emplacements_libres()[indice_emplacement_libre];
     plateau->poser_tuile(tuile, emplacement);
 
-    if(plateau->get_nbr_meeple(this) > 0)
-    {
-        this->si_poser_meeple = true;
-
-        if(true) 
-        {
-            plateau->calculer_element_libres(tuile);
-            int size_liste_element = plateau->get_element_libre().size();
-
-            if(size_liste_element > 0)
-            {
-                this->indice_element_libre = rand() % size_liste_element;
-            }
-
-            else 
-            {
-                this->si_poser_meeple = false;
-            }
-        } 
-    }
-
-    else
-    {
-        this->si_poser_meeple = false;
-    }
+    // retourner indice élement où placer meeple
 
     plateau->remove_back_child();
 }
