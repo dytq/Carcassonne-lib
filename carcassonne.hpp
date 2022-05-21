@@ -24,7 +24,7 @@ class Carcassonne : public Reference {
     GDCLASS(Carcassonne, Reference);
 
     /* Variables */
-    Plateau * plateau;
+    Plateau plateau;
     Tuile   * tuile_pioche;
     Joueur  * joueur1;
     Joueur  * joueur2;
@@ -59,6 +59,7 @@ public:
     bool get_joueur_si_placer_meeple(int joueur_id);
     int get_joueur_element_choisi(int joueur_id);
     Array get_joueur_emplacement_choisi(int joueur_id);
+    void afficher_plateau_tui();
     bool fin_du_jeu();
 };
 

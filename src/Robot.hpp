@@ -2,6 +2,8 @@
 #define ROBOT_HPP
 #include <time.h>
 #include <random>
+#include <vector>
+
 #include "Joueur.hpp"
 #include "Plateau.hpp"
 #include "Tuile.hpp"

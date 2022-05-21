@@ -104,7 +104,8 @@ int main() {
     
     /* Boucle principale */
     
-    while (!plateau.pioche_est_vide()) 
+    //while (!plateau.pioche_est_vide()) 
+    for(int x = 0; x < 10; x++)
     {
         Joueur * joueur_courant = list_joueur[i%2];
 

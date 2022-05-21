@@ -20,8 +20,8 @@ Plateau::Plateau(const Plateau & plateau)
     this->grille = plateau.grille;
     this->pioche = plateau.pioche;
     
-    //this->liste_tuiles_emplacements_libres = plateau.liste_tuiles_emplacements_libres; 
-    //this->element_libre = plateau.element_libre;
+    this->liste_tuiles_emplacements_libres = plateau.liste_tuiles_emplacements_libres; 
+    this->element_libre = plateau.element_libre;
     
     this->mapJoueursPions = plateau.mapJoueursPions; 
     this->tuiles_candidates = plateau.tuiles_candidates;

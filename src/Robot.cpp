@@ -13,13 +13,21 @@ void Robot::script_robot_aleat(Plateau * plateau, Tuile * tuile)
     plateau->add_child();            // plateau ajout un enfant de lui meme
     plateau->set_at_back_child();    // on se met au niveau de l'enfant
     
-    plateau->calcul_emplacements_libres(tuile);
     plateau->get_liste_tuiles_emplacements_libres().clear();
+
+    plateau->calcul_emplacements_libres(tuile);
+    std::vector<std::array<int,3>> liste_tuiles_emplacements_libres = plateau->get_liste_tuiles_emplacements_libres();
 
     int size_liste = plateau->get_liste_tuiles_emplacements_libres().size();
 
     this->indice_emplacement_libre = rand() % size_liste;
-        
+    
+    for (long unsigned int i = 0; i < liste_tuiles_emplacements_libres.size(); i++) 
+    {
+		std::cout << "Emplacement n°" << i << " :\n"
+			 << "Abscisse :\t" << liste_tuiles_emplacements_libres.at(i).at(0) << "\tOrdonnée :\t" << liste_tuiles_emplacements_libres.at(i).at(1) << "\tOrientation :\t" << (liste_tuiles_emplacements_libres.at(i).at(2) * 90) << "°" << std::endl;
+	}
+    
     Logging::log(Logging::DEBUG, "Robot a choisi emplacement %d/%d", indice_emplacement_libre, (int) plateau->get_liste_tuiles_emplacements_libres().size());
 
     std::array<int,3> emplacement = plateau->get_liste_tuiles_emplacements_libres()[indice_emplacement_libre];
@@ -170,7 +178,7 @@ void Robot::script_robot_minimax(Plateau *plateau, Tuile *tuile)
 void Robot::update_ia(Plateau * plateau, Tuile * tuile_pioche)
 {
     Logging::log(Logging::TRACE, "mise à jour de l'IA");    
-    Tuile * tuile_pioche_tmp =  new Tuile(*tuile_pioche);
+    Tuile * tuile_pioche_tmp = tuile_pioche  = new Tuile(*tuile_pioche);
 
     if(tuile_pioche_tmp == nullptr)
     {
@@ -194,7 +202,7 @@ void Robot::update_ia(Plateau * plateau, Tuile * tuile_pioche)
              si_poser_meeple = false;
              indice_element_libre = 0;
     } 
-
+    //tuile_pioche_tmp->reset_rotation();
     //delete tuile_pioche_tmp;
 }
 
