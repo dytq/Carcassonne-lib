@@ -17,13 +17,13 @@ class Robot : public Joueur
         bool si_poser_meeple;
         int indice_element_libre;
         void script_robot_aleat(Plateau * plateau, Tuile * tuile);
+        void Robot::minimax(Plateau *plateau, Tuile *tuile, uint32_t *meilleur_score, int *meilleur_choix);
         void script_robot_minimax(Plateau * plateau, Tuile * tuile);
 
     public: 
         Robot(Type_robot type_robot);
         
         void update_ia(Plateau * plateau, Tuile * tuile_pioche);
-        
         int choix_de_emplacement_libre() override;
         bool choix_si_poser_meeple() override;
         int choix_de_element_libre() override; 

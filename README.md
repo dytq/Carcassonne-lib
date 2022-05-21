@@ -11,12 +11,12 @@ Concernant les commandes ci-dessous, il faut d'abord ouvrir une console dans le 
 
 Pour compiler le programme :
 ```bash
-	make compile
+	make
 ```
 
 Pour compiler et exécuter le programme :
 ```bash
-	make
+	make run
 ```
 
 Pour nettoyer le projet des fichiers temporaires :
