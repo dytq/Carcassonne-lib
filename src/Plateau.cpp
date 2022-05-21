@@ -45,8 +45,8 @@ Plateau::Plateau(const Plateau & plateau)
     this->nombre_tuiles_type_pioche[22] = 4;
     this->nombre_tuiles_type_pioche[23] = 1;
     
-    //this->liste_tuiles_emplacements_libres = plateau.liste_tuiles_emplacements_libres; 
-    //this->element_libre = plateau.element_libre;
+    this->liste_tuiles_emplacements_libres = plateau.liste_tuiles_emplacements_libres; 
+    this->element_libre = plateau.element_libre;
     
     this->mapJoueursPions = plateau.mapJoueursPions; 
     this->tuiles_candidates = plateau.tuiles_candidates;
