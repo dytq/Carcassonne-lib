@@ -34,7 +34,7 @@
 #define STATUS_FINAL 0
 
 /* Debug: choisir le type de message à afficher */
-#define ALL_MSG      // Tous les messages 
+//#define ALL_MSG      // Tous les messages 
 
 #ifdef ALL_MSG
 #define CRITICAL_MSG // Permet de journaliser quand le programme échoue 

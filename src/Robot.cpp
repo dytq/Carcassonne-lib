@@ -22,13 +22,7 @@ void Robot::script_robot_aleat(Plateau * plateau, Tuile * tuile)
     int size_liste = plateau->get_liste_tuiles_emplacements_libres().size();
 
     this->indice_emplacement_libre = rand() % size_liste;
-    
-    for (long unsigned int i = 0; i < liste_tuiles_emplacements_libres.size(); i++) 
-    {
-		std::cout << "Emplacement n°" << i << " :\n"
-			 << "Abscisse :\t" << liste_tuiles_emplacements_libres.at(i).at(0) << "\tOrdonnée :\t" << liste_tuiles_emplacements_libres.at(i).at(1) << "\tOrientation :\t" << (liste_tuiles_emplacements_libres.at(i).at(2) * 90) << "°" << std::endl;
-	}
-    
+       
     Logging::log(Logging::DEBUG, "Robot a choisi emplacement %d/%d", indice_emplacement_libre, (int) plateau->get_liste_tuiles_emplacements_libres().size());
 
     std::array<int,3> emplacement = plateau->get_liste_tuiles_emplacements_libres()[indice_emplacement_libre];
@@ -130,6 +124,7 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *
             if(plateau->proba_type_tuile(j) > 0)
             {
                 Tuile *tuile_courante = new Tuile(*plateau->piocher_tuile_type(j));
+                
                 float proba_tuile_courante = plateau->proba_type_tuile(tuile_courante->get_id_groupe());
                 plateau->calcul_emplacements_libres(tuile_courante);
 
@@ -177,6 +172,7 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *
 
                     plateau->remove_back_child();
                 }
+                 delete tuile_courante;
             }
         }
         
@@ -187,7 +183,6 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *
             *meilleur_score = score_courant;
             *meilleur_choix = i;
         }
-
         plateau->remove_back_child();
     }
 }
@@ -212,7 +207,7 @@ void Robot::script_robot_minimax(Plateau *plateau, Tuile *tuile)
     plateau->poser_tuile(tuile_tmp, emplacement);
 
     // Emplacement du meeple
-    plateau->calculer_element_libres(tuile);
+    plateau->calculer_element_libres(tuile_tmp);
     int size_liste_element_courant = plateau->get_element_libre().size();
     float meilleur_score_meeple = -FLT_MIN;
 
