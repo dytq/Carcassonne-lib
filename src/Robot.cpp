@@ -251,7 +251,7 @@ void Robot::update_ia(Plateau * plateau, Tuile * tuile_pioche)
     switch(this->type_robot)
     {
         case(Robot::ALEAT):
-             script_robot_aleat(plateau, tuile_pioche);
+             script_robot_aleat(plateau, tuile_pioche_tmp);
 
              break;
         
