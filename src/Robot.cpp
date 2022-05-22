@@ -94,7 +94,7 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *
         plateau->calculer_element_libres(tuile_tmp);
         int size_liste_element = plateau->get_element_libre().size();
 
-        float score_courant = -FLT_MIN;
+        float score_courant = -FLT_MAX;
 
         if(size_liste_element > 0)
         {
@@ -118,7 +118,7 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *
             this->si_poser_meeple = false;
         }
 
-        float meilleur_score_adversaire_pondere = -FLT_MIN;
+        float meilleur_score_adversaire_pondere = -FLT_MAX;
 
         // Itération sur toutes les possibilités de l'adversaire
         for(int j = 0; j < NBR_TYPES_TUILES; j++)
@@ -133,7 +133,7 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *
                 // Itération sur les types de tuiles tirables et leur probabilité de sortir
                 for(unsigned long int k = 0; k < plateau->get_liste_tuiles_emplacements_libres().size(); k++)
                 {
-                    float score_adversaire_courant = -FLT_MIN;
+                    float score_adversaire_courant = -FLT_MAX;
 
                     plateau->add_child();
                     plateau->set_at_back_child();
@@ -198,7 +198,7 @@ void Robot::script_robot_minimax(Plateau *plateau, Tuile *tuile)
     Tuile *tuile_tmp = new Tuile(*tuile);
 
     // Variables à chercher
-    float meilleur_score = -FLT_MIN;
+    float meilleur_score = -FLT_MAX;
     int meilleur_choix = 0;
 
     // Minimax en profondeur 2
@@ -212,7 +212,7 @@ void Robot::script_robot_minimax(Plateau *plateau, Tuile *tuile)
     // Emplacement du meeple
     plateau->calculer_element_libres(tuile);
     int size_liste_element_courant = plateau->get_element_libre().size();
-    float meilleur_score_meeple = -FLT_MIN;
+    float meilleur_score_meeple = -FLT_MAX;
 
     if(size_liste_element_courant > 0)
     {
