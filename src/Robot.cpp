@@ -81,7 +81,7 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *
     // Itération sur toutes les possibilités du robot
     for(long unsigned int i = 0; i < plateau->get_liste_tuiles_emplacements_libres().size(); i++)
     {
-        Tuile * tuile_tmp = new Tuile(*tuile);
+        Tuile *tuile_tmp = new Tuile(*tuile);
 
         plateau->add_child();
         plateau->set_at_back_child();
@@ -172,7 +172,8 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *
 
                     plateau->remove_back_child();
                 }
-                 delete tuile_courante;
+
+                delete tuile_courante;
             }
         }
         
@@ -183,16 +184,16 @@ void Robot::minimax(Plateau *plateau, Tuile *tuile, float *meilleur_score, int *
             *meilleur_score = score_courant;
             *meilleur_choix = i;
         }
+
+        delete tuile_tmp;
+
         plateau->remove_back_child();
     }
 }
 
 void Robot::script_robot_minimax(Plateau *plateau, Tuile *tuile)
 {
-    plateau->add_child();
-    plateau->set_at_back_child();
-
-    Tuile * tuile_tmp = new Tuile(*tuile);
+    Tuile *tuile_tmp = new Tuile(*tuile);
 
     // Variables à chercher
     float meilleur_score = -FLT_MIN;
@@ -204,10 +205,10 @@ void Robot::script_robot_minimax(Plateau *plateau, Tuile *tuile)
     // Affectation de l'indice à choisir et pose de la tuile
     this->indice_emplacement_libre = meilleur_choix;
     std::array<int, 3> emplacement = plateau->get_liste_tuiles_emplacements_libres()[indice_emplacement_libre];
-    plateau->poser_tuile(tuile_tmp, emplacement);
+    plateau->poser_tuile(tuile, emplacement);
 
     // Emplacement du meeple
-    plateau->calculer_element_libres(tuile_tmp);
+    plateau->calculer_element_libres(tuile);
     int size_liste_element_courant = plateau->get_element_libre().size();
     float meilleur_score_meeple = -FLT_MIN;
 
@@ -232,17 +233,18 @@ void Robot::script_robot_minimax(Plateau *plateau, Tuile *tuile)
         this->si_poser_meeple = false;
     }
 
-    plateau->remove_back_child();
+    delete tuile_tmp;
 }
 
 void Robot::update_ia(Plateau * plateau, Tuile * tuile_pioche)
 {
     Logging::log(Logging::TRACE, "mise à jour de l'IA");    
-    Tuile * tuile_pioche_tmp = tuile_pioche  = new Tuile(*tuile_pioche);
+    Tuile * tuile_pioche_tmp = new Tuile(*tuile_pioche);
 
     if(tuile_pioche_tmp == nullptr)
     {
         Logging::log(Logging::DEBUG, "tuile pioche en paramettre de l'IA est null");
+        
         return;
     }
 
@@ -250,10 +252,12 @@ void Robot::update_ia(Plateau * plateau, Tuile * tuile_pioche)
     {
         case(Robot::ALEAT):
              script_robot_aleat(plateau, tuile_pioche);
+
              break;
         
         case(Robot::MINIMAX):
              script_robot_minimax(plateau, tuile_pioche_tmp);
+
              break;
         
         default:
@@ -281,7 +285,9 @@ int Robot::choix_de_element_libre()
     if(this->choix_si_poser_meeple() == false)
     {
         Logging::log(Logging::DEBUG, "Demande le choix de l'élément alors que le robot ne veut pas poser de meeple, retourne le choix 0");
+
         return 0;
     }
+
     return this->indice_element_libre;
 }

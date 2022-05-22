@@ -5,6 +5,8 @@
 #include <map>
 #include <tuple>
 #include <vector>
+#include <iostream>
+#include <fstream>
 
 #include "BaseDeDonnees.hpp"
 #include "Bordure.hpp"
@@ -28,10 +30,12 @@ void afficher_elements(vector<Element *> list_element)
         {
 			cout << "Element n°" << i << ": " << element->get_type_element() << endl;
 		} 
+
         else 
         {
 			cout << "Element n°" << i << " (impossible à placer): " << element->get_type_element() << endl;
 		}
+
 		i++;
 	}
 }
@@ -99,26 +103,25 @@ int main() {
     {
         plateau.ajouter_joueur(joueur, new Pion());
     }
+
+    ofstream file("tours.data");
     
     int i = 0;    
     
     /* Boucle principale */
     
-    //while (!plateau.pioche_est_vide()) 
-    
-    for(int x = 0; x < 71; x++)
+    while (!plateau.pioche_est_vide())
     {
-        Joueur * joueur_courant = list_joueur[i%2];
+        Joueur *joueur_courant = list_joueur[i%2];
 
 		/* Afficher le plateau */
 		//afficher_plateau(&plateau);
 
         /* Piocher une tuile */
         Tuile *tuile_pioche = plateau.piocher_tuile_aleat(); // Pioche une tuile au hasard et l'enlève de la pioche
-        cout << "Tuile piochée n° " << tuile_pioche->get_id() << ": " << x << endl;
 
         /* Mettre à jour IA */
-        Robot * robot = dynamic_cast<Robot *>(joueur_courant);
+        Robot *robot = dynamic_cast<Robot *>(joueur_courant);
         if(robot != nullptr)
         {
             robot->update_ia(&plateau, tuile_pioche);
@@ -154,17 +157,23 @@ int main() {
         }   
 
 		/* Compter les points de tous les joueurs */
-		plateau.evaluer_meeple(STATUS_EN_COURS); 
+        file << i << " " << list_joueur.at(0)->get_score() << " " << list_joueur.at(1)->get_score() << endl;
+        
+		plateau.evaluer_meeple(STATUS_EN_COURS);
         i = i + 1; // joueur suivant
+        cout << "Fin du tour " << i << endl;
         cout << "Score courant Joueur 1 : " << list_joueur.at(0)->get_score() << endl;
         cout << "Score courant Joueur 2 : " << list_joueur.at(1)->get_score() << endl;
+
     }
     
     plateau.evaluer_meeple(STATUS_FINAL);
 
-    cout << "Joueur 1 à gagner : " << list_joueur.at(0)->get_score() << endl;
-    cout << "Joueur 2 à gagner : " << list_joueur.at(1)->get_score() << endl;
+    cout << "Joueur 1 à gagné : " << list_joueur.at(0)->get_score() << endl;
+    cout << "Joueur 2 à gagné : " << list_joueur.at(1)->get_score() << endl;
 
     /* free data */
+    file.close();
+
 	return 0;
 }
