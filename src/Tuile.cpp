@@ -28,20 +28,7 @@ Tuile::Tuile(const Tuile & tuile)
 
 Tuile::~Tuile()
 {
-    /*
-    for(Element * element : this->element)
-    {
-        delete element;
-    }
-    for(int i = 0; i < 4; i++) 
-    {
-        if(this->bordure[i] != nullptr)
-        {
-            // Logging::log(Logging::TRACE, "delete bordure %d", bordure[i]);
-            delete this->bordure[i];
-        }
-    }
-    */
+    
 }
 
 /**

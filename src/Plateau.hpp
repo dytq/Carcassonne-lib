@@ -122,6 +122,7 @@ class Plateau
 
         static void remove_back_child()
         {
+            delete Plateau::current_plateau;
             Plateau::list_plateau.pop_back();
             Plateau::set_at_back_child();
         }
