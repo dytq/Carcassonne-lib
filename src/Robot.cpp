@@ -21,6 +21,7 @@ void Robot::script_robot_aleat(Plateau * plateau, Tuile * tuile)
 
     int size_liste = plateau->get_liste_tuiles_emplacements_libres().size();
 
+    srand(time(NULL));
     this->indice_emplacement_libre = rand() % size_liste;
        
     Logging::log(Logging::DEBUG, "Robot a choisi emplacement %d/%d", indice_emplacement_libre, (int) plateau->get_liste_tuiles_emplacements_libres().size());
@@ -54,6 +55,7 @@ void Robot::script_robot_aleat(Plateau * plateau, Tuile * tuile)
             int size_liste_element = plateau->get_element_libre().size();
             if(size_liste_element > 0)
             {
+                srand(time(NULL));
                 this->indice_element_libre = rand() % size_liste_element;
                 Logging::log(Logging::DEBUG, "Robot veut placer son Meeple à %d", this->indice_element_libre);
             }

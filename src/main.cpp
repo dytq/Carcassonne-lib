@@ -87,24 +87,24 @@ void afficher_liste_tuiles_emplacements_libres(vector<array<int, 3>> liste_tuile
 }
 
 // MAIN
-int main() {
+int main()
+{
     Plateau plateau;
     
     plateau.init_root(BaseDeDonnees::generer_plateau_vanilla());
     plateau.init_plateau();
-
 	
     /* Initialisation des joueurs */
     vector<Joueur *> list_joueur;
     list_joueur.push_back(new Robot(Robot::ALEAT));
-    list_joueur.push_back(new Robot(Robot::MINIMAX));
+    list_joueur.push_back(new Robot(Robot::ALEAT));
 
     for(Joueur * joueur : list_joueur)
     {
         plateau.ajouter_joueur(joueur, new Pion());
     }
 
-    ofstream file("tours.data");
+    ofstream file("tours.data", ios::app);
     
     int i = 0;    
     
@@ -156,15 +156,14 @@ int main() {
             }
         }   
 
-		/* Compter les points de tous les joueurs */
-        file << i << " " << list_joueur.at(0)->get_score() << " " << list_joueur.at(1)->get_score() << endl;
-        
+		/* Compter les points de tous les joueurs */        
 		plateau.evaluer_meeple(STATUS_EN_COURS);
         i = i + 1; // joueur suivant
         cout << "Fin du tour " << i << endl;
         cout << "Score courant Joueur 1 : " << list_joueur.at(0)->get_score() << endl;
         cout << "Score courant Joueur 2 : " << list_joueur.at(1)->get_score() << endl;
 
+        file << i << " " << list_joueur.at(0)->get_score() << " " << list_joueur.at(1)->get_score() << endl;
     }
     
     plateau.evaluer_meeple(STATUS_FINAL);

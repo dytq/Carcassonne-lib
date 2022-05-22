@@ -1,4 +1,4 @@
-f_size = 0.01
+f_size = 0.05
 cex_size = 0.5
 pch_id = 20
 columns = c("tour", "score1", "score2")
@@ -9,8 +9,12 @@ plot_score_joueurs <- function(name)
 	data = read.table(name)
     colnames(data) = columns
 
+    lowY = min(data$score1, data$score2)
+    highY = max(data$score1, data$score2)
+
     plot(data$tour,
         data$score1,
+        ylim = c(lowY, highY),
         pch = pch_id,
         cex = cex_size,
         xlab = "N° du tour",
@@ -21,7 +25,7 @@ plot_score_joueurs <- function(name)
     points(data$tour, data$score2, pch = pch_id, cex = cex_size, col = "red")
     lines(lowess(data$tour, data$score2, f = f_size), col = "red")
 
-    legend("bottomright", legend = paste("Joueur", c("1", "2")),
+    legend("topleft", legend = paste("Joueur", c("1", "2")),
     lty = "solid", col = c("blue", "red"))
 }
 
